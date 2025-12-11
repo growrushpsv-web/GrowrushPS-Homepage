@@ -1,712 +1,462 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="winter">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH - Private Server Terbaik Indonesia (Winter Edition)</title>
+    <title>GROWRUSH - Winter Wonderland Edition</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* ==================================== */
-        /* ❄️ WINTER COLOR PALETTE     */
-        /* ==================================== */
-        :root {
-            --primary-color: #4A90E2; /* Bright Blue */
-            --secondary-color: #7DD8FF; /* Light Blue / Icy */
-            --accent-color: #C8F0FF; /* Very Light Blue/Ice */
-            --dark-color: #1E3A8A; /* Deep Blue/Navy */
-            --light-color: #E0F7FA; /* Snow White */
-            --text-color: #FFFFFF;
-            --card-bg: rgba(255, 255, 255, 0.15); /* Slightly transparent for ice effect */
-            --card-hover: rgba(255, 255, 255, 0.3);
-            --gradient-primary: linear-gradient(135deg, #4A90E2 0%, #7DD8FF 100%);
-            --gradient-secondary: linear-gradient(135deg, #7DD8FF 0%, #C8F0FF 100%);
-            --gradient-accent: linear-gradient(135deg, #C8F0FF 0%, #4A90E2 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
         body {
-            background-color: var(--dark-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-        
-        /* Apply a slightly different dark blue for section background differentiation */
-        #server-info, #join, #payment, #faq {
-            background-color: #1A478C; 
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0fbfc;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(192, 100%, 93%, 1) 0, transparent 50%),
+                radial-gradient(at 90% 100%, hsla(202, 100%, 82%, 1) 0, transparent 50%);
         }
 
-        header {
-            background-color: var(--dark-color);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        /* Customize hero button glow */
+        .btn-primary-custom {
+            box-shadow: 0 0 15px #60a5fa, 0 0 30px #60a5fa;
+            transition: all 0.3s;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+        .btn-primary-custom:hover {
+            box-shadow: 0 0 20px #3b82f6, 0 0 40px #3b82f6;
         }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo a {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent-color); /* Highlight with icy color */
-            text-decoration: none;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--secondary-color);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* ==================================== */
-        /* HERO SECTION           */
-        /* ==================================== */
-        #hero {
-            /* Updated image to a winter-themed one */
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1551698263-c75269a94158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover fixed; 
-            padding: 100px 0;
-            text-align: center;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-            text-shadow: 0 0 15px rgba(199, 240, 255, 0.8);
-        }
-
-        #hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: var(--light-color);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: var(--text-color);
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        /* ==================================== */
-        /* GENERAL STYLES         */
-        /* ==================================== */
-
-        section {
-            padding: 80px 0;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--light-color);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background: var(--card-hover);
-        }
-
-        .card i {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--accent-color);
-        }
-
-        /* ==================================== */
-        /* ROLES SECTION          */
-        /* ==================================== */
-
-        #shop {
-            background-color: var(--dark-color);
-            padding: 80px 0 40px 0;
-        }
-
-        #shop h2 {
-            color: var(--text-color);
-        }
-
-        .role-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 30px;
-            border: 2px solid transparent;
-            text-align: left;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .role-card h4 {
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .role-card .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--light-color);
-            margin-bottom: 15px;
-        }
-
-        .role-card ul {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .role-card ul li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            color: var(--light-color);
-        }
-
-        .role-card ul li i {
-            font-size: 1rem;
-            color: var(--secondary-color);
-            margin-right: 10px;
-        }
-
-        .role-card.popular {
-            border-color: var(--accent-color);
-            background: rgba(43, 88, 143, 0.5); /* Slightly darker icy background */
-            box-shadow: 0 0 30px rgba(199, 240, 255, 0.7); /* Icy glow */
-            transform: scale(1.05);
+        /* Timeline styles */
+        .timeline {
             position: relative;
-            overflow: hidden;
+            padding: 20px 0;
         }
 
-        .role-card.popular::before {
-            content: "🔥 BEST SELLER"; /* Changed to BEST SELLER, could be ❄️ ICY PICK */
+        .timeline::before {
+            content: '';
             position: absolute;
-            top: 20px;
-            right: -30px;
-            background: var(--gradient-accent);
-            color: var(--dark-color);
-            padding: 5px 30px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            transform: rotate(45deg);
+            width: 4px;
+            background-color: #bae6fd;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
         }
 
-        .buy-button {
-            width: 100%;
-            text-align: center;
-            padding: 15px 0;
-            background: var(--gradient-primary);
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-date {
+            padding: 8px 15px;
+            background-color: #3b82f6;
             color: white;
-            border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            position: absolute;
+            top: 25px;
+            z-index: 10;
         }
 
-        .buy-button:hover {
-            background: var(--gradient-secondary);
-            transform: translateY(-2px);
+        .timeline-item.left .timeline-date {
+            right: -40px;
         }
 
-        /* ==================================== */
-        /* PAYMENT SECTION        */
-        /* ==================================== */
-
-        #payment {
-            text-align: center;
+        .timeline-item.right .timeline-date {
+            left: -40px;
         }
 
-        .platform-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: #f0fbfc;
+            border: 4px solid #3b82f6;
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
         }
 
-        .tab-button {
-            padding: 10px 20px;
-            background-color: var(--card-bg);
-            color: var(--light-color);
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            margin: 0 5px;
-            border-radius: 5px 5px 0 0;
-            font-weight: 600;
+        .timeline-item.right::after {
+            left: -17px;
         }
 
-        .tab-button:hover, .tab-button.tab-active {
-            background-color: var(--primary-color);
-            color: var(--text-color);
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .platform-content {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 0 0 10px 10px;
-            text-align: left;
-            min-height: 200px;
-            display: none;
-        }
-
-        .payment-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .payment-container div:first-child {
-            background-color: #4A90E2; /* Primary blue for the QRIS block */
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Updated style for the selected role display */
-        #selectedRole {
-            background-color: #7DD8FF; /* Light blue background */
-            color: var(--dark-color); /* Dark text for contrast */
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            border-left: 5px solid var(--primary-color);
-            transition: all 0.5s;
-        }
-
-        /* ==================================== */
-        /* FAQ SECTION          */
-        /* ==================================== */
-
-        .faq-item {
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--card-bg);
-            padding-bottom: 15px;
-        }
-
-        .faq-question {
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .faq-question:hover {
-            background: var(--card-hover);
-        }
-
-        .faq-answer {
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 0 0 5px 5px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-            color: var(--light-color);
-        }
-        
-        .faq-answer.open {
-            max-height: 500px; /* arbitrary large value */
-            padding: 15px;
-        }
-        
-        .faq-icon {
-            transition: transform 0.3s;
-        }
-        
-        .faq-icon.rotate {
-            transform: rotate(180deg);
-        }
-
-        /* ==================================== */
-        /* FOOTER               */
-        /* ==================================== */
-
-        footer {
-            background-color: #112D5E; /* A slightly darker blue for the footer */
-            color: var(--light-color);
-            padding: 40px 0;
-            text-align: center;
-        }
-        
-        .social-icons a {
-            color: var(--light-color);
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        
-        .social-icons a:hover {
-            color: var(--accent-color);
-        }
-
-        /* ==================================== */
-        /* MEDIA QUERIES             */
-        /* ==================================== */
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-wrap: wrap;
+        @media screen and (max-width: 768px) {
+            .timeline::before {
+                left: 31px;
             }
 
-            .nav-links {
-                display: none;
-                flex-direction: column;
+            .timeline-item {
                 width: 100%;
-                text-align: center;
-                margin-top: 15px;
+                padding-left: 70px;
+                padding-right: 25px;
             }
 
-            .nav-links.active {
-                display: flex;
+            .timeline-item.right {
+                left: 0%;
             }
 
-            .nav-links a {
-                margin: 10px 0;
-                padding: 10px;
-                background-color: var(--dark-color);
-                border-radius: 5px;
+            .timeline-item.left::after,
+            .timeline-item.right::after {
+                left: 15px;
             }
 
-            .menu-toggle {
-                display: block;
+            .timeline-item.left .timeline-date,
+            .timeline-item.right .timeline-date {
+                left: 75px;
+                right: auto;
             }
 
-            #hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .payment-container {
-                grid-template-columns: 1fr;
+            .timeline-item.left {
+                text-align: left;
             }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="container navbar">
-            <div class="logo"><a href="#hero">❄️ GROWRUSH</a></div>
-            <nav>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#server-info" class="active">Info Server</a></li>
-                    <li><a href="#shop">Role Shop</a></li>
-                    <li><a href="#payment">Pembayaran</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#" class="cta-button">Play Now</a></li>
+    <header class="navbar bg-base-100 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto">
+            <div class="flex-1">
+                <a href="#" class="btn btn-ghost text-xl text-primary font-bold">❄️ GROWRUSH</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal px-1 hidden lg:flex">
+                    <li><a href="#hero" class="hover:text-primary">Home</a></li>
+                    <li><a href="#server-info" class="hover:text-primary">Info Server</a></li>
+                    <li><a href="#shop" class="hover:text-primary">Role Shop</a></li>
+                    <li><a href="#faq" class="hover:text-primary">FAQ</a></li>
+                    <li><a href="#" class="btn btn-sm btn-primary ml-2">Discord</a></li>
                 </ul>
-            </nav>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
+                <div class="dropdown dropdown-end lg:hidden">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h7" />
+                        </svg>
+                    </div>
+                    <ul tabindex="0"
+                        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#server-info">Info Server</a></li>
+                        <li><a href="#shop">Role Shop</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#" class="btn btn-sm btn-primary mt-2">Discord</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
 
-    <section id="hero">
-        <div class="container">
-            <h1>❄️ Winter Wonderland Edition ❄️</h1>
-            <p>Jelajahi dunia fantasi dengan fitur terbaik, event eksklusif, dan komunitas yang ramah. Rasakan pengalaman bermain yang berbeda!</p>
-            <a href="#shop" class="cta-button">Lihat Role Premium</a>
+    <section id="hero" class="hero min-h-[60vh] bg-base-200">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-5xl font-bold text-primary mb-4">GROWRUSH</h1>
+                <h2 class="text-3xl font-extrabold text-base-content mb-6">Winter Wonderland Edition ❄️</h2>
+                <p class="py-6 text-lg">Server Private Terbaik di Indonesia dengan event seru, fitur premium, dan
+                    komunitas yang suportif.
+                </p>
+                <a href="#shop" class="btn btn-primary btn-lg btn-primary-custom text-white">Lihat Role Premium</a>
+            </div>
         </div>
     </section>
 
-    <section id="server-info">
-        <div class="container">
-            <h2>✨ Keunggulan Server Kami</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Anti-Lag Superior</h3>
-                    <p>Server dioptimalkan dengan infrastruktur terbaru, menjamin latensi rendah dan pengalaman bermain yang mulus.</p>
+    <section id="server-info" class="py-16 bg-base-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-secondary">✨ Keunggulan Server Kami</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <div class="card-body items-center text-center">
+                        <div class="text-5xl text-primary mb-4"><i class="fas fa-bolt"></i></div>
+                        <h3 class="card-title text-2xl">Anti-Lag Superior</h3>
+                        <p class="text-base-content/70">Server dioptimalkan dengan infrastruktur terbaru, menjamin latensi
+                            rendah dan pengalaman bermain yang mulus.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Keamanan Data</h3>
-                    <p>Proteksi DDoS level enterprise dan sistem anti-cheat canggih untuk menjamin keamanan akun Anda 24/7.</p>
+
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <div class="card-body items-center text-center">
+                        <div class="text-5xl text-primary mb-4"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="card-title text-2xl">Keamanan Data</h3>
+                        <p class="text-base-content/70">Proteksi DDoS level enterprise dan sistem anti-cheat canggih untuk
+                            menjamin keamanan akun Anda 24/7.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-headset"></i>
-                    <h3>Customer Support</h3>
-                    <p>Tim support profesional kami siap membantu Anda menyelesaikan masalah dengan respons cepat.</p>
+
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <div class="card-body items-center text-center">
+                        <div class="text-5xl text-primary mb-4"><i class="fas fa-headset"></i></div>
+                        <h3 class="card-title text-2xl">Customer Support</h3>
+                        <p class="text-base-content/70">Tim support profesional kami siap membantu Anda menyelesaikan
+                            masalah dengan respons cepat.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="shop">
-        <div class="container">
-            <h2>🛒 Role Premium</h2>
-            <p class="text-center" style="margin-bottom: 30px; font-style: italic; color: var(--secondary-color) !important;">Dapatkan akses ke fitur eksklusif dan support premium!</p>
+    <section id="event" class="py-16 bg-base-200">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary">🗓️ Event Mendatang</h2>
 
-            <div class="grid-3">
-                <div class="card role-card">
-                    <div>
-                        <h4>❄️ Role Basic</h4>
-                        <p class="price">Rp 50.000</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Chat Color Eksklusif</li>
-                            <li><i class="fas fa-check-circle"></i> Priority Queue (Normal)</li>
-                            <li><i class="fas fa-check-circle"></i> Akses Channel Beta</li>
-                            <li><i class="fas fa-times-circle" style="color: #FF6B6B;"></i> Item In-Game Eksklusif</li>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-date">15 DES</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-primary mb-2">Winter Hunt (New Boss)</h3>
+                        <p class="text-base-content/70">Boss baru bertema salju muncul di Map Frostbitten. Drop rate item
+                            Ultimate ditingkatkan 2x lipat!</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-date">24 DES</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-primary mb-2">Christmas Gala</h3>
+                        <p class="text-base-content/70">Perayaan Natal in-game dengan item kosmetik eksklusif dan event
+                            mini-game berhadiah Role Premium.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-date">31 DES</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-primary mb-2">New Year Countdown</h3>
+                        <p class="text-base-content/70">Hitung mundur tahun baru di hub utama server. Dapatkan bonus
+                            EXP dan Gold selama 1 jam penuh.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="shop" class="py-16 bg-base-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-secondary">🛒 Role Premium</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-base-200 shadow-xl">
+                    <div class="card-body items-start">
+                        <h4 class="text-3xl font-bold text-primary mb-2">Role Basic</h4>
+                        <p class="text-5xl font-extrabold text-secondary mb-4">Rp 50K</p>
+                        <ul class="space-y-2 text-base-content">
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Chat Color Eksklusif</li>
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Priority Queue (Normal)</li>
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Akses Channel Beta</li>
+                            <li><i class="fas fa-times-circle text-error mr-2"></i> Item In-Game Eksklusif</li>
                         </ul>
+                        <div class="card-actions justify-end mt-6 w-full">
+                            <button class="btn btn-primary w-full"
+                                onclick="selectRole('Role Basic', 50000)">Pilih Role</button>
+                        </div>
                     </div>
-                    <button class="buy-button" onclick="selectRole('Role Basic', 50000)">Pilih Role</button>
                 </div>
 
-                <div class="card role-card popular">
-                    <div>
-                        <h4>🧊 Role Premium</h4>
-                        <p class="price">Rp 150.000</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Semua fitur Basic</li>
-                            <li><i class="fas fa-check-circle"></i> Priority Queue (Fast)</li>
-                            <li><i class="fas fa-check-circle"></i> Item In-Game Eksklusif **(Baru!)**</li>
-                            <li><i class="fas fa-check-circle"></i> Role Discord Eksklusif</li>
+                <div class="card bg-base-200 shadow-xl border-4 border-primary scale-105 transition-transform duration-300">
+                    <div class="card-body items-start">
+                        <span
+                            class="badge badge-lg badge-primary text-white p-3 absolute top-0 right-0 -mt-3 -mr-3 rotate-12">🔥
+                            BEST SELLER</span>
+                        <h4 class="text-3xl font-bold text-primary mb-2">Role Premium</h4>
+                        <p class="text-5xl font-extrabold text-secondary mb-4">Rp 150K</p>
+                        <ul class="space-y-2 text-base-content">
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> **Semua fitur Basic**</li>
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Priority Queue (Fast)</li>
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Item In-Game Eksklusif</li>
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Role Discord Eksklusif</li>
                         </ul>
+                        <div class="card-actions justify-end mt-6 w-full">
+                            <button class="btn btn-secondary w-full"
+                                onclick="selectRole('Role Premium', 150000)">Pilih Role</button>
+                        </div>
                     </div>
-                    <button class="buy-button" onclick="selectRole('Role Premium', 150000)">Pilih Role</button>
                 </div>
 
-                <div class="card role-card">
-                    <div>
-                        <h4>💎 Role Ultimate</h4>
-                        <p class="price">Rp 300.000</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Semua fitur Premium</li>
-                            <li><i class="fas fa-check-circle"></i> Priority Queue (Instan)</li>
-                            <li><i class="fas fa-check-circle"></i> Akses Dev-Build</li>
-                            <li><i class="fas fa-check-circle"></i> Konsultasi Langsung dengan Admin</li>
+                <div class="card bg-base-200 shadow-xl">
+                    <div class="card-body items-start">
+                        <h4 class="text-3xl font-bold text-primary mb-2">Role Ultimate</h4>
+                        <p class="text-5xl font-extrabold text-secondary mb-4">Rp 300K</p>
+                        <ul class="space-y-2 text-base-content">
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> **Semua fitur Premium**</li>
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Priority Queue (Instan)</li>
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Akses Dev-Build</li>
+                            <li><i class="fas fa-check-circle text-success mr-2"></i> Konsultasi Langsung Admin</li>
                         </ul>
+                        <div class="card-actions justify-end mt-6 w-full">
+                            <button class="btn btn-primary w-full"
+                                onclick="selectRole('Role Ultimate', 300000)">Pilih Role</button>
+                        </div>
                     </div>
-                    <button class="buy-button" onclick="selectRole('Role Ultimate', 300000)">Pilih Role</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="payment">
-        <div class="container">
-            <h2>💳 Pembayaran</h2>
-            
-            <div id="selectedRole" style="display: none;">
+
+    <section id="payment" class="py-16 bg-base-200">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary">💳 Pembayaran</h2>
+
+            <div id="selectedRole" style="display: none;" class="w-full bg-green-50 p-4 rounded-xl mb-4 text-green-800 border-l-4 border-green-500 transition-all duration-500">
                 </div>
 
-            <div class="platform-tabs">
-                <button class="tab-button tab-active" onclick="openPlatform(event, 'android')">Android/PC</button>
-                <button class="tab-button" onclick="openPlatform(event, 'ios')">iOS</button>
+            <div class="tabs tabs-boxed justify-center mb-8">
+                <a class="tab tab-active" onclick="openPlatform(event, 'android')">Android/PC</a>
+                <a class="tab" onclick="openPlatform(event, 'ios')">iOS</a>
             </div>
 
-            <div id="android" class="platform-content" style="display: block;">
-                <h3>Pembayaran via Bank / QRIS</h3>
-                <p style="margin-bottom: 20px; color: var(--accent-color);">Transfer sesuai nominal role yang dipilih. Pastikan Anda memiliki kode unik transaksi.</p>
-                <div class="payment-container">
+            <div id="android" class="platform-content p-8 bg-base-100 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold text-secondary mb-4">Pembayaran via Bank / QRIS</h3>
+                <p class="text-base-content/80 mb-6">Transfer sesuai nominal role yang dipilih. Pastikan Anda memiliki
+                    kode unik transaksi.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-primary/10 p-4 rounded-lg text-center">
+                        <img src="https://i.imgur.com/wVfFfWJ.png" alt="QRIS Example"
+                            class="w-full max-w-xs mx-auto rounded-md border-2 border-primary">
+                        <p class="mt-3 font-bold text-primary">SCAN UNTUK QRIS</p>
+                    </div>
                     <div>
-                        <img src="https://i.imgur.com/wVfFfWJ.png" alt="QRIS Example" style="width: 100%; max-width: 250px; border-radius: 5px; margin-bottom: 10px;">
-                        <p style="font-weight: bold; color: var(--light-color);">SCAN UNTUK QRIS</p>
-                    </div>
-                    <div>
-                        <p style="font-weight: bold; font-size: 1.2rem; margin-bottom: 10px; color: var(--accent-color);">Transfer Bank</p>
-                        <p>Bank: <span style="font-weight: bold;">BCA</span></p>
-                        <p>No. Rekening: <span style="font-weight: bold;">1234567890</span></p>
-                        <p>Atas Nama: <span style="font-weight: bold;">PT. GROWRUSH INDONESIA</span></p>
-                        <hr style="margin: 15px 0; border-color: rgba(255, 255, 255, 0.1);">
-                        <p style="font-style: italic; font-size: 0.9rem; color: var(--secondary-color);">*Setelah transfer, hubungi admin melalui Discord dengan bukti transfer dan kode unik.</p>
+                        <p class="font-bold text-xl text-secondary mb-2">Detail Transfer Bank</p>
+                        <div class="text-base-content space-y-2">
+                            <p>Bank: <span class="font-bold">BCA</span></p>
+                            <p>No. Rekening: <span class="font-bold">1234567890</span></p>
+                            <p>Atas Nama: <span class="font-bold">PT. GROWRUSH INDONESIA</span></p>
+                        </div>
+                        <p class="mt-4 text-sm italic text-warning">*Setelah transfer, hubungi admin melalui Discord
+                            dengan bukti transfer dan kode unik.</p>
                     </div>
                 </div>
             </div>
 
-            <div id="ios" class="platform-content">
-                <h3>Pembayaran via Apple Pay / Credit Card</h3>
-                <p style="margin-bottom: 20px; color: var(--accent-color);">Saat ini pembayaran langsung via iOS sedang dalam perbaikan. Harap gunakan metode Bank / QRIS di tab Android/PC.</p>
-                <p style="font-weight: bold; color: #FF6B6B;">MOHON MAAF, METODE INI SEDANG TIDAK TERSEDIA.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq">
-        <div class="container">
-            <h2>❓ Pertanyaan Umum (FAQ)</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleAnswer(this)">
-                        Apa itu Role Premium? <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        Role Premium adalah status eksklusif yang memberikan fitur in-game tambahan, prioritas queue, dan dukungan khusus dari tim admin kami.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleAnswer(this)">
-                        Apakah Role ini permanen? <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        Ya, semua Role Premium yang dibeli bersifat permanen dan tidak akan hilang selama server beroperasi.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleAnswer(this)">
-                        Berapa lama Role akan aktif setelah pembayaran? <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        Role akan diaktifkan maksimal 1x24 jam setelah tim kami memverifikasi pembayaran Anda, biasanya kurang dari 1 jam.
-                    </div>
+            <div id="ios" class="platform-content p-8 bg-base-100 rounded-xl shadow-lg hidden">
+                <h3 class="text-2xl font-bold text-secondary mb-4">Pembayaran via Apple Pay / Credit Card</h3>
+                <p class="text-base-content/80 mb-6">Saat ini pembayaran langsung via iOS sedang dalam perbaikan. Harap
+                    gunakan metode Bank / QRIS di tab Android/PC.</p>
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>MOHON MAAF, METODE INI SEDANG TIDAK TERSEDIA.</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="social-icons" style="margin-bottom: 15px;">
-                <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+    <section id="faq" class="py-16 bg-base-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-secondary">❓ Pertanyaan Umum (FAQ)</h2>
+
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <div class="collapse collapse-arrow bg-base-200">
+                    <input type="checkbox" name="my-accordion-2" />
+                    <div class="collapse-title text-xl font-medium text-primary">
+                        Apa itu Role Premium?
+                    </div>
+                    <div class="collapse-content">
+                        <p>Role Premium adalah status eksklusif yang memberikan fitur in-game tambahan, prioritas queue,
+                            dan dukungan khusus dari tim admin kami.</p>
+                    </div>
+                </div>
+                <div class="collapse collapse-arrow bg-base-200">
+                    <input type="checkbox" name="my-accordion-2" />
+                    <div class="collapse-title text-xl font-medium text-primary">
+                        Apakah Role ini permanen?
+                    </div>
+                    <div class="collapse-content">
+                        <p>Ya, semua Role Premium yang dibeli bersifat permanen dan tidak akan hilang selama server
+                            beroperasi.</p>
+                    </div>
+                </div>
+                <div class="collapse collapse-arrow bg-base-200">
+                    <input type="checkbox" name="my-accordion-2" />
+                    <div class="collapse-title text-xl font-medium text-primary">
+                        Berapa lama Role akan aktif setelah pembayaran?
+                    </div>
+                    <div class="collapse-content">
+                        <p>Role akan diaktifkan maksimal 1x24 jam setelah tim kami memverifikasi pembayaran Anda,
+                            biasanya kurang dari 1 jam.</p>
+                    </div>
+                </div>
             </div>
-            <p>&copy; 2025 GROWRUSH - Private Server Terbaik Indonesia. All rights reserved.</p>
-            <p style="font-size: 0.8rem; margin-top: 5px; color: rgba(255, 255, 255, 0.5);">Desain oleh AI untuk Winter Edition</p>
         </div>
+    </section>
+
+    <footer class="footer footer-center p-10 bg-base-300 text-base-content">
+        <aside>
+            <p class="text-3xl text-primary font-bold">❄️ GROWRUSH</p>
+            <p>Server Private Terbaik Indonesia.</p>
+            <p>Copyright © 2025 - All right reserved</p>
+        </aside>
+        <nav>
+            <div class="grid grid-flow-col gap-4">
+                <a href="#" class="text-2xl hover:text-primary"><i class="fab fa-discord"></i></a>
+                <a href="#" class="text-2xl hover:text-primary"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-primary"><i class="fab fa-youtube"></i></a>
+            </div>
+        </nav>
     </footer>
 
     <script>
-        // Toggle mobile menu
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-
         // Tab functionality for Payment
         function openPlatform(evt, platformName) {
-            const tabcontent = document.querySelectorAll('.platform-content');
-            tabcontent.forEach(content => {
+            // Remove 'tab-active' from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('tab-active');
+            });
+
+            // Hide all content
+            document.querySelectorAll('.platform-content').forEach(content => {
                 content.style.display = 'none';
             });
 
-            const tablinks = document.querySelectorAll('.tab-button');
-            tablinks.forEach(link => {
-                link.classList.remove('tab-active');
-            });
-
+            // Show the selected content
             document.getElementById(platformName).style.display = 'block';
-            evt.currentTarget.classList.add('tab-active');
+
+            // Set the clicked tab to active
+            evt.currentTarget.classList.add("tab-active");
         }
 
-        // FAQ Toggle functionality
-        function toggleAnswer(element) {
-            const answer = element.nextElementSibling;
-            const icon = element.querySelector('.faq-icon i');
-
-            if (answer.classList.contains('open')) {
-                answer.classList.remove('open');
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-            } else {
-                // Close all other answers
-                document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
-                    openAnswer.classList.remove('open');
-                    openAnswer.previousElementSibling.querySelector('.faq-icon i').classList.remove('fa-chevron-up');
-                    openAnswer.previousElementSibling.querySelector('.faq-icon i').classList.add('fa-chevron-down');
-                });
-                
-                // Open the clicked answer
-                answer.classList.add('open');
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            }
-        }
+        // Initialize first tab
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("android").style.display = "block";
+        });
 
         // Role Selection Logic
         function selectRole(roleName, price) {
             const displayDiv = document.getElementById("selectedRole");
-            displayDiv.style.display = "block";
-            
-            // Apply the new winter/icy colors for the dynamic box
-            displayDiv.style.backgroundColor = '#7DD8FF'; 
-            displayDiv.style.color = '#1E3A8A';
-            displayDiv.style.borderLeft = '5px solid #4A90E2';
-            
+            // Uses Tailwind classes for the alert box
+            displayDiv.className = "w-full bg-green-100 p-4 rounded-xl mb-4 text-green-800 border-l-4 border-green-500 transition-all duration-500 block";
+
             displayDiv.innerHTML = `
-                <h4 style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">✅ Role Terpilih: ${roleName}</h4>
-                <p>Transfer Nominal: <span style="font-weight: bold; font-size: 1.5rem;">Rp ${price.toLocaleString('id-ID')}</span></p>
+                <h4 class="font-bold text-lg">✅ Role Terpilih: ${roleName}</h4>
+                <p>Transfer Nominal: <span class="font-bold text-xl">Rp ${price.toLocaleString('id-ID')}</span></p>
                 `;
 
             // Smooth scroll to payment
@@ -720,34 +470,9 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-
-                // Update active link class
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
             });
         });
-
-        // Initialize first tab
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("android").style.display = "block";
-            
-            // Set first nav link to active on load
-            const firstNavLink = document.querySelector('.nav-links a[href="#server-info"]');
-            if (firstNavLink) {
-                 firstNavLink.classList.add('active');
-            }
-        });
-
-        // Event Timeline Responsive Logic (from previous file, kept but adjusted for new IDs)
-        window.addEventListener('resize', () => {
-            // Note: The timeline feature was removed/replaced, 
-            // but keeping this event listener structure for possible future use or if other responsive logic is added.
-        });
-        
-        // Initial call to set up the correct layout
-        window.dispatchEvent(new Event('resize'));
     </script>
 </body>
+
 </html>
