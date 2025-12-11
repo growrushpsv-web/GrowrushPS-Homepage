@@ -221,7 +221,8 @@
         /* CUSTOM: Tweak for mobile readability */
         @media (max-width: 767px) {
             .hero-content h1 {
-                font-size: 3.5rem; /* Slightly smaller on mobile */
+                font-size: 3.5rem;
+                /* Slightly smaller on mobile */
             }
 
             .hero-content p {
@@ -234,11 +235,13 @@
             }
 
             .stat-value {
-                font-size: 1.5rem !important; /* Smaller stat value */
+                font-size: 1.5rem !important;
+                /* Smaller stat value */
             }
 
             .stat-title {
-                font-size: 0.7rem !important; /* Smaller stat title */
+                font-size: 0.7rem !important;
+                /* Smaller stat title */
             }
 
             /* Ensure tabs are scrollable and compact */
@@ -254,6 +257,17 @@
             /* Adjust card spacing on mobile for role shop */
             .card-body {
                 padding: 1.5rem;
+            }
+
+            /* Adjust Hero Stats for small screens */
+            .stats .stat {
+                padding: 0.5rem 0.25rem;
+                /* Make stat content more compact */
+            }
+
+            /* Text size adjustments for steps/tutorials */
+            .steps .text-left strong {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -335,25 +349,25 @@
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 stats-grid-mobile">
                     <div class="stats shadow glass-winter overflow-hidden">
-                        <div class="stat px-2 py-2 text-center place-items-center">
+                        <div class="stat px-4 py-2 text-center place-items-center">
                             <div class="stat-title text-slate-600 font-bold text-xs">Total Players</div>
                             <div class="stat-value text-blue-500 text-2xl" id="totalPlayers">15,847</div>
                         </div>
                     </div>
                     <div class="stats shadow glass-winter overflow-hidden">
-                        <div class="stat px-2 py-2 text-center place-items-center">
+                        <div class="stat px-4 py-2 text-center place-items-center">
                             <div class="stat-title text-slate-600 font-bold text-xs">Active Worlds</div>
                             <div class="stat-value text-cyan-500 text-2xl" id="totalWorlds">3,421</div>
                         </div>
                     </div>
                     <div class="stats shadow glass-winter overflow-hidden">
-                        <div class="stat px-2 py-2 text-center place-items-center">
+                        <div class="stat px-4 py-2 text-center place-items-center">
                             <div class="stat-title text-slate-600 font-bold text-xs">Uptime</div>
                             <div class="stat-value text-green-500 text-2xl" id="uptime">99.9%</div>
                         </div>
                     </div>
                     <div class="stats shadow glass-winter overflow-hidden">
-                        <div class="stat px-2 py-2 text-center place-items-center">
+                        <div class="stat px-4 py-2 text-center place-items-center">
                             <div class="stat-title text-slate-600 font-bold text-xs">Version</div>
                             <div class="stat-value text-purple-500 text-2xl">5.38</div>
                         </div>
@@ -373,22 +387,23 @@
         </div>
     </div>
 
-    <section id="join" class="py-16 md:py-20 bg-white relative">
+    <section id="join" class="py-20 bg-white relative">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-10 md:mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2 md:mb-4">🎮 Cara Bergabung</h2>
-                <p class="text-slate-500 text-sm md:text-base">Ikuti langkah-langkah di bawah ini untuk platform pilihanmu!</p>
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-800 mb-4">🎮 Cara Bergabung</h2>
+                <p class="text-slate-500">Ikuti langkah-langkah di bawah ini untuk platform pilihanmu!</p>
             </div>
 
-            <div class="tabs tabs-boxed justify-start md:justify-center mb-10 bg-blue-50 p-1 md:p-2 rounded-full overflow-x-auto glass-winter tabs-compact-mobile">
+            <div
+                class="tabs tabs-boxed justify-center mb-10 bg-blue-50 p-2 rounded-full overflow-x-auto glass-winter tabs-compact-mobile">
                 <a class="tab tab-lg transition-all duration-300 font-bold tab-active"
                     onclick="switchTab(event, 'android')">Android</a>
                 <a class="tab tab-lg transition-all duration-300 font-bold"
                     onclick="switchTab(event, 'windows')">Windows</a>
                 <a class="tab tab-lg transition-all duration-300 font-bold"
                     onclick="switchTab(event, 'powertunnel')">PowerTunnel</a>
-                <a class="tab tab-lg transition-all duration-300 font-bold"
-                    onclick="switchTab(event, 'hostsgo')">Hosts Go</a>
+                <a class="tab tab-lg transition-all duration-300 font-bold" onclick="switchTab(event, 'hostsgo')">Hosts
+                    Go</a>
                 <a class="tab tab-lg transition-all duration-300 font-bold"
                     onclick="switchTab(event, 'virtualhost')">Virtual Host</a>
                 <a class="tab tab-lg transition-all duration-300 font-bold" onclick="switchTab(event, 'mac')">Mac</a>
@@ -396,10 +411,10 @@
                     onclick="switchTab(event, 'surge5')">Surge5</a>
             </div>
 
-            <div class="max-w-4xl mx-auto bg-base-100 shadow-2xl rounded-3xl p-6 md:p-8 border border-blue-100">
+            <div class="max-w-4xl mx-auto bg-base-100 shadow-2xl rounded-3xl p-8 border border-blue-100">
 
                 <div id="android" class="platform-content active">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2 text-green-600"><i
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 text-green-600"><i
                             class="fab fa-android"></i> Tutorial Android</h3>
                     <ul class="steps steps-vertical w-full">
                         <li class="step step-primary">
@@ -431,152 +446,251 @@
                 </div>
 
                 <div id="windows" class="platform-content">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2 text-blue-600"><i
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-600"><i
                             class="fab fa-windows"></i> Tutorial Windows</h3>
-                    <div class="bg-base-200 p-4 md:p-6 rounded-xl">
-                        <ol class="list-decimal pl-5 space-y-4 font-semibold text-slate-700 text-sm md:text-base">
-                            <li>Tekan <kbd class="kbd kbd-sm">Win</kbd> + <kbd class="kbd kbd-sm">R</kbd>, lalu paste:
-                                <code class="bg-slate-300 px-2 py-1 rounded text-xs md:text-sm">C:\Windows\System32\drivers\etc</code>
-                            </li>
-                            <li>Buka file <strong>hosts</strong> dengan Notepad (Run as Administrator).</li>
-                            <li>Tambahkan baris berikut di bagian paling bawah:
+
+                    <ul class="steps steps-vertical w-full">
+                        <li class="step step-primary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Buka File Hosts</strong>
+                                <p class="text-sm opacity-70">Tekan <kbd class="kbd kbd-sm">Win</kbd> + <kbd
+                                        class="kbd kbd-sm">R</kbd>, lalu paste: <code
+                                        class="bg-slate-300 px-1 rounded text-xs md:text-sm">C:\Windows\System32\drivers\etc</code>.
+                                    Buka file <strong>hosts</strong> dengan Notepad (Run as Administrator).</p>
+                            </div>
+                        </li>
+                        <li class="step step-primary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Tambahkan IP Server</strong>
+                                <p class="text-sm opacity-70">Tambahkan baris berikut di bagian paling bawah:</p>
                                 <div class="host-code text-xs sm:text-sm mt-2">
                                     5.196.204.227 growtopia1.com<br>
                                     5.196.204.227 growtopia2.com<br>
                                     5.196.204.227 www.growtopia1.com<br>
                                     5.196.204.227 www.growtopia2.com
                                 </div>
-                            </li>
-                            <li>Save file dan buka Growtopia.</li>
-                        </ol>
-                    </div>
+                            </div>
+                        </li>
+                        <li class="step step-primary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Selesai</strong>
+                                <p class="text-sm opacity-70">Save file dan buka Growtopia. Pastikan tidak ada firewall
+                                    yang memblokir!</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <div id="powertunnel" class="platform-content">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2 text-purple-600"><i
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 text-purple-600"><i
                             class="fas fa-shield-alt"></i> PowerTunnel Setup</h3>
-                    <ul class="steps steps-vertical w-full text-sm md:text-base">
-                        <li class="step step-secondary">Download & Install PowerTunnel APK (Lihat tab Android).</li>
-                        <li class="step step-secondary">Buka PowerTunnel app.</li>
+                    <ul class="steps steps-vertical w-full">
                         <li class="step step-secondary">
                             <div class="text-left w-full pl-4">
-                                <strong>Setting Hosts</strong>
-                                <p>Menu Plugin &rarr; Hosts &rarr; Open Setting.</p>
-                                <p>Masukkan URL Hosts: <code
-                                        class="bg-slate-200 px-2 rounded">https://growtopia.id/android</code></p>
+                                <strong class="text-base md:text-lg">Download App</strong>
+                                <p class="text-sm opacity-70">Download & Install PowerTunnel APK (Lihat tab Android untuk
+                                    tautan).</p>
                             </div>
                         </li>
-                        <li class="step step-secondary">Kembali ke menu utama, klik <strong>CONNECT</strong> dan buka
-                            GT.</li>
+                        <li class="step step-secondary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Setting Hosts</strong>
+                                <p class="text-sm opacity-70">Buka PowerTunnel app &rarr; Menu Plugin &rarr; Hosts &rarr;
+                                    Open Setting. Masukkan URL Hosts:</p>
+                                <code class="bg-slate-200 px-2 rounded">https://growtopia.id/android</code>
+                            </div>
+                        </li>
+                        <li class="step step-secondary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Connect & Mainkan</strong>
+                                <p class="text-sm opacity-70">Kembali ke menu utama, klik <strong>CONNECT</strong> dan
+                                    buka GT.</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
                 <div id="hostsgo" class="platform-content">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2 text-orange-600"><i
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 text-orange-600"><i
                             class="fas fa-server"></i> Hosts Go Setup</h3>
-                    <ul class="steps steps-vertical w-full text-sm md:text-base">
-                        <li class="step step-accent">Download Hosts Go (No Root). (Lihat tab Android).</li>
-                        <li class="step step-accent">Buka Aplikasi -> <strong>Hosts Editor</strong>.</li>
+                    <ul class="steps steps-vertical w-full">
                         <li class="step step-accent">
                             <div class="text-left w-full pl-4">
-                                <strong>Download Hosts File</strong>
-                                <p>Masukkan URL Hosts: <code
-                                        class="bg-slate-200 px-2 rounded">https://growtopia.id/android</code></p>
+                                <strong class="text-base md:text-lg">Download App</strong>
+                                <p class="text-sm opacity-70">Download Hosts Go (No Root). (Lihat tab Android untuk
+                                    tautan).</p>
                             </div>
                         </li>
-                        <li class="step step-accent">Klik Apply & Start Protection.</li>
+                        <li class="step step-accent">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Hosts Editor</strong>
+                                <p class="text-sm opacity-70">Buka Aplikasi Hosts Go &rarr; Pilih <strong>Hosts
+                                        Editor</strong>.</p>
+                            </div>
+                        </li>
+                        <li class="step step-accent">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Download Hosts File</strong>
+                                <p class="text-sm opacity-70">Masukkan URL Hosts:</p>
+                                <code class="bg-slate-200 px-2 rounded">https://growtopia.id/android</code>
+                            </div>
+                        </li>
+                        <li class="step step-accent">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Apply & Start</strong>
+                                <p class="text-sm opacity-70">Klik Apply & Start Protection.</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
                 <div id="virtualhost" class="platform-content">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2 text-teal-600"><i
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 text-teal-600"><i
                             class="fas fa-network-wired"></i> Virtual Host Setup</h3>
-                    <ul class="w-full list-none space-y-4 text-sm md:text-base">
-                        <li class="bg-base-200 p-4 rounded-lg">1. Download Virtual Host APK (Lihat tab Android).</li>
-                        <li class="bg-base-200 p-4 rounded-lg">
-                            2. Download Hosts File Manual:
-                            <a href="https://www.mediafire.com/file/qvmf4fhpuhxg93w/GrowRushPS.txt/file"
-                                class="btn btn-xs btn-primary ml-2">Download Hosts (.txt)</a>
+                    <ul class="steps steps-vertical w-full">
+                        <li class="step step-info">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Download App</strong>
+                                <p class="text-sm opacity-70">Download Virtual Host APK (Lihat tab Android).</p>
+                            </div>
                         </li>
-                        <li class="bg-base-200 p-4 rounded-lg">3. Buka App -> Click "SELECT HOSTS FILE".</li>
-                        <li class="bg-base-200 p-4 rounded-lg">4. Pilih file <strong>GROWRUSH-HOST (2).txt</strong> yang
-                            baru didownload.</li>
-                        <li class="bg-base-200 p-4 rounded-lg">5. Switch ON (Hijau) dan Login GT.</li>
+                        <li class="step step-info">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Download Hosts File Manual</strong>
+                                <p class="text-sm opacity-70">Gunakan file Hosts Manual:</p>
+                                <a href="https://www.mediafire.com/file/qvmf4fhpuhxg93w/GrowRushPS.txt/file"
+                                    class="btn btn-xs btn-primary ml-2 mt-1">Download Hosts (.txt)</a>
+                            </div>
+                        </li>
+                        <li class="step step-info">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Pilih File</strong>
+                                <p class="text-sm opacity-70">Buka App &rarr; Click "SELECT HOSTS FILE". Pilih file
+                                    <strong>GROWRUSH-HOST (2).txt</strong> yang baru didownload.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="step step-info">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Jalankan</strong>
+                                <p class="text-sm opacity-70">Switch ON (Hijau) dan Login GT.</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
                 <div id="mac" class="platform-content">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2 text-gray-700"><i
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-700"><i
                             class="fab fa-apple"></i> Mac Tutorial</h3>
-                    <div class="mockup-code bg-neutral text-neutral-content text-sm md:text-base">
-                        <pre data-prefix="1"><code>Buka Finder -> Go -> Go to Folder</code></pre>
-                        <pre data-prefix="2"><code>Ketik: /private/etc/hosts</code></pre>
-                        <pre data-prefix="3"><code>Copy file hosts ke Desktop -> Edit TextEdit</code></pre>
-                        <pre data-prefix="4"
-                            class="text-success"><code>Paste IP Server di paling bawah (sama spt Windows)</code></pre>
-                        <pre data-prefix="5"><code>Save & Replace file asli di /private/etc/hosts</code></pre>
-                    </div>
+                    <ul class="steps steps-vertical w-full">
+                        <li class="step step-neutral">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Buka Folder Host</strong>
+                                <p class="text-sm opacity-70">Buka Finder &rarr; Go &rarr; Go to Folder. Ketik: <code
+                                        class="bg-slate-200 px-1 rounded">/private/etc/hosts</code></p>
+                            </div>
+                        </li>
+                        <li class="step step-neutral">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Edit File</strong>
+                                <p class="text-sm opacity-70">Copy file hosts ke Desktop &rarr; Edit dengan TextEdit.</p>
+                            </div>
+                        </li>
+                        <li class="step step-neutral">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Tambahkan IP</strong>
+                                <p class="text-sm opacity-70">Paste IP Server di paling bawah (sama seperti Windows). IP:
+                                    5.196.204.227</p>
+                            </div>
+                        </li>
+                        <li class="step step-neutral">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Save & Replace</strong>
+                                <p class="text-sm opacity-70">Save file dan Replace file asli di <code
+                                        class="bg-slate-200 px-1 rounded">/private/etc/hosts</code>.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <div id="surge5" class="platform-content">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2 text-blue-500"><i
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-500"><i
                             class="fas fa-bolt"></i> Surge 5 (iOS)</h3>
-                    <div class="card bg-base-200 shadow-sm border p-4">
-                        <ol class="list-decimal pl-5 space-y-2 text-sm md:text-base">
-                            <li>Download <strong>Surge 5</strong> di App Store.</li>
-                            <li>Buka Surge 5, pilih <strong>Import Profile</strong>.</li>
-                            <li>Masukkan URL Profile: <code class="text-primary font-bold">https://growtopia.id/ios</code></li>
-                            <li>Izinkan Buat VPN Profile.</li>
-                            <li>Connect & Mainkan!</li>
-                        </ol>
-                    </div>
+                    <ul class="steps steps-vertical w-full">
+                        <li class="step step-primary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Download App</strong>
+                                <p class="text-sm opacity-70">Download <strong>Surge 5</strong> di App Store.</p>
+                            </div>
+                        </li>
+                        <li class="step step-primary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Import Profile</strong>
+                                <p class="text-sm opacity-70">Buka Surge 5, pilih <strong>Import Profile</strong>.</p>
+                            </div>
+                        </li>
+                        <li class="step step-primary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Masukkan URL</strong>
+                                <p class="text-sm opacity-70">Masukkan URL Profile:</p>
+                                <code
+                                    class="text-primary font-bold bg-slate-200 px-2 rounded">https://growtopia.id/ios</code>
+                            </div>
+                        </li>
+                        <li class="step step-primary">
+                            <div class="text-left w-full pl-4">
+                                <strong class="text-base md:text-lg">Selesai</strong>
+                                <p class="text-sm opacity-70">Izinkan Buat VPN Profile, Connect & Mainkan!</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section id="server" class="py-16 md:py-20 bg-blue-50/50">
+    <section id="server" class="py-20 bg-blue-50/50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-10 md:mb-12">📊 Informasi Server</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <h2 class="text-4xl font-bold text-center text-slate-800 mb-12">📊 Informasi Server</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div class="card bg-white shadow-xl hover:scale-105 transition-transform">
-                    <div class="card-body items-center text-center p-4">
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-100 flex items-center justify-center mb-1 md:mb-2">
-                            <span class="text-2xl md:text-3xl">🌐</span>
+                    <div class="card-body items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-2">
+                            <span class="text-3xl">🌐</span>
                         </div>
-                        <h3 class="font-bold text-base md:text-lg">Server Address</h3>
-                        <div class="text-lg md:text-xl font-bold text-blue-600">play.gtparadise.id</div>
+                        <h3 class="font-bold text-lg">Server Address</h3>
+                        <div class="text-xl font-bold text-blue-600">play.gtparadise.id</div>
                         <p class="text-xs text-slate-500">Port: 17091</p>
                     </div>
                 </div>
                 <div class="card bg-white shadow-xl hover:scale-105 transition-transform">
-                    <div class="card-body items-center text-center p-4">
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-green-100 flex items-center justify-center mb-1 md:mb-2">
-                            <span class="text-2xl md:text-3xl">👥</span>
+                    <div class="card-body items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-2">
+                            <span class="text-3xl">👥</span>
                         </div>
-                        <h3 class="font-bold text-base md:text-lg">Capacity</h3>
-                        <div class="text-lg md:text-xl font-bold text-green-600">500 Players</div>
+                        <h3 class="font-bold text-lg">Capacity</h3>
+                        <div class="text-xl font-bold text-green-600">500 Players</div>
                         <p class="text-xs text-slate-500">Slot Available: 253</p>
                     </div>
                 </div>
                 <div class="card bg-white shadow-xl hover:scale-105 transition-transform">
-                    <div class="card-body items-center text-center p-4">
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-100 flex items-center justify-center mb-1 md:mb-2">
-                            <span class="text-2xl md:text-3xl">⚡</span>
+                    <div class="card-body items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mb-2">
+                            <span class="text-3xl">⚡</span>
                         </div>
-                        <h3 class="font-bold text-base md:text-lg">Ping</h3>
-                        <div class="text-lg md:text-xl font-bold text-yellow-600">12ms</div>
+                        <h3 class="font-bold text-lg">Ping</h3>
+                        <div class="text-xl font-bold text-yellow-600">12ms</div>
                         <p class="text-xs text-slate-500">Loc: Indonesia</p>
                     </div>
                 </div>
                 <div class="card bg-white shadow-xl hover:scale-105 transition-transform">
-                    <div class="card-body items-center text-center p-4">
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-red-100 flex items-center justify-center mb-1 md:mb-2">
-                            <span class="text-2xl md:text-3xl">🔄</span>
+                    <div class="card-body items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-2">
+                            <span class="text-3xl">🔄</span>
                         </div>
-                        <h3 class="font-bold text-base md:text-lg">Auto Restart</h3>
-                        <div class="text-lg md:text-xl font-bold text-red-600">Every 6 Hours</div>
+                        <h3 class="font-bold text-lg">Auto Restart</h3>
+                        <div class="text-xl font-bold text-red-600">Every 6 Hours</div>
                         <p class="text-xs text-slate-500">Next: 2h 34m</p>
                     </div>
                 </div>
@@ -584,78 +698,78 @@
         </div>
     </section>
 
-    <section id="features" class="py-16 md:py-20 bg-white">
+    <section id="features" class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-4">🌟 Fitur Unggulan</h2>
-            <p class="text-center text-slate-500 text-sm md:text-base mb-10 md:mb-12">Nikmati berbagai fitur eksklusif yang tidak ada di server lain!
+            <h2 class="text-4xl font-bold text-center text-slate-800 mb-4">🌟 Fitur Unggulan</h2>
+            <p class="text-center text-slate-500 mb-12">Nikmati berbagai fitur eksklusif yang tidak ada di server lain!
             </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="card bg-base-100 border border-slate-100 shadow-lg hover:shadow-2xl transition-all">
-                    <div class="card-body p-4 md:p-6">
-                        <h3 class="card-title text-accent text-lg md:text-xl"><span class="text-xl md:text-2xl">🔍</span> New Can Find Item</h3>
-                        <p class="text-xs md:text-sm">Temukan 1000+ item eksklusif dengan rate drop 5x lebih tinggi! Legendary
+                    <div class="card-body">
+                        <h3 class="card-title text-accent"><span class="text-2xl">🔍</span> New Can Find Item</h3>
+                        <p class="text-sm">Temukan 1000+ item eksklusif dengan rate drop 5x lebih tinggi! Legendary
                             awaits.</p>
                     </div>
                 </div>
                 <div class="card bg-base-100 border border-slate-100 shadow-lg hover:shadow-2xl transition-all">
-                    <div class="card-body p-4 md:p-6">
-                        <h3 class="card-title text-primary text-lg md:text-xl"><span class="text-xl md:text-2xl">🎮</span> Citem 500+</h3>
-                        <p class="text-xs md:text-sm">Akses command lengkap untuk spawn item, world edit, dan modifikasi.</p>
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><span class="text-2xl">🎮</span> Citem 500+</h3>
+                        <p class="text-sm">Akses command lengkap untuk spawn item, world edit, dan modifikasi.</p>
                     </div>
                 </div>
                 <div class="card bg-base-100 border border-slate-100 shadow-lg hover:shadow-2xl transition-all">
-                    <div class="card-body p-4 md:p-6">
-                        <h3 class="card-title text-secondary text-lg md:text-xl"><span class="text-xl md:text-2xl">⚔️</span> Dungeon Event</h3>
-                        <p class="text-xs md:text-sm">10+ dungeon dengan boss unik, loot table spesial, dan difficulty scaling.</p>
+                    <div class="card-body">
+                        <h3 class="card-title text-secondary"><span class="text-2xl">⚔️</span> Dungeon Event</h3>
+                        <p class="text-sm">10+ dungeon dengan boss unik, loot table spesial, dan difficulty scaling.</p>
                     </div>
                 </div>
                 <div class="card bg-base-100 border border-slate-100 shadow-lg hover:shadow-2xl transition-all">
-                    <div class="card-body p-4 md:p-6">
-                        <h3 class="card-title text-warning text-lg md:text-xl"><span class="text-xl md:text-2xl">🏆</span> PVP Rank System</h3>
-                        <p class="text-xs md:text-sm">Competitive PVP dengan 7 rank tier, seasonal rewards, dan leaderboard.</p>
+                    <div class="card-body">
+                        <h3 class="card-title text-warning"><span class="text-2xl">🏆</span> PVP Rank System</h3>
+                        <p class="text-sm">Competitive PVP dengan 7 rank tier, seasonal rewards, dan leaderboard.</p>
                     </div>
                 </div>
                 <div class="card bg-base-100 border border-slate-100 shadow-lg hover:shadow-2xl transition-all">
-                    <div class="card-body p-4 md:p-6">
-                        <h3 class="card-title text-success text-lg md:text-xl"><span class="text-xl md:text-2xl">💰</span> Unlimited Profit</h3>
-                        <p class="text-xs md:text-sm">Farming, fishing, mining, trading, casino, stock market & 20+ methods.</p>
+                    <div class="card-body">
+                        <h3 class="card-title text-success"><span class="text-2xl">💰</span> Unlimited Profit</h3>
+                        <p class="text-sm">Farming, fishing, mining, trading, casino, stock market & 20+ methods.</p>
                     </div>
                 </div>
                 <div class="card bg-base-100 border border-slate-100 shadow-lg hover:shadow-2xl transition-all">
-                    <div class="card-body p-4 md:p-6">
-                        <h3 class="card-title text-info text-lg md:text-xl"><span class="text-xl md:text-2xl">🎁</span> Daily Rewards</h3>
-                        <p class="text-xs md:text-sm">Login setiap hari untuk gems, rare items, dan role trial. 30 days streak!</p>
+                    <div class="card-body">
+                        <h3 class="card-title text-info"><span class="text-2xl">🎁</span> Daily Rewards</h3>
+                        <p class="text-sm">Login setiap hari untuk gems, rare items, dan role trial. 30 days streak!</p>
                     </div>
                 </div>
                 <div class="card bg-base-100 border border-slate-100 shadow-lg hover:shadow-2xl transition-all">
-                    <div class="card-body p-4 md:p-6">
-                        <h3 class="card-title text-error text-lg md:text-xl"><span class="text-xl md:text-2xl">🏰</span> Guild System</h3>
-                        <p class="text-xs md:text-sm">Buat guild (50 member), guild war, guild base, exclusive guild shop 50% off.
+                    <div class="card-body">
+                        <h3 class="card-title text-error"><span class="text-2xl">🏰</span> Guild System</h3>
+                        <p class="text-sm">Buat guild (50 member), guild war, guild base, exclusive guild shop 50% off.
                         </p>
                     </div>
                 </div>
                 <div class="card bg-base-100 border border-slate-100 shadow-lg hover:shadow-2xl transition-all">
-                    <div class="card-body p-4 md:p-6">
-                        <h3 class="card-title text-purple-500 text-lg md:text-xl"><span class="text-xl md:text-2xl">🚀</span> Fast Updates</h3>
-                        <p class="text-xs md:text-sm">Update konten baru setiap minggu dengan item, event, dan fitur fresh.</p>
+                    <div class="card-body">
+                        <h3 class="card-title text-purple-500"><span class="text-2xl">🚀</span> Fast Updates</h3>
+                        <p class="text-sm">Update konten baru setiap minggu dengan item, event, dan fitur fresh.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="shop" class="py-16 md:py-20 bg-blue-50/50">
+    <section id="shop" class="py-20 bg-blue-50/50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-2">🛍️ Toko Role</h2>
-            <p class="text-center text-slate-500 text-sm md:text-base mb-8">Dapatkan kekuatan dan privilege eksklusif!</p>
+            <h2 class="text-4xl font-bold text-center text-slate-800 mb-2">🛍️ Toko Role</h2>
+            <p class="text-center text-slate-500 mb-8">Dapatkan kekuatan dan privilege eksklusif!</p>
 
 
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div
                     class="card bg-white shadow-xl border border-blue-100 hover:scale-105 transition-transform duration-300">
-                    <div class="card-body text-center p-6 md:p-8">
+                    <div class="card-body text-center">
                         <div class="badge badge-primary mx-auto mb-2">STARTER</div>
                         <h3
                             class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
@@ -677,7 +791,7 @@
 
                 <div
                     class="card bg-white shadow-xl border border-blue-100 hover:scale-105 transition-transform duration-300">
-                    <div class="card-body text-center p-6 md:p-8">
+                    <div class="card-body text-center">
                         <div class="badge badge-secondary mx-auto mb-2">MODERATOR</div>
                         <h3
                             class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600">
@@ -701,7 +815,7 @@
                     <div
                         class="absolute top-0 right-0 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-bl-lg">
                         POPULAR</div>
-                    <div class="card-body text-center p-6 md:p-8">
+                    <div class="card-body text-center">
                         <div class="badge badge-accent mx-auto mb-2">LEGENDARY</div>
                         <h3
                             class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600">
@@ -722,7 +836,7 @@
 
                 <div
                     class="card bg-white shadow-xl border border-blue-100 hover:scale-105 transition-transform duration-300">
-                    <div class="card-body text-center p-6 md:p-8">
+                    <div class="card-body text-center">
                         <div class="badge badge-info mx-auto mb-2">CREATOR</div>
                         <h3
                             class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
@@ -743,7 +857,7 @@
 
                 <div
                     class="card bg-white shadow-xl border border-blue-100 hover:scale-105 transition-transform duration-300">
-                    <div class="card-body text-center p-6 md:p-8">
+                    <div class="card-body text-center">
                         <div class="badge badge-error text-white mx-auto mb-2">ADMIN</div>
                         <h3
                             class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
@@ -764,7 +878,7 @@
 
                 <div
                     class="card bg-gradient-to-br from-slate-900 to-black text-white shadow-xl border border-purple-500 hover:scale-105 transition-transform duration-300">
-                    <div class="card-body text-center p-6 md:p-8">
+                    <div class="card-body text-center">
                         <div class="badge badge-warning mx-auto mb-2">ULTIMATE</div>
                         <h3 class="text-3xl font-extrabold text-amber-400">GOD</h3>
                         <div class="my-4">
@@ -784,42 +898,42 @@
         </div>
     </section>
 
-    <section id="payment" class="py-16 md:py-20 bg-white">
+    <section id="payment" class="py-20 bg-white">
         <div class="container mx-auto px-4 max-w-3xl text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">💳 Pembayaran QRIS</h2>
+            <h2 class="text-4xl font-bold text-slate-800 mb-6">💳 Pembayaran QRIS</h2>
 
-            <div class="alert alert-success shadow-lg mb-8 p-4">
-                <i class="fas fa-gift text-xl md:text-2xl"></i>
-                <div class="text-left text-sm md:text-base">
+            <div class="alert alert-success shadow-lg mb-8">
+                <i class="fas fa-gift text-2xl"></i>
+                <div class="text-left">
                     <h3 class="font-bold">PROMO SPESIAL!</h3>
                     <div class="text-sm">Bonus 20% Gems untuk pembayaran via QRIS hari ini!</div>
                 </div>
             </div>
 
             <div class="card bg-base-100 shadow-2xl border border-slate-200">
-                <div class="card-body items-center p-6 md:p-8">
+                <div class="card-body items-center">
                     <div id="selectedRole"
-                        class="w-full bg-blue-50 p-4 rounded-xl mb-4 text-blue-800 border-l-4 border-blue-500 text-sm md:text-base">
-                        <p class="font-bold text-base md:text-lg">⚠️ Silakan pilih role di atas terlebih dahulu.</p>
+                        class="w-full bg-blue-50 p-4 rounded-xl mb-4 text-blue-800 border-l-4 border-blue-500">
+                        <p class="font-bold text-lg">⚠️ Silakan pilih role di atas terlebih dahulu.</p>
                     </div>
 
                     <div class="qr-code-container relative group cursor-pointer inline-block">
                         <img src="https://files.catbox.moe/a8j8js.png" alt="QRIS Payment"
-                            class="w-56 h-56 md:w-80 md:h-80 object-contain rounded-lg border-2 border-slate-900">
+                            class="w-64 h-64 md:w-80 md:h-80 object-contain rounded-lg border-2 border-slate-900">
                         <div class="qr-overlay rounded-lg font-bold">Scan untuk bayar</div>
                     </div>
 
-                    <div class="divider text-sm md:text-base">Cara Pembayaran</div>
+                    <div class="divider">Cara Pembayaran</div>
 
-                    <ul class="steps steps-vertical md:steps-horizontal w-full text-xs md:text-sm">
+                    <ul class="steps steps-vertical md:steps-horizontal w-full text-sm">
                         <li class="step step-primary">Pilih Role</li>
                         <li class="step step-primary">Scan QRIS</li>
                         <li class="step step-primary">Input Harga</li>
                         <li class="step step-primary">Kirim Bukti</li>
                     </ul>
 
-                    <div class="bg-yellow-50 p-4 rounded-xl mt-6 text-left w-full text-xs md:text-sm">
-                        <h4 class="font-bold mb-2 text-sm md:text-base">Instruksi Detail:</h4>
+                    <div class="bg-yellow-50 p-4 rounded-xl mt-6 text-left w-full text-sm">
+                        <h4 class="font-bold mb-2">Instruksi Detail:</h4>
                         <ol class="list-decimal pl-5 space-y-1">
                             <li>Pilih role di menu Shop atas.</li>
                             <li>Scan kode QR diatas pakai GoPay/OVO/DANA/BCA Mobile.</li>
@@ -835,30 +949,30 @@
         </div>
     </section>
 
-    <section class="py-16 md:py-20 bg-blue-50/50">
+    <section class="py-20 bg-blue-50/50">
         <div class="container mx-auto px-4 max-w-3xl">
-            <h2 class="text-3xl font-bold text-center text-slate-800 mb-8 md:mb-10">Frequently Asked Questions</h2>
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-10">Frequently Asked Questions</h2>
             <div class="join join-vertical w-full bg-white shadow-xl rounded-2xl">
                 <div class="collapse collapse-plus join-item border-base-300 border bg-white">
                     <input type="radio" name="my-accordion-4" checked="checked" />
-                    <div class="collapse-title text-base md:text-xl font-medium">Apakah data akan hilang jika update?</div>
-                    <div class="collapse-content text-sm md:text-base">
+                    <div class="collapse-title text-xl font-medium">Apakah data akan hilang jika update?</div>
+                    <div class="collapse-content">
                         <p>Tidak, semua data player termasuk items, gems, dan role akan aman tersimpan. Kami selalu
                             backup data database sebelum maintenance/update.</p>
                     </div>
                 </div>
                 <div class="collapse collapse-plus join-item border-base-300 border bg-white">
                     <input type="radio" name="my-accordion-4" />
-                    <div class="collapse-title text-base md:text-xl font-medium">Berapa lama proses role aktif?</div>
-                    <div class="collapse-content text-sm md:text-base">
+                    <div class="collapse-title text-xl font-medium">Berapa lama proses role aktif?</div>
+                    <div class="collapse-content">
                         <p>Role akan aktif maksimal 1x24 jam setelah pembayaran dikonfirmasi valid. Biasanya prosesnya
                             instant (5-30 menit) jika admin online.</p>
                     </div>
                 </div>
                 <div class="collapse collapse-plus join-item border-base-300 border bg-white">
                     <input type="radio" name="my-accordion-4" />
-                    <div class="collapse-title text-base md:text-xl font-medium">Apakah ada refund?</div>
-                    <div class="collapse-content text-sm md:text-base">
+                    <div class="collapse-title text-xl font-medium">Apakah ada refund?</div>
+                    <div class="collapse-content">
                         <p>Mohon maaf, pembelian yang sudah berhasil tidak dapat dikembalikan (No Refund). Pastikan anda
                             yakin sebelum membeli.</p>
                     </div>
@@ -934,10 +1048,10 @@
         // Role Selection Logic
         function selectRole(roleName, price) {
             const displayDiv = document.getElementById("selectedRole");
-            displayDiv.className = "w-full bg-green-50 p-4 rounded-xl mb-4 text-green-800 border-l-4 border-green-500 transition-all duration-500 text-sm md:text-base";
+            displayDiv.className = "w-full bg-green-50 p-4 rounded-xl mb-4 text-green-800 border-l-4 border-green-500 transition-all duration-500";
 
             displayDiv.innerHTML = `
-                <h4 class="font-bold text-base md:text-lg">✅ Role Terpilih: ${roleName}</h4>
+                <h4 class="font-bold text-lg">✅ Role Terpilih: ${roleName}</h4>
                 <p>Transfer Nominal: <span class="font-bold text-xl">Rp ${price.toLocaleString('id-ID')}</span></p>
                 `;
 
