@@ -1,2253 +1,5922 @@
 <!DOCTYPE html>
+
 <html lang="id">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>GROWRUSH - Private Server Terbaik Indonesia</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+
         :root {
+
             --primary-color: #FF6B6B;
+
             --secondary-color: #FF8E53;
+
             --accent-color: #FFD166;
+
             --dark-color: #2D3436;
+
             --light-color: #F5F5F5;
+
             --text-color: #FFFFFF;
+
             --card-bg: rgba(255, 255, 255, 0.1);
+
             --card-hover: rgba(255, 255, 255, 0.2);
+
             --gradient-primary: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+
             --gradient-secondary: linear-gradient(135deg, #FF8E53 0%, #FFD166 100%);
+
             --gradient-accent: linear-gradient(135deg, #FFD166 0%, #FF6B6B 100%);
+
         }
+
+
 
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
         }
+
+
 
         body {
+
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
             background: var(--gradient-primary);
+
             min-height: 100vh;
+
             color: var(--text-color);
+
             overflow-x: hidden;
+
             position: relative;
+
         }
+
+
 
         /* Sunset background animation */
+
         body::before {
+
             content: '';
+
             position: fixed;
+
             top: 0;
+
             left: 0;
+
             width: 100%;
+
             height: 100%;
+
             background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+
             background-size: cover;
+
             opacity: 0.2;
+
             z-index: -1;
+
         }
+
+
 
         .container {
+
             max-width: 1200px;
+
             margin: 0 auto;
+
             padding: 0 20px;
+
         }
+
+
 
         /* Header */
+
         header {
+
             background: rgba(0, 0, 0, 0.3);
+
             backdrop-filter: blur(10px);
+
             padding: 15px 0;
+
             position: fixed;
+
             width: 100%;
+
             top: 0;
+
             z-index: 1000;
+
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+
             transition: all 0.3s;
+
         }
+
+
 
         nav {
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
         }
+
+
 
         .logo {
+
             display: flex;
+
             align-items: center;
+
             gap: 15px;
+
         }
+
+
 
         .logo img {
+
             width: 50px;
+
             height: 50px;
+
             border-radius: 10px;
+
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
             animation: float 3s ease-in-out infinite;
+
         }
+
+
 
         @keyframes float {
+
             0%, 100% { transform: translateY(0px); }
+
             50% { transform: translateY(-10px); }
+
         }
+
+
 
         .logo h1 {
+
             font-size: 28px;
+
             background: var(--gradient-secondary);
+
             -webkit-background-clip: text;
+
             -webkit-text-fill-color: transparent;
+
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
         }
+
+
 
         .nav-center {
+
             display: flex;
+
             align-items: center;
+
             gap: 30px;
+
         }
+
+
 
         .nav-links {
+
             display: flex;
+
             gap: 5px;
+
             list-style: none;
+
             background: rgba(0, 0, 0, 0.2);
+
             padding: 5px;
+
             border-radius: 30px;
+
         }
+
+
 
         .nav-links a {
+
             color: var(--text-color);
+
             text-decoration: none;
+
             font-weight: 500;
+
             transition: all 0.3s;
+
             padding: 10px 20px;
+
             border-radius: 25px;
+
             display: block;
+
             position: relative;
+
         }
+
+
 
         .nav-links a:hover {
+
             background: var(--card-hover);
+
             transform: translateY(-2px);
+
         }
+
+
 
         .nav-links a.active {
+
             background: var(--gradient-secondary);
+
             color: var(--dark-color);
+
         }
+
+
 
         .nav-right {
+
             display: flex;
+
             align-items: center;
+
             gap: 20px;
+
         }
+
+
 
         .server-status {
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
             padding: 8px 16px;
+
             background: rgba(0, 255, 0, 0.2);
+
             border-radius: 20px;
+
             border: 1px solid rgba(0, 255, 0, 0.5);
+
         }
+
+
 
         .status-dot {
+
             width: 10px;
+
             height: 10px;
+
             background: #00ff00;
+
             border-radius: 50%;
+
             animation: pulse 2s infinite;
+
         }
+
+
 
         @keyframes pulse {
+
             0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+
             70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+
             100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+
         }
+
+
 
         .mobile-menu-btn {
+
             display: none;
+
             background: none;
+
             border: none;
+
             color: var(--text-color);
+
             font-size: 24px;
+
             cursor: pointer;
+
             padding: 8px;
+
             border-radius: 8px;
+
             transition: all 0.3s;
+
         }
+
+
 
         .mobile-menu-btn:hover {
+
             background: var(--card-hover);
+
         }
+
+
 
         /* Hero Section */
+
         .hero {
+
             margin-top: 80px;
+
             padding: 80px 0;
+
             text-align: center;
+
             position: relative;
+
             overflow: hidden;
+
         }
+
+
 
         .hero::before {
+
             content: '';
+
             position: absolute;
+
             top: 0;
+
             left: -50%;
+
             width: 200%;
+
             height: 100%;
+
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat;
+
             background-size: cover;
+
             opacity: 0.3;
+
             animation: wave 10s linear infinite;
+
         }
+
+
 
         @keyframes wave {
+
             0% { transform: translateX(0); }
+
             100% { transform: translateX(50%); }
+
         }
+
+
 
         .hero-content {
+
             position: relative;
+
             z-index: 1;
+
         }
+
+
 
         .hero h2 {
+
             font-size: 56px;
+
             margin-bottom: 20px;
+
             animation: glow 2s ease-in-out infinite alternate;
+
         }
+
+
 
         @keyframes glow {
+
             from { text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color), 0 0 30px var(--accent-color); }
+
             to { text-shadow: 0 0 20px var(--accent-color), 0 0 30px var(--accent-color), 0 0 40px var(--accent-color); }
+
         }
+
+
 
         .hero p {
+
             font-size: 22px;
+
             margin-bottom: 30px;
+
             opacity: 0.95;
+
         }
+
+
 
         .hero-stats {
+
             display: flex;
+
             justify-content: center;
+
             gap: 50px;
+
             margin: 40px 0;
+
         }
+
+
 
         .stat-item {
+
             text-align: center;
+
         }
+
+
 
         .stat-number {
+
             font-size: 36px;
+
             font-weight: bold;
+
             color: var(--accent-color);
+
             display: block;
+
         }
+
+
 
         .stat-label {
+
             font-size: 14px;
+
             opacity: 0.8;
+
             margin-top: 5px;
+
         }
+
+
 
         .cta-buttons {
+
             display: flex;
+
             gap: 20px;
+
             justify-content: center;
+
             flex-wrap: wrap;
+
         }
+
+
 
         .cta-button {
+
             display: inline-block;
+
             padding: 15px 40px;
+
             background: var(--gradient-secondary);
+
             color: var(--dark-color);
+
             text-decoration: none;
+
             border-radius: 30px;
+
             font-weight: bold;
+
             font-size: 18px;
+
             transition: all 0.3s;
+
             box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+
         }
+
+
 
         .cta-button:hover {
+
             transform: translateY(-3px);
+
             box-shadow: 0 6px 30px rgba(255, 215, 0, 0.6);
+
         }
+
+
 
         .cta-button.secondary {
+
             background: transparent;
+
             border: 2px solid var(--accent-color);
+
             color: var(--accent-color);
+
         }
+
+
 
         .cta-button.secondary:hover {
+
             background: var(--accent-color);
+
             color: var(--dark-color);
+
         }
+
+
 
         /* Join Us Section */
+
         .join-us {
+
             padding: 60px 0;
+
             background: rgba(0, 0, 0, 0.2);
+
             backdrop-filter: blur(5px);
+
         }
+
+
 
         .join-container {
+
             max-width: 1000px;
+
             margin: 0 auto;
+
         }
+
+
 
         .platform-tabs {
+
             display: flex;
+
             justify-content: center;
+
             margin-bottom: 30px;
+
             flex-wrap: wrap;
+
             gap: 10px;
+
         }
+
+
 
         .platform-tab {
+
             padding: 10px 20px;
+
             background: var(--card-bg);
+
             border: 2px solid transparent;
+
             border-radius: 30px;
+
             cursor: pointer;
+
             transition: all 0.3s;
+
             font-weight: bold;
+
         }
+
+
 
         .platform-tab.active {
+
             background: var(--gradient-secondary);
+
             color: var(--dark-color);
+
             border-color: var(--accent-color);
+
         }
+
+
 
         .platform-tab:hover {
+
             transform: translateY(-3px);
+
             border-color: var(--accent-color);
+
         }
+
+
 
         .platform-content {
+
             display: none;
+
             background: var(--card-bg);
+
             border-radius: 15px;
+
             padding: 30px;
+
             border: 2px solid rgba(255, 215, 0, 0.3);
+
         }
+
+
 
         .platform-content.active {
+
             display: block;
+
             animation: fadeIn 0.5s;
+
         }
+
+
 
         @keyframes fadeIn {
+
             from { opacity: 0; transform: translateY(10px); }
+
             to { opacity: 1; transform: translateY(0); }
+
         }
+
+
 
         .platform-title {
+
             font-size: 28px;
+
             margin-bottom: 20px;
+
             color: var(--accent-color);
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
         }
+
+
 
         .platform-steps {
+
             margin-top: 20px;
+
         }
+
+
 
         .step {
+
             display: flex;
+
             align-items: flex-start;
+
             margin-bottom: 20px;
+
             gap: 15px;
+
         }
+
+
 
         .step-number {
+
             min-width: 30px;
+
             height: 30px;
+
             background: var(--gradient-secondary);
+
             color: var(--dark-color);
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-weight: bold;
+
             margin-top: 5px;
+
         }
+
+
 
         .step-content {
+
             flex: 1;
+
         }
+
+
 
         .step-title {
+
             font-weight: bold;
+
             margin-bottom: 5px;
+
             color: var(--accent-color);
+
         }
+
+
 
         .step-description {
+
             line-height: 1.6;
+
             opacity: 0.9;
+
         }
+
+
 
         .host-code {
+
             background: rgba(0, 0, 0, 0.3);
+
             padding: 15px;
+
             border-radius: 10px;
+
             font-family: monospace;
+
             margin: 10px 0;
+
             overflow-x: auto;
+
         }
+
+
 
         .download-button {
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 10px;
+
             padding: 12px 25px;
+
             background: var(--gradient-secondary);
+
             color: var(--dark-color);
+
             text-decoration: none;
+
             border-radius: 10px;
+
             font-weight: bold;
+
             margin: 10px 10px 10px 0;
+
             transition: all 0.3s;
+
         }
+
+
 
         .download-button:hover {
+
             transform: translateY(-3px);
+
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
         }
+
+
 
         .note-box {
+
             background: rgba(255, 107, 107, 0.2);
+
             border-left: 4px solid var(--primary-color);
+
             padding: 15px;
+
             border-radius: 0 10px 10px 0;
+
             margin-top: 20px;
+
         }
+
+
 
         .note-box strong {
+
             color: var(--primary-color);
+
         }
+
+
 
         /* Social buttons */
+
         .social-buttons {
+
             display: flex;
+
             justify-content: center;
+
             gap: 20px;
+
             margin-top: 30px;
+
         }
+
+
 
         .social-button {
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 10px;
+
             padding: 12px 25px;
+
             border-radius: 30px;
+
             font-weight: bold;
+
             text-decoration: none;
+
             transition: all 0.3s;
+
         }
+
+
 
         .discord-button {
+
             background: #5865F2;
+
             color: white;
+
         }
+
+
 
         .discord-button:hover {
+
             background: #4752C4;
+
             transform: translateY(-3px);
+
             box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
+
         }
+
+
 
         .whatsapp-button {
+
             background: #25D366;
+
             color: white;
+
         }
+
+
 
         .whatsapp-button:hover {
+
             background: #128C7E;
+
             transform: translateY(-3px);
+
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+
         }
+
+
 
         /* Server Info Section */
+
         .server-info {
+
             padding: 60px 0;
+
             background: rgba(0, 0, 0, 0.2);
+
             backdrop-filter: blur(5px);
+
         }
+
+
 
         .info-grid {
+
             display: grid;
+
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
             gap: 30px;
+
             margin-top: 40px;
+
         }
+
+
 
         .info-card {
+
             background: var(--card-bg);
+
             padding: 30px;
+
             border-radius: 15px;
+
             text-align: center;
+
             transition: all 0.3s;
+
             border: 2px solid rgba(255, 215, 0, 0.3);
+
         }
+
+
 
         .info-card:hover {
+
             transform: translateY(-5px);
+
             background: var(--card-hover);
+
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
         }
+
+
 
         .info-icon {
+
             font-size: 48px;
+
             margin-bottom: 15px;
+
         }
+
+
 
         .info-card h3 {
+
             font-size: 20px;
+
             margin-bottom: 10px;
+
             color: var(--accent-color);
+
         }
+
+
 
         .info-value {
+
             font-size: 24px;
+
             font-weight: bold;
+
             color: #00ff00;
+
         }
+
+
 
         /* Features Section */
+
         .features {
+
             padding: 60px 0;
+
         }
+
+
 
         .section-title {
+
             text-align: center;
+
             font-size: 42px;
+
             margin-bottom: 20px;
+
             color: var(--accent-color);
+
         }
+
+
 
         .section-subtitle {
+
             text-align: center;
+
             font-size: 18px;
+
             opacity: 0.8;
+
             margin-bottom: 50px;
+
         }
+
+
 
         .features-grid {
+
             display: grid;
+
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
             gap: 30px;
+
         }
+
+
 
         .feature-card {
+
             background: var(--card-bg);
+
             padding: 35px;
+
             border-radius: 15px;
+
             text-align: center;
+
             transition: all 0.3s;
+
             border: 2px solid rgba(255, 215, 0, 0.3);
+
             position: relative;
+
             overflow: hidden;
+
         }
+
+
 
         .feature-card::before {
+
             content: '';
+
             position: absolute;
+
             top: -50%;
+
             left: -50%;
+
             width: 200%;
+
             height: 200%;
+
             background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+
             transform: rotate(45deg);
+
             transition: all 0.5s;
+
             opacity: 0;
+
         }
+
+
 
         .feature-card:hover::before {
+
             opacity: 1;
+
         }
+
+
 
         .feature-card:hover {
+
             transform: translateY(-10px) scale(1.02);
+
             background: var(--card-hover);
+
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+
         }
+
+
 
         .feature-icon {
+
             font-size: 56px;
+
             margin-bottom: 20px;
+
             display: inline-block;
+
             animation: bounce 2s infinite;
+
         }
+
+
 
         @keyframes bounce {
+
             0%, 100% { transform: translateY(0); }
+
             50% { transform: translateY(-10px); }
+
         }
+
+
 
         .feature-card h3 {
+
             font-size: 24px;
+
             margin-bottom: 15px;
+
             color: var(--accent-color);
+
         }
+
+
 
         .feature-card p {
+
             font-size: 16px;
+
             line-height: 1.6;
+
             opacity: 0.9;
+
         }
+
+
 
         /* Events Section */
+
         .events {
+
             padding: 60px 0;
+
             background: rgba(0, 0, 0, 0.2);
+
         }
+
+
 
         .events-timeline {
+
             position: relative;
+
             padding: 20px 0;
+
         }
+
+
 
         .events-timeline::before {
+
             content: '';
+
             position: absolute;
+
             left: 50%;
+
             top: 0;
+
             bottom: 0;
+
             width: 2px;
+
             background: var(--gradient-secondary);
+
             transform: translateX(-50%);
+
         }
+
+
 
         .event-item {
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             margin: 40px 0;
+
             position: relative;
+
         }
+
+
 
         .event-item:nth-child(even) {
+
             flex-direction: row-reverse;
+
         }
+
+
 
         .event-content {
+
             width: 45%;
+
             background: var(--card-bg);
+
             padding: 25px;
+
             border-radius: 15px;
+
             border: 2px solid rgba(255, 215, 0, 0.3);
+
             transition: all 0.3s;
+
         }
+
+
 
         .event-content:hover {
+
             transform: scale(1.05);
+
             background: var(--card-hover);
+
         }
+
+
 
         .event-date {
+
             position: absolute;
+
             left: 50%;
+
             transform: translateX(-50%);
+
             background: var(--accent-color);
+
             color: var(--dark-color);
+
             padding: 10px 20px;
+
             border-radius: 20px;
+
             font-weight: bold;
+
             z-index: 1;
+
         }
+
+
 
         .event-title {
+
             font-size: 20px;
+
             color: var(--accent-color);
+
             margin-bottom: 10px;
+
         }
+
+
 
         /* Role Shop Section */
+
         .shop {
+
             padding: 60px 0;
+
         }
+
+
 
         .shop-banner {
+
             background: var(--gradient-secondary);
+
             padding: 30px;
+
             border-radius: 20px;
+
             text-align: center;
+
             margin-bottom: 40px;
+
             border: 2px solid rgba(255, 215, 0, 0.3);
+
         }
+
+
 
         .shop-banner h3 {
+
             font-size: 28px;
+
             color: var(--dark-color);
+
             margin-bottom: 10px;
+
         }
+
+
 
         .roles-grid {
+
             display: grid;
+
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
             gap: 25px;
+
             margin-top: 40px;
+
         }
+
+
 
         .role-card {
+
             background: var(--card-bg);
+
             border-radius: 15px;
+
             padding: 25px;
+
             text-align: center;
+
             transition: all 0.3s;
+
             border: 2px solid transparent;
+
             position: relative;
+
             overflow: hidden;
+
         }
+
+
 
         .role-card.featured {
+
             border-color: var(--accent-color);
+
             transform: scale(1.05);
+
         }
+
+
 
         .role-card.featured::before {
+
             content: '⭐ POPULAR';
+
             position: absolute;
+
             top: 10px;
+
             right: -30px;
+
             background: var(--accent-color);
+
             color: var(--dark-color);
+
             padding: 5px 40px;
+
             font-size: 12px;
+
             font-weight: bold;
+
             transform: rotate(45deg);
+
         }
+
+
 
         .role-card::before {
+
             content: '';
+
             position: absolute;
+
             top: -2px;
+
             left: -2px;
+
             right: -2px;
+
             bottom: -2px;
+
             background: var(--gradient-accent);
+
             border-radius: 15px;
+
             opacity: 0;
+
             z-index: -1;
+
             transition: opacity 0.3s;
+
         }
+
+
 
         .role-card:hover::before {
+
             opacity: 1;
+
         }
+
+
 
         .role-card:hover {
+
             transform: translateY(-5px) scale(1.05);
+
         }
+
+
 
         .role-badge {
+
             display: inline-block;
+
             padding: 5px 15px;
+
             background: rgba(255, 215, 0, 0.2);
+
             border-radius: 20px;
+
             font-size: 12px;
+
             margin-bottom: 10px;
+
         }
+
+
 
         .role-name {
+
             font-size: 26px;
+
             font-weight: bold;
+
             margin-bottom: 10px;
+
             background: var(--gradient-secondary);
+
             -webkit-background-clip: text;
+
             -webkit-text-fill-color: transparent;
+
         }
+
+
 
         .role-price {
+
             font-size: 32px;
+
             color: #00ff00;
+
             margin: 15px 0;
+
             font-weight: bold;
+
         }
+
+
 
         .role-discount {
+
             font-size: 14px;
+
             color: #ff6b6b;
+
             text-decoration: line-through;
+
             margin-bottom: 5px;
+
         }
+
+
 
         .role-features {
+
             text-align: left;
+
             margin: 20px 0;
+
             font-size: 14px;
+
         }
+
+
 
         .role-features li {
+
             margin: 8px 0;
+
             list-style: none;
+
             position: relative;
+
             padding-left: 20px;
+
         }
+
+
 
         .role-features li::before {
+
             content: '✓';
+
             position: absolute;
+
             left: 0;
+
             color: #00ff00;
+
             font-weight: bold;
+
         }
+
+
 
         .buy-button {
+
             width: 100%;
+
             padding: 12px;
+
             background: var(--gradient-secondary);
+
             color: var(--dark-color);
+
             border: none;
+
             border-radius: 10px;
+
             font-weight: bold;
+
             font-size: 16px;
+
             cursor: pointer;
+
             transition: all 0.3s;
+
         }
+
+
 
         .buy-button:hover {
+
             transform: scale(1.05);
+
             box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+
         }
+
+
 
         /* Testimonials Section */
+
         .testimonials {
+
             padding: 60px 0;
+
             background: rgba(0, 0, 0, 0.2);
+
         }
+
+
 
         .testimonials-grid {
+
             display: grid;
+
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
             gap: 30px;
+
             margin-top: 40px;
+
         }
+
+
 
         .testimonial-card {
+
             background: var(--card-bg);
-            padding: 25px;
+
+            padding: 30px;
+
             border-radius: 15px;
-            border-left: 5px solid var(--accent-color);
+
+            border: 2px solid rgba(255, 215, 0, 0.3);
+
             transition: all 0.3s;
+
         }
+
+
 
         .testimonial-card:hover {
+
             transform: translateY(-5px);
+
             background: var(--card-hover);
+
         }
 
-        .quote {
-            font-style: italic;
-            margin-bottom: 15px;
-            line-height: 1.6;
+
+
+        .testimonial-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
         }
 
-        .author {
-            font-weight: bold;
+
+
+        .testimonial-avatar {
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: var(--gradient-secondary);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 24px;
+
+        }
+
+
+
+        .testimonial-info h4 {
+
             color: var(--accent-color);
+
+            margin-bottom: 5px;
+
         }
 
-        .rating {
-            color: gold;
-            margin-top: 10px;
+
+
+        .testimonial-rating {
+
+            color: var(--accent-color);
+
         }
+
+
+
+        .testimonial-text {
+
+            font-style: italic;
+
+            line-height: 1.6;
+
+            opacity: 0.9;
+
+        }
+
+
 
         /* FAQ Section */
+
         .faq {
+
             padding: 60px 0;
+
         }
+
+
 
         .faq-container {
-            max-width: 900px;
+
+            max-width: 800px;
+
             margin: 0 auto;
+
         }
+
+
 
         .faq-item {
+
             background: var(--card-bg);
-            border-radius: 10px;
-            margin-bottom: 15px;
+
+            margin-bottom: 20px;
+
+            border-radius: 15px;
+
             overflow: hidden;
+
+            border: 2px solid rgba(255, 215, 0, 0.3);
+
             transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
         }
+
+
 
         .faq-item:hover {
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+
+            background: var(--card-hover);
+
         }
+
+
 
         .faq-question {
+
             padding: 20px;
+
             cursor: pointer;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
+
+            font-size: 18px;
+
         }
+
+
 
         .faq-question:hover {
-            background: rgba(255, 255, 255, 0.1);
+
+            color: var(--accent-color);
+
         }
 
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-            line-height: 1.6;
-        }
 
-        .faq-answer.active {
-            max-height: 500px; /* Adjust as needed */
-            padding: 20px;
-        }
 
         .faq-arrow {
+
             transition: transform 0.3s;
+
         }
 
-        .faq-question.active .faq-arrow {
+
+
+        .faq-item.active .faq-arrow {
+
             transform: rotate(180deg);
+
         }
+
+
+
+        .faq-answer {
+
+            padding: 0 20px;
+
+            max-height: 0;
+
+            overflow: hidden;
+
+            transition: all 0.3s;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        .faq-item.active .faq-answer {
+
+            padding: 0 20px 20px;
+
+            max-height: 500px;
+
+        }
+
+
 
         /* Payment Section */
+
         .payment {
+
             padding: 60px 0;
-            background: rgba(0, 0, 0, 0.2);
+
+            background: rgba(0, 0, 0, 0.3);
+
         }
+
+
 
         .payment-container {
+
             max-width: 800px;
+
             margin: 0 auto;
+
             text-align: center;
+
         }
+
+
 
         .payment-methods {
+
             display: flex;
+
             justify-content: center;
+
             gap: 20px;
-            margin-top: 30px;
-            margin-bottom: 30px;
+
+            margin: 30px 0;
+
             flex-wrap: wrap;
+
         }
+
+
 
         .payment-method {
-            padding: 15px 30px;
+
             background: var(--card-bg);
+
+            padding: 15px 25px;
+
             border-radius: 10px;
-            font-weight: bold;
-            color: var(--accent-color);
+
             border: 2px solid rgba(255, 215, 0, 0.3);
+
             transition: all 0.3s;
+
         }
+
+
 
         .payment-method:hover {
+
+            background: rgba(255, 215, 0, 0.2);
+
             transform: translateY(-3px);
-            background: var(--card-hover);
+
         }
+
+
 
         .qr-code {
-            position: relative;
-            display: inline-block;
-            margin: 20px 0;
-            border: 5px solid var(--accent-color);
+
+            background: white;
+
+            padding: 30px;
+
             border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+            display: inline-block;
+
+            margin: 20px 0;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+            position: relative;
+
         }
+
+
 
         .qr-code img {
-            display: block;
-            width: 250px;
-            height: 250px;
+
+            width: 280px;
+
+            height: 280px;
+
         }
+
+
 
         .qr-overlay {
+
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background: rgba(0, 0, 0, 0.8);
+
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            font-weight: bold;
-            opacity: 0;
-            transition: opacity 0.3s;
+
+            padding: 10px 20px;
+
+            border-radius: 10px;
+
+            display: none;
+
         }
+
+
 
         .qr-code:hover .qr-overlay {
-            opacity: 1;
+
+            display: block;
+
         }
+
+
+
+        .payment-steps {
+
+            background: var(--card-bg);
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            margin-top: 30px;
+
+        }
+
+
+
+        .step {
+
+            display: flex;
+
+            align-items: center;
+
+            margin: 15px 0;
+
+            text-align: left;
+
+        }
+
+
+
+        .step-number {
+
+            width: 35px;
+
+            height: 35px;
+
+            background: var(--accent-color);
+
+            color: var(--dark-color);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+
+            margin-right: 15px;
+
+            font-size: 18px;
+
+        }
+
+
 
         .promo-banner {
-            background: var(--gradient-accent);
-            color: var(--dark-color);
+
+            background: var(--gradient-primary);
+
             padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+
+            border-radius: 15px;
+
+            margin: 30px 0;
+
+            animation: pulse-border 2s infinite;
+
         }
 
-        .promo-banner h3 {
-            margin-bottom: 5px;
+
+
+        @keyframes pulse-border {
+
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+
+            70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+
         }
+
+
 
         /* Footer */
-        .footer {
-            background: var(--dark-color);
+
+        footer {
+
+            background: rgba(0, 0, 0, 0.5);
+
             padding: 40px 0 20px;
-            border-top: 5px solid var(--primary-color);
-            color: var(--light-color);
+
         }
 
-        .footer-grid {
+
+
+        .footer-content {
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
             gap: 40px;
+
             margin-bottom: 30px;
+
         }
+
+
 
         .footer-section h3 {
+
             color: var(--accent-color);
+
             margin-bottom: 15px;
+
         }
+
+
 
         .footer-section ul {
+
             list-style: none;
+
         }
+
+
 
         .footer-section ul li {
+
             margin: 10px 0;
+
         }
+
+
 
         .footer-section a {
+
             color: var(--text-color);
+
             text-decoration: none;
+
             opacity: 0.8;
+
             transition: all 0.3s;
+
         }
+
+
 
         .footer-section a:hover {
+
             color: var(--accent-color);
+
             opacity: 1;
+
         }
+
+
 
         .social-links {
+
             display: flex;
+
             gap: 15px;
+
             margin-top: 20px;
+
         }
+
+
 
         .social-links a {
+
             width: 40px;
+
             height: 40px;
+
             background: var(--card-bg);
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 20px;
+
             transition: all 0.3s;
+
         }
+
+
 
         .social-links a:hover {
+
             background: var(--accent-color);
+
             color: var(--dark-color);
+
             transform: translateY(-3px);
+
         }
+
+
 
         .footer-bottom {
+
             text-align: center;
+
             padding-top: 20px;
+
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
-        }
 
-        .footer-bottom p {
-            font-size: 14px;
-            opacity: 0.7;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-right {
-                gap: 10px;
-            }
-
-            .server-status span {
-                display: none;
-            }
-
-            .hero h2 {
-                font-size: 48px;
-            }
-
-            .hero p {
-                font-size: 20px;
-            }
-
-            .hero-stats {
-                gap: 30px;
-            }
-
-            .stat-number {
-                font-size: 32px;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-
-            .event-item {
-                flex-direction: column !important;
-                text-align: center;
-            }
-
-            .event-content {
-                width: 45%;
-                margin-top: 30px;
-                padding: 20px;
-            }
-
-            .events-timeline::before {
-                left: 30px;
-            }
-
-            .event-item {
-                position: relative;
-                padding-left: 60px;
-            }
-
-            .event-item:nth-child(even) .event-content {
-                text-align: center;
-            }
-
-            .event-item:nth-child(odd) .event-content {
-                text-align: center;
-            }
-
-            .event-date {
-                left: 30px;
-                transform: translateX(0);
-                top: -30px;
-            }
-
-            .event-date {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                top: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 0;
-            }
-
-            .hero h2 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .cta-button {
-                width: 80%;
-                margin: 0 auto;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .features-grid, .roles-grid, .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-
-            .payment-container {
-                padding: 0 10px;
-            }
-
-            .qr-code img {
-                width: 200px;
-                height: 200px;
-            }
-
-            .event-item {
-                flex-direction: row !important;
-                align-items: flex-start;
-                padding-left: 60px;
-            }
-
-            .event-content {
-                width: 100%;
-            }
-
-            .event-date {
-                left: 30px;
-            }
+            opacity: 0.8;
 
         }
 
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 70px; /* Below header */
-            left: 0;
-            width: 100%;
-            background: rgba(45, 52, 54, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 999;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease-in-out;
-            border-bottom: 2px solid var(--accent-color);
-        }
 
-        .mobile-menu.active {
-            transform: translateY(0);
-        }
 
-        .mobile-menu-links {
-            list-style: none;
-            padding: 20px;
-            text-align: center;
-        }
+        /* Notification */
 
-        .mobile-menu-links li a {
-            color: var(--text-color);
-            text-decoration: none;
-            display: block;
-            padding: 15px 0;
-            font-size: 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .mobile-menu-links li a:hover {
-            color: var(--accent-color);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .mobile-menu-links li:last-child a {
-            border-bottom: none;
-        }
-
-        /* Loader */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 15px;
-            animation: bounce-loader 1s ease-in-out infinite alternate;
-        }
-
-        @keyframes bounce-loader {
-            from { transform: translateY(0); }
-            to { transform: translateY(-20px); }
-        }
-
-        .loader-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--text-color);
-            margin-top: 15px;
-        }
-
-        /* Notification Bar */
         .notification {
+
             position: fixed;
-            top: 100px; /* Below header and space for mobile menu */
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-accent);
+
+            bottom: 20px;
+
+            right: 20px;
+
+            background: var(--gradient-secondary);
+
             color: var(--dark-color);
-            padding: 10px 20px;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+            padding: 15px 25px;
+
+            border-radius: 10px;
+
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+
+            transform: translateX(400px);
+
+            transition: transform 0.3s;
+
             z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s, transform 0.5s;
+
         }
+
+
 
         .notification.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
+
+            transform: translateX(0);
+
         }
 
-        /* Minor fixes for event section on smaller screens */
-        @media (max-width: 480px) {
-            .event-item {
-                /* Reset for smaller screens */
-                flex-direction: column !important;
-                align-items: center;
-                padding-left: 0;
+
+
+        /* Responsive Design */
+
+        @media (max-width: 1200px) {
+
+            .container {
+
+                padding: 0 15px;
+
             }
-            .event-content {
-                width: 100%;
+
+            
+
+            .hero h2 {
+
+                font-size: 48px;
+
             }
-            .events-timeline::before {
-                left: 50%;
+
+            
+
+            .section-title {
+
+                font-size: 36px;
+
             }
-            .event-date {
-                left: 50%;
-                transform: translateX(-50%);
-                top: -30px;
-            }
+
         }
+
+
+
+        @media (max-width: 992px) {
+
+            .nav-center {
+
+                display: none;
+
+            }
+
+            
+
+            .hero h2 {
+
+                font-size: 42px;
+
+            }
+
+            
+
+            .hero p {
+
+                font-size: 18px;
+
+            }
+
+            
+
+            .hero-stats {
+
+                gap: 30px;
+
+            }
+
+            
+
+            .stat-number {
+
+                font-size: 30px;
+
+            }
+
+            
+
+            .events-timeline::before {
+
+                left: 30px;
+
+            }
+
+            
+
+            .event-item {
+
+                flex-direction: column !important;
+
+                align-items: flex-start !important;
+
+                padding-left: 60px;
+
+            }
+
+            
+
+            .event-content {
+
+                width: 100%;
+
+            }
+
+            
+
+            .event-date {
+
+                left: 30px;
+
+                transform: translateX(-50%);
+
+            }
+
+            
+
+            .platform-title {
+
+                font-size: 24px;
+
+            }
+
+            
+
+            .section-title {
+
+                font-size: 32px;
+
+            }
+
+        }
+
+
+
+        @media (max-width: 768px) {
+
+            .mobile-menu-btn {
+
+                display: block;
+
+            }
+
+            
+
+            .logo h1 {
+
+                font-size: 22px;
+
+            }
+
+            
+
+            .logo img {
+
+                width: 40px;
+
+                height: 40px;
+
+            }
+
+            
+
+            .server-status {
+
+                font-size: 14px;
+
+                padding: 6px 12px;
+
+            }
+
+            
+
+            .hero {
+
+                padding: 60px 0;
+
+                margin-top: 70px;
+
+            }
+
+            
+
+            .hero h2 {
+
+                font-size: 36px;
+
+            }
+
+            
+
+            .hero p {
+
+                font-size: 16px;
+
+            }
+
+            
+
+            .hero-stats {
+
+                flex-direction: column;
+
+                gap: 20px;
+
+            }
+
+            
+
+            .cta-button {
+
+                padding: 12px 30px;
+
+                font-size: 16px;
+
+            }
+
+            
+
+            .social-buttons {
+
+                flex-direction: column;
+
+                align-items: center;
+
+            }
+
+            
+
+            .social-button {
+
+                width: 100%;
+
+                max-width: 300px;
+
+                justify-content: center;
+
+            }
+
+            
+
+            .platform-tabs {
+
+                gap: 5px;
+
+            }
+
+            
+
+            .platform-tab {
+
+                padding: 8px 15px;
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .platform-content {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .platform-title {
+
+                font-size: 22px;
+
+            }
+
+            
+
+            .step {
+
+                flex-direction: column;
+
+                gap: 10px;
+
+            }
+
+            
+
+            .step-number {
+
+                margin-top: 0;
+
+            }
+
+            
+
+            .info-grid {
+
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+                gap: 20px;
+
+            }
+
+            
+
+            .info-card {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .info-icon {
+
+                font-size: 36px;
+
+            }
+
+            
+
+            .features-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+
+            }
+
+            
+
+            .feature-card {
+
+                padding: 25px;
+
+            }
+
+            
+
+            .feature-icon {
+
+                font-size: 48px;
+
+            }
+
+            
+
+            .feature-card h3 {
+
+                font-size: 20px;
+
+            }
+
+            
+
+            .feature-card p {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .roles-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+
+            }
+
+            
+
+            .role-card.featured {
+
+                transform: scale(1);
+
+            }
+
+            
+
+            .role-card {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .role-name {
+
+                font-size: 22px;
+
+            }
+
+            
+
+            .role-price {
+
+                font-size: 28px;
+
+            }
+
+            
+
+            .testimonials-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+
+            }
+
+            
+
+            .section-title {
+
+                font-size: 28px;
+
+            }
+
+            
+
+            .section-subtitle {
+
+                font-size: 16px;
+
+            }
+
+            
+
+            .faq-question {
+
+                font-size: 16px;
+
+                padding: 15px;
+
+            }
+
+            
+
+            .payment-steps {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .step {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                text-align: left;
+
+            }
+
+            
+
+            .step-number {
+
+                margin-right: 0;
+
+                margin-bottom: 10px;
+
+            }
+
+            
+
+            .qr-code img {
+
+                width: 200px;
+
+                height: 200px;
+
+            }
+
+            
+
+            .footer-content {
+
+                grid-template-columns: 1fr;
+
+                gap: 30px;
+
+            }
+
+            
+
+            .footer-section {
+
+                text-align: center;
+
+            }
+
+            
+
+            .social-links {
+
+                justify-content: center;
+
+            }
+
+        }
+
+
+
+        @media (max-width: 576px) {
+
+            .container {
+
+                padding: 0 10px;
+
+            }
+
+            
+
+            .hero h2 {
+
+                font-size: 30px;
+
+            }
+
+            
+
+            .hero p {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .stat-number {
+
+                font-size: 24px;
+
+            }
+
+            
+
+            .stat-label {
+
+                font-size: 12px;
+
+            }
+
+            
+
+            .cta-button {
+
+                padding: 10px 20px;
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .platform-tab {
+
+                padding: 6px 12px;
+
+                font-size: 12px;
+
+            }
+
+            
+
+            .platform-content {
+
+                padding: 15px;
+
+            }
+
+            
+
+            .platform-title {
+
+                font-size: 20px;
+
+            }
+
+            
+
+            .step-title {
+
+                font-size: 16px;
+
+            }
+
+            
+
+            .step-description {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .host-code {
+
+                font-size: 12px;
+
+                padding: 10px;
+
+            }
+
+            
+
+            .download-button {
+
+                padding: 10px 20px;
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .info-card {
+
+                padding: 15px;
+
+            }
+
+            
+
+            .info-icon {
+
+                font-size: 30px;
+
+            }
+
+            
+
+            .info-card h3 {
+
+                font-size: 18px;
+
+            }
+
+            
+
+            .info-value {
+
+                font-size: 20px;
+
+            }
+
+            
+
+            .feature-card {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .feature-icon {
+
+                font-size: 40px;
+
+            }
+
+            
+
+            .feature-card h3 {
+
+                font-size: 18px;
+
+            }
+
+            
+
+            .feature-card p {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .event-content {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .event-title {
+
+                font-size: 18px;
+
+            }
+
+            
+
+            .event-content p {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .role-card {
+
+                padding: 15px;
+
+            }
+
+            
+
+            .role-name {
+
+                font-size: 20px;
+
+            }
+
+            
+
+            .role-price {
+
+                font-size: 24px;
+
+            }
+
+            
+
+            .role-features {
+
+                font-size: 12px;
+
+            }
+
+            
+
+            .buy-button {
+
+                padding: 10px;
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .testimonial-card {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .testimonial-text {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .faq-question {
+
+                font-size: 14px;
+
+                padding: 12px;
+
+            }
+
+            
+
+            .faq-answer {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .payment-methods {
+
+                gap: 10px;
+
+            }
+
+            
+
+            .payment-method {
+
+                padding: 10px 20px;
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .qr-code {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .qr-code img {
+
+                width: 180px;
+
+                height: 180px;
+
+            }
+
+            
+
+            .payment-steps {
+
+                padding: 15px;
+
+            }
+
+            
+
+            .step-number {
+
+                width: 30px;
+
+                height: 30px;
+
+                font-size: 16px;
+
+            }
+
+            
+
+            .step {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .shop-banner {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .shop-banner h3 {
+
+                font-size: 22px;
+
+            }
+
+            
+
+            .promo-banner {
+
+                padding: 15px;
+
+            }
+
+            
+
+            .promo-banner h3 {
+
+                font-size: 18px;
+
+            }
+
+            
+
+            .footer {
+
+                padding: 30px 0 15px;
+
+            }
+
+            
+
+            .footer-section h3 {
+
+                font-size: 18px;
+
+            }
+
+            
+
+            .footer-section ul li {
+
+                font-size: 14px;
+
+            }
+
+            
+
+            .footer-bottom {
+
+                font-size: 12px;
+
+            }
+
+        }
+
+
 
         /* Touch-friendly adjustments */
+
         @media (hover: none) and (pointer: coarse) {
-            .nav-links a:hover, .platform-tab:hover, .info-card:hover, .feature-card:hover, .role-card:hover, .testimonial-card:hover, .faq-item:hover, .payment-method:hover, .social-button:hover, .cta-button:hover, .download-button:hover, .buy-button:hover {
+
+            .nav-links a:hover,
+
+            .platform-tab:hover,
+
+            .info-card:hover,
+
+            .feature-card:hover,
+
+            .role-card:hover,
+
+            .testimonial-card:hover,
+
+            .faq-item:hover,
+
+            .payment-method:hover,
+
+            .social-button:hover,
+
+            .cta-button:hover,
+
+            .download-button:hover,
+
+            .buy-button:hover {
+
                 transform: none;
+
             }
-            .nav-links a:active, .platform-tab:active, .info-card:active, .feature-card:active, .role-card:active, .testimonial-card:active, .faq-item:active, .payment-method:active, .social-button:active, .cta-button:active, .download-button:active, .buy-button:active {
+
+            
+
+            .nav-links a:active,
+
+            .platform-tab:active,
+
+            .info-card:active,
+
+            .feature-card:active,
+
+            .role-card:active,
+
+            .testimonial-card:active,
+
+            .faq-item:active,
+
+            .payment-method:active,
+
+            .social-button:active,
+
+            .cta-button:active,
+
+            .download-button:active,
+
+            .buy-button:active {
+
                 transform: scale(0.98);
+
             }
+
         }
+
+
+
+        /* Loading Animation */
+
+        .loader {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: var(--gradient-primary);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            z-index: 9999;
+
+            transition: opacity 0.5s;
+
+        }
+
+
+
+        .loader.hidden {
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+
+
+        .loader-content {
+
+            text-align: center;
+
+        }
+
+
+
+        .loader-logo {
+
+            width: 100px;
+
+            height: 100px;
+
+            border-radius: 20px;
+
+            animation: spin 2s linear infinite;
+
+        }
+
+
+
+        @keyframes spin {
+
+            0% { transform: rotate(0deg); }
+
+            100% { transform: rotate(360deg); }
+
+        }
+
+
+
+        .loader-text {
+
+            margin-top: 20px;
+
+            font-size: 24px;
+
+            color: var(--accent-color);
+
+        }
+
+
+
+        /* Mobile menu */
+
+        .mobile-menu {
+
+            position: fixed;
+
+            top: 70px;
+
+            right: -300px;
+
+            width: 250px;
+
+            height: calc(100vh - 70px);
+
+            background: rgba(0, 0, 0, 0.8);
+
+            backdrop-filter: blur(10px);
+
+            transition: right 0.3s;
+
+            z-index: 999;
+
+            padding: 20px;
+
+            overflow-y: auto;
+
+        }
+
+
+
+        .mobile-menu.active {
+
+            right: 0;
+
+        }
+
+
+
+        .mobile-menu-links {
+
+            list-style: none;
+
+        }
+
+
+
+        .mobile-menu-links li {
+
+            margin: 15px 0;
+
+        }
+
+
+
+        .mobile-menu-links a {
+
+            color: var(--text-color);
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+            display: block;
+
+            padding: 10px;
+
+            border-radius: 10px;
+
+            transition: all 0.3s;
+
+        }
+
+
+
+        .mobile-menu-links a:hover {
+
+            background: var(--card-hover);
+
+            color: var(--accent-color);
+
+        }
+
+
+
+        /* Accessibility improvements */
+
+        .visually-hidden {
+
+            position: absolute;
+
+            width: 1px;
+
+            height: 1px;
+
+            margin: -1px;
+
+            padding: 0;
+
+            overflow: hidden;
+
+            clip: rect(0, 0, 0, 0);
+
+            white-space: nowrap;
+
+            border-width: 0;
+
+        }
+
+
+
+        /* Focus styles for keyboard navigation */
+
+        a:focus,
+
+        button:focus,
+
+        input:focus,
+
+        select:focus,
+
+        textarea:focus {
+
+            outline: 2px solid var(--accent-color);
+
+            outline-offset: 2px;
+
+        }
+
+
+
+        /* Print styles */
+
+        @media print {
+
+            body {
+
+                background: white;
+
+                color: black;
+
+            }
+
+            
+
+            header,
+
+            footer,
+
+            .mobile-menu-btn,
+
+            .notification,
+
+            .loader {
+
+                display: none;
+
+            }
+
+            
+
+            .hero {
+
+                margin-top: 0;
+
+            }
+
+            
+
+            .container {
+
+                max-width: 100%;
+
+                padding: 0;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 <body>
+
+    <!-- Loading Screen -->
+
     <div class="loader" id="loader">
+
         <div class="loader-content">
+
             <img src="https://files.catbox.moe/wt5umt.jpg" alt="Loading" class="loader-logo">
+
             <div class="loader-text">Loading GROWRUSH...</div>
+
         </div>
+
     </div>
-    
+
+
+
+    <!-- Notification -->
+
     <div class="notification" id="notification">
+
         <span id="notificationText">Welcome to GROWRUSH!</span>
+
     </div>
+
+
+
+    <!-- Header -->
 
     <header>
+
         <nav class="container">
+
             <div class="logo">
+
                 <img src="https://files.catbox.moe/wt5umt.jpg" alt="GTPS Logo">
+
                 <h1>GROWRUSH</h1>
+
             </div>
+
+            
+
             <div class="nav-center">
+
                 <ul class="nav-links">
+
                     <li><a href="#home" class="nav-link active">Beranda</a></li>
+
                     <li><a href="#join" class="nav-link">Cara Join</a></li>
+
                     <li><a href="#server" class="nav-link">Server</a></li>
+
                     <li><a href="#features" class="nav-link">Fitur</a></li>
+
                     <li><a href="#events" class="nav-link">Event</a></li>
+
                     <li><a href="#shop" class="nav-link">Toko Role</a></li>
+
                     <li><a href="#payment" class="nav-link">Pembayaran</a></li>
+
                 </ul>
+
             </div>
+
+            
+
             <div class="nav-right">
+
                 <div class="server-status">
+
                     <div class="status-dot"></div>
+
                     <span>ONLINE - <span id="playerCount">247</span> Players</span>
+
                 </div>
+
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
+
                     <i class="fas fa-bars"></i>
+
                 </button>
+
             </div>
+
         </nav>
+
     </header>
 
+
+
+    <!-- Mobile Menu -->
+
     <div class="mobile-menu" id="mobileMenu">
+
         <ul class="mobile-menu-links">
+
             <li><a href="#home">Beranda</a></li>
+
             <li><a href="#join">Cara Join</a></li>
+
             <li><a href="#server">Server</a></li>
+
             <li><a href="#features">Fitur</a></li>
+
             <li><a href="#events">Event</a></li>
+
             <li><a href="#shop">Toko Role</a></li>
+
             <li><a href="#payment">Pembayaran</a></li>
+
         </ul>
+
     </div>
 
+
+
+    <!-- Hero Section -->
+
     <section id="home" class="hero">
+
         <div class="container hero-content">
+
             <h2>GROWRUSH</h2>
+
             <p>Private Server Terbaik Indonesia dengan 1000+ Item Baru & Event Setiap Hari!</p>
+
+            
+
             <div class="hero-stats">
+
                 <div class="stat-item">
-                    <span class="stat-number" id="uptime">99%</span>
-                    <span class="stat-label">Server Uptime</span>
+
+                    <span class="stat-number" id="totalPlayers">15,847</span>
+
+                    <span class="stat-label">Total Players</span>
+
                 </div>
+
                 <div class="stat-item">
-                    <span class="stat-number" id="totalPlayers">14K</span>
-                    <span class="stat-label">Total Pemain</span>
+
+                    <span class="stat-number" id="totalWorlds">3,421</span>
+
+                    <span class="stat-label">Active Worlds</span>
+
                 </div>
+
                 <div class="stat-item">
-                    <span class="stat-number" id="serverAge">4th</span>
-                    <span class="stat-label">Server Age</span>
+
+                    <span class="stat-number" id="uptime">99.9%</span>
+
+                    <span class="stat-label">Uptime</span>
+
                 </div>
+
+                <div class="stat-item">
+
+                    <span class="stat-number" id="version">v4.5.2</span>
+
+                    <span class="stat-label">Server Version</span>
+
+                </div>
+
             </div>
+
+            
+
             <div class="cta-buttons">
-                <a href="#join" class="cta-button">
-                    <i class="fas fa-play-circle"></i> Mulai Bermain
-                </a>
-                <a href="https://discord.gg/groovetopia" target="_blank" class="cta-button secondary">
-                    <i class="fab fa-discord"></i> Join Discord
-                </a>
+
+                <a href="#join" class="cta-button">🎮 Cara Bergabung</a>
+
+                <a href="#shop" class="cta-button secondary">🛍️ Beli Role Sekarang</a>
+
             </div>
+
+            
+
+            <div class="social-buttons">
+
+                <a href="https://discord.gg/s9MsXRzAD" target="_blank" class="social-button discord-button">
+
+                    <i class="fab fa-discord"></i> Join Discord
+
+                </a>
+
+                <a href="https://chat.whatsapp.com/Elq453EwzudLyUIi4nuDik?mode=hqrc" target="_blank" class="social-button whatsapp-button">
+
+                    <i class="fab fa-whatsapp"></i> Join WhatsApp
+
+                </a>
+
+            </div>
+
         </div>
+
     </section>
+
+
+
+    <!-- Join Us Section -->
 
     <section id="join" class="join-us">
+
         <div class="container join-container">
-            <h2 class="section-title">🚀 Cara Bergabung</h2>
-            <p class="section-subtitle">Pilih platform Anda dan ikuti langkah-langkah mudah di bawah ini.</p>
+
+            <h2 class="section-title">🎮 Cara Bergabung</h2>
+
+            <p class="section-subtitle">Ikuti langkah-langkah di bawah ini untuk bergabung dengan server kami!</p>
+
             
+
             <div class="platform-tabs">
-                <div class="platform-tab active" data-platform="android">
-                    <i class="fab fa-android"></i> Android
-                </div>
-                <div class="platform-tab" data-platform="windows">
-                    <i class="fab fa-windows"></i> Windows
-                </div>
-                <div class="platform-tab" data-platform="ios">
-                    <i class="fab fa-apple"></i> iPhone (Surge5)
-                </div>
+
+                <div class="platform-tab active" data-platform="android">Android</div>
+
+                <div class="platform-tab" data-platform="windows">Windows</div>
+
+                <div class="platform-tab" data-platform="powertunnel">PowerTunnel</div>
+
+                <div class="platform-tab" data-platform="hostsgo">Hosts Go</div>
+
+                <div class="platform-tab" data-platform="virtualhost">Virtual Host</div>
+
+                <div class="platform-tab" data-platform="mac">Mac</div>
+
+                <div class="platform-tab" data-platform="surge5">Surge5</div>
+
             </div>
+
+            
+
+            <!-- Android Instructions -->
 
             <div class="platform-content active" id="android">
+
                 <div class="platform-title">
+
                     <i class="fab fa-android"></i> Android
+
                 </div>
+
                 <div class="platform-steps">
+
                     <div class="step">
+
                         <div class="step-number">1</div>
+
                         <div class="step-content">
-                            <div class="step-title">Download APK</div>
-                            <div class="step-description">Download dan install GROWRUSH APK versi terbaru dari link di bawah ini.</div>
-                            <div style="margin-top: 10px;">
-                                <a href="https://files.catbox.moe/k3665h.apk" target="_blank" class="download-button">
-                                    <i class="fas fa-download"></i> Download GROWRUSH APK
-                                </a>
-                            </div>
+
+                            <div class="step-title">Uninstall Real Growtopia</div>
+
+                            <div class="step-description">Jika Anda memiliki Growtopia asli di perangkat Anda, uninstall terlebih dahulu.</div>
+
                         </div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">2</div>
+
                         <div class="step-content">
-                            <div class="step-title">Pilih Aplikasi Host</div>
-                            <div class="step-description">Download dan install aplikasi di bawah ini, lalu ikuti langkah-langkah di tab yang sesuai dan gunakan file hosts GROWRUSH yang telah kami sediakan.</div>
-                            <div style="margin-top: 10px;">
-                                <a href="https://android.izzysoft.de/repo/apk/io.github.krlvm.powertunnel.android" target="_blank" class="download-button">
-                                    <i class="fas fa-download"></i> Download PowerTunnel
-                                </a>
-                                <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file" target="_blank" class="download-button">
-                                    <i class="fas fa-download"></i> Download Hosts Go
-                                </a>
-                                <a href="https://www.apkshub.com/app/com.github.xfalcon.vhosts" target="_blank" class="download-button">
-                                    <i class="fas fa-download"></i> Download Virtual Host
-                                </a>
-                            </div>
+
+                            <div class="step-title">Restart Device (Opsional)</div>
+
+                            <div class="step-description">Restart perangkat Anda untuk memastikan tidak ada cache yang tersisa.</div>
+
                         </div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">3</div>
+
                         <div class="step-content">
+
+                            <div class="step-title">Install GROWRUSH APK</div>
+
+                            <div class="step-description">Download dan install APK GROWRUSH yang telah kami sediakan.</div>
+
+                            <div style="margin-top: 10px;">
+
+                                <a href="https://android.izzysoft.de/repo/apk/io.github.krlvm.powertunnel.android" target="_blank" class="download-button">
+
+                                    <i class="fas fa-download"></i> Download PowerTunnel
+
+                                </a>
+
+                                <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file" target="_blank" class="download-button">
+
+                                    <i class="fas fa-download"></i> Download Hosts Go
+
+                                </a>
+
+                                <a href="https://www.apkshub.com/app/com.github.xfalcon.vhosts" target="_blank" class="download-button">
+
+                                    <i class="fas fa-download"></i> Download Virtual Host
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">4</div>
+
+                        <div class="step-content">
+
                             <div class="step-title">Buka GROWRUSH APK</div>
+
                             <div class="step-description">Buka aplikasi GROWRUSH dan gunakan akun GROWRUSH Anda untuk login.</div>
+
                         </div>
+
                     </div>
+
                 </div>
+
                 <div class="note-box">
+
                     <strong>Catatan:</strong> Pastikan Anda telah mengunduh salah satu dari aplikasi di atas untuk dapat terhubung ke server kami.
+
                 </div>
 
-                <div class="platform-tabs" style="margin-top: 40px;">
-                    <div class="platform-tab active" data-platform="hostsgo">
-                        <i class="fas fa-server"></i> Hosts Go
-                    </div>
-                    <div class="platform-tab" data-platform="virtualhost">
-                        <i class="fas fa-network-wired"></i> Virtual Host
-                    </div>
-                </div>
-
-                <div class="platform-content active" id="hostsgo">
-                    <div class="platform-title">
-                        <i class="fas fa-server"></i> Hosts Go (Android)
-                    </div>
-                    <div class="platform-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <div class="step-title">Install Hosts Go</div>
-                                <div class="step-description">Download dan install aplikasi Hosts Go (No Root) dari link berikut:</div>
-                                <div style="margin-top: 10px;">
-                                    <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file" target="_blank" class="download-button">
-                                        <i class="fas fa-download"></i> Download Hosts Go
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <div class="step-title">Buka Hosts Go</div>
-                                <div class="step-description">Buka aplikasi Hosts Go yang telah Anda install.</div>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <div class="step-title">Download Hosts File</div>
-                                <div class="step-description">Pergi ke Hosts Editor → enable → Download Hosts File, lalu masukkan URL berikut:</div>
-                                <div class="host-code">https://www.growrush.my.id/GrowRushPS.txt</div>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <div class="step-content">
-                                <div class="step-title">Apply dan Start Protection</div>
-                                <div class="step-description">Klik Apply, lalu start protection, dan buka Growtopia.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="note-box">
-                        <strong>Catatan:</strong> Aplikasi ini tidak memerlukan akses root untuk berfungsi.
-                    </div>
-                </div>
-
-                <div class="platform-content" id="virtualhost">
-                    <div class="platform-title">
-                        <i class="fas fa-network-wired"></i> Virtual Host (Android)
-                    </div>
-                    <div class="platform-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <div class="step-title">Install Virtual Host</div>
-                                <div class="step-description">Download dan install aplikasi Virtual Host dari link berikut:</div>
-                                <div style="margin-top: 10px;">
-                                    <a href="https://www.apkshub.com/app/com.github.xfalcon.vhosts" target="_blank" class="download-button">
-                                        <i class="fas fa-download"></i> Download Virtual Host
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <div class="step-title">Download File Hosts</div>
-                                <div class="step-description">Download file hosts GROWRUSH berikut:</div>
-                                <div style="margin-top: 10px;">
-                                    <a href="https://www.growrush.my.id/GrowRushPS.txt" target="_blank" class="download-button">
-                                        <i class="fas fa-download"></i> Download Host File (.txt)
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <div class="step-title">Import Hosts File</div>
-                                <div class="step-description">Buka Virtual Host, klik "Select Host File" atau "Add Host File", lalu import file **GrowRushPS.txt** yang sudah Anda download.</div>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <div class="step-content">
-                                <div class="step-title">Start Protection</div>
-                                <div class="step-description">Pastikan statusnya **ON** dan buka Growtopia.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="note-box">
-                        <strong>Catatan:</strong> Aplikasi ini memerlukan izin VPN untuk berfungsi.
-                    </div>
-                </div>
             </div>
+
+            
+
+            <!-- Windows Instructions -->
 
             <div class="platform-content" id="windows">
+
                 <div class="platform-title">
+
                     <i class="fab fa-windows"></i> Windows
+
                 </div>
+
                 <div class="platform-steps">
+
                     <div class="step">
+
                         <div class="step-number">1</div>
+
                         <div class="step-content">
+
                             <div class="step-title">Buka Folder Hosts</div>
+
                             <div class="step-description">Tekan Win+R, lalu paste <code>C:\Windows\System32\drivers\etc</code> dan tekan Enter.</div>
+
                         </div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">2</div>
+
                         <div class="step-content">
+
                             <div class="step-title">Edit File Hosts</div>
-                            <div class="step-description">Buka file hosts dengan Notepad (Run as Administrator), dan tambahkan line berikut di bagian bawah:</div>
-                            <div class="host-code">
-                                15.235.227.241 growtopia1.com<br>
-                                15.235.227.241 growtopia2.com<br>
-                                15.235.227.241 www.growtopia1.com<br>
-                                15.235.227.241 www.growtopia2.com
-                            </div>
+
+                            <div class="step-description">Buka file hosts dengan Notepad (Run as Administrator).</div>
+
                         </div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">3</div>
+
                         <div class="step-content">
-                            <div class="step-title">Simpan dan Pindahkan Kembali</div>
-                            <div class="step-description">Simpan file yang telah diedit dan pindahkan kembali ke folder aslinya.</div>
+
+                            <div class="step-title">Tambahkan Host</div>
+
+                            <div class="step-description">Tambahkan baris berikut ke akhir file hosts:</div>
+
+                            <div class="host-code">
+
+                                15.235.227.241 growtopia1.com<br>
+
+                                15.235.227.241 growtopia2.com<br>
+
+                                15.235.227.241 www.growtopia1.com<br>
+
+                                15.235.227.241 www.growtopia2.com
+
+                            </div>
+
                         </div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">4</div>
+
                         <div class="step-content">
-                            <div class="step-title">Buka Growtopia</div>
-                            <div class="step-description">Buka Growtopia untuk bermain di server kami.</div>
+
+                            <div class="step-title">Simpan dan Launch</div>
+
+                            <div class="step-description">Simpan file hosts dan buka Growtopia untuk bermain.</div>
+
                         </div>
+
                     </div>
+
                 </div>
+
                 <div class="note-box">
-                    <strong>Catatan:</strong> Anda mungkin perlu memasukkan password administrator saat memindahkan file kembali ke folder aslinya.
+
+                    <strong>Catatan:</strong> Jika Anda mengalami kesulitan, pastikan Notepad dijalankan sebagai Administrator.
+
                 </div>
+
             </div>
 
-            <div class="platform-content" id="ios">
+            
+
+            <!-- PowerTunnel Instructions -->
+
+            <div class="platform-content" id="powertunnel">
+
                 <div class="platform-title">
-                    <i class="fas fa-bolt"></i> Surge5 (iPhone)
+
+                    <i class="fas fa-shield-alt"></i> PowerTunnel (Android)
+
                 </div>
+
                 <div class="platform-steps">
+
                     <div class="step">
+
                         <div class="step-number">1</div>
+
                         <div class="step-content">
-                            <div class="step-title">Install Surge5</div>
-                            <div class="step-description">Download dan install aplikasi Surge5 dari App Store:</div>
+
+                            <div class="step-title">Install PowerTunnel APK</div>
+
+                            <div class="step-description">Download dan install aplikasi PowerTunnel dari link berikut:</div>
+
                             <div style="margin-top: 10px;">
-                                <a href="https://apps.apple.com/us/app/surge-5/id1442620678" target="_blank" class="download-button">
-                                    <i class="fas fa-download"></i> Download Surge5
+
+                                <a href="https://android.izzysoft.de/repo/apk/io.github.krlvm.powertunnel.android" target="_blank" class="download-button">
+
+                                    <i class="fas fa-download"></i> Download PowerTunnel
+
                                 </a>
+
                             </div>
+
                         </div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">2</div>
+
                         <div class="step-content">
-                            <div class="step-title">Import Profile</div>
-                            <div class="step-description">Buka Surge5 dan import profile dari URL berikut:</div>
-                            <div class="host-code">https://www.growrush.my.id/GrowRushPS.conf</div>
+
+                            <div class="step-title">Buka PowerTunnel</div>
+
+                            <div class="step-description">Buka aplikasi PowerTunnel yang telah Anda install.</div>
+
                         </div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">3</div>
+
                         <div class="step-content">
-                            <div class="step-title">Selesai!</div>
-                            <div class="step-description">Profile akan terinstall secara otomatis, Anda bisa langsung bermain Growtopia.</div>
+
+                            <div class="step-title">Konfigurasi Hosts</div>
+
+                            <div class="step-description">Pergi ke Plugin → Hosts → Open the Setting, lalu masukkan URL berikut:</div>
+
+                            <div class="host-code">https://www.growrush.my.id/GrowRushPS.txt</div>
+
                         </div>
+
                     </div>
+
+                    <div class="step">
+
+                        <div class="step-number">4</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Connect</div>
+
+                            <div class="step-description">Kembali ke menu utama dan klik tombol "CONNECT", lalu buka Growtopia.</div>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+                <div class="note-box">
+
+                    <strong>Catatan:</strong> Pastikan PowerTunnel berjalan di latar belakang saat Anda bermain Growtopia.
+
+                </div>
+
+            </div>
+
+            
+
+            <!-- Hosts Go Instructions -->
+
+            <div class="platform-content" id="hostsgo">
+
+                <div class="platform-title">
+
+                    <i class="fas fa-server"></i> Hosts Go (Android)
+
+                </div>
+
+                <div class="platform-steps">
+
+                    <div class="step">
+
+                        <div class="step-number">1</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Install Hosts Go</div>
+
+                            <div class="step-description">Download dan install aplikasi Hosts Go (No Root) dari link berikut:</div>
+
+                            <div style="margin-top: 10px;">
+
+                                <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file" target="_blank" class="download-button">
+
+                                    <i class="fas fa-download"></i> Download Hosts Go
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">2</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Buka Hosts Go</div>
+
+                            <div class="step-description">Buka aplikasi Hosts Go yang telah Anda install.</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">3</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Download Hosts File</div>
+
+                            <div class="step-description">Pergi ke Hosts Editor → enable → Download Hosts File, lalu masukkan URL berikut:</div>
+
+                            <div class="host-code">https://growtopia.id/android</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">4</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Apply dan Start Protection</div>
+
+                            <div class="step-description">Klik Apply, lalu start protection, dan buka Growtopia.</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="note-box">
+
+                    <strong>Catatan:</strong> Aplikasi ini tidak memerlukan akses root untuk berfungsi.
+
+                </div>
+
+            </div>
+
+            
+
+            <!-- Virtual Host Instructions -->
+
+            <div class="platform-content" id="virtualhost">
+
+                <div class="platform-title">
+
+                    <i class="fas fa-network-wired"></i> Virtual Host (Android)
+
+                </div>
+
+                <div class="platform-steps">
+
+                    <div class="step">
+
+                        <div class="step-number">1</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Install Virtual Host</div>
+
+                            <div class="step-description">Download dan install aplikasi Virtual Host dari link berikut:</div>
+
+                            <div style="margin-top: 10px;">
+
+                                <a href="https://www.apkshub.com/app/com.github.xfalcon.vhosts" target="_blank" class="download-button">
+
+                                    <i class="fas fa-download"></i> Download Virtual Host
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">2</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Download Hosts File</div>
+
+                            <div class="step-description">Download file hosts dari link berikut:</div>
+
+                            <div style="margin-top: 10px;">
+
+                                <a href="https://www.growrush.my.id/GrowRushPS.txt/file" target="_blank" class="download-button">
+
+                                    <i class="fas fa-download"></i> Download Hosts File
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">3</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Pilih Hosts File</div>
+
+                            <div class="step-description">Buka aplikasi Virtual Host → SELECT HOSTS FILE, lalu pilih file hosts yang telah Anda download (GROWRUSH-HOST (2).txt).</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">4</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Buka Growtopia</div>
+
+                            <div class="step-description">Setelah mengatur hosts file, buka Growtopia untuk bermain.</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="note-box">
+
+                    <strong>Catatan:</strong> Pastikan file hosts yang Anda download adalah versi terbaru untuk menghindari masalah koneksi.
+
+                </div>
+
+            </div>
+
+            
+
+            <!-- Mac Instructions -->
+
+            <div class="platform-content" id="mac">
+
+                <div class="platform-title">
+
+                    <i class="fab fa-apple"></i> Mac
+
+                </div>
+
+                <div class="platform-steps">
+
+                    <div class="step">
+
+                        <div class="step-number">1</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Buka Folder Hosts</div>
+
+                            <div class="step-description">Buka Finder → Go → Go to Folder, lalu masukkan <code>/private/etc/hosts</code>.</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">2</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Edit File Hosts</div>
+
+                            <div class="step-description">Copy file hosts ke Desktop, edit dengan TextEdit, lalu tambahkan baris berikut:</div>
+
+                            <div class="host-code">
+
+                                5.196.204.227 growtopia1.com<br>
+
+                                5.196.204.227 growtopia2.com<br>
+
+                                5.196.204.227 www.growtopia1.com<br>
+
+                                5.196.204.227 www.growtopia2.com
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">3</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Simpan dan Pindahkan Kembali</div>
+
+                            <div class="step-description">Simpan file yang telah diedit dan pindahkan kembali ke folder aslinya.</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">4</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Buka Growtopia</div>
+
+                            <div class="step-description">Buka Growtopia untuk bermain di server kami.</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="note-box">
+
+                    <strong>Catatan:</strong> Anda mungkin perlu memasukkan password administrator saat memindahkan file kembali ke folder aslinya.
+
+                </div>
+
+            </div>
+
+            
+
+            <!-- Surge5 Instructions -->
+
+            <div class="platform-content" id="surge5">
+
+                <div class="platform-title">
+
+                    <i class="fas fa-bolt"></i> Surge5 (iPhone)
+
+                </div>
+
+                <div class="platform-steps">
+
+                    <div class="step">
+
+                        <div class="step-number">1</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Install Surge5</div>
+
+                            <div class="step-description">Download dan install aplikasi Surge5 dari App Store:</div>
+
+                            <div style="margin-top: 10px;">
+
+                                <a href="https://apps.apple.com/us/app/surge-5/id1442620678" target="_blank" class="download-button">
+
+                                    <i class="fas fa-download"></i> Download Surge5
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">2</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Import Profile</div>
+
+                            <div class="step-description">Buka Surge5 dan import profile dari URL berikut:</div>
+
+                            <div class="host-code">https://growtopia.id/ios</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">3</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Izinkan Konfigurasi VPN</div>
+
+                            <div class="step-description">Izinkan konfigurasi VPN saat diminta oleh aplikasi.</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">4</div>
+
+                        <div class="step-content">
+
+                            <div class="step-title">Connect dan Buka Growtopia</div>
+
+                            <div class="step-description">Klik tombol Connect, lalu buka Growtopia untuk bermain.</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="note-box">
+
+                    <strong>Catatan:</strong> Surge5 memerlukan iOS 13.0 atau versi lebih baru untuk berfungsi dengan baik.
+
+                </div>
+
             </div>
 
         </div>
+
     </section>
+
+
+
+    <!-- Server Info Section -->
 
     <section id="server" class="server-info">
+
         <div class="container">
-            <h2 class="section-title">✨ Informasi Server</h2>
-            <p class="section-subtitle">Data real-time dan statistik penting GROWRUSH.</p>
+
+            <h2 class="section-title">📊 Informasi Server</h2>
 
             <div class="info-grid">
+
                 <div class="info-card">
-                    <div class="info-icon"><i class="fas fa-globe"></i></div>
-                    <h3>Server IP</h3>
-                    <div class="info-value">15.235.227.241</div>
+
+                    <div class="info-icon">🌐</div>
+
+                    <h3>Server Address</h3>
+
+                    <div class="info-value">play.gtparadise.id</div>
+
+                    <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">Port: 17091</p>
+
                 </div>
+
                 <div class="info-card">
-                    <div class="info-icon"><i class="fas fa-user-friends"></i></div>
-                    <h3>Online Players</h3>
-                    <div class="info-value" id="onlinePlayers">247</div>
+
+                    <div class="info-icon">👥</div>
+
+                    <h3>Capacity</h3>
+
+                    <div class="info-value">500 Players</div>
+
+                    <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">Slot Available: 253</p>
+
                 </div>
+
                 <div class="info-card">
-                    <div class="info-icon"><i class="fas fa-clock"></i></div>
-                    <h3>Jam Server</h3>
-                    <div class="info-value" id="serverTime">21:00 WIB</div>
+
+                    <div class="info-icon">⚡</div>
+
+                    <h3>Ping</h3>
+
+                    <div class="info-value">12ms</div>
+
+                    <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">Location: Indonesia</p>
+
                 </div>
+
                 <div class="info-card">
-                    <div class="info-icon"><i class="fas fa-code-branch"></i></div>
-                    <h3>Version</h3>
-                    <div class="info-value">V4.92</div>
+
+                    <div class="info-icon">🔄</div>
+
+                    <h3>Auto Restart</h3>
+
+                    <div class="info-value">Every 6 Hours</div>
+
+                    <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">Next: 2h 34m</p>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
+
+
+    <!-- Features Section -->
 
     <section id="features" class="features">
+
         <div class="container">
-            <h2 class="section-title">🔥 Fitur Unggulan</h2>
-            <p class="section-subtitle">Pengalaman bermain yang tak akan Anda temukan di server lain.</p>
+
+            <h2 class="section-title">🌟 Fitur Unggulan Server</h2>
+
+            <p class="section-subtitle">Nikmati berbagai fitur eksklusif yang tidak ada di server lain!</p>
 
             <div class="features-grid">
+
                 <div class="feature-card">
-                    <div class="feature-icon">💎</div>
-                    <h3>Custom Item & Modifikasi</h3>
-                    <p>1000+ custom item, world edit, dan modifikasi. Total kebebasan untuk berkreasi!</p>
+
+                    <div class="feature-icon">🔍</div>
+
+                    <h3>New Can Find Item</h3>
+
+                    <p>Temukan 1000+ item eksklusif dengan rate drop 5x lebih tinggi! Item legendary, mythical, dan divine menanti Anda.</p>
+
                 </div>
+
                 <div class="feature-card">
+
+                    <div class="feature-icon">🎮</div>
+
+                    <h3>Citem 500+</h3>
+
+                    <p>Akses command lengkap untuk spawn item, world edit, dan modifikasi. Total kebebasan untuk berkreasi!</p>
+
+                </div>
+
+                <div class="feature-card">
+
                     <div class="feature-icon">⚔️</div>
+
                     <h3>Dungeon Event Like RGT</h3>
+
                     <p>10+ dungeon dengan boss unik, loot table spesial, dan difficulty scaling. Event setiap 2 jam!</p>
+
                 </div>
+
                 <div class="feature-card">
+
                     <div class="feature-icon">🏆</div>
+
                     <h3>PVP Rank System</h3>
+
                     <p>Competitive PVP dengan 7 rank tier, seasonal rewards, dan leaderboard global. Menangkan hadiah total 10Juta/setiap season!</p>
+
                 </div>
+
                 <div class="feature-card">
+
                     <div class="feature-icon">💰</div>
+
                     <h3>Unlimited Profit Methods</h3>
+
                     <p>Farming, fishing, mining, trading, casino, stock market, dan 20+ cara lain untuk menjadi kaya!</p>
+
                 </div>
+
                 <div class="feature-card">
+
                     <div class="feature-icon">🎁</div>
+
                     <h3>Daily Login Rewards</h3>
+
                     <p>Login setiap hari untuk dapat gems, item rare, dan role trial. 30 hari streak dapat special reward!</p>
+
                 </div>
+
                 <div class="feature-card">
+
                     <div class="feature-icon">🏰</div>
+
                     <h3>Guild System</h3>
+
                     <p>Buat guild dengan 50 member, guild war, guild base, dan exclusive guild shop dengan diskon 50%!</p>
+
                 </div>
+
                 <div class="feature-card">
+
                     <div class="feature-icon">🚀</div>
+
                     <h3>Fast Updates</h3>
+
                     <p>Update konten baru setiap minggu dengan item, event, dan fitur fresh. Tidak pernah bosan!</p>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
+
+
+    <!-- Events Section -->
 
     <section id="events" class="events">
+
         <div class="container">
+
             <h2 class="section-title">🎉 Event Schedule</h2>
+
             <p class="section-subtitle">Jangan lewatkan event-event spesial kami!</p>
+
             <div class="events-timeline">
+
                 <div class="event-item">
+
                     <div class="event-content">
+
                         <div class="event-title">🎃 Halloween Spooky Event</div>
+
                         <p>Collect candy, defeat ghost boss, dapatkan exclusive Halloween items!</p>
+
+                        <p style="margin-top: 10px; color: #00ff00;">Reward: 500k Gems + Legendary Items</p>
+
                     </div>
-                    <div class="event-date">24-31 OCT</div>
+
+                    <div class="event-date">25-31 Oct</div>
+
                 </div>
+
                 <div class="event-item">
+
                     <div class="event-content">
-                        <div class="event-title">🎄 Christmas Special Gift</div>
-                        <p>Dapatkan free item dan gems setiap 2 jam. Temukan santa boss di world secret!</p>
+
+                        <div class="event-title">⚔️ PVP Championship</div>
+
+                        <p>Turnamen PVP terbesar dengan total hadiah 5Juta Rupiah!</p>
+
+                        <p style="margin-top: 10px; color: #00ff00;">Reward: 2Juta + God Role 1 Month</p>
+
                     </div>
-                    <div class="event-date">20-30 DEC</div>
+
+                    <div class="event-date">15 Nov</div>
+
                 </div>
+
                 <div class="event-item">
+
                     <div class="event-content">
-                        <div class="event-title">🎉 New Year Carnival</div>
-                        <p>Event kembang api, free world lock, dan 50% extra gems untuk semua pembelian!</p>
+
+                        <div class="event-title">🏰 Castle Siege Event</div>
+
+                        <p>Tim vs tim battle untuk menguasai castle dan dapatkan tax revenue!</p>
+
+                        <p style="margin-top: 10px; color: #00ff00;">Reward: 1M Gems/Week</p>
+
                     </div>
-                    <div class="event-date">1-7 JAN</div>
+
+                    <div class="event-date">Every Weekend</div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
+
+
+    <!-- Role Shop Section -->
 
     <section id="shop" class="shop">
+
         <div class="container">
-            <h2 class="section-title">👑 Toko Role Premium</h2>
+
+            <h2 class="section-title">🛍️ Toko Role Premium</h2>
+
+            <p class="section-subtitle">Dapatkan kekuatan dan privilege eksklusif!</p>
+
+            
+
             <div class="shop-banner">
-                <h3>DISKON SPESIAL 50% SEMUA ROLE!</h3>
-                <p>Dapatkan keuntungan eksklusif dan support server kami.</p>
+
+                <h3>🔥 FLASH SALE 50% OFF - Hanya 24 Jam! 🔥</h3>
+
+                <p>Gunakan kode: PARADISE50</p>
+
             </div>
+
+            
 
             <div class="roles-grid">
+
                 <div class="role-card">
-                    <div class="role-badge">VIP</div>
+
+                    <div class="role-badge">STARTER</div>
+
                     <div class="role-name">VIP+</div>
+
                     <div class="role-discount">Rp 50.000</div>
+
                     <div class="role-price">Rp 25.000</div>
+
                     <ul class="role-features">
+
+                        <li>Access VIP Area</li>
+
                         <li>/fly Command</li>
-                        <li>/warp Command</li>
-                        <li>5k Gems/Hari</li>
-                        <li>VIP Badge & Title</li>
-                        <li>Priority Login</li>
-                        <li>Exclusive VIP Item</li>
+
+                        <li>/nick Name</li>
+
+                        <li>10k Gems/Hari</li>
+
+                        <li>VIP Chat Badge</li>
+
+                        <li>Priority Support</li>
+
                     </ul>
+
                     <button class="buy-button" onclick="selectRole('VIP+', 25000)">Beli Sekarang</button>
+
                 </div>
+
+                
+
                 <div class="role-card">
-                    <div class="role-badge">MOD</div>
+
+                    <div class="role-badge">MODERATOR</div>
+
                     <div class="role-name">Moderator</div>
+
                     <div class="role-discount">Rp 150.000</div>
+
                     <div class="role-price">Rp 75.000</div>
+
                     <ul class="role-features">
+
                         <li>All VIP+ Features</li>
+
                         <li>/kick Player</li>
+
                         <li>/mute Player (15min)</li>
+
                         <li>25k Gems/Hari</li>
+
                         <li>Mod Badge & Title</li>
+
                         <li>Access Mod Room</li>
+
                     </ul>
+
                     <button class="buy-button" onclick="selectRole('Moderator', 75000)">Beli Sekarang</button>
+
                 </div>
+
+                
+
                 <div class="role-card featured">
+
                     <div class="role-badge">POPULAR</div>
+
                     <div class="role-name">Legend</div>
+
                     <div class="role-discount">Rp 200.000</div>
+
                     <div class="role-price">Rp 100.000</div>
+
                     <ul class="role-features">
+
                         <li>All Mod Features</li>
+
                         <li>/ban Player (1hr)</li>
+
                         <li>/warp World</li>
+
                         <li>50k Gems/Hari</li>
+
                         <li>Custom Title</li>
+
                         <li>Legend Wings</li>
+
                         <li>Exclusive Pets</li>
+
                     </ul>
+
                     <button class="buy-button" onclick="selectRole('Legend', 100000)">Beli Sekarang</button>
+
                 </div>
+
+                
+
                 <div class="role-card">
+
                     <div class="role-badge">CREATOR</div>
+
                     <div class="role-name">Creator</div>
+
                     <div class="role-discount">Rp 300.000</div>
+
                     <div class="role-price">Rp 150.000</div>
+
                     <ul class="role-features">
+
                         <li>All Legend Features</li>
+
                         <li>/spawn Item (Limited)</li>
+
                         <li>World Edit Commands</li>
+
                         <li>100k Gems/Hari</li>
+
                         <li>Creator Badge</li>
+
                         <li>Custom World</li>
+
                         <li>Item Creator</li>
+
                     </ul>
+
                     <button class="buy-button" onclick="selectRole('Creator', 150000)">Beli Sekarang</button>
+
                 </div>
+
+                
+
                 <div class="role-card">
+
                     <div class="role-badge">ADMIN</div>
+
                     <div class="role-name">Admin</div>
+
                     <div class="role-discount">Rp 400.000</div>
+
                     <div class="role-price">Rp 200.000</div>
+
                     <ul class="role-features">
+
                         <li>All Creator Features</li>
+
                         <li>/give Gems (Unlimited)</li>
+
                         <li>/item All Items</li>
+
                         <li>Admin Commands</li>
+
                         <li>Admin Badge</li>
+
                         <li>Server Management</li>
+
                         <li>Event Creator</li>
+
                     </ul>
+
                     <button class="buy-button" onclick="selectRole('Admin', 200000)">Beli Sekarang</button>
+
                 </div>
+
+                
+
+                <div class="role-card">
+
+                    <div class="role-badge">ULTIMATE</div>
+
+                    <div class="role-name">GOD</div>
+
+                    <div class="role-discount">Rp 500.000</div>
+
+                    <div class="role-price">Rp 250.000</div>
+
+                    <ul class="role-features">
+
+                        <li>All Admin Features</li>
+
+                        <li>Server Owner Access</li>
+
+                        <li>Custom Commands</li>
+
+                        <li>GOD Badge</li>
+
+                        <li>Immortal Status</li>
+
+                        <li>Revenue Share 10%</li>
+
+                        <li>Lifetime VIP</li>
+
+                    </ul>
+
+                    <button class="buy-button" onclick="selectRole('GOD', 250000)">Beli Sekarang</button>
+
+                </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <section id="testimonials" class="testimonials">
+
+
+    <!-- Testimonials Section -->
+
+    <section class="testimonials">
+
         <div class="container">
-            <h2 class="section-title">🗣️ Testimoni Pemain</h2>
-            <p class="section-subtitle">Apa kata mereka tentang GROWRUSH?</p>
+
+            <h2 class="section-title">💬 Testimonials Player</h2>
+
             <div class="testimonials-grid">
+
                 <div class="testimonial-card">
-                    <div class="rating">⭐⭐⭐⭐⭐</div>
-                    <p class="quote">"Server paling stabil yang pernah saya mainkan. Adminnya responsif dan item customnya keren-keren!"</p>
-                    <div class="author">- Bima_Sakti</div>
+
+                    <div class="testimonial-header">
+
+                        <div class="testimonial-avatar">😎</div>
+
+                        <div class="testimonial-info">
+
+                            <h4>PlayerPro123</h4>
+
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="testimonial-text">"Server terbaik yang pernah saya mainkan! Event nya seru dan adminnya responsif. Worth it banget beli role God!"</p>
+
                 </div>
+
                 <div class="testimonial-card">
-                    <div class="rating">⭐⭐⭐⭐⭐</div>
-                    <p class="quote">"Event Dungeon-nya seru banget! Selalu ada hal baru setiap hari, nggak pernah bosan. Wajib coba!"</p>
-                    <div class="author">- XyloGT</div>
+
+                    <div class="testimonial-header">
+
+                        <div class="testimonial-avatar">🎮</div>
+
+                        <div class="testimonial-info">
+
+                            <h4>GamerGirl</h4>
+
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="testimonial-text">"Community nya sangat friendly dan helpful. Banyak cara untuk dapat gems, gak perlu topup terus!"</p>
+
                 </div>
+
                 <div class="testimonial-card">
-                    <div class="rating">⭐⭐⭐⭐⭐</div>
-                    <p class="quote">"Sistem PVP-nya fair dan kompetitif. Akhirnya bisa dapat Legend Wing! Proses pembelian role juga cepat."</p>
-                    <div class="author">- ShadowKiller</div>
+
+                    <div class="testimonial-header">
+
+                        <div class="testimonial-avatar">👑</div>
+
+                        <div class="testimonial-info">
+
+                            <h4>KingOfWorlds</h4>
+
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="testimonial-text">"Sudah 6 bulan main disini, gak pernah bosan! Update selalu rutin dan event nya selalu fresh."</p>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <section id="faq" class="faq">
-        <div class="container faq-container">
-            <h2 class="section-title">❓ Pertanyaan Umum (FAQ)</h2>
-            <div class="faq-list">
+
+
+    <!-- FAQ Section -->
+
+    <section class="faq">
+
+        <div class="container">
+
+            <h2 class="section-title">❓ Frequently Asked Questions</h2>
+
+            <div class="faq-container">
+
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)"> Bagaimana cara join server ini?
+
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+
+                        Apakah data akan hilang jika server update?
+
                         <span class="faq-arrow">▼</span>
+
                     </div>
+
                     <div class="faq-answer">
-                        Anda hanya perlu mendownload GROWRUSH APK dan menginstall salah satu aplikasi Hosts (PowerTunnel/Hosts Go/Virtual Host) yang kami sediakan di bagian **Cara Join**.
+
+                        Tidak, semua data player termasuk items, gems, dan role akan aman tersimpan. Kami selalu backup data sebelum update.
+
                     </div>
+
                 </div>
+
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)"> Apakah server ini gratis?
+
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+
+                        Berapa lama proses aktivasi role setelah pembayaran?
+
                         <span class="faq-arrow">▼</span>
+
                     </div>
+
                     <div class="faq-answer">
-                        Ya, server ini **100% gratis** untuk dimainkan. Pembelian role bersifat opsional untuk mendapatkan keuntungan dan support server kami.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)"> Berapa lama proses aktivasi role setelah pembayaran?
-                        <span class="faq-arrow">▼</span>
-                    </div>
-                    <div class="faq-answer">
+
                         Role akan aktif maksimal 1x24 jam setelah pembayaran dikonfirmasi. Biasanya prosesnya hanya 5-30 menit.
+
                     </div>
+
                 </div>
+
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)"> Apakah ada refund jika tidak puas?
+
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+
+                        Apakah ada refund jika tidak puas?
+
                         <span class="faq-arrow">▼</span>
+
                     </div>
+
                     <div class="faq-answer">
+
                         Jika sudah melakukan pembelian tidak ada refund. Jadi tolong pahami terlebih dahulu sebelum membeli
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
+
+
+    <!-- Payment Section -->
 
     <section id="payment" class="payment">
+
         <div class="container">
+
             <div class="payment-container">
+
                 <h2 class="section-title">💳 Metode Pembayaran</h2>
+
+                
+
                 <div class="payment-methods">
+
                     <div class="payment-method">📱 QRIS</div>
+
                 </div>
+
+                
+
                 <div class="promo-banner">
+
                     <h3>🎉 PROMO SPESIAL!</h3>
+
                     <p>Dapatkan bonus 20% gems untuk pembayaran via QRIS hari ini!</p>
+
                 </div>
+
+                
+
                 <div class="qr-code">
+
                     <img src="https://files.catbox.moe/a8j8js.png" alt="QRIS Payment">
+
                     <div class="qr-overlay">Scan untuk bayar</div>
+
                 </div>
+
+                
+
                 <div id="selectedRole" style="font-size: 24px; margin: 20px 0; color: var(--accent-color);">
+
                     Silakan pilih role terlebih dahulu
+
                 </div>
+
+                
+
                 <div class="payment-steps">
+
                     <h3 style="margin-bottom: 20px;">📋 Cara Pembayaran:</h3>
+
                     <div class="step">
+
                         <div class="step-number">1</div>
+
                         <div>Pilih role yang Anda inginkan di toko role</div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">2</div>
+
                         <div>Scan QR Code dengan aplikasi e-wallet (GoPay, OVO, DANA, dll)</div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">3</div>
+
                         <div>Masukkan nominal sesuai harga role (sudah diskon 50%)</div>
+
                     </div>
+
                     <div class="step">
+
                         <div class="step-number">4</div>
-                        <div>Kirim bukti transfer ke WhatsApp/Discord Admin (tertera di bagian bawah)</div>
+
+                        <div>Pada catatan pembayaran, tulis: ID_Growtopia - Role_Nama</div>
+
                     </div>
+
+                    <div class="step">
+
+                        <div class="step-number">5</div>
+
+                        <div>Screenshot bukti pembayaran dan kirim ke admin WhatsApp: 0882005394515</div>
+
+                    </div>
+
+                    <div class="step">
+
+                        <div class="step-number">6</div>
+
+                        <div>Role akan aktif maksimal 1x24 jam. Cek whatsapp untuk notifikasi!</div>
+
+                    </div>
+
                 </div>
+
+                
+
+                <div style="margin-top: 30px; padding: 20px; background: rgba(255, 107, 107, 0.2); border-radius: 10px;">
+
+                    <p><strong>⚠️ Penting:</strong></p>
+
+                    <p>• Pastikan ID Growtopia benar</p>
+
+                    <p>• Simpan bukti pembayaran</p>
+
+                    <p>• Hati-hati dengan penipuan, admin tidak pernah meminta password</p>
+
+                    <p>• Pembayaran hanya ke nomor resmi kami</p>
+
+                </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <footer class="footer">
+
+
+    <!-- Footer -->
+
+    <footer>
+
         <div class="container">
-            <div class="footer-grid">
+
+            <div class="footer-content">
+
                 <div class="footer-section">
-                    <h3>GROWRUSH</h3>
-                    <p>Private Server Growtopia Terbaik di Indonesia. Mainkan sekarang dan rasakan pengalaman baru!</p>
-                    <div class="social-links">
-                        <a href="https://discord.gg/groovetopia" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-                        <a href="https://wa.me/6281234567890" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Navigasi</h3>
+
+                    <h3>Game Links</h3>
+
                     <ul>
+
                         <li><a href="#home">Beranda</a></li>
+
                         <li><a href="#join">Cara Join</a></li>
-                        <li><a href="#server">Informasi Server</a></li>
+
                         <li><a href="#features">Fitur</a></li>
-                        <li><a href="#shop">Toko Role</a></li>
+
+                        <li><a href="#events">Event</a></li>
+
+                        <li><a href="#shop">Toko</a></li>
+
                     </ul>
+
                 </div>
+
                 <div class="footer-section">
-                    <h3>Hubungi Kami</h3>
+
+                    <h3>Support</h3>
+
                     <ul>
-                        <li><a href="mailto:admin@growrush.my.id">Email: admin@growrush.my.id</a></li>
-                        <li><a href="https://wa.me/6281234567890" target="_blank">WhatsApp: +62 812-3456-7890</a></li>
-                        <li><a href="https://discord.gg/groovetopia" target="_blank">Discord: discord.gg/groovetopia</a></li>
+
+                        <li><a href="https://discord.gg/s9MsXRzAD" target="_blank">Discord Server</a></li>
+
+                        <li><a href="https://chat.whatsapp.com/JEWj2h6Ezt87gVo0q6FnOB?mode=ems_copy_t" target="_blank">WhatsApp Group</a></li>
+
+                        <li><a href="#">Email Support</a></li>
+
+                        <li><a href="#">Report Bug</a></li>
+
                     </ul>
+
                 </div>
+
                 <div class="footer-section">
+
                     <h3>Legal</h3>
+
                     <ul>
+
                         <li><a href="#">Terms of Service</a></li>
+
                         <li><a href="#">Privacy Policy</a></li>
+
+                        <li><a href="#">Refund Policy</a></li>
+
+                        <li><a href="#">Rules & Guidelines</a></li>
+
                     </ul>
+
                 </div>
+
+                <div class="footer-section">
+
+                    <h3>Connect With Us</h3>
+
+                    <p>Ikuti kami untuk update terbaru!</p>
+
+                    <div class="social-links">
+
+                        <a href="https://discord.gg/s9MsXRzAD" target="_blank" title="Discord">
+
+                            <i class="fab fa-discord"></i>
+
+                        </a>
+
+                        <a href="#" target="_blank" title="YouTube">
+
+                            <i class="fab fa-youtube"></i>
+
+                        </a>
+
+                        <a href="#" target="_blank" title="Instagram">
+
+                            <i class="fab fa-instagram"></i>
+
+                        </a>
+
+                        <a href="#" target="_blank" title="TikTok">
+
+                            <i class="fab fa-tiktok"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="footer-bottom">
+
                 <p>&copy; 2024 GROWRUSH - All Rights Reserved</p>
+
                 <p>Bukan afiliasi resmi dari Growtopia | Private Server Indonesia</p>
+
             </div>
+
         </div>
+
     </footer>
 
+
+
     <script>
+
         // Hide loader when page loads
+
         window.addEventListener('load', () => {
+
             setTimeout(() => {
+
                 document.getElementById('loader').classList.add('hidden');
+
                 showNotification('Welcome to GROWRUSH! 🎉');
+
             }, 1500);
+
         });
+
+
 
         // Notification system
+
         function showNotification(message) {
+
             const notification = document.getElementById('notification');
+
             const notificationText = document.getElementById('notificationText');
+
             notificationText.textContent = message;
+
             notification.classList.add('show');
+
+            
+
             setTimeout(() => {
+
                 notification.classList.remove('show');
+
             }, 3000);
+
         }
+
+
 
         // Mobile menu toggle
+
         document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+
             document.getElementById('mobileMenu').classList.toggle('active');
+
         });
+
+
 
         // Close mobile menu when clicking on a link
+
         document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+
             link.addEventListener('click', () => {
+
                 document.getElementById('mobileMenu').classList.remove('active');
+
             });
+
         });
 
-        // Platform tab switching for Cara Join section
+
+
+        // Platform tabs
+
         document.querySelectorAll('.platform-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                const targetId = this.getAttribute('data-platform');
-                const targetContent = document.getElementById(targetId);
 
-                // Handle main platform tabs (Android, Windows, iOS)
-                if (targetContent) {
-                    document.querySelectorAll('.platform-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    document.querySelectorAll('.platform-tab').forEach(t => {
-                        t.classList.remove('active');
-                    });
+            tab.addEventListener('click', () => {
 
-                    targetContent.classList.add('active');
-                    this.classList.add('active');
+                // Remove active class from all tabs and contents
 
-                    // If 'android' is selected, automatically activate the first Android sub-tab (Hosts Go)
-                    if (targetId === 'android') {
-                        document.querySelector('.platform-content#hostsgo').classList.add('active');
-                        document.querySelector('.platform-tabs [data-platform="hostsgo"]').classList.add('active');
-                    } else if (targetId === 'hostsgo' || targetId === 'virtualhost') {
-                        // Handle Android sub-tabs (Hosts Go, Virtual Host)
-                        const parentAndroidContent = document.getElementById('android');
-                        if (parentAndroidContent) {
-                            // Ensure the main Android tab is active
-                            document.querySelector('.platform-tab[data-platform="android"]').classList.add('active');
-                            parentAndroidContent.classList.add('active');
+                document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
 
-                            // Deactivate all Android sub-contents first
-                            document.querySelectorAll('#android .platform-content').forEach(content => {
-                                content.classList.remove('active');
-                            });
-                            // Deactivate all Android sub-tabs
-                            document.querySelectorAll('#android .platform-tabs .platform-tab').forEach(t => {
-                                t.classList.remove('active');
-                            });
+                document.querySelectorAll('.platform-content').forEach(c => c.classList.remove('active'));
 
-                            // Activate the selected sub-content and sub-tab
-                            document.getElementById(targetId).classList.add('active');
-                            this.classList.add('active');
-                        }
-                    }
-                } else if (this.closest('#android') && (targetId === 'hostsgo' || targetId === 'virtualhost')) {
-                    // This handles clicks on sub-tabs within the Android section
-                    document.querySelectorAll('#android .platform-tabs .platform-tab').forEach(t => {
-                        t.classList.remove('active');
-                    });
-                    document.querySelectorAll('#android .platform-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    
-                    this.classList.add('active');
-                    document.getElementById(targetId).classList.add('active');
-                }
-            });
-        });
+                
 
-        // Initialize Android sub-tabs: Ensure 'hostsgo' is active on load
-        document.addEventListener('DOMContentLoaded', () => {
-            // First, check if the main Android tab is the default active one
-            const defaultAndroidTab = document.querySelector('.platform-tab[data-platform="android"]');
-            if (defaultAndroidTab && defaultAndroidTab.classList.contains('active')) {
-                // Manually activate the default sub-tab (Hosts Go)
-                document.querySelector('.platform-content#hostsgo').classList.add('active');
-                document.querySelector('.platform-tabs [data-platform="hostsgo"]').classList.add('active');
-            }
-        });
+                // Add active class to clicked tab and corresponding content
 
-        // FAQ toggle functionality
-        function toggleFAQ(element) {
-            const answer = element.nextElementSibling;
-            const isActive = element.classList.toggle('active');
+                tab.classList.add('active');
 
-            document.querySelectorAll('.faq-question').forEach(q => {
-                if (q !== element) {
-                    q.classList.remove('active');
-                    q.nextElementSibling.classList.remove('active');
-                    q.nextElementSibling.style.maxHeight = null;
-                    q.nextElementSibling.style.padding = '0 20px';
-                }
+                document.getElementById(tab.dataset.platform).classList.add('active');
+
             });
 
-            if (isActive) {
-                answer.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + 40 + "px"; // + padding
-            } else {
-                answer.classList.remove('active');
-                answer.style.maxHeight = null;
-                answer.style.padding = '0 20px';
-            }
-        }
+        });
 
-        // Role selection for payment section
+
+
+        // Smooth scrolling
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+            anchor.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+
+                    target.scrollIntoView({
+
+                        behavior: 'smooth',
+
+                        block: 'start'
+
+                    });
+
+                }
+
+            });
+
+        });
+
+
+
+        // Active navigation link on scroll
+
+        const sections = document.querySelectorAll('section');
+
+        const navLinks = document.querySelectorAll('.nav-link');
+
+
+
+        window.addEventListener('scroll', () => {
+
+            let current = '';
+
+            sections.forEach(section => {
+
+                const sectionTop = section.offsetTop;
+
+                const sectionHeight = section.clientHeight;
+
+                if (scrollY >= (sectionTop - 200)) {
+
+                    current = section.getAttribute('id');
+
+                }
+
+            });
+
+
+
+            navLinks.forEach(link => {
+
+                link.classList.remove('active');
+
+                if (link.getAttribute('href').slice(1) === current) {
+
+                    link.classList.add('active');
+
+                }
+
+            });
+
+        });
+
+
+
+        // Role selection
+
+        let selectedRoleData = null;
+
+        
+
         function selectRole(roleName, price) {
-            const formattedPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(price);
-            document.getElementById('selectedRole').innerHTML = `Anda Memilih: **${roleName}** - Harga: <span style="color: #00ff00;">${formattedPrice}</span>`;
-            showNotification(`Role ${roleName} dipilih! Harga: ${formattedPrice}`);
-        }
 
-        // Live player count simulation (for demo purposes)
-        function updateServerStats() {
-            const playerCountElement = document.getElementById('playerCount');
-            const onlinePlayersElement = document.getElementById('onlinePlayers');
-            let currentCount = parseInt(playerCountElement.textContent) || 247;
+            selectedRoleData = { name: roleName, price: price };
+
+            const selectedRoleDiv = document.getElementById('selectedRole');
+
+            selectedRoleDiv.innerHTML = `
+
+                <strong>✅ Role Dipilih:</strong> ${roleName}<br>
+
+                <strong>💰 Harga:</strong> Rp ${price.toLocaleString('id-ID')}<br>
+
+                <strong>🎁 Bonus:</strong> +20% Gems (Promo QRIS)
+
+            `;
+
             
-            // Simulate a slight, random fluctuation
-            const randomChange = Math.floor(Math.random() * 5) - 2; // -2 to +2
-            currentCount = Math.max(150, currentCount + randomChange); // Min 150 players
 
-            playerCountElement.textContent = currentCount;
-            onlinePlayersElement.textContent = currentCount;
+            // Scroll to payment section
 
-            // Update Server Time (WIB)
-            const now = new Date();
-            const timeZoneOffset = 7; // WIB is UTC+7
-            const localTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (timeZoneOffset * 3600000));
-            const hours = localTime.getHours().toString().padStart(2, '0');
-            const minutes = localTime.getMinutes().toString().padStart(2, '0');
-            document.getElementById('serverTime').textContent = `${hours}:${minutes} WIB`;
+            document.getElementById('payment').scrollIntoView({ behavior: 'smooth' });
+
+            
+
+            // Highlight effect
+
+            selectedRoleDiv.style.animation = 'glow 1s ease-in-out 3';
+
+            
+
+            showNotification(`Role ${roleName} berhasil dipilih! Silakan lakukan pembayaran.`);
+
         }
 
-        setInterval(updateServerStats, 5000); // Update every 5 seconds
-        updateServerStats(); // Initial call
 
-        // Responsive event timeline adjustment
-        window.addEventListener('resize', () => {
-            if (window.innerWidth <= 992) {
-                // Apply mobile layout
-                document.querySelectorAll('.event-item').forEach(item => {
-                    item.style.flexDirection = 'column';
-                    item.style.alignItems = 'flex-start';
-                    item.style.paddingLeft = '60px';
-                });
-                
-                document.querySelectorAll('.event-content').forEach(content => {
-                    content.style.width = '100%';
-                });
-                
-                document.querySelectorAll('.event-date').forEach(date => {
-                    date.style.left = '30px';
-                });
-            } else {
-                // Reset to desktop layout
-                document.querySelectorAll('.event-item').forEach((item, index) => {
-                    if (index % 2 === 0) {
-                        item.style.flexDirection = 'row';
-                    } else {
-                        item.style.flexDirection = 'row-reverse';
-                    }
-                    item.style.alignItems = 'center';
-                    item.style.paddingLeft = '0';
-                });
-                
-                document.querySelectorAll('.event-content').forEach(content => {
-                    content.style.width = '45%';
-                });
-                
-                document.querySelectorAll('.event-date').forEach(date => {
-                    date.style.left = '50%';
-                });
-            }
+
+        // FAQ Toggle
+
+        function toggleFAQ(element) {
+
+            const faqItem = element.parentElement;
+
+            const allItems = document.querySelectorAll('.faq-item');
+
+            
+
+            allItems.forEach(item => {
+
+                if (item !== faqItem) {
+
+                    item.classList.remove('active');
+
+                }
+
+            });
+
+            
+
+            faqItem.classList.toggle('active');
+
+        }
+
+
+
+        // Dynamic stats counter
+
+        function animateCounter(elementId, target, duration = 2000) {
+
+            const element = document.getElementById(elementId);
+
+            const start = 0;
+
+            const increment = target / (duration / 16);
+
+            let current = start;
+
+            
+
+            const timer = setInterval(() => {
+
+                current += increment;
+
+                if (current >= target) {
+
+                    current = target;
+
+                    clearInterval(timer);
+
+                }
+
+                element.textContent = Math.floor(current).toLocaleString('id-ID');
+
+            }, 16);
+
+        }
+
+
+
+        // Animate stats on scroll
+
+        const statsObserver = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    animateCounter('totalPlayers', 15847);
+
+                    animateCounter('totalWorlds', 3421);
+
+                    statsObserver.unobserve(entry.target);
+
+                }
+
+            });
+
         });
+
+
+
+        const heroSection = document.querySelector('.hero');
+
+        if (heroSection) {
+
+            statsObserver.observe(heroSection);
+
+        }
+
+
+
+        // Update player count
+
+        function updatePlayerCount() {
+
+            const playerCount = document.getElementById('playerCount');
+
+            const currentCount = parseInt(playerCount.textContent);
+
+            const change = Math.floor(Math.random() * 11) - 5; // Random change between -5 and +5
+
+            const newCount = Math.max(200, Math.min(500, currentCount + change));
+
+            playerCount.textContent = newCount;
+
+        }
+
+
+
+        // Update player count every 5 seconds
+
+        setInterval(updatePlayerCount, 5000);
+
+
+
+        // Dynamic header background on scroll
+
+        window.addEventListener('scroll', () => {
+
+            const header = document.querySelector('header');
+
+            if (window.scrollY > 100) {
+
+                header.style.background = 'rgba(0, 0, 0, 0.5)';
+
+            } else {
+
+                header.style.background = 'rgba(0, 0, 0, 0.3)';
+
+            }
+
+        });
+
+
+
+        // Add animation on scroll
+
+        const observerOptions = {
+
+            threshold: 0.1,
+
+            rootMargin: '0px 0px -50px 0px'
+
+        };
+
+
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add('fade-in');
+
+                }
+
+            });
+
+        }, observerOptions);
+
+
+
+        document.querySelectorAll('.feature-card, .role-card, .testimonial-card, .event-content').forEach(el => {
+
+            observer.observe(el);
+
+        });
+
+
+
+        // Parallax effect for hero section
+
+        window.addEventListener('scroll', () => {
+
+            const scrolled = window.pageYOffset;
+
+            const hero = document.querySelector('.hero');
+
+            if (hero) {
+
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+
+            }
+
+        });
+
+
+
+        // Add keyboard navigation
+
+        document.addEventListener('keydown', (e) => {
+
+            if (e.key === 'Escape') {
+
+                // Close any open modals or notifications
+
+                document.getElementById('notification').classList.remove('show');
+
+                document.getElementById('mobileMenu').classList.remove('active');
+
+            }
+
+        });
+
+
+
+        // Auto-update uptime
+
+        function updateUptime() {
+
+            const uptimeElement = document.getElementById('uptime');
+
+            const variations = ['99.9%', '99.8%', '99.9%', '100%'];
+
+            const randomUptime = variations[Math.floor(Math.random() * variations.length)];
+
+            uptimeElement.textContent = randomUptime;
+
+        }
+
+
+
+        setInterval(updateUptime, 30000); // Update every 30 seconds
+
+
+
+        // Detect device type and adjust accordingly
+
+        function detectDevice() {
+
+            const userAgent = navigator.userAgent;
+
+            if (/tablet|ipad|playbook|silk/i.test(userAgent)) {
+
+                document.body.classList.add('tablet');
+
+            } else if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile/i.test(userAgent)) {
+
+                document.body.classList.add('mobile');
+
+            } else {
+
+                document.body.classList.add('desktop');
+
+            }
+
+        }
+
+
+
+        // Run device detection on page load
+
+        detectDevice();
+
+
+
+        // Add touch-friendly swipe gestures for mobile
+
+        let touchStartX = 0;
+
+        let touchEndX = 0;
+
+
+
+        document.addEventListener('touchstart', (e) => {
+
+            touchStartX = e.changedTouches[0].screenX;
+
+        });
+
+
+
+        document.addEventListener('touchend', (e) => {
+
+            touchEndX = e.changedTouches[0].screenX;
+
+            handleSwipe();
+
+        });
+
+
+
+        function handleSwipe() {
+
+            if (touchEndX < touchStartX - 50) {
+
+                // Swiped left
+
+                if (document.getElementById('mobileMenu').classList.contains('active')) {
+
+                    document.getElementById('mobileMenu').classList.remove('active');
+
+                }
+
+            }
+
+            
+
+            if (touchEndX > touchStartX + 50) {
+
+                // Swiped right
+
+                if (!document.getElementById('mobileMenu').classList.contains('active')) {
+
+                    document.getElementById('mobileMenu').classList.add('active');
+
+                }
+
+            }
+
+        }
+
+
+
+        // Optimize images for different screen sizes
+
+        function optimizeImages() {
+
+            const images = document.querySelectorAll('img');
+
+            images.forEach(img => {
+
+                // Add loading="lazy" for performance
+
+                img.loading = 'lazy';
+
+                
+
+                // Add error handling
+
+                img.onerror = function() {
+
+                    this.src = 'https://picsum.photos/seed/error/200/200.jpg';
+
+                };
+
+            });
+
+        }
+
+
+
+        // Run image optimization on page load
+
+        optimizeImages();
+
+
+
+        // Add resize event listener to handle orientation changes
+
+        window.addEventListener('resize', () => {
+
+            // Re-check device type on resize
+
+            detectDevice();
+
+            
+
+            // Adjust any elements that might need repositioning
+
+            if (window.innerWidth < 768) {
+
+                // Mobile-specific adjustments
+
+                document.querySelectorAll('.event-item').forEach(item => {
+
+                    item.style.flexDirection = 'column';
+
+                    item.style.alignItems = 'flex-start';
+
+                    item.style.paddingLeft = '60px';
+
+                });
+
+                
+
+                document.querySelectorAll('.event-content').forEach(content => {
+
+                    content.style.width = '100%';
+
+                });
+
+                
+
+                document.querySelectorAll('.event-date').forEach(date => {
+
+                    date.style.left = '30px';
+
+                });
+
+            } else {
+
+                // Reset to desktop layout
+
+                document.querySelectorAll('.event-item').forEach((item, index) => {
+
+                    if (index % 2 === 0) {
+
+                        item.style.flexDirection = 'row';
+
+                    } else {
+
+                        item.style.flexDirection = 'row-reverse';
+
+                    }
+
+                    item.style.alignItems = 'center';
+
+                    item.style.paddingLeft = '0';
+
+                });
+
+                
+
+                document.querySelectorAll('.event-content').forEach(content => {
+
+                    content.style.width = '45%';
+
+                });
+
+                
+
+                document.querySelectorAll('.event-date').forEach(date => {
+
+                    date.style.left = '50%';
+
+                });
+
+            }
+
+        });
+
+
 
         // Initial call to set up the correct layout
+
         window.dispatchEvent(new Event('resize'));
+
     </script>
+
 </body>
+
 </html>
+
