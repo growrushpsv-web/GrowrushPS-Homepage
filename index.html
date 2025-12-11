@@ -217,59 +217,6 @@
         .faq-item.active .faq-arrow {
             transform: rotate(180deg);
         }
-
-        /* CUSTOM: Tweak for mobile readability */
-        @media (max-width: 767px) {
-            .hero-content h1 {
-                font-size: 3.5rem;
-                /* Slightly smaller on mobile */
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            /* Stats grid from 4 to 2 columns on mobile */
-            .stats-grid-mobile {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-
-            .stat-value {
-                font-size: 1.5rem !important;
-                /* Smaller stat value */
-            }
-
-            .stat-title {
-                font-size: 0.7rem !important;
-                /* Smaller stat title */
-            }
-
-            /* Ensure tabs are scrollable and compact */
-            .tabs-compact-mobile {
-                padding: 0.5rem;
-            }
-
-            .tab-lg {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.875rem;
-            }
-
-            /* Adjust card spacing on mobile for role shop */
-            .card-body {
-                padding: 1.5rem;
-            }
-
-            /* Adjust Hero Stats for small screens */
-            .stats .stat {
-                padding: 0.5rem 0.25rem;
-                /* Make stat content more compact */
-            }
-
-            /* Text size adjustments for steps/tutorials */
-            .steps .text-left strong {
-                font-size: 0.95rem;
-            }
-        }
     </style>
 </head>
 
@@ -347,7 +294,7 @@
                     Private Server Terbaik Indonesia dengan 1000+ Item Baru & Event Setiap Hari!
                 </p>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 stats-grid-mobile">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
                     <div class="stats shadow glass-winter overflow-hidden">
                         <div class="stat px-4 py-2 text-center place-items-center">
                             <div class="stat-title text-slate-600 font-bold text-xs">Total Players</div>
@@ -395,7 +342,7 @@
             </div>
 
             <div
-                class="tabs tabs-boxed justify-center mb-10 bg-blue-50 p-2 rounded-full overflow-x-auto glass-winter tabs-compact-mobile">
+                class="tabs tabs-boxed justify-center mb-10 bg-blue-50 p-2 rounded-full overflow-x-auto glass-winter flex-nowrap">
                 <a class="tab tab-lg transition-all duration-300 font-bold tab-active"
                     onclick="switchTab(event, 'android')">Android</a>
                 <a class="tab tab-lg transition-all duration-300 font-bold"
@@ -418,14 +365,14 @@
                             class="fab fa-android"></i> Tutorial Android</h3>
                     <ul class="steps steps-vertical w-full">
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Uninstall Real Growtopia</strong>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Uninstall Real Growtopia</strong>
                                 <p class="text-sm opacity-70">Hapus aplikasi Growtopia asli jika ada di HP kamu.</p>
                             </div>
                         </li>
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Download App Pendukung</strong>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Download App Pendukung</strong>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                     <a href="https://android.izzysoft.de/repo/apk/io.github.krlvm.powertunnel.android"
                                         target="_blank" class="btn btn-sm btn-outline btn-success">Download
@@ -438,8 +385,8 @@
                             </div>
                         </li>
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Install & Mainkan</strong>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Install & Mainkan</strong>
                                 <p class="text-sm opacity-70">Install APK GROWRUSH dan login menggunakan akun kamu.</p>
                             </div>
                         </li>
@@ -451,18 +398,24 @@
                             class="fab fa-windows"></i> Tutorial Windows</h3>
                     <ul class="steps steps-vertical w-full">
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Buka File Hosts</strong>
-                                <p class="text-sm opacity-70">Tekan <kbd class="kbd kbd-sm">Win</kbd> + <kbd
-                                        class="kbd kbd-sm">R</kbd>, lalu paste: <code
-                                        class="bg-slate-300 px-1 rounded text-xs md:text-sm">C:\Windows\System32\drivers\etc</code>.
-                                    Buka file <strong>hosts</strong> dengan Notepad (Run as Administrator).</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Buka Folder Hosts</strong>
+                                <p>Tekan <kbd class="kbd kbd-sm">Win</kbd> + <kbd class="kbd kbd-sm">R</kbd>, lalu
+                                    paste:
+                                    <code class="bg-slate-300 px-2 py-1 rounded">C:\Windows\System32\drivers\etc</code>
+                                </p>
                             </div>
                         </li>
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Tambahkan IP Server</strong>
-                                <p class="text-sm opacity-70">Tambahkan baris berikut di bagian paling bawah:</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Edit File Hosts</strong>
+                                <p>Buka file <strong>hosts</strong> dengan Notepad (Run as Administrator).</p>
+                            </div>
+                        </li>
+                        <li class="step step-primary">
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Tambahkan Host</strong>
+                                <p>Tambahkan baris berikut di bagian paling bawah:</p>
                                 <div class="host-code text-xs sm:text-sm mt-2">
                                     5.196.204.227 growtopia1.com<br>
                                     5.196.204.227 growtopia2.com<br>
@@ -472,10 +425,9 @@
                             </div>
                         </li>
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Selesai & Mainkan</strong>
-                                <p class="text-sm opacity-70">Save file dan buka Growtopia. Pastikan tidak ada firewall
-                                    yang memblokir!</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Simpan dan Mainkan</strong>
+                                <p>Save file dan buka Growtopia.</p>
                             </div>
                         </li>
                     </ul>
@@ -486,26 +438,28 @@
                             class="fas fa-shield-alt"></i> PowerTunnel Setup</h3>
                     <ul class="steps steps-vertical w-full">
                         <li class="step step-secondary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Download App</strong>
-                                <p class="text-sm opacity-70">Download & Install PowerTunnel APK (Lihat tab Android untuk
-                                    tautan).</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Install PowerTunnel</strong>
+                                <p>Download & Install PowerTunnel APK via link Android.</p>
                             </div>
                         </li>
                         <li class="step step-secondary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Setting Hosts</strong>
-                                <p class="text-sm opacity-70">Buka PowerTunnel app &rarr; Menu Plugin &rarr; Hosts &rarr;
-                                    Open Setting. Masukkan URL Hosts:</p>
-                                <code
-                                    class="bg-slate-200 px-2 rounded text-xs md:text-sm">https://growtopia.id/android</code>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Buka PowerTunnel</strong>
+                                <p>Buka PowerTunnel app.</p>
                             </div>
                         </li>
                         <li class="step step-secondary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Connect & Mainkan</strong>
-                                <p class="text-sm opacity-70">Kembali ke menu utama, klik <strong>CONNECT</strong> dan
-                                    buka GT.</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Konfigurasi Hosts</strong>
+                                <p>Menu Plugin &rarr; Hosts &rarr; Open Setting. Masukkan URL:</p>
+                                <code class="bg-slate-200 px-2 rounded font-semibold">https://growtopia.id/android</code>
+                            </div>
+                        </li>
+                        <li class="step step-secondary">
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Connect</strong>
+                                <p>Kembali ke menu utama, klik <strong>CONNECT</strong> dan buka GT.</p>
                             </div>
                         </li>
                     </ul>
@@ -516,31 +470,28 @@
                             class="fas fa-server"></i> Hosts Go Setup</h3>
                     <ul class="steps steps-vertical w-full">
                         <li class="step step-accent">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Download App</strong>
-                                <p class="text-sm opacity-70">Download Hosts Go (No Root). (Lihat tab Android untuk
-                                    tautan).</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Install Hosts Go</strong>
+                                <p>Download Hosts Go (No Root) dari link di tab Android.</p>
                             </div>
                         </li>
                         <li class="step step-accent">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Hosts Editor</strong>
-                                <p class="text-sm opacity-70">Buka Aplikasi Hosts Go &rarr; Pilih <strong>Hosts
-                                        Editor</strong>.</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Buka Hosts Editor</strong>
+                                <p>Buka Aplikasi -> <strong>Hosts Editor</strong>.</p>
                             </div>
                         </li>
                         <li class="step step-accent">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Download Hosts File</strong>
-                                <p class="text-sm opacity-70">Masukkan URL Hosts:</p>
-                                <code
-                                    class="bg-slate-200 px-2 rounded text-xs md:text-sm">https://growtopia.id/android</code>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Download Hosts File</strong>
+                                <p>Masukkan URL:</p>
+                                <code class="bg-slate-200 px-2 rounded font-semibold">https://growtopia.id/android</code>
                             </div>
                         </li>
                         <li class="step step-accent">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Apply & Start</strong>
-                                <p class="text-sm opacity-70">Klik Apply & Start Protection.</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Apply dan Start</strong>
+                                <p>Klik Apply & Start Protection.</p>
                             </div>
                         </li>
                     </ul>
@@ -551,31 +502,29 @@
                             class="fas fa-network-wired"></i> Virtual Host Setup</h3>
                     <ul class="steps steps-vertical w-full">
                         <li class="step step-info">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Download App</strong>
-                                <p class="text-sm opacity-70">Download Virtual Host APK (Lihat tab Android).</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Install Virtual Host</strong>
+                                <p>Download Virtual Host APK dari link di tab Android.</p>
                             </div>
                         </li>
                         <li class="step step-info">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Download Hosts File Manual</strong>
-                                <p class="text-sm opacity-70">Gunakan file Hosts Manual:</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Download Hosts Manual</strong>
+                                <p>Download file hosts manual dari link berikut:</p>
                                 <a href="https://www.mediafire.com/file/qvmf4fhpuhxg93w/GrowRushPS.txt/file"
-                                    class="btn btn-xs btn-primary ml-2 mt-1">Download Hosts (.txt)</a>
+                                    class="btn btn-xs btn-primary mt-1">Download .txt</a>
                             </div>
                         </li>
                         <li class="step step-info">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Pilih File Hosts</strong>
-                                <p class="text-sm opacity-70">Buka App &rarr; Click "SELECT HOSTS FILE". Pilih file
-                                    <strong>GROWRUSH-HOST (2).txt</strong> yang baru didownload.
-                                </p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Pilih Hosts File</strong>
+                                <p>Buka App -> Click "SELECT HOSTS FILE". Pilih file <strong>GROWRUSH-HOST (2).txt</strong>.</p>
                             </div>
                         </li>
                         <li class="step step-info">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Jalankan & Login</strong>
-                                <p class="text-sm opacity-70">Switch ON (Hijau) dan Login GT.</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Connect</strong>
+                                <p>Switch ON (Hijau) dan Login GT.</p>
                             </div>
                         </li>
                     </ul>
@@ -586,31 +535,28 @@
                             class="fab fa-apple"></i> Mac Tutorial</h3>
                     <ul class="steps steps-vertical w-full">
                         <li class="step step-neutral">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Buka Folder Host</strong>
-                                <p class="text-sm opacity-70">Buka Finder &rarr; Go &rarr; Go to Folder. Ketik: <code
-                                        class="bg-slate-200 px-1 rounded">/private/etc/hosts</code></p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Buka Folder Hosts</strong>
+                                <p>Buka Finder -> Go -> Go to Folder, lalu ketik: <code
+                                        class="bg-slate-200 px-2 rounded">/private/etc/hosts</code></p>
                             </div>
                         </li>
                         <li class="step step-neutral">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Edit File</strong>
-                                <p class="text-sm opacity-70">Copy file hosts ke Desktop &rarr; Edit dengan TextEdit.
-                                </p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Edit File Hosts</strong>
+                                <p>Copy file hosts ke Desktop, edit dengan TextEdit.</p>
                             </div>
                         </li>
                         <li class="step step-neutral">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Tambahkan IP Server</strong>
-                                <p class="text-sm opacity-70">Paste IP Server (sama seperti Windows). IP Server: <code
-                                        class="bg-slate-200 px-1 rounded">5.196.204.227</code></p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Tambahkan Host</strong>
+                                <p>Paste IP Server di paling bawah (sama seperti Windows).</p>
                             </div>
                         </li>
                         <li class="step step-neutral">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Save & Replace</strong>
-                                <p class="text-sm opacity-70">Save file dan Replace file asli di <code
-                                        class="bg-slate-200 px-1 rounded">/private/etc/hosts</code>.</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Simpan dan Mainkan</strong>
+                                <p>Save & Replace file asli di /private/etc/hosts. Buka Growtopia.</p>
                             </div>
                         </li>
                     </ul>
@@ -621,29 +567,28 @@
                             class="fas fa-bolt"></i> Surge 5 (iOS)</h3>
                     <ul class="steps steps-vertical w-full">
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Download App</strong>
-                                <p class="text-sm opacity-70">Download <strong>Surge 5</strong> di App Store.</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Install Surge 5</strong>
+                                <p>Download <strong>Surge 5</strong> di App Store.</p>
                             </div>
                         </li>
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Import Profile</strong>
-                                <p class="text-sm opacity-70">Buka Surge 5, pilih <strong>Import Profile</strong>.</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Import Profile</strong>
+                                <p>Buka Surge 5, pilih <strong>Import Profile</strong>. Masukkan URL: <code
+                                        class="text-primary font-bold bg-slate-200 px-2 rounded">https://growtopia.id/ios</code></p>
                             </div>
                         </li>
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Masukkan URL</strong>
-                                <p class="text-sm opacity-70">Masukkan URL Profile:</p>
-                                <code
-                                    class="text-primary font-bold bg-slate-200 px-2 rounded">https://growtopia.id/ios</code>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Izinkan VPN</strong>
+                                <p>Izinkan Buat VPN Profile.</p>
                             </div>
                         </li>
                         <li class="step step-primary">
-                            <div class="text-left w-full pl-4">
-                                <strong class="text-base md:text-lg">Selesai & Mainkan</strong>
-                                <p class="text-sm opacity-70">Izinkan Buat VPN Profile, Connect & Mainkan!</p>
+                            <div class="text-left w-full">
+                                <strong class="text-lg">Connect & Mainkan</strong>
+                                <p>Connect & Mainkan!</p>
                             </div>
                         </li>
                     </ul>
