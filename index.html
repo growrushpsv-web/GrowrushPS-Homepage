@@ -3,1489 +3,749 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH - Private Server Terbaik Indonesia</title>
+    <title>GROWRUSH - Private Server Terbaik Indonesia (Winter Edition)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ==================================== */
+        /* ❄️ WINTER COLOR PALETTE     */
+        /* ==================================== */
         :root {
-            --primary-color: #FF6B6B;
-            --secondary-color: #FF8E53;
-            --accent-color: #FFD166;
-            --dark-color: #2D3436;
-            --light-color: #F5F5F5;
+            --primary-color: #4A90E2; /* Bright Blue */
+            --secondary-color: #7DD8FF; /* Light Blue / Icy */
+            --accent-color: #C8F0FF; /* Very Light Blue/Ice */
+            --dark-color: #1E3A8A; /* Deep Blue/Navy */
+            --light-color: #E0F7FA; /* Snow White */
             --text-color: #FFFFFF;
-            --card-bg: rgba(255, 255, 255, 0.1);
-            --card-hover: rgba(255, 255, 255, 0.2);
-            --gradient-primary: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
-            --gradient-secondary: linear-gradient(135deg, #FF8E53 0%, #FFD166 100%);
-            --gradient-accent: linear-gradient(135deg, #FFD166 0%, #FF6B6B 100%);
+            --card-bg: rgba(255, 255, 255, 0.15); /* Slightly transparent for ice effect */
+            --card-hover: rgba(255, 255, 255, 0.3);
+            --gradient-primary: linear-gradient(135deg, #4A90E2 0%, #7DD8FF 100%);
+            --gradient-secondary: linear-gradient(135deg, #7DD8FF 0%, #C8F0FF 100%);
+            --gradient-accent: linear-gradient(135deg, #C8F0FF 0%, #4A90E2 100%);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
             background-color: var(--dark-color);
             color: var(--text-color);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            scroll-behavior: smooth;
+        }
+        
+        /* Apply a slightly different dark blue for section background differentiation */
+        #server-info, #join, #payment, #faq {
+            background-color: #1A478C; 
         }
 
         header {
-            background-color: rgba(45, 52, 54, 0.9);
-            padding: 15px 5%;
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .logo {
-            font-size: 1.8em;
+        .logo a {
+            font-size: 1.8rem;
             font-weight: bold;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
+            color: var(--accent-color); /* Highlight with icy color */
+            text-decoration: none;
         }
 
-        .logo img {
-            width: 30px;
-            margin-right: 10px;
-            border-radius: 5px;
-        }
-
-        nav ul {
+        .nav-links {
             list-style: none;
             display: flex;
         }
 
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: var(--light-color);
+        .nav-links a {
+            color: var(--text-color);
             text-decoration: none;
-            padding: 5px 10px;
-            transition: color 0.3s, background-color 0.3s;
-            border-radius: 5px;
+            margin-left: 25px;
+            font-weight: 600;
+            transition: color 0.3s;
         }
 
-        nav ul li a:hover {
-            color: var(--dark-color);
-            background-color: var(--accent-color);
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--secondary-color);
         }
 
         .menu-toggle {
             display: none;
-            font-size: 1.5em;
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
-        main {
-            flex: 1;
-            padding-top: 70px;
-        }
-
-        section {
-            padding: 80px 5%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
+        /* ==================================== */
+        /* HERO SECTION           */
+        /* ==================================== */
         #hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517404215738-ee253aa7a3e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover fixed;
+            /* Updated image to a winter-themed one */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1551698263-c75269a94158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover fixed; 
+            padding: 100px 0;
             text-align: center;
-            color: var(--text-color);
-            padding: 150px 5% 50px;
-        }
-
-        .hero-content h1 {
-            font-size: 4em;
-            margin-bottom: 20px;
-            font-weight: bolder;
-            background: linear-gradient(45deg, #FF6B6B, #FFD166);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.5em;
-            margin-bottom: 40px;
-        }
-
-        .stats-grid {
+            min-height: 60vh;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-            flex-wrap: wrap;
         }
 
-        .stat-card {
-            background-color: var(--card-bg);
-            padding: 20px 30px;
-            border-radius: 10px;
-            text-align: left;
-            border-left: 4px solid var(--primary-color);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            min-width: 180px;
-            transition: transform 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-card .value {
-            font-size: 2em;
-            font-weight: bold;
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             color: var(--accent-color);
+            text-shadow: 0 0 15px rgba(199, 240, 255, 0.8);
         }
 
-        .stat-card .label {
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
             color: var(--light-color);
-            font-size: 0.9em;
-            opacity: 0.7;
         }
 
-        .button {
+        .cta-button {
             display: inline-block;
-            padding: 12px 30px;
-            margin: 10px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .button-primary {
             background: var(--gradient-primary);
             color: var(--text-color);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .button-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .button-secondary {
-            background-color: var(--dark-color);
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-        }
+        /* ==================================== */
+        /* GENERAL STYLES         */
+        /* ==================================== */
 
-        .button-secondary:hover {
-            background-color: var(--accent-color);
-            color: var(--dark-color);
-            transform: scale(1.05);
+        section {
+            padding: 80px 0;
         }
 
         h2 {
-            font-size: 3em;
+            font-size: 2.5rem;
             text-align: center;
             margin-bottom: 50px;
-            color: var(--primary-color);
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Server Info */
-        #server-info {
-            background-color: #24292b;
-            min-height: auto;
-        }
-
-        .info-grid {
-            display: flex;
-            justify-content: space-around;
-            gap: 30px;
-            flex-wrap: wrap;
-            text-align: center;
-        }
-
-        .info-item {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            width: 220px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s;
-        }
-
-        .info-item:hover {
-            background-color: var(--card-hover);
-        }
-
-        .info-item i {
-            font-size: 2.5em;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .info-item h3 {
-            font-size: 1.5em;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .info-item p {
             color: var(--light-color);
-            opacity: 0.8;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        /* Features */
-        #features {
-            background-color: var(--dark-color);
-        }
-
-        .features-grid {
+        .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .feature-card {
-            background-color: var(--card-bg);
-            padding: 25px;
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
             border-radius: 10px;
-            border-top: 3px solid var(--primary-color);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-            transition: border-top 0.3s, transform 0.3s;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, background 0.3s;
         }
 
-        .feature-card:hover {
-            border-top-color: var(--accent-color);
-            transform: scale(1.02);
+        .card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover);
         }
 
-        .feature-card i {
-            font-size: 2em;
+        .card i {
+            font-size: 2.5rem;
             color: var(--secondary-color);
             margin-bottom: 15px;
         }
 
-        .feature-card h3 {
-            font-size: 1.4em;
+        .card h3 {
+            font-size: 1.5rem;
             margin-bottom: 10px;
-            color: var(--light-color);
-        }
-
-        .feature-card p {
-            font-size: 0.9em;
-            color: var(--light-color);
-            opacity: 0.7;
-        }
-
-        /* Join Guide */
-        #join {
-            background-color: #24292b;
-            min-height: auto;
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .tab {
-            background-color: var(--card-bg);
-            color: var(--light-color);
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            font-weight: bold;
-        }
-
-        .tab:hover {
-            background-color: var(--card-hover);
-        }
-
-        .tab.active {
-            background: var(--gradient-primary);
-            color: var(--dark-color);
-        }
-
-        .guide-content {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            max-width: 800px;
-            margin: 0 auto;
-            border-left: 5px solid var(--secondary-color);
-        }
-
-        .guide-content h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
             color: var(--accent-color);
         }
 
-        .steps {
-            list-style: none;
-            padding-left: 0;
-        }
+        /* ==================================== */
+        /* ROLES SECTION          */
+        /* ==================================== */
 
-        .step-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-
-        .step-number {
-            font-size: 1.5em;
-            font-weight: bold;
-            background: var(--gradient-primary);
-            color: var(--dark-color);
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .step-details strong {
-            display: block;
-            font-size: 1.2em;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .step-details code {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: monospace;
-            display: inline-block;
-            margin-top: 5px;
-        }
-
-        .host-code-block {
-            background-color: #1a1a1a;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-            white-space: pre-wrap;
-            font-family: monospace;
-            color: #00ff00;
-        }
-
-        .download-button {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-right: 10px;
-            font-size: 0.9em;
-            transition: background-color 0.3s;
-        }
-
-        .download-button:hover {
-            background-color: #45a049;
-        }
-
-        /* Role Shop */
         #shop {
             background-color: var(--dark-color);
+            padding: 80px 0 40px 0;
         }
 
-        .role-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        #shop h2 {
+            color: var(--text-color);
         }
 
         .role-card {
-            background-color: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
             border: 2px solid transparent;
+            text-align: left;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .role-card h4 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .role-card .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--light-color);
+            margin-bottom: 15px;
+        }
+
+        .role-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .role-card ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: var(--light-color);
+        }
+
+        .role-card ul li i {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            margin-right: 10px;
         }
 
         .role-card.popular {
             border-color: var(--accent-color);
+            background: rgba(43, 88, 143, 0.5); /* Slightly darker icy background */
+            box-shadow: 0 0 30px rgba(199, 240, 255, 0.7); /* Icy glow */
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 209, 102, 0.3);
-        }
-
-        .role-card:hover {
-            transform: scale(1.03);
-        }
-
-        .role-card h3 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .price-old {
-            text-decoration: line-through;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1em;
-            display: block;
-        }
-
-        .price-new {
-            font-size: 2em;
-            font-weight: bold;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-
-        .features-list {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 30px;
-            font-size: 0.9em;
-            padding-left: 20px;
-        }
-
-        .features-list li {
-            margin-bottom: 10px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-            padding-bottom: 5px;
-        }
-
-        .features-list li i {
-            color: var(--accent-color);
-            margin-right: 10px;
-        }
-
-        .buy-button {
-            background: var(--gradient-primary);
-            color: var(--text-color);
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            padding: 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-
-        .buy-button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .tag {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: var(--accent-color);
-            color: var(--dark-color);
-            padding: 5px 15px;
-            font-weight: bold;
-            border-bottom-left-radius: 15px;
-        }
-
-        /* Payment Section */
-        #payment {
-            background-color: #24292b;
-            min-height: auto;
-        }
-
-        .payment-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .qris-code {
-            width: 250px;
-            height: 250px;
-            margin: 20px auto;
-            border: 5px solid var(--primary-color);
-            border-radius: 10px;
-            object-fit: contain;
-        }
-
-        .instructions {
-            text-align: left;
-            margin-top: 30px;
-        }
-
-        .instructions ol {
-            padding-left: 25px;
-        }
-
-        .instructions li {
-            margin-bottom: 10px;
-        }
-
-        .whatsapp-button {
-            background-color: #25D366;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            display: inline-block;
-            transition: background-color 0.3s;
-        }
-
-        .whatsapp-button:hover {
-            background-color: #128C7E;
-        }
-
-        /* Testimonials */
-        #testimonials {
-            background-color: var(--dark-color);
-            min-height: auto;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .testimonial-card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 3px solid var(--secondary-color);
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .testimonial-card .author {
-            font-weight: bold;
-            color: var(--primary-color);
-            display: block;
-        }
-
-        /* FAQ */
-        #faq {
-            background-color: #24292b;
-            min-height: auto;
-        }
-
-        .faq-item {
-            background-color: var(--card-bg);
-            margin-bottom: 15px;
-            border-radius: 10px;
+            position: relative;
             overflow: hidden;
         }
 
-        .faq-question {
+        .role-card.popular::before {
+            content: "🔥 BEST SELLER"; /* Changed to BEST SELLER, could be ❄️ ICY PICK */
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--gradient-accent);
+            color: var(--dark-color);
+            padding: 5px 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transform: rotate(45deg);
+        }
+
+        .buy-button {
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .buy-button:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* ==================================== */
+        /* PAYMENT SECTION        */
+        /* ==================================== */
+
+        #payment {
+            text-align: center;
+        }
+
+        .platform-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            color: var(--light-color);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+            font-weight: 600;
+        }
+
+        .tab-button:hover, .tab-button.tab-active {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .platform-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            text-align: left;
+            min-height: 200px;
+            display: none;
+        }
+
+        .payment-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .payment-container div:first-child {
+            background-color: #4A90E2; /* Primary blue for the QRIS block */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Updated style for the selected role display */
+        #selectedRole {
+            background-color: #7DD8FF; /* Light blue background */
+            color: var(--dark-color); /* Dark text for contrast */
             padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.5s;
+        }
+
+        /* ==================================== */
+        /* FAQ SECTION          */
+        /* ==================================== */
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--card-bg);
+            padding-bottom: 15px;
+        }
+
+        .faq-question {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 5px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
-            background-color: rgba(255, 255, 255, 0.05);
-            transition: background-color 0.3s;
+            font-weight: 600;
+            transition: background 0.3s;
         }
 
         .faq-question:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background: var(--card-hover);
         }
 
         .faq-answer {
-            padding: 0 15px 15px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0 0 5px 5px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            opacity: 0;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            color: var(--light-color);
         }
-
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            opacity: 1;
-            padding-top: 15px;
+        
+        .faq-answer.open {
+            max-height: 500px; /* arbitrary large value */
+            padding: 15px;
         }
-
-        .faq-item.active .faq-question i {
+        
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        
+        .faq-icon.rotate {
             transform: rotate(180deg);
         }
 
-        .faq-question i {
-            transition: transform 0.3s;
-        }
+        /* ==================================== */
+        /* FOOTER               */
+        /* ==================================== */
 
-        /* Footer */
         footer {
-            background-color: #1a1a1a;
-            padding: 50px 5%;
+            background-color: #112D5E; /* A slightly darker blue for the footer */
             color: var(--light-color);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: auto;
+            padding: 40px 0;
+            text-align: center;
         }
-
-        footer .footer-section {
-            width: 200px;
-            margin-bottom: 30px;
-        }
-
-        footer h4 {
-            font-size: 1.2em;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        footer ul {
-            list-style: none;
-        }
-
-        footer ul li a {
+        
+        .social-icons a {
             color: var(--light-color);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-            opacity: 0.8;
-            transition: opacity 0.3s;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
         }
-
-        footer ul li a:hover {
-            opacity: 1;
+        
+        .social-icons a:hover {
             color: var(--accent-color);
         }
 
-        .social-links a {
-            font-size: 1.5em;
-            margin-right: 15px;
-            color: var(--light-color);
-            transition: color 0.3s;
-        }
+        /* ==================================== */
+        /* MEDIA QUERIES             */
+        /* ==================================== */
 
-        .social-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .copyright {
-            width: 100%;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
-            font-size: 0.9em;
-            opacity: 0.7;
-        }
-
-        /* Utility */
-        .text-center {
-            text-align: center;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            header {
-                padding: 15px 5%;
+            .navbar {
+                flex-wrap: wrap;
             }
 
-            nav {
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: #2D3436;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+            .nav-links {
                 display: none;
                 flex-direction: column;
-                z-index: 999;
+                width: 100%;
+                text-align: center;
+                margin-top: 15px;
             }
 
-            nav.open {
+            .nav-links.active {
                 display: flex;
             }
 
-            nav ul {
-                flex-direction: column;
-                padding: 10px 0;
-            }
-
-            nav ul li {
-                margin: 0;
-            }
-
-            nav ul li a {
-                display: block;
-                padding: 15px 20px;
-                border-radius: 0;
+            .nav-links a {
+                margin: 10px 0;
+                padding: 10px;
+                background-color: var(--dark-color);
+                border-radius: 5px;
             }
 
             .menu-toggle {
                 display: block;
             }
 
-            #hero {
-                padding-top: 100px;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-
-            .hero-content p {
-                font-size: 1.2em;
-            }
-
-            section {
-                padding: 50px 5%;
-            }
-
-            h2 {
-                font-size: 2em;
-            }
-
-            .stat-card {
-                min-width: 45%;
-                padding: 15px 20px;
-            }
-
-            .info-item {
-                width: 45%;
-                margin-bottom: 20px;
-            }
-
-            .role-card.popular {
-                transform: none;
-                box-shadow: 0 0 15px rgba(255, 209, 102, 0.3);
-            }
-
-            .role-grid {
-                grid-template-columns: 1fr;
-            }
-
-            footer {
-                flex-direction: column;
-            }
-
-            footer .footer-section {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-
-            .tabs {
-                justify-content: flex-start;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-
-            .tab {
-                flex: 0 0 auto;
+            #hero h1 {
+                font-size: 2.5rem;
             }
             
-            .step-item {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-left: 60px; /* Space for step number on the left */
-                position: relative;
-            }
-
-            .step-number {
-                position: absolute;
-                left: -60px; /* Position the number outside the content area */
-                top: 0;
-            }
-
-            .step-details {
-                width: 100%;
+            .payment-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-<body>
 
+<body>
     <header>
-        <div class="logo">
-            <img src="https://files.catbox.moe/wt5umt.jpg" alt="Logo"> GROWRUSH
-        </div>
-        <nav id="navbar">
-            <ul>
-                <li><a href="#hero">Beranda</a></li>
-                <li><a href="#join">Cara Join</a></li>
-                <li><a href="#server-info">Server</a></li>
-                <li><a href="#features">Fitur</a></li>
-                <li><a href="#shop">Toko Role</a></li>
-                <li><a href="#payment">Pembayaran</a></li>
-            </ul>
-        </nav>
-        <div class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="badge-status">
-            <span style="color:#25D366;"><i class="fas fa-circle"></i> ONLINE</span> - 247 Players
+        <div class="container navbar">
+            <div class="logo"><a href="#hero">❄️ GROWRUSH</a></div>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#server-info" class="active">Info Server</a></li>
+                    <li><a href="#shop">Role Shop</a></li>
+                    <li><a href="#payment">Pembayaran</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#" class="cta-button">Play Now</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h1>GROWRUSH</h1>
-                <p>Private Server Terbaik Indonesia dengan 1000+ Item Baru & Event Setiap Hari!</p>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="value">15,847</div>
-                        <div class="label">Total Players</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="value">3,421</div>
-                        <div class="label">Active Worlds</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="value">1,234</div>
-                        <div class="label">Online Days</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="value">v5.38</div>
-                        <div class="label">Server Version</div>
-                    </div>
-                </div>
+    <section id="hero">
+        <div class="container">
+            <h1>❄️ Winter Wonderland Edition ❄️</h1>
+            <p>Jelajahi dunia fantasi dengan fitur terbaik, event eksklusif, dan komunitas yang ramah. Rasakan pengalaman bermain yang berbeda!</p>
+            <a href="#shop" class="cta-button">Lihat Role Premium</a>
+        </div>
+    </section>
 
-                <a href="#join" class="button button-primary"><i class="fas fa-gamepad"></i> Cara Bergabung</a>
-                <a href="#shop" class="button button-secondary"><i class="fas fa-shopping-cart"></i> Beli Role Sekarang</a>
-            </div>
-        </section>
-        
-        <section id="server-info">
-            <h2><i class="fas fa-chart-bar"></i> Informasi Server</h2>
-            <div class="info-grid">
-                <div class="info-item">
-                    <i class="fas fa-globe"></i>
-                    <h3>Server Address</h3>
-                    <p>play.gtparadise.id</p>
-                    <p>Port: 17091</p>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-users"></i>
-                    <h3>Capacity</h3>
-                    <p>500 Players</p>
-                    <p>Slot Available: 253</p>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <h3>Ping</h3>
-                    <p>12ms</p>
-                    <p>Location: Indonesia</p>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-redo"></i>
-                    <h3>Auto Restart</h3>
-                    <p>Every 6 Hours</p>
-                    <p>Next: 2h 34m</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="features">
-            <h2><i class="fas fa-star"></i> Fitur Unggulan Server</h2>
-            <p class="text-center" style="margin-bottom: 40px; color: rgba(255,255,255,0.7);">Nikmati berbagai fitur eksklusif yang tidak ada di server lain!</p>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-search"></i>
-                    <h3>New Can Find Item</h3>
-                    <p>Temukan 1000+ item eksklusif dengan rate drop 5x lebih tinggi! Item legendary, mythical, dan divine menanti Anda.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Citem 500+</h3>
-                    <p>Akses command lengkap untuk spawn item, world edit, dan modifikasi. Total kebebasan untuk berkreasi!</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-skull-crossbones"></i>
-                    <h3>Dungeon Event Like RGT</h3>
-                    <p>10+ dungeon dengan boss unik, loot table spesial, dan difficulty scaling. Event setiap 2 jam!</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-trophy"></i>
-                    <h3>PVP Rank System</h3>
-                    <p>Competitive PVP dengan 7 rank tier, seasonal rewards, dan leaderboard global. Menangkan hadiah total 10Juta/setiap season!</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <h3>Unlimited Profit Methods</h3>
-                    <p>Farming, fishing, mining, trading, casino, stock market, dan 20+ cara lain untuk menjadi kaya!</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-gift"></i>
-                    <h3>Daily Login Rewards</h3>
-                    <p>Login setiap hari untuk dapat gems, item rare, dan role trial. 30 hari streak dapat special reward!</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Guild System</h3>
-                    <p>Buat guild dengan 50 member, guild war, guild base, dan exclusive guild shop dengan diskon 50%!</p>
-                </div>
-                <div class="feature-card">
+    <section id="server-info">
+        <div class="container">
+            <h2>✨ Keunggulan Server Kami</h2>
+            <div class="grid-3">
+                <div class="card">
                     <i class="fas fa-bolt"></i>
-                    <h3>Fast Updates</h3>
-                    <p>Update konten baru setiap minggu dengan item, event, dan fitur fresh. Tidak pernah bosan!</p>
+                    <h3>Anti-Lag Superior</h3>
+                    <p>Server dioptimalkan dengan infrastruktur terbaru, menjamin latensi rendah dan pengalaman bermain yang mulus.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Keamanan Data</h3>
+                    <p>Proteksi DDoS level enterprise dan sistem anti-cheat canggih untuk menjamin keamanan akun Anda 24/7.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Customer Support</h3>
+                    <p>Tim support profesional kami siap membantu Anda menyelesaikan masalah dengan respons cepat.</p>
                 </div>
             </div>
-        </section>
-        
-        <section id="join">
-            <h2><i class="fas fa-sign-in-alt"></i> Cara Bergabung</h2>
-            <p class="text-center" style="margin-bottom: 40px; color: rgba(255,255,255,0.7);">Ikuti langkah-langkah di bawah ini untuk bergabung dengan server kami!</p>
+        </div>
+    </section>
+
+    <section id="shop">
+        <div class="container">
+            <h2>🛒 Role Premium</h2>
+            <p class="text-center" style="margin-bottom: 30px; font-style: italic; color: var(--secondary-color) !important;">Dapatkan akses ke fitur eksklusif dan support premium!</p>
+
+            <div class="grid-3">
+                <div class="card role-card">
+                    <div>
+                        <h4>❄️ Role Basic</h4>
+                        <p class="price">Rp 50.000</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Chat Color Eksklusif</li>
+                            <li><i class="fas fa-check-circle"></i> Priority Queue (Normal)</li>
+                            <li><i class="fas fa-check-circle"></i> Akses Channel Beta</li>
+                            <li><i class="fas fa-times-circle" style="color: #FF6B6B;"></i> Item In-Game Eksklusif</li>
+                        </ul>
+                    </div>
+                    <button class="buy-button" onclick="selectRole('Role Basic', 50000)">Pilih Role</button>
+                </div>
+
+                <div class="card role-card popular">
+                    <div>
+                        <h4>🧊 Role Premium</h4>
+                        <p class="price">Rp 150.000</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Semua fitur Basic</li>
+                            <li><i class="fas fa-check-circle"></i> Priority Queue (Fast)</li>
+                            <li><i class="fas fa-check-circle"></i> Item In-Game Eksklusif **(Baru!)**</li>
+                            <li><i class="fas fa-check-circle"></i> Role Discord Eksklusif</li>
+                        </ul>
+                    </div>
+                    <button class="buy-button" onclick="selectRole('Role Premium', 150000)">Pilih Role</button>
+                </div>
+
+                <div class="card role-card">
+                    <div>
+                        <h4>💎 Role Ultimate</h4>
+                        <p class="price">Rp 300.000</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Semua fitur Premium</li>
+                            <li><i class="fas fa-check-circle"></i> Priority Queue (Instan)</li>
+                            <li><i class="fas fa-check-circle"></i> Akses Dev-Build</li>
+                            <li><i class="fas fa-check-circle"></i> Konsultasi Langsung dengan Admin</li>
+                        </ul>
+                    </div>
+                    <button class="buy-button" onclick="selectRole('Role Ultimate', 300000)">Pilih Role</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="payment">
+        <div class="container">
+            <h2>💳 Pembayaran</h2>
             
-            <div class="tabs">
-                <div class="tab active" data-platform="android">Android</div>
-                <div class="tab" data-platform="windows">Windows</div>
-                <div class="tab" data-platform="powertunnel">PowerTunnel</div>
-                <div class="tab" data-platform="hostsgo">Hosts Go</div>
-                <div class="tab" data-platform="virtualhost">Virtual Host</div>
-                <div class="tab" data-platform="mac">Mac</div>
-                <div class="tab" data-platform="surge5">Surge5</div>
-            </div>
-
-            <div class="guide-content" id="android-content">
-                <h3><i class="fab fa-android"></i> Android Guide</h3>
-                <ul class="steps">
-                    <li class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-details">
-                            <strong>Uninstall Real Growtopia</strong>
-                            <p>Jika Anda memiliki Growtopia asli di perangkat Anda, uninstall terlebih dahulu.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-details">
-                            <strong>Install GROWRUSH APK</strong>
-                            <p>Download dan install APK GROWRUSH yang telah kami sediakan.</p>
-                            <a href="LINK_DOWNLOAD_APK" class="download-button">Download APK</a>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-details">
-                            <strong>Install App Pendukung</strong>
-                            <p>Download salah satu aplikasi hosts berikut untuk koneksi:</p>
-                            <a href="LINK_POWERTUNNEL" class="download-button" style="background-color: #f39c12;">PowerTunnel</a>
-                            <a href="LINK_HOSTS_GO" class="download-button" style="background-color: #c0392b;">Hosts Go</a>
-                            <a href="LINK_VIRTUAL_HOST" class="download-button" style="background-color: #3498db;">Virtual Host</a>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">4</div>
-                        <div class="step-details">
-                            <strong>Buka GROWRUSH APK</strong>
-                            <p>Buka aplikasi GROWRUSH dan gunakan akun GROWRUSH Anda untuk login.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="guide-content" id="windows-content" style="display: none;">
-                <h3><i class="fab fa-windows"></i> Windows Guide</h3>
-                <ul class="steps">
-                    <li class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-details">
-                            <strong>Buka Folder Hosts</strong>
-                            <p>Tekan <code style="color: #FFD166;">Win+R</code>, lalu paste <code style="color: #FFD166;">C:\Windows\System32\drivers\etc</code> dan tekan Enter.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-details">
-                            <strong>Edit File Hosts</strong>
-                            <p>Buka file <code style="color: #FFD166;">hosts</code> dengan Notepad (Run as Administrator).</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-details">
-                            <strong>Tambahkan Host</strong>
-                            <p>Tambahkan baris berikut ke akhir file hosts:</p>
-                            <div class="host-code-block">
-                                5.196.204.227 growtopia1.com<br>
-                                5.196.204.227 growtopia2.com<br>
-                                5.196.204.227 www.growtopia1.com<br>
-                                5.196.204.227 www.growtopia2.com
-                            </div>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">4</div>
-                        <div class="step-details">
-                            <strong>Simpan dan Launch</strong>
-                            <p>Simpan file hosts dan buka Growtopia untuk bermain.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="guide-content" id="powertunnel-content" style="display: none;">
-                <h3><i class="fas fa-shield-alt"></i> PowerTunnel (Android)</h3>
-                <ul class="steps">
-                    <li class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-details">
-                            <strong>Install PowerTunnel APK</strong>
-                            <p>Download dan install aplikasi PowerTunnel dari link di tab Android.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-details">
-                            <strong>Konfigurasi Hosts</strong>
-                            <p>Pergi ke Plugin &rarr; Hosts &rarr; Open the Setting, lalu masukkan URL:</p>
-                            <code style="color: #FFD166;">https://growtopia.id/android</code>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-details">
-                            <strong>Connect</strong>
-                            <p>Kembali ke menu utama dan klik tombol "CONNECT", lalu buka Growtopia.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="guide-content" id="hostsgo-content" style="display: none;">
-                <h3><i class="fas fa-server"></i> Hosts Go (Android)</h3>
-                <ul class="steps">
-                    <li class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-details">
-                            <strong>Install Hosts Go</strong>
-                            <p>Download dan install aplikasi Hosts Go (No Root) dari link di tab Android.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-details">
-                            <strong>Download Hosts File</strong>
-                            <p>Pergi ke Hosts Editor &rarr; enable &rarr; Download Hosts File, lalu masukkan URL:</p>
-                            <code style="color: #FFD166;">https://growtopia.id/android</code>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-details">
-                            <strong>Apply dan Start Protection</strong>
-                            <p>Klik Apply, lalu start protection, dan buka Growtopia.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="guide-content" id="virtualhost-content" style="display: none;">
-                <h3><i class="fas fa-network-wired"></i> Virtual Host (Android)</h3>
-                <ul class="steps">
-                    <li class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-details">
-                            <strong>Install Virtual Host</strong>
-                            <p>Download dan install aplikasi Virtual Host dari link di tab Android.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-details">
-                            <strong>Download Hosts File</strong>
-                            <p>Download file hosts dari link berikut:</p>
-                            <a href="LINK_HOSTS_FILE_VIRTUAL" class="download-button" style="background-color: #3498db;">Download Hosts File</a>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-details">
-                            <strong>Pilih Hosts File</strong>
-                            <p>Buka aplikasi Virtual Host &rarr; SELECT HOSTS FILE, lalu pilih file hosts yang telah Anda download.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">4</div>
-                        <div class="step-details">
-                            <strong>Buka Growtopia</strong>
-                            <p>Setelah mengatur hosts file, buka Growtopia untuk bermain.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="guide-content" id="mac-content" style="display: none;">
-                <h3><i class="fab fa-apple"></i> Mac Guide</h3>
-                <ul class="steps">
-                    <li class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-details">
-                            <strong>Buka Folder Hosts</strong>
-                            <p>Buka Finder &rarr; Go &rarr; Go to Folder, lalu masukkan <code style="color: #FFD166;">/private/etc/hosts</code>.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-details">
-                            <strong>Edit File Hosts</strong>
-                            <p>Copy file hosts ke Desktop, edit dengan TextEdit, lalu tambahkan baris IP yang sama seperti Windows.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-details">
-                            <strong>Simpan dan Pindahkan Kembali</strong>
-                            <p>Simpan file yang telah diedit dan pindahkan kembali ke folder aslinya.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">4</div>
-                        <div class="step-details">
-                            <strong>Buka Growtopia</strong>
-                            <p>Buka Growtopia untuk bermain di server kami.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="guide-content" id="surge5-content" style="display: none;">
-                <h3><i class="fas fa-bolt"></i> Surge5 (iPhone)</h3>
-                <ul class="steps">
-                    <li class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-details">
-                            <strong>Install Surge5</strong>
-                            <p>Download dan install aplikasi Surge5 dari App Store.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-details">
-                            <strong>Import Profile</strong>
-                            <p>Buka Surge5 dan import profile dari URL berikut:</p>
-                            <code style="color: #FFD166;">https://growtopia.id/ios</code>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-details">
-                            <strong>Izinkan Konfigurasi VPN</strong>
-                            <p>Izinkan konfigurasi VPN saat diminta oleh aplikasi.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <div class="step-number">4</div>
-                        <div class="step-details">
-                            <strong>Connect dan Buka Growtopia</strong>
-                            <p>Klik tombol Connect, lalu buka Growtopia untuk bermain.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="shop">
-            <h2><i class="fas fa-store"></i> Toko Role Premium</h2>
-            <p class="text-center" style="margin-bottom: 40px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">🔥 FLASH SALE 50% OFF - Hanya 24 Jam! 🔥</p>
-
-            <div class="role-grid">
-                <div class="role-card">
-                    <span class="tag" style="background-color: #FFD166;">STARTER</span>
-                    <h3>VIP+</h3>
-                    <span class="price-old">Rp 50.000</span>
-                    <div class="price-new">Rp 25.000</div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> Access VIP Area</li>
-                        <li><i class="fas fa-check-circle"></i> /fly Command</li>
-                        <li><i class="fas fa-check-circle"></i> /nick Name</li>
-                        <li><i class="fas fa-check-circle"></i> 10k Gems/Hari</li>
-                        <li><i class="fas fa-check-circle"></i> VIP Chat Badge</li>
-                    </ul>
-                    <button class="buy-button">Beli Sekarang</button>
-                </div>
-                
-                <div class="role-card">
-                    <span class="tag" style="background-color: #FF6B6B;">MODERATOR</span>
-                    <h3>Moderator</h3>
-                    <span class="price-old">Rp 150.000</span>
-                    <div class="price-new">Rp 75.000</div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> All VIP+ Features</li>
-                        <li><i class="fas fa-check-circle"></i> /kick Player</li>
-                        <li><i class="fas fa-check-circle"></i> /mute Player (15min)</li>
-                        <li><i class="fas fa-check-circle"></i> 25k Gems/Hari</li>
-                        <li><i class="fas fa-check-circle"></i> Access Mod Room</li>
-                    </ul>
-                    <button class="buy-button" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);">Beli Sekarang</button>
+            <div id="selectedRole" style="display: none;">
                 </div>
 
-                <div class="role-card popular" style="border-color: #FFD166;">
-                    <span class="tag" style="background-color: #FF8E53;">POPULAR</span>
-                    <h3>Legend</h3>
-                    <span class="price-old">Rp 200.000</span>
-                    <div class="price-new" style="color: #FFD166;">Rp 100.000</div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-star"></i> All Mod Features</li>
-                        <li><i class="fas fa-star"></i> /ban Player (1hr)</li>
-                        <li><i class="fas fa-star"></i> /warp World</li>
-                        <li><i class="fas fa-star"></i> 50k Gems/Hari & Custom Title</li>
-                        <li><i class="fas fa-star"></i> Legend Wings & Exclusive Pets</li>
-                    </ul>
-                    <button class="buy-button" style="background: linear-gradient(135deg, #FFD166 0%, #FF6B6B 100%); color: #2D3436;">Beli Sekarang</button>
-                </div>
-                
-                <div class="role-card">
-                    <span class="tag" style="background-color: #5DADE2;">ADMIN</span>
-                    <h3>Admin</h3>
-                    <span class="price-old">Rp 400.000</span>
-                    <div class="price-new">Rp 200.000</div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> All Creator Features</li>
-                        <li><i class="fas fa-check-circle"></i> /give Gems (Unlimited)</li>
-                        <li><i class="fas fa-check-circle"></i> /item All Items</li>
-                        <li><i class="fas fa-check-circle"></i> Admin Commands</li>
-                        <li><i class="fas fa-check-circle"></i> Server Management</li>
-                    </ul>
-                    <button class="buy-button" style="background: linear-gradient(135deg, #5DADE2 0%, #3498DB 100%);">Beli Sekarang</button>
-                </div>
-                
-                <div class="role-card">
-                    <span class="tag" style="background-color: #E74C3C;">ULTIMATE</span>
-                    <h3>GOD</h3>
-                    <span class="price-old">Rp 500.000</span>
-                    <div class="price-new">Rp 250.000</div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-crown"></i> All Admin Features</li>
-                        <li><i class="fas fa-crown"></i> Server Owner Access</li>
-                        <li><i class="fas fa-crown"></i> Custom Commands</li>
-                        <li><i class="fas fa-crown"></i> Revenue Share 10%</li>
-                        <li><i class="fas fa-crown"></i> Lifetime VIP</li>
-                    </ul>
-                    <button class="buy-button" style="background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);">Beli Sekarang</button>
+            <div class="platform-tabs">
+                <button class="tab-button tab-active" onclick="openPlatform(event, 'android')">Android/PC</button>
+                <button class="tab-button" onclick="openPlatform(event, 'ios')">iOS</button>
+            </div>
+
+            <div id="android" class="platform-content" style="display: block;">
+                <h3>Pembayaran via Bank / QRIS</h3>
+                <p style="margin-bottom: 20px; color: var(--accent-color);">Transfer sesuai nominal role yang dipilih. Pastikan Anda memiliki kode unik transaksi.</p>
+                <div class="payment-container">
+                    <div>
+                        <img src="https://i.imgur.com/wVfFfWJ.png" alt="QRIS Example" style="width: 100%; max-width: 250px; border-radius: 5px; margin-bottom: 10px;">
+                        <p style="font-weight: bold; color: var(--light-color);">SCAN UNTUK QRIS</p>
+                    </div>
+                    <div>
+                        <p style="font-weight: bold; font-size: 1.2rem; margin-bottom: 10px; color: var(--accent-color);">Transfer Bank</p>
+                        <p>Bank: <span style="font-weight: bold;">BCA</span></p>
+                        <p>No. Rekening: <span style="font-weight: bold;">1234567890</span></p>
+                        <p>Atas Nama: <span style="font-weight: bold;">PT. GROWRUSH INDONESIA</span></p>
+                        <hr style="margin: 15px 0; border-color: rgba(255, 255, 255, 0.1);">
+                        <p style="font-style: italic; font-size: 0.9rem; color: var(--secondary-color);">*Setelah transfer, hubungi admin melalui Discord dengan bukti transfer dan kode unik.</p>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <section id="payment">
-            <h2><i class="fas fa-credit-card"></i> Metode Pembayaran</h2>
-            <div class="payment-container">
-                <div style="background-color: #4CAF50; padding: 10px; border-radius: 10px; margin-bottom: 20px;">
-                    <h3 style="color: white; font-size: 1.5em;"><i class="fas fa-gift"></i> PROMO SPESIAL!</h3>
-                    <p style="color: white;">Dapatkan bonus 20% gems untuk pembayaran via QRIS hari ini!</p>
-                </div>
-                
-                <img src="https://files.catbox.moe/a8j8js.png" alt="QRIS Payment" class="qris-code">
-                
-                <div class="instructions">
-                    <h4 style="font-size: 1.5em; color: var(--accent-color); margin-bottom: 10px;">📋 Cara Pembayaran:</h4>
-                    <ol>
-                        <li>Pilih role yang Anda inginkan di toko role.</li>
-                        <li>Scan QR Code di atas dengan aplikasi e-wallet (GoPay, OVO, DANA, dll).</li>
-                        <li>Masukkan nominal sesuai harga role (sudah diskon 50%).</li>
-                        <li>Pada catatan pembayaran, tulis: <code style="color: #FFD166;">ID_Growtopia - Role_Nama</code></li>
-                        <li>Screenshot bukti pembayaran dan kirim ke admin WhatsApp.</li>
-                        <li>Role akan aktif maksimal 1x24 jam (biasanya 5-30 menit).</li>
-                    </ol>
-                </div>
-                
-                <a href="https://wa.me/62882005394515" target="_blank" class="whatsapp-button"><i class="fab fa-whatsapp"></i> Kirim Bukti Pembayaran</a>
+            <div id="ios" class="platform-content">
+                <h3>Pembayaran via Apple Pay / Credit Card</h3>
+                <p style="margin-bottom: 20px; color: var(--accent-color);">Saat ini pembayaran langsung via iOS sedang dalam perbaikan. Harap gunakan metode Bank / QRIS di tab Android/PC.</p>
+                <p style="font-weight: bold; color: #FF6B6B;">MOHON MAAF, METODE INI SEDANG TIDAK TERSEDIA.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="testimonials">
-            <h2><i class="fas fa-comments"></i> Testimonials Player</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p>"Server terbaik yang pernah saya mainkan! Event nya seru dan adminnya responsif. Worth it banget beli role God!"</p>
-                    <span class="author"><i class="fas fa-user"></i> PlayerPro123</span>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Community nya sangat friendly dan helpful. Banyak cara untuk dapat gems, gak perlu topup terus!"</p>
-                    <span class="author"><i class="fas fa-user"></i> GamerGirl</span>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Sudah 6 bulan main disini, gak pernah bosan! Update selalu rutin dan event nya selalu fresh."</p>
-                    <span class="author"><i class="fas fa-user"></i> KingOfWorlds</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq">
-            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-            <div style="max-width: 700px; margin: 0 auto;">
+    <section id="faq">
+        <div class="container">
+            <h2>❓ Pertanyaan Umum (FAQ)</h2>
+            <div class="faq-list">
                 <div class="faq-item">
-                    <div class="faq-question">
-                        Apakah data akan hilang jika server update?
-                        <i class="fas fa-chevron-down"></i>
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Apa itu Role Premium? <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="faq-answer">
-                        <p>Tidak, semua data player termasuk items, gems, dan role akan aman tersimpan. Kami selalu backup data sebelum update.</p>
+                        Role Premium adalah status eksklusif yang memberikan fitur in-game tambahan, prioritas queue, dan dukungan khusus dari tim admin kami.
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
-                        Berapa lama proses aktivasi role setelah pembayaran?
-                        <i class="fas fa-chevron-down"></i>
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Apakah Role ini permanen? <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="faq-answer">
-                        <p>Role akan aktif maksimal 1x24 jam setelah pembayaran dikonfirmasi. Biasanya prosesnya hanya 5-30 menit.</p>
+                        Ya, semua Role Premium yang dibeli bersifat permanen dan tidak akan hilang selama server beroperasi.
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
-                        Apakah ada refund jika tidak puas?
-                        <i class="fas fa-chevron-down"></i>
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Berapa lama Role akan aktif setelah pembayaran? <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="faq-answer">
-                        <p>Jika sudah melakukan pembelian tidak ada refund. Jadi tolong pahami terlebih dahulu sebelum membeli.</p>
+                        Role akan diaktifkan maksimal 1x24 jam setelah tim kami memverifikasi pembayaran Anda, biasanya kurang dari 1 jam.
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
-        <div class="footer-section">
-            <div class="logo">
-                <img src="https://files.catbox.moe/wt5umt.jpg" alt="Logo"> GROWRUSH
-            </div>
-            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.7;">Private Server Terbaik Indonesia.</p>
-        </div>
-        <div class="footer-section">
-            <h4>Game Links</h4>
-            <ul>
-                <li><a href="#hero">Beranda</a></li>
-                <li><a href="#join">Cara Join</a></li>
-                <li><a href="#features">Fitur</a></li>
-                <li><a href="#shop">Toko</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h4>Support</h4>
-            <ul>
-                <li><a href="https://discord.gg/s9MsXRzAD" target="_blank">Discord Server</a></li>
-                <li><a href="https://chat.whatsapp.com/JEWj2h6Ezt87gVo0q6FnOB?mode=ems_copy_t" target="_blank">WhatsApp Group</a></li>
-                <li><a href="#">Report Bug</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h4>Legal</h4>
-            <ul>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Refund Policy</a></li>
-                <li><a href="#">Rules & Guidelines</a></li>
-            </ul>
-        </div>
-        <div class="copyright">
-            &copy; 2024 GROWRUSH - All Rights Reserved. Bukan afiliasi resmi dari Growtopia.
-            <div class="social-links" style="margin-top: 10px;">
-                <a href="https://discord.gg/s9MsXRzAD" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="https://chat.whatsapp.com/JEWj2h6Ezt87gVo0q6FnOB?mode=ems_copy_t" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <div class="container">
+            <div class="social-icons" style="margin-bottom: 15px;">
+                <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
+            <p>&copy; 2025 GROWRUSH - Private Server Terbaik Indonesia. All rights reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 5px; color: rgba(255, 255, 255, 0.5);">Desain oleh AI untuk Winter Edition</p>
         </div>
     </footer>
 
     <script>
-        // Toggle menu for mobile
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.getElementById('navbar').classList.toggle('open');
-        });
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
 
-        // Tab switching logic
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs and hide all content
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.guide-content').forEach(c => c.style.display = 'none');
-
-                // Add active class to the clicked tab
-                this.classList.add('active');
-
-                // Show the corresponding content
-                const platform = this.getAttribute('data-platform');
-                document.getElementById(platform + '-content').style.display = 'block';
+        // Tab functionality for Payment
+        function openPlatform(evt, platformName) {
+            const tabcontent = document.querySelectorAll('.platform-content');
+            tabcontent.forEach(content => {
+                content.style.display = 'none';
             });
-        });
 
-        // FAQ Toggle Logic
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const item = this.closest('.faq-item');
-                item.classList.toggle('active');
-
-                const answer = item.querySelector('.faq-answer');
-                if (item.classList.contains('active')) {
-                    answer.style.maxHeight = answer.scrollHeight + "px";
-                } else {
-                    answer.style.maxHeight = 0;
-                }
+            const tablinks = document.querySelectorAll('.tab-button');
+            tablinks.forEach(link => {
+                link.classList.remove('tab-active');
             });
-        });
 
-        // Responsive Step Item Adjustment
-        const adjustSteps = () => {
-            if (window.innerWidth <= 768) {
-                // Apply mobile layout
-                document.querySelectorAll('.step-item').forEach(item => {
-                    item.style.flexDirection = 'column';
-                    item.style.alignItems = 'flex-start';
-                    item.style.paddingLeft = '60px';
-                });
-                
-                document.querySelectorAll('.event-content').forEach(content => {
-                    content.style.width = '100%';
-                });
-                
-                document.querySelectorAll('.event-date').forEach(date => {
-                    date.style.left = '30px';
-                });
+            document.getElementById(platformName).style.display = 'block';
+            evt.currentTarget.classList.add('tab-active');
+        }
+
+        // FAQ Toggle functionality
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon i');
+
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
             } else {
-                // Reset to desktop layout (assuming default is row layout)
-                document.querySelectorAll('.step-item').forEach(item => {
-                    item.style.flexDirection = 'row';
-                    item.style.alignItems = 'flex-start';
-                    item.style.paddingLeft = '0';
+                // Close all other answers
+                document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
+                    openAnswer.classList.remove('open');
+                    openAnswer.previousElementSibling.querySelector('.faq-icon i').classList.remove('fa-chevron-up');
+                    openAnswer.previousElementSibling.querySelector('.faq-icon i').classList.add('fa-chevron-down');
                 });
                 
-                document.querySelectorAll('.event-content').forEach(content => {
-                    content.style.width = '45%';
-                });
-                
-                document.querySelectorAll('.event-date').forEach(date => {
-                    date.style.left = '50%';
-                });
+                // Open the clicked answer
+                answer.classList.add('open');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
             }
-        };
+        }
 
-        window.addEventListener('resize', adjustSteps);
+        // Role Selection Logic
+        function selectRole(roleName, price) {
+            const displayDiv = document.getElementById("selectedRole");
+            displayDiv.style.display = "block";
+            
+            // Apply the new winter/icy colors for the dynamic box
+            displayDiv.style.backgroundColor = '#7DD8FF'; 
+            displayDiv.style.color = '#1E3A8A';
+            displayDiv.style.borderLeft = '5px solid #4A90E2';
+            
+            displayDiv.innerHTML = `
+                <h4 style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">✅ Role Terpilih: ${roleName}</h4>
+                <p>Transfer Nominal: <span style="font-weight: bold; font-size: 1.5rem;">Rp ${price.toLocaleString('id-ID')}</span></p>
+                `;
+
+            // Smooth scroll to payment
+            document.getElementById("payment").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Smooth Scroll anchors (for navigation bar)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Update active link class
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Initialize first tab
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("android").style.display = "block";
+            
+            // Set first nav link to active on load
+            const firstNavLink = document.querySelector('.nav-links a[href="#server-info"]');
+            if (firstNavLink) {
+                 firstNavLink.classList.add('active');
+            }
+        });
+
+        // Event Timeline Responsive Logic (from previous file, kept but adjusted for new IDs)
+        window.addEventListener('resize', () => {
+            // Note: The timeline feature was removed/replaced, 
+            // but keeping this event listener structure for possible future use or if other responsive logic is added.
+        });
+        
         // Initial call to set up the correct layout
         window.dispatchEvent(new Event('resize'));
     </script>
