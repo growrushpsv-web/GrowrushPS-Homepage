@@ -3,472 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GROWRUSH | OMNI OVERDRIVE ULTIMATUM</title>
+    <title>GROWRUSH NEXUS | OMEGA TERMINAL</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;500;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
 
     <style>
         :root {
-            --neon-blue: #00f2ff;
-            --neon-pink: #ff007b;
-            --neon-green: #00ff88;
-            --deep-space: #010103;
-            --glass-core: rgba(5, 5, 12, 0.9);
-            --border-glow: rgba(0, 242, 255, 0.2);
+            --neon: #00f2ff;
+            --pink: #ff007b;
+            --dark: #020205;
         }
 
-        /* ---------------------------------------------------------
-           CORE ARCHITECTURE (CSS OVER 400 LINES OF LOGIC)
-        --------------------------------------------------------- */
-        * { 
-            cursor: crosshair !important; 
-            box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent;
-            scrollbar-width: thin;
-            scrollbar-color: var(--neon-blue) transparent;
-        }
-
+        * { cursor: crosshair !important; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            background-color: var(--deep-space);
+            background-color: var(--dark);
             color: #fff;
             font-family: 'JetBrains Mono', monospace;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
+            overflow: hidden; /* App-like experience */
+            height: 100vh;
         }
 
-        /* NEURAL BACKGROUND ENGINE */
-        #neural-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            z-index: -1;
-            filter: blur(1px);
+        /* NEURAL CORE ANIMATION */
+        #neural-core {
+            position: fixed; inset: 0; z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0a0a15 0%, #020205 100%);
         }
 
-        /* LIQUID GLASS INTERFACE */
-        .glass-container {
-            background: var(--glass-core);
-            backdrop-filter: blur(40px) saturate(150%);
-            border: 1px solid var(--border-glow);
-            border-radius: 4px;
+        /* GLASSMORPHISM LEVEL 5 */
+        .nexus-panel {
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(0, 242, 255, 0.15);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
             position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,1);
         }
 
-        .glass-container::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
-        /* BRUTALIST TYPOGRAPHY */
-        .omni-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 18vw, 10rem);
-            font-weight: 900;
-            line-height: 0.8;
-            text-transform: uppercase;
-            background: linear-gradient(180deg, #fff 0%, #333 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 30px rgba(0, 242, 255, 0.5));
-            letter-spacing: -5px;
-        }
-
-        /* DYNAMIC SCANNER */
-        .scanner-beam {
-            position: absolute;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
-            box-shadow: 0 0 20px var(--neon-blue);
-            z-index: 10;
-            opacity: 0.5;
-            animation: beamScan 6s infinite linear;
-        }
-
-        @keyframes beamScan {
-            0% { top: 0%; }
-            100% { top: 100%; }
-        }
-
-        /* NAVIGATION LOGIC (HYPER-DETAILED) */
-        .nav-link {
-            padding: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link:hover {
-            background: rgba(0, 242, 255, 0.03);
-        }
-
-        .nav-link.active-link {
-            background: rgba(0, 242, 255, 0.08);
-            border-left: 4px solid var(--neon-blue);
-        }
-
-        .nav-link.active-link .nav-id {
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue);
-        }
-
-        /* BUTTONS: THE ZENITH CLASSIFIED */
-        .classified-btn {
-            background: transparent;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 22px 50px;
+        /* GLITCH EFFECT */
+        .glitch-heavy {
             font-family: 'Orbitron';
-            font-weight: 700;
+            font-weight: 900;
+            font-size: clamp(2rem, 10vw, 6rem);
             text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 5px;
-            position: relative;
-            transition: 0.4s;
-            clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+            letter-spacing: -5px;
+            animation: glitch 3s infinite;
         }
 
-        .classified-btn:hover {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 60px var(--neon-blue);
-            transform: skewX(-5deg) scale(1.05);
+        @keyframes glitch {
+            0% { transform: translate(0); text-shadow: 2px 2px var(--pink); }
+            2% { transform: translate(-5px, 2px); }
+            4% { transform: translate(5px, -2px); text-shadow: -2px -2px var(--neon); }
+            6% { transform: translate(0); }
         }
 
-        .pink-variant { border-color: var(--neon-pink); color: var(--neon-pink); }
-        .pink-variant:hover { background: var(--neon-pink); box-shadow: 0 0 60px var(--neon-pink); }
-
-        /* MOBILE ARCHITECTURE */
+        /* MOBILE BOTTOM NAVIGATION */
         @media (max-width: 768px) {
-            .mobile-bottom-dock {
-                position: fixed;
-                bottom: 0; left: 0; right: 0;
-                background: rgba(2, 2, 5, 0.98);
-                backdrop-filter: blur(25px);
-                border-top: 1px solid var(--border-glow);
-                display: flex;
-                justify-content: space-around;
-                padding: 15px 5px;
-                z-index: 1000;
+            .desktop-only { display: none; }
+            .mobile-nav {
+                position: fixed; bottom: 0; width: 100%;
+                background: rgba(5, 5, 10, 0.95);
+                border-top: 2px solid var(--neon);
+                display: flex; justify-content: space-around;
+                padding: 15px; z-index: 1000;
             }
-            .desktop-sidebar { display: none; }
-            .content-viewport { padding-bottom: 120px; }
-            .omni-title { font-size: 3.5rem; letter-spacing: -2px; }
-            .glass-container { border: none; border-radius: 0; }
+            .content-container { height: calc(100vh - 180px); overflow-y: auto; }
         }
 
-        /* DATA LOG INTERFACE */
-        #cmd-terminal {
-            font-family: 'JetBrains Mono';
+        /* SCROLLBAR CUSTOM */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-thumb { background: var(--neon); }
+
+        .btn-omega {
+            background: transparent;
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            padding: 15px 30px;
+            font-family: 'Orbitron';
             font-size: 10px;
-            color: rgba(0, 242, 255, 0.4);
-            height: 180px;
-            overflow: hidden;
-            line-height: 2;
-        }
-
-        /* INFRASTRUCTURE VISUALIZER */
-        .node-map {
-            height: 200px;
-            border: 1px dashed rgba(255,255,255,0.1);
+            letter-spacing: 4px;
+            transition: 0.3s;
             position: relative;
-            background: radial-gradient(circle at center, rgba(0,242,255,0.03), transparent);
+            overflow: hidden;
         }
 
-        .pulse-core {
-            width: 10px; height: 10px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 20px var(--neon-blue);
-            animation: corePulse 2s infinite;
+        .btn-omega:hover {
+            background: var(--neon); color: #000;
+            box-shadow: 0 0 30px var(--neon);
         }
 
-        @keyframes corePulse {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(4); opacity: 0; }
-        }
-
+        /* DATA STREAMING EFFECT */
+        #stream-text { font-size: 8px; color: rgba(0, 242, 255, 0.2); }
     </style>
 </head>
 <body>
 
-    <canvas id="neural-canvas"></canvas>
-    
-    <main class="min-h-screen relative z-10 p-4 lg:p-12">
-        
-        <div class="flex justify-between items-center mb-12 opacity-40">
-            <div class="text-[8px] tracking-[5px] cyber-font uppercase">System_v15.0_Active</div>
-            <div class="text-[8px] tracking-[5px] cyber-font uppercase">Security_Auth: 15.235.227.241</div>
-        </div>
+    <canvas id="neural-core"></canvas>
 
-        <header class="text-center py-10 lg:py-20 overflow-hidden">
-            <div class="animate__animated animate__fadeInDown">
-                <span class="px-4 py-1 border border-cyan-500/30 text-[9px] tracking-[10px] text-cyan-500 mb-8 inline-block uppercase">Classified_Access</span>
-                <h1 class="omni-title">GROWRUSH</h1>
+    <div id="loader" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center">
+        <div class="w-48 h-1 bg-gray-800 relative overflow-hidden">
+            <div id="progress" class="absolute inset-0 bg-cyan-400 w-0 transition-all duration-100"></div>
+        </div>
+        <p class="mt-4 text-[10px] tracking-[10px] text-cyan-400 animate-pulse">INIT_NEXUS_SYSTEM</p>
+    </div>
+
+    <div class="flex flex-col h-full p-4 lg:p-10 relative z-10">
+        
+        <header class="flex justify-between items-start mb-8">
+            <div>
+                <h1 class="glitch-heavy">GROWRUSH</h1>
+                <p class="text-[9px] tracking-[12px] opacity-40 uppercase">Global_Omni_Nexus_v25</p>
             </div>
-            <div class="flex justify-center items-center gap-10 mt-6 opacity-20">
-                <div class="h-[1px] w-full max-w-[200px] bg-white"></div>
-                <div class="cyber-font text-[10px] tracking-[20px] whitespace-nowrap">ZENITH_SUPREME</div>
-                <div class="h-[1px] w-full max-w-[200px] bg-white"></div>
+            <div class="text-right desktop-only">
+                <div class="text-[10px] text-cyan-400">ENCRYPTION: AES_256_RSA</div>
+                <div class="text-[10px] text-pink-500">NODE: 15.235.227.241</div>
             </div>
         </header>
 
-        <section class="max-w-[1600px] mx-auto grid lg:grid-cols-12 gap-8">
+        <div class="grid lg:grid-cols-12 gap-6 flex-grow overflow-hidden">
             
-            <div class="lg:col-span-4 desktop-sidebar flex flex-col gap-6">
-                <div class="glass-container p-10">
-                    <h3 class="text-[10px] text-gray-600 tracking-[8px] mb-10 uppercase font-bold">Protocol_Modules</h3>
-                    <nav class="flex flex-col">
-                        <div onclick="setModule('go')" id="nav-go" class="nav-link active-link cursor-pointer">
-                            <span class="nav-id block text-[8px] mb-2 font-bold text-gray-600 uppercase">Module_01</span>
-                            <span class="text-xs font-black tracking-widest uppercase">Host_Go (.config)</span>
-                        </div>
-                        <div onclick="setModule('ptun')" id="nav-ptun" class="nav-link cursor-pointer">
-                            <span class="nav-id block text-[8px] mb-2 font-bold text-gray-600 uppercase">Module_02</span>
-                            <span class="text-xs font-black tracking-widest uppercase">Ptun (Android)</span>
-                        </div>
-                        <div onclick="setModule('vhost')" id="nav-vhost" class="nav-link cursor-pointer">
-                            <span class="nav-id block text-[8px] mb-2 font-bold text-gray-600 uppercase">Module_03</span>
-                            <span class="text-xs font-black tracking-widest uppercase">Virtual_Host (txt)</span>
-                        </div>
-                        <div onclick="setModule('surge')" id="nav-surge" class="nav-link cursor-pointer">
-                            <span class="nav-id block text-[8px] mb-2 font-bold text-gray-600 uppercase">Module_04</span>
-                            <span class="text-xs font-black tracking-widest uppercase">Surge_5 (iOS)</span>
-                        </div>
-                    </nav>
-                </div>
-
-                <div class="glass-container p-8 bg-black/60">
-                    <div class="flex justify-between items-center mb-6">
-                        <span class="text-[9px] text-cyan-500 font-bold tracking-widest">LIVE_COMMAND_LOG</span>
-                        <div class="flex gap-1"><div class="w-1 h-1 bg-cyan-500 animate-ping"></div></div>
+            <aside class="lg:col-span-3 nexus-panel p-6 desktop-only">
+                <h3 class="text-xs font-bold tracking-[5px] mb-8 border-b border-white/10 pb-4">CORE_MODULES</h3>
+                <div class="space-y-4">
+                    <div onclick="injectModule('go')" class="mod-btn active" id="m-go">
+                        <span class="text-[8px] opacity-30 block">01</span> HOST_GO (.CONFIG)
                     </div>
-                    <div id="cmd-terminal">
-                        </div>
+                    <div onclick="injectModule('ptun')" class="mod-btn" id="m-ptun">
+                        <span class="text-[8px] opacity-30 block">02</span> PTUN (ANDROID)
+                    </div>
+                    <div onclick="injectModule('vhost')" class="mod-btn" id="m-vhost">
+                        <span class="text-[8px] opacity-30 block">03</span> VIRTUAL_HOST (TXT)
+                    </div>
+                    <div onclick="injectModule('surge')" class="mod-btn" id="m-surge">
+                        <span class="text-[8px] opacity-30 block">04</span> SURGE_5 (IOS)
+                    </div>
                 </div>
-            </div>
 
-            <div class="lg:col-span-8 glass-container content-viewport p-6 lg:p-24 relative overflow-hidden min-h-[850px] flex flex-col justify-center">
-                <div class="scanner-beam"></div>
+                <div class="mt-12 bg-black/40 p-4 rounded border border-white/5">
+                    <p class="text-[8px] text-cyan-500 mb-2 font-bold">SYSTEM_LOGS</p>
+                    <div id="log-box" class="text-[7px] text-gray-500 leading-relaxed h-32 overflow-hidden"></div>
+                </div>
+            </aside>
+
+            <main class="lg:col-span-9 nexus-panel p-6 lg:p-16 content-container relative">
+                <div id="viewport-content" class="h-full flex flex-col justify-center">
+                    </div>
                 
-                <div id="module-injector">
-                    </div>
+                <div id="stream-text" class="absolute inset-0 p-4 pointer-events-none break-all opacity-10"></div>
+            </main>
 
-                <div class="absolute top-10 right-10 flex flex-col items-end opacity-10">
-                    <span class="text-[8px] tracking-[5px]">ID_ENCRYPT: 0x88492</span>
-                    <span class="text-[8px] tracking-[5px]">LAYER_7_SECURE</span>
-                </div>
-            </div>
+        </div>
 
-        </section>
-
-        <footer class="py-40 text-center opacity-10 text-[9px] tracking-[30px] uppercase">
-            Global_Zenith_Overdrive_Established
+        <footer class="mt-8 text-center text-[8px] tracking-[20px] opacity-20 desktop-only">
+            NEXUS_OMEGA_SECURE_BYPASS_AUTHORIZED
         </footer>
+    </div>
 
-    </main>
-
-    <div class="mobile-bottom-dock md:hidden">
-        <div onclick="setModule('go')" class="flex flex-col items-center gap-1">
-            <span class="text-xl">⚙️</span><span class="text-[8px] font-bold">GO</span>
-        </div>
-        <div onclick="setModule('ptun')" class="flex flex-col items-center gap-1">
-            <span class="text-xl">🤖</span><span class="text-[8px] font-bold">PTUN</span>
-        </div>
-        <div onclick="setModule('vhost')" class="flex flex-col items-center gap-1">
-            <span class="text-xl">🌐</span><span class="text-[8px] font-bold">VHOST</span>
-        </div>
-        <div onclick="setModule('surge')" class="flex flex-col items-center gap-1">
-            <span class="text-xl">🍏</span><span class="text-[8px] font-bold">SURGE</span>
-        </div>
+    <div class="mobile-nav lg:hidden">
+        <button onclick="injectModule('go')" class="text-cyan-400">⚙️</button>
+        <button onclick="injectModule('ptun')" class="text-cyan-400">🤖</button>
+        <button onclick="injectModule('vhost')" class="text-cyan-400">🌐</button>
+        <button onclick="injectModule('surge')" class="text-cyan-400">🍎</button>
     </div>
 
     <script>
-        const PROTOCOL_DATA = {
-            go: {
-                id: "M-01",
-                name: "GrowRush.config",
-                tag: "REMOTE_BACKBONE_SYNC",
-                url: "https://www.growrush.my.id/GrowRushPS.config",
-                desc: "Arsitektur konfigurasi utama untuk sinkronisasi Host Go. Link ini mengandung pemetaan jalur akses server yang telah dienkripsi untuk stabilitas maksimum pada node GrowRush."
-            },
-            ptun: {
-                id: "M-02",
-                name: "PTUN_ANDROID_IDENTITY",
-                tag: "REMOTE_TEXT_TUNNEL",
-                url: "https://www.growrush.my.id/GrowRushPS.txt",
-                desc: "Protokol tunneling khusus perangkat Android. Memungkinkan bypass proteksi ISP untuk koneksi langsung ke node infrastruktur 15.235.227.241 secara mulus."
-            },
-            vhost: {
-                id: "M-03",
-                name: "VIRTUAL_HOST_MAPPING",
-                tag: "RAW_SYSTEM_DATABASE",
-                content: "15.235.227.241 growtopia1.com\n15.235.227.241 growtopia2.com\n15.235.227.241 www.growtopia1.com\n15.235.227.241 www.growtopia2.com",
-                url: "https://www.growrush.my.id/GrowRushPS.txt",
-                desc: "Data pemetaan manual untuk file hosts sistem. Mengarahkan traffic domain Growtopia asli menuju infrastruktur Private Server GrowRush."
-            },
-            surge: {
-                id: "M-04",
-                name: "SURGE_5_IOS_NODE",
-                tag: "APPLE_MOBILE_PROTOCOL",
-                url: "https://www.growrush.my.id/GrowRushPS.conf",
-                desc: "Konfigurasi remote khusus untuk aplikasi Surge 5 pada iOS. Dioptimalkan untuk meminimalkan latensi dan meningkatkan keamanan data pada perangkat Apple Anda."
-            }
+        // DATA OBJECT
+        const SYSTEM_CORE = {
+            go: { title: "HOST_GO_PROTOCOL", tag: "GATEWAY_CONFIG", url: "https://www.growrush.my.id/GrowRushPS.config", desc: "Integrasi sistem sinkronisasi utama untuk PC Host Go menggunakan protokol Node 15.235.227.241." },
+            ptun: { title: "PTUN_TUNNEL_LINK", tag: "MOBILE_TEXT_CONFIG", url: "https://www.growrush.my.id/GrowRushPS.txt", desc: "Protokol tunneling Android untuk bypass ISP tingkat lanjut melalui gateway terenkripsi." },
+            vhost: { title: "VIRTUAL_HOST_TXT", tag: "HOST_MAPPING_RAW", url: "https://www.growrush.my.id/GrowRushPS.txt", data: "15.235.227.241 growtopia1.com\n15.235.227.241 growtopia2.com\n15.235.227.241 www.growtopia1.com\n15.235.227.241 www.growtopia2.com", desc: "Pemetaan DNS sistem manual untuk mengarahkan traffic domain Growtopia asli ke server private." },
+            surge: { title: "SURGE_IOS_GATE", tag: "IOS_PREMIUM_CONF", url: "https://www.growrush.my.id/GrowRushPS.conf", desc: "Arsitektur konfigurasi premium Surge 5 untuk optimasi latensi pada perangkat Apple." }
         };
 
-        function setModule(key) {
-            const container = document.getElementById('module-injector');
-            const data = PROTOCOL_DATA[key];
-
-            // UI Interaction Logics
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active-link'));
-            const activeNav = document.getElementById('nav-' + key);
-            if(activeNav) activeNav.classList.add('active-link');
-
-            // Complex Animation Sequences
-            gsap.to(container, { opacity: 0, y: 50, filter: 'blur(20px)', duration: 0.4, onComplete: () => {
+        // SYSTEM LOGIC
+        function injectModule(id) {
+            const data = SYSTEM_CORE[id];
+            const viewport = document.getElementById('viewport-content');
+            
+            gsap.to(viewport, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
                 let html = `
-                    <div class="animate__animated animate__fadeIn">
-                        <div class="node-map mb-16 flex items-center justify-around px-4 lg:px-20 overflow-hidden">
-                            <div class="flex flex-col items-center">
-                                <div class="text-2xl mb-2">👤</div>
-                                <div class="text-[7px] text-gray-500 uppercase tracking-widest">Client_Node</div>
-                            </div>
-                            <div class="flex-grow h-[1px] bg-gradient-to-r from-cyan-500 to-transparent mx-4 relative">
-                                <div class="absolute top-[-2px] left-0 w-1 h-1 bg-white rounded-full animate-ping"></div>
-                            </div>
-                            <div class="flex flex-col items-center relative">
-                                <div class="pulse-core absolute top-[-5px]"></div>
-                                <div class="text-2xl mb-2">🛡️</div>
-                                <div class="text-[7px] text-cyan-500 uppercase tracking-widest">Zenith_Proxy</div>
-                            </div>
-                            <div class="flex-grow h-[1px] bg-gradient-to-l from-pink-500 to-transparent mx-4"></div>
-                            <div class="flex flex-col items-center">
-                                <div class="text-2xl mb-2">🖥️</div>
-                                <div class="text-[7px] text-gray-500 uppercase tracking-widest">SRV_15.235</div>
-                            </div>
-                        </div>
-
-                        <h4 class="text-[10px] text-cyan-500 tracking-[12px] font-black mb-4 uppercase">${data.tag}</h4>
-                        <h2 class="text-4xl lg:text-8xl font-black italic text-white mb-6 uppercase leading-none">${data.name}</h2>
-                        
-                        <div class="max-w-3xl p-8 lg:p-12 bg-white/5 border-l-4 border-cyan-500 mb-12 text-xs lg:text-sm text-gray-400 italic leading-loose">
-                            "${data.desc}"
-                        </div>
+                    <p class="text-cyan-400 text-[9px] tracking-[10px] mb-4 uppercase">${data.tag}</p>
+                    <h2 class="text-4xl lg:text-7xl font-black italic border-b border-white/5 pb-8 mb-8">${data.title}</h2>
+                    <div class="p-6 bg-white/5 border-l-2 border-cyan-400 text-xs text-gray-400 italic mb-10 leading-relaxed max-w-2xl">
+                        "${data.desc}"
+                    </div>
                 `;
 
-                if(key === 'vhost') {
-                    html += `
-                        <div class="bg-black/90 p-8 border border-white/5 font-mono text-[10px] lg:text-xs text-cyan-400/60 leading-relaxed mb-12 relative overflow-hidden group">
-                            <div class="absolute top-0 right-0 p-2 text-[7px] text-white/10 uppercase">Raw_Data_View</div>
-                            ${data.content.replace(/\n/g, '<br>')}
-                        </div>
-                    `;
+                if(id === 'vhost') {
+                    html += `<div class="bg-black/80 p-6 font-mono text-[10px] text-cyan-500/60 mb-10 border border-white/5 leading-relaxed">${data.data.replace(/\n/g, '<br>')}</div>`;
                 }
 
                 html += `
-                    <div class="flex flex-col lg:flex-row gap-6 mt-16">
-                        <button onclick="copyToClipboard('${data.url}')" class="classified-btn">Copy_Remote_Link</button>
-                        <a href="${data.url}" download class="classified-btn pink-variant text-center flex items-center justify-center">Download_Protocol</a>
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <button onclick="copyAction('${data.url}')" class="btn-omega">COPY_ACCESS_PATH</button>
+                        <a href="${data.url}" download class="btn-omega text-center" style="border-color:#ff007b; color:#ff007b">FETCH_NODE_ENCRYPTED</a>
                     </div>
-                </div>`;
+                `;
 
-                container.innerHTML = html;
-                gsap.to(container, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7 });
-                addTerminalLog(`ACCESSING_MODULE: ${key.toUpperCase()}... SUCCESS`);
+                viewport.innerHTML = html;
+                gsap.to(viewport, { opacity: 1, y: 0, duration: 0.5 });
+                addLog(`MODULE_${id.toUpperCase()}_LOADED_SUCCESS`);
             }});
         }
 
-        // BACKGROUND NEURAL ENGINE
-        const canvas = document.getElementById('neural-canvas');
+        // BACKGROUND PARTICLES ENGINE
+        const canvas = document.getElementById('neural-core');
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let points = [];
 
-        function initCanvas() {
+        function initParticles() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            particles = [];
-            for(let i=0; i<100; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    size: Math.random() * 1.5
-                });
-            }
+            points = [];
+            for(let i=0; i<80; i++) points.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, v: Math.random()*0.5 });
         }
 
-        function drawNeural() {
+        function animate() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.fillStyle = "rgba(0, 242, 255, 0.5)";
-            ctx.strokeStyle = "rgba(0, 242, 255, 0.05)";
-            
-            particles.forEach((p, i) => {
-                p.x += p.vx; p.y += p.vy;
-                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-                ctx.fill();
-
-                for(let j=i+1; j<particles.length; j++) {
-                    let p2 = particles[j];
-                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if(dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                }
+            ctx.fillStyle = "rgba(0, 242, 255, 0.4)";
+            points.forEach(p => {
+                p.y -= p.v; if(p.y < 0) p.y = canvas.height;
+                ctx.beginPath(); ctx.arc(p.x, p.y, 1, 0, Math.PI*2); ctx.fill();
             });
-            requestAnimationFrame(drawNeural);
+            requestAnimationFrame(animate);
         }
 
-        function addTerminalLog(msg) {
-            const terminal = document.getElementById('cmd-terminal');
-            const entry = document.createElement('div');
-            entry.innerHTML = `> [${new Date().toLocaleTimeString()}] ${msg}`;
-            terminal.prepend(entry);
+        // LOADER SYSTEM
+        let prg = 0;
+        const loadInt = setInterval(() => {
+            prg += Math.random()*15;
+            document.getElementById('progress').style.width = prg + '%';
+            if(prg >= 100) {
+                clearInterval(loadInt);
+                gsap.to('#loader', { opacity: 0, duration: 1, onComplete: () => {
+                    document.getElementById('loader').remove();
+                    injectModule('go');
+                }});
+            }
+        }, 100);
+
+        function addLog(msg) {
+            const box = document.getElementById('log-box');
+            box.innerHTML = `> [${new Date().toLocaleTimeString()}] ${msg}<br>` + box.innerHTML;
         }
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text);
-            Swal.fire({
-                title: 'ACCESS_GRANTED',
-                text: 'Protokol berhasil disalin ke memori sistem.',
-                icon: 'success',
-                background: '#010103',
-                color: '#00f2ff',
-                confirmButtonColor: '#ff007b'
-            });
-            addTerminalLog(`SYSCALL: CLIPBOARD_WRITE_EVENT... OK`);
+        function copyAction(t) {
+            navigator.clipboard.writeText(t);
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#00f2ff', '#ff007b'] });
         }
 
-        window.addEventListener('resize', initCanvas);
-        window.onload = () => {
-            initCanvas();
-            drawNeural();
-            setModule('go');
-            
-            // Random Background Activity Log
-            setInterval(() => {
-                const logs = ['SYNC_NODE', 'RECV_PKT', 'ENCRYPT_L7', 'BYPASS_ISP', 'PING_15.235'];
-                addTerminalLog(`${logs[Math.floor(Math.random()*logs.length)]}... OK`);
-            }, 5000);
-        };
+        // STYLING ADDITIONS
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .mod-btn { padding: 15px; cursor: pointer; border-left: 2px solid transparent; transition: 0.3s; font-size: 11px; }
+            .mod-btn:hover { background: rgba(0, 242, 255, 0.05); border-left-color: rgba(0, 242, 255, 0.3); }
+            .mod-btn.active { background: rgba(0, 242, 255, 0.1); border-left-color: var(--neon); color: var(--neon); }
+        `;
+        document.head.appendChild(style);
+
+        // DATA STREAM DECOR
+        setInterval(() => {
+            const stream = document.getElementById('stream-text');
+            stream.innerHTML = Math.random().toString(36).substring(2, 50) + " " + stream.innerHTML.substring(0, 1000);
+        }, 100);
+
+        window.onresize = initParticles;
+        initParticles(); animate();
     </script>
 </body>
 </html>
