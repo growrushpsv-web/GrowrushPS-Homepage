@@ -3,126 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH | OFFICIAL ZENITH SYSTEM</title>
+    <title>GROWRUSH | ULTIMATE ZENITH SYSTEM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
-        :root { --neon: #00f2ff; --magenta: #ff007b; --dark: #020205; }
+        :root { --neon: #00f2ff; --magenta: #ff007b; --dark: #010103; }
         body { background: var(--dark); color: white; font-family: 'JetBrains Mono', monospace; overflow-x: hidden; scroll-behavior: smooth; }
         .cyber-font { font-family: 'Orbitron', sans-serif; }
 
-        /* Background Grid & Texture */
+        /* Background Luxury Grid */
         .bg-grid {
-            background-image: linear-gradient(to bottom, rgba(2,2,5,0.95), rgba(2,2,5,1)), 
+            background-image: linear-gradient(to bottom, rgba(1,1,3,0.92), rgba(1,1,3,1)), 
                               url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
             background-attachment: fixed;
         }
 
         /* Luxury Cyber Card */
         .luxury-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(0, 242, 255, 0.15);
-            clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 8% 100%, 0 92%);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            clip-path: polygon(0 0, 93% 0, 100% 7%, 100% 100%, 7% 100%, 0 93%);
             position: relative;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .luxury-card:hover {
             border-color: var(--neon);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.15);
+            transform: translateY(-5px);
         }
 
-        /* Scanner Line Animation */
-        .scanner-line {
-            width: 100%; height: 1px; background: var(--neon);
+        /* Scanning Laser Effect */
+        .scanner {
+            width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--neon), transparent);
             position: absolute; top: 0; left: 0;
-            animation: scan 5s linear infinite;
-            opacity: 0.3; box-shadow: 0 0 15px var(--neon);
+            animation: scan 6s linear infinite;
+            opacity: 0.5; box-shadow: 0 0 20px var(--neon);
         }
 
         @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
 
-        /* Text Effects */
+        .tab-active { 
+            border-left: 5px solid var(--magenta) !important; 
+            background: rgba(255, 0, 123, 0.1) !important; 
+            color: var(--magenta) !important;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 123, 0.3));
+        }
+
+        .btn-zenith {
+            background: var(--magenta);
+            clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .btn-zenith:hover { filter: brightness(1.2); box-shadow: 0 0 30px var(--magenta); transform: skewX(-5deg); }
+
         .glitch-text {
-            font-size: clamp(3rem, 12vw, 8rem);
-            background: linear-gradient(to bottom, #fff 40%, #444 100%);
+            font-size: clamp(3rem, 15vw, 10rem);
+            background: linear-gradient(to bottom, #fff 50%, #666 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+            filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.4));
         }
-
-        /* Active Tab Styling */
-        .tab-active { 
-            border-left: 4px solid var(--magenta) !important; 
-            background: rgba(255, 0, 123, 0.08) !important; 
-            color: var(--magenta) !important;
-        }
-
-        .btn-main {
-            background: var(--magenta);
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-            transition: 0.3s;
-        }
-        .btn-main:hover { filter: brightness(1.2); transform: scale(1.05); box-shadow: 0 0 20px var(--magenta); }
     </style>
 </head>
 <body class="bg-grid">
 
-    <nav class="flex justify-between items-center px-8 py-6 border-b border-white/5 bg-black/40 backdrop-blur-md sticky top-0 z-[100]">
-        <div class="cyber-font text-2xl font-black italic tracking-tighter">GROW<span class="text-[#ff007b]">RUSH</span></div>
-        <div class="hidden md:flex gap-8 text-[10px] tracking-[4px] cyber-font">
-            <a href="#config" class="hover:text-cyan-400 transition">DATABASE</a>
-            <a href="#download" class="hover:text-cyan-400 transition">CLIENTS</a>
-            <a href="https://discord.gg/growrush" target="_blank" class="text-pink-500">COMMUNITY</a>
-        </div>
-    </nav>
-
-    <header class="min-h-[70vh] flex flex-col justify-center items-center text-center p-4">
-        <h1 class="glitch-text cyber-font font-black tracking-tighter italic animate__animated animate__fadeInDown">GROWRUSH</h1>
-        <p class="tracking-[15px] md:tracking-[25px] text-cyan-400 text-[10px] md:text-sm mb-12 opacity-80">ZENITH_NETWORK_CORE</p>
+    <header class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--magenta)_0%,_transparent_70%)] opacity-5 blur-[120px]"></div>
         
-        <div class="luxury-card px-10 py-4 border-l-4 border-l-cyan-400 animate__animated animate__fadeInUp">
-            <p class="text-[9px] text-gray-500 cyber-font mb-1">MAIN_SERVER_IP</p>
-            <p class="text-sm font-bold tracking-widest text-white">15.235.227.241</p>
+        <h1 class="glitch-text cyber-font font-black tracking-tighter italic animate__animated animate__zoomIn">GROWRUSH</h1>
+        <p class="tracking-[20px] md:tracking-[40px] text-cyan-400 text-[10px] md:text-sm mb-16 opacity-70 animate__animated animate__fadeIn">ZENITH_ULTIMATE_GRID</p>
+        
+        <div class="luxury-card px-12 py-5 border-l-4 border-l-cyan-400 animate__animated animate__fadeInUp">
+            <p class="text-[10px] text-gray-500 cyber-font mb-2 tracking-[5px]">CORE_ACCESS_IP</p>
+            <p class="text-xl font-bold tracking-[8px] text-white">15.235.227.241</p>
         </div>
     </header>
 
-    <section id="config" class="container mx-auto px-6 py-20">
-        <div class="grid lg:grid-cols-12 gap-8">
+    <section id="system" class="container mx-auto px-6 pb-40">
+        <h2 class="cyber-font text-center text-2xl mb-20 tracking-[15px] opacity-40 italic">// CONTROL_PROTOCOLS</h2>
+        
+        <div class="grid lg:grid-cols-12 gap-10">
             
-            <div class="lg:col-span-4 space-y-3">
-                <button onclick="changeNode('go')" id="btn-go" class="w-full text-left p-6 luxury-card border-none tab-active">
-                    <span class="cyber-font text-[10px] tracking-[3px]">HOST_GO (.CONFIG)</span>
+            <div class="lg:col-span-4 space-y-4">
+                <button onclick="changeSystem('go')" id="btn-go" class="w-full text-left p-8 luxury-card border-none tab-active">
+                    <span class="cyber-font text-[11px] tracking-[5px]">HOST_GO (.CONFIG)</span>
                 </button>
-                <button onclick="changeNode('vhost')" id="btn-vhost" class="w-full text-left p-6 luxury-card border-none">
-                    <span class="cyber-font text-[10px] tracking-[3px]">VIRTUAL_HOST (.TXT)</span>
+                <button onclick="changeSystem('ptun')" id="btn-ptun" class="w-full text-left p-8 luxury-card border-none">
+                    <span class="cyber-font text-[11px] tracking-[5px]">PTUN (ANDROID)</span>
                 </button>
-                <button onclick="changeNode('ios')" id="btn-ios" class="w-full text-left p-6 luxury-card border-none">
-                    <span class="cyber-font text-[10px] tracking-[3px]">SURGE_5 (IOS)</span>
+                <button onclick="changeSystem('vhost')" id="btn-vhost" class="w-full text-left p-8 luxury-card border-none">
+                    <span class="cyber-font text-[11px] tracking-[5px]">VIRTUAL_HOST (.TXT)</span>
+                </button>
+                <button onclick="changeSystem('ios')" id="btn-ios" class="w-full text-left p-8 luxury-card border-none">
+                    <span class="cyber-font text-[11px] tracking-[5px]">SURGE_5 (IOS)</span>
                 </button>
             </div>
 
             <div class="lg:col-span-8">
-                <div class="luxury-card p-10 md:p-16 min-h-[500px] flex flex-col justify-center relative overflow-hidden bg-black/40">
-                    <div class="scanner-line"></div>
+                <div class="luxury-card p-12 md:p-20 min-h-[600px] flex flex-col justify-center relative overflow-hidden bg-black/50">
+                    <div class="scanner"></div>
                     
-                    <div id="protocol-view" class="animate__animated animate__fadeIn">
+                    <div id="console-view" class="animate__animated animate__fadeIn">
                         <div class="flex flex-col items-center text-center">
-                            <div class="mb-8 opacity-70 animate-pulse">
-                                <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            <div class="mb-10 opacity-80 animate-pulse">
+                                <svg class="w-28 h-28 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                 </svg>
                             </div>
-                            <h3 class="cyber-font text-2xl text-white mb-2 italic">GrowRushPS.config</h3>
-                            <p class="text-[10px] text-cyan-400 tracking-[6px] mb-10 uppercase font-bold">Remote_Host_Protocol</p>
+                            <h3 class="cyber-font text-3xl text-white mb-3 italic tracking-tighter">GrowRushPS.config</h3>
+                            <p class="text-[11px] text-cyan-400 tracking-[10px] mb-12 uppercase font-bold">Remote_Encryption_Identity</p>
                             
-                            <div class="flex flex-wrap gap-4 justify-center">
-                                <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.config')" class="px-8 py-3 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all">COPY_CONFIG_URL</button>
-                                <a href="https://www.growrush.my.id/GrowRushPS.config" class="btn-main px-8 py-3 text-white text-[10px] cyber-font font-bold uppercase">Download_Config</a>
+                            <div class="flex flex-wrap gap-6 justify-center">
+                                <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.config')" class="px-10 py-4 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all">COPY_REMOTE_URL</button>
+                                <a href="https://www.growrush.my.id/GrowRushPS.config" class="btn-zenith px-12 py-4 text-white text-[11px] cyber-font">Download_Config</a>
                             </div>
                         </div>
                     </div>
@@ -131,88 +131,95 @@
         </div>
     </section>
 
-    <section id="download" class="container mx-auto px-6 py-20 border-t border-white/5">
-        <h2 class="cyber-font text-center text-xl mb-12 tracking-[10px] opacity-60">ACCESS_TERMINALS</h2>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div onclick="Swal.fire('WINDOWS', 'Fetching latest build...', 'info')" class="luxury-card p-10 text-center cursor-pointer group">
-                <span class="text-3xl block mb-4 group-hover:scale-110 transition">🪟</span>
-                <span class="cyber-font text-[10px] text-gray-500">WINDOWS_V1</span>
+    <section id="download" class="container mx-auto px-6 py-24 border-t border-white/5">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div onclick="Swal.fire('WIN_OS', 'Initializing secure download...', 'info')" class="luxury-card p-12 text-center cursor-pointer group">
+                <span class="text-4xl block mb-6 group-hover:rotate-12 transition-transform">🪟</span>
+                <span class="cyber-font text-[10px] text-gray-500 tracking-[3px]">WINDOWS_CLIENT</span>
             </div>
-            <div onclick="Swal.fire('ANDROID', 'Downloading APK Clone...', 'info')" class="luxury-card p-10 text-center cursor-pointer group border-l-cyan-500/40">
-                <span class="text-3xl block mb-4 group-hover:scale-110 transition">🤖</span>
-                <span class="cyber-font text-[10px] text-cyan-400">ANDROID_APK</span>
+            <div onclick="Swal.fire('ANDROID_OS', 'Accessing APK repository...', 'info')" class="luxury-card p-12 text-center cursor-pointer group border-l-cyan-400">
+                <span class="text-4xl block mb-6 group-hover:rotate-12 transition-transform">🤖</span>
+                <span class="cyber-font text-[10px] text-cyan-400 tracking-[3px]">ANDROID_CLONE</span>
             </div>
-            <div onclick="Swal.fire('IOS', 'Opening IPA Repository...', 'info')" class="luxury-card p-10 text-center cursor-pointer group">
-                <span class="text-3xl block mb-4 group-hover:scale-110 transition">📱</span>
-                <span class="cyber-font text-[10px] text-gray-500">IOS_IPA</span>
+            <div onclick="Swal.fire('IOS_OS', 'Opening IPA gate...', 'info')" class="luxury-card p-12 text-center cursor-pointer group border-l-pink-500">
+                <span class="text-4xl block mb-6 group-hover:rotate-12 transition-transform">📱</span>
+                <span class="cyber-font text-[10px] text-pink-500 tracking-[3px]">IOS_IPHONE</span>
             </div>
-            <div onclick="Swal.fire('MACOS', 'Fetching Mac binary...', 'info')" class="luxury-card p-10 text-center cursor-pointer group">
-                <span class="text-3xl block mb-4 group-hover:scale-110 transition">💻</span>
-                <span class="cyber-font text-[10px] text-gray-500">MACOS_V1</span>
+            <div onclick="Swal.fire('MAC_OS', 'Fetching Apple binary...', 'info')" class="luxury-card p-12 text-center cursor-pointer group">
+                <span class="text-4xl block mb-6 group-hover:rotate-12 transition-transform">💻</span>
+                <span class="cyber-font text-[10px] text-gray-500 tracking-[3px]">MAC_BINARY</span>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 text-center opacity-20 cyber-font text-[9px] tracking-[10px]">
-        CORE_GATEWAY // NODE_15.235.227.241 // EST.2025
+    <footer class="py-20 text-center opacity-20 cyber-font text-[10px] tracking-[15px]">
+        CORE_GATEWAY // NODE_15.235.227.241 // TERMINAL_ACTIVE
     </footer>
 
     <script>
-        const nodes = {
+        const systemNodes = {
             go: `
                 <div class="flex flex-col items-center text-center">
-                    <div class="mb-8 opacity-70 animate-pulse">
-                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
+                    <svg class="w-24 h-24 text-white opacity-60 mb-10 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <h3 class="cyber-font text-3xl text-white mb-3 italic">GrowRushPS.config</h3>
+                    <p class="text-[11px] text-cyan-400 tracking-[10px] mb-12 uppercase font-bold">Host_Go_Remote_Protocol</p>
+                    <div class="flex gap-6">
+                        <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.config')" class="px-10 py-4 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all">COPY_URL</button>
+                        <a href="https://www.growrush.my.id/GrowRushPS.config" class="btn-zenith px-12 py-4 text-white text-[11px] cyber-font">Download_File</a>
                     </div>
-                    <h3 class="cyber-font text-2xl text-white mb-2 italic">GrowRushPS.config</h3>
-                    <p class="text-[10px] text-cyan-400 tracking-[6px] mb-10 uppercase font-bold">Remote_Host_Protocol</p>
-                    <div class="flex gap-4">
-                        <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.config')" class="px-8 py-3 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all">COPY_CONFIG_URL</button>
-                        <a href="https://www.growrush.my.id/GrowRushPS.config" class="btn-main px-8 py-3 text-white text-[10px] cyber-font font-bold uppercase">Download_Config</a>
+                </div>`,
+            ptun: `
+                <div class="flex flex-col items-center text-center">
+                    <h3 class="cyber-font text-3xl text-pink-500 mb-2 italic">PTUN_PROTOCOL</h3>
+                    <p class="text-[11px] text-gray-500 tracking-[8px] mb-12 uppercase font-bold">Android_Sideload_Config</p>
+                    <div class="bg-black/80 p-8 rounded-lg border border-pink-500/20 w-full text-xs text-pink-400 mb-12 font-mono text-left leading-relaxed">
+                        ENDPOINT_URL: https://www.growrush.my.id/GrowRushPS.txt
                     </div>
+                    <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.txt')" class="w-full py-5 border border-pink-500 text-pink-500 text-[10px] cyber-font hover:bg-pink-500 hover:text-white transition-all">COPY_PTUN_REMOTE_LINK</button>
                 </div>`,
             vhost: `
                 <div class="w-full">
-                    <h3 class="cyber-font text-cyan-400 text-sm mb-4 tracking-widest uppercase">// VHOST_IDENTITY_LINK</h3>
-                    <div class="bg-black/80 p-6 rounded border border-white/5 font-mono text-xs text-cyan-400/80 mb-8 leading-relaxed text-left">
+                    <h3 class="cyber-font text-cyan-400 text-sm mb-6 tracking-widest uppercase">// VIRTUAL_HOST_MAIN_GATEWAY</h3>
+                    <div class="bg-black/90 p-8 rounded-xl border border-white/10 font-mono text-[12px] text-cyan-400 leading-loose mb-10 text-left">
                         15.235.227.241 growtopia1.com<br>
                         15.235.227.241 growtopia2.com<br>
                         15.235.227.241 www.growtopia1.com<br>
                         15.235.227.241 www.growtopia2.com 
                     </div>
-                    <div class="flex flex-col gap-3">
-                        <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.txt')" class="w-full py-4 border border-cyan-500/50 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-500 hover:text-black transition-all uppercase">Copy_Remote_VHost_URL</button>
-                        <a href="https://www.growrush.my.id/GrowRushPS.txt" class="text-center w-full py-4 bg-white text-black text-[10px] cyber-font font-bold uppercase">Download_VHost_Txt</a>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.txt')" class="py-5 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all uppercase tracking-widest">Copy_Link</button>
+                        <a href="https://www.growrush.my.id/GrowRushPS.txt" class="py-5 bg-white text-black text-[10px] cyber-font font-bold text-center uppercase tracking-widest">Download_Txt</a>
                     </div>
                 </div>`,
             ios: `
-                <div class="flex flex-col items-center">
-                    <h3 class="cyber-font text-2xl text-pink-500 mb-2 italic tracking-tight">IOS_SURGE_5</h3>
-                    <p class="text-[10px] text-gray-500 tracking-[5px] mb-10 uppercase opacity-60">System_Conf_Access</p>
-                    <div class="w-full bg-black/60 p-6 rounded border border-white/5 font-mono text-xs text-pink-400 mb-10 text-left">
-                        URL: https://www.growrush.my.id/GrowRushPS.conf
+                <div class="flex flex-col items-center text-center">
+                    <h3 class="cyber-font text-3xl text-white mb-2 italic tracking-tighter">IOS_SURGE_5</h3>
+                    <p class="text-[11px] text-pink-500 tracking-[8px] mb-12 uppercase font-bold">Apple_Surge_Configuration</p>
+                    <div class="w-full bg-black/70 p-8 rounded-lg border border-white/10 font-mono text-[11px] text-pink-400 mb-12 text-left">
+                        REMOTE_URL: https://www.growrush.my.id/GrowRushPS.conf
                     </div>
-                    <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.conf')" class="w-full py-4 border border-pink-500 text-pink-500 text-[10px] cyber-font hover:bg-pink-500 hover:text-white transition-all uppercase">Copy_Surge_Link</button>
+                    <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.conf')" class="w-full py-5 border border-pink-500 text-pink-500 text-[10px] cyber-font hover:bg-pink-500 hover:text-white transition-all">COPY_REMOTE_CONF</button>
                 </div>`
         };
 
-        function changeNode(type) {
-            const container = document.getElementById('protocol-view');
-            container.innerHTML = nodes[type];
-            
+        function changeSystem(type) {
+            const view = document.getElementById('console-view');
+            view.classList.remove('animate__fadeIn');
+            void view.offsetWidth;
+            view.innerHTML = systemNodes[type];
+            view.classList.add('animate__fadeIn');
+
             document.querySelectorAll('button').forEach(btn => btn.classList.remove('tab-active'));
             document.getElementById('btn-' + type).classList.add('tab-active');
         }
 
-        function copyData(text) {
-            navigator.clipboard.writeText(text);
+        function copyData(url) {
+            navigator.clipboard.writeText(url);
             Swal.fire({
-                title: 'COPIED!',
-                text: 'Protokol berhasil disalin ke clipboard.',
+                title: 'ACCESS_GRANTED',
+                text: 'Protokol berhasil disalin ke memori.',
                 icon: 'success',
-                background: '#020205',
+                background: '#010103',
                 color: '#00f2ff',
                 confirmButtonColor: '#ff007b'
             });
