@@ -3,200 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowRush | Cybernetic Universe</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <title>GrowRush | Luxury Cybernetic</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --neon-pink: #ff00ff;
-            --neon-blue: #00f2ff;
-            --deep-purple: #1a0033;
+            --cyber-pink: #ff007b;
+            --cyber-blue: #00e5ff;
+            --glow-purple: rgba(138, 43, 226, 0.5);
         }
 
         body {
-            background-color: #050505;
-            color: #fff;
+            background: #020205;
+            color: white;
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
+            /* Latar belakang dengan grid futuristik */
+            background-image: 
+                linear-gradient(to bottom, rgba(2,2,5,0.8), rgba(2,2,5,0.9)),
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
         }
 
-        /* Animated Cyberpunk Background */
-        #canvas-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
+        /* Efek Judul Glitch & Luxury seperti gambar */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(to bottom, #fff 40%, #555 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px var(--glow-purple));
+            letter-spacing: -2px;
+            text-transform: uppercase;
         }
 
-        .cyber-font { font-family: 'Orbitron', sans-serif; }
-
-        /* Neon Glow Text */
-        .neon-text {
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
-            letter-spacing: 5px;
+        .subtitle {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 12px;
+            color: var(--cyber-blue);
+            text-shadow: 0 0 10px var(--cyber-blue);
         }
 
-        /* Glassmorphism Card Luxury */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            border-radius: 20px;
+        /* Card Mewah dengan Bingkai Neon (Meniru elemen box di gambar) */
+        .cyber-card {
+            background: rgba(15, 15, 25, 0.7);
+            border: 1px solid rgba(0, 229, 255, 0.3);
             position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
+            border-radius: 5px 20px 5px 20px;
+            padding: 2rem;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.05);
         }
 
-        .glass-card::before {
+        /* Garis dekoratif di pojok kartu agar mirip gambar */
+        .cyber-card::before {
             content: "";
             position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
+            top: -2px; left: -2px;
+            width: 30px; height: 30px;
+            border-top: 3px solid var(--cyber-pink);
+            border-left: 3px solid var(--cyber-pink);
         }
 
-        .glass-card:hover::before { left: 100%; }
-
-        .glass-card:hover {
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
-            transform: translateY(-10px);
+        .cyber-card::after {
+            content: "";
+            position: absolute;
+            bottom: -2px; right: -2px;
+            width: 30px; height: 30px;
+            border-bottom: 3px solid var(--cyber-blue);
+            border-right: 3px solid var(--cyber-blue);
         }
 
-        /* Cyber Button */
-        .btn-cyber {
-            background: linear-gradient(45deg, var(--neon-pink), #800080);
-            padding: 12px 30px;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        .cyber-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 0, 123, 0.2);
+            border-color: var(--cyber-pink);
+        }
+
+        /* Navigasi Bulat Pink seperti di gambar */
+        .nav-btn-hot {
+            background: var(--cyber-pink);
+            box-shadow: 0 0 15px var(--cyber-pink);
+            border-radius: 50px;
+            padding: 8px 25px;
             font-family: 'Orbitron';
-            font-weight: bold;
+            font-size: 0.7rem;
             transition: 0.3s;
         }
 
-        .btn-cyber:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--neon-pink);
-        }
-
-        .status-glow {
-            width: 12px; height: 12px;
-            background: #00ff00;
-            border-radius: 50%;
-            box-shadow: 0 0 15px #00ff00;
+        /* Status Bar Tengah */
+        .status-scanner {
+            border: 1px solid var(--cyber-blue);
+            background: rgba(0, 229, 255, 0.05);
+            padding: 10px 40px;
+            clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
             display: inline-block;
-            margin-right: 10px;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
+            font-family: 'Orbitron';
+            color: var(--cyber-blue);
         }
     </style>
 </head>
 <body>
 
-    <div id="canvas-container"></div>
-
-    <nav class="flex justify-between items-center px-10 py-6 sticky top-0 z-50 bg-black/50 backdrop-blur-md">
-        <div class="cyber-font text-2xl font-black tracking-tighter italic">GROW<span class="text-[#ff00ff]">RUSH</span></div>
-        <div class="hidden md:flex space-x-8 cyber-font text-sm">
-            <a href="#" class="hover:text-[#00f2ff] transition">HOME</a>
-            <a href="#how-to" class="hover:text-[#00f2ff] transition">DATABASE</a>
-            <a href="#events" class="hover:text-[#00f2ff] transition">EVENTS</a>
-            <a href="#" class="btn-cyber text-white text-xs">DOWNLOAD</a>
+    <nav class="flex justify-between items-center px-12 py-8">
+        <div class="text-2xl font-black italic tracking-tighter">GROWRUSH</div>
+        <div class="space-x-8 text-xs tracking-widest uppercase">
+            <a href="#" class="hover:text-pink-500">Home</a>
+            <a href="#" class="hover:text-pink-500">Database</a>
+            <a href="#" class="hover:text-pink-500">Features</a>
+            <button class="nav-btn-hot">DOWNLOAD</button>
         </div>
     </nav>
 
-    <header class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <h1 class="cyber-font text-6xl md:text-8xl font-black neon-text mb-4" data-aos="zoom-in">GROWRUSH</h1>
-        <p class="text-xl md:text-2xl tracking-[10px] uppercase text-gray-400 mb-8" data-aos="fade-up" data-aos-delay="200">Cybernetic Universe</p>
+    <div class="text-center mt-10">
+        <h1 class="main-title">GROWRUSH</h1>
+        <p class="subtitle mt-[-15px]">CYBERNETIC UNIVERSE</p>
         
-        <div class="glass-card px-8 py-4 flex items-center mb-10" data-aos="fade-up" data-aos-delay="400">
-            <span class="status-glow"></span>
-            <span class="cyber-font text-sm uppercase">Mainframe Status: <span class="text-cyan-400">Operational</span> | Players: 1,240</span>
-        </div>
-    </header>
-
-    <main class="container mx-auto px-6 py-20">
-        <div class="grid md:grid-cols-2 gap-10">
-            
-            <div class="glass-card p-10" data-aos="fade-right" id="how-to">
-                <h2 class="cyber-font text-2xl text-[#00f2ff] mb-6">/ CONNECTING_TO_GRID</h2>
-                <div class="space-y-4 text-gray-300">
-                    <p class="flex items-start"><span class="text-[#ff00ff] mr-3 font-bold">01.</span> Unduh klien Growtopia versi terbaru melalui portal resmi.</p>
-                    <p class="flex items-start"><span class="text-[#ff00ff] mr-3 font-bold">02.</span> Buka "Hosts Editor" dan masukkan koordinat berikut:</p>
-                    <div class="bg-black/50 p-4 border border-dashed border-cyan-500 rounded text-cyan-400 font-mono text-sm">
-                        157.245.xxx.xxx growtopia1.com<br>
-                        157.245.xxx.xxx growtopia2.com
-                    </div>
-                    <p class="flex items-start"><span class="text-[#ff00ff] mr-3 font-bold">03.</span> Inisialisasi login untuk pendaftaran otomatis.</p>
-                </div>
+        <div class="mt-12">
+            <div class="status-scanner">
+                SERVER STATUS: ONLINE [1,402 PLAYERS]
             </div>
-
-            <div class="glass-card p-10 border-r-4 border-r-[#ff00ff]" data-aos="fade-left" id="events">
-                <h2 class="cyber-font text-2xl text-[#ff00ff] mb-6">/ ACTIVE_MISSIONS</h2>
-                <div class="space-y-6">
-                    <div class="border-b border-white/10 pb-4">
-                        <h3 class="font-bold text-white">NEON HEIST EVENT</h3>
-                        <p class="text-sm text-gray-400">Misi khusus mengumpulkan Cyber-Orbs untuk hadiah Legendary Wings.</p>
-                    </div>
-                    <div class="border-b border-white/10 pb-4">
-                        <h3 class="font-bold text-white">DOUBLE GEMS WEEKEND</h3>
-                        <p class="text-sm text-gray-400">System overload! Pendapatan gems berlipat ganda 48 jam ke depan.</p>
-                    </div>
-                    <button class="btn-cyber w-full mt-4">JOIN DISCORD MISSION</button>
-                </div>
-            </div>
-
         </div>
-    </main>
+    </div>
 
-    <footer class="text-center py-20 text-gray-600 cyber-font text-xs tracking-widest">
-        &copy; 2025 GROWRUSH CORE SYSTEM. BUILT FOR THE REBELS.
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 mt-20 px-10 mb-20">
+        
+        <div class="cyber-card">
+            <h3 class="text-cyan-400 font-bold mb-4 tracking-tighter uppercase">>> DATA_CENTER</h3>
+            <p class="text-gray-400 leading-relaxed text-sm">
+                Akses semua informasi item, market rate, dan sistem ekonomi terbaru di dalam database real-time kami.
+            </p>
+            <div class="mt-6 border-b border-gray-800 pb-2"></div>
+            <button class="mt-4 text-xs text-pink-500 hover:underline">ACCESS DATABASE _</button>
+        </div>
+
+        <div class="cyber-card">
+            <h3 class="text-pink-500 font-bold mb-4 tracking-tighter uppercase">>> ACTIVE_EVENTS</h3>
+            <p class="text-gray-400 leading-relaxed text-sm">
+                <b>NEON STRIKE:</b> Event terbatas! Dapatkan "Cybernetic Wings" dengan menyelesaikan misi harian.
+            </p>
+            <div class="mt-6 border-b border-gray-800 pb-2"></div>
+            <button class="mt-4 text-xs text-cyan-400 hover:underline">VIEW EVENTS _</button>
+        </div>
+
+        <div class="cyber-card">
+            <h3 class="text-cyan-400 font-bold mb-4 tracking-tighter uppercase">>> HOW_TO_PLAY</h3>
+            <p class="text-gray-300 text-sm italic">"Modify your hosts, connect to reality."</p>
+            <div class="bg-black/80 p-3 mt-4 text-xs font-mono text-cyan-500 border border-cyan-900">
+                127.0.0.1 growtopia1.com<br>
+                127.0.0.1 growtopia2.com
+            </div>
+        </div>
+
+        <div class="cyber-card">
+            <h3 class="text-pink-500 font-bold mb-4 tracking-tighter uppercase">>> REWARDS_LOG</h3>
+            <p class="text-gray-400 leading-relaxed text-sm">
+                Sistem reward otomatis untuk pemain aktif setiap 24 jam. Kumpulkan token dan tukar dengan item mewah.
+            </p>
+            <button class="mt-6 nav-btn-hot text-xs w-full">CLAIM REWARDS</button>
+        </div>
+
+    </div>
+
+    <footer class="text-center py-10 opacity-30 text-xs tracking-widest">
+        SYSTEM_ID: GROWRUSH_V.2.0.25 // UNTUK TUJUAN EDUKASI
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-
-        // Simple Three.js Stars Background
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        const starsGeometry = new THREE.BufferGeometry();
-        const starsCount = 1500;
-        const posArray = new Float32Array(starsCount * 3);
-        for(let i=0; i < starsCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 10;
-        }
-        starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const starsMaterial = new THREE.PointsMaterial({ size: 0.005, color: 0x00f2ff });
-        const starMesh = new THREE.Points(starsGeometry, starsMaterial);
-        scene.add(starMesh);
-        camera.position.z = 2;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            starMesh.rotation.y += 0.001;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
 </body>
 </html>
