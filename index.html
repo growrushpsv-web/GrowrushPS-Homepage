@@ -1,229 +1,508 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH | ULTIMATE ZENITH SYSTEM</title>
+    <title>GROWRUSH | ZENITH OVERLOAD INTERFACE</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;500;800&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
-        :root { --neon: #00f2ff; --magenta: #ff007b; --dark: #010103; }
-        body { background: var(--dark); color: white; font-family: 'JetBrains Mono', monospace; overflow-x: hidden; scroll-behavior: smooth; }
-        .cyber-font { font-family: 'Orbitron', sans-serif; }
-
-        /* Background Luxury Grid */
-        .bg-grid {
-            background-image: linear-gradient(to bottom, rgba(1,1,3,0.92), rgba(1,1,3,1)), 
-                              url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            background-attachment: fixed;
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-pink: #ff007b;
+            --deep-dark: #020205;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-glow: rgba(0, 242, 255, 0.3);
         }
 
-        /* Luxury Cyber Card */
-        .luxury-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(40px);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            clip-path: polygon(0 0, 93% 0, 100% 7%, 100% 100%, 7% 100%, 0 93%);
-            position: relative;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* RESET & BASE */
+        * { cursor: crosshair !important; }
+        body {
+            background-color: var(--deep-dark);
+            color: #e2e8f0;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
         }
 
-        .luxury-card:hover {
-            border-color: var(--neon);
-            box-shadow: 0 0 50px rgba(0, 242, 255, 0.15);
-            transform: translateY(-5px);
+        /* ADVANCED BACKGROUND */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #020205 100%);
         }
 
-        /* Scanning Laser Effect */
-        .scanner {
-            width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--neon), transparent);
-            position: absolute; top: 0; left: 0;
-            animation: scan 6s linear infinite;
-            opacity: 0.5; box-shadow: 0 0 20px var(--neon);
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px);
+            opacity: 0.5;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
         }
 
-        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
-
-        .tab-active { 
-            border-left: 5px solid var(--magenta) !important; 
-            background: rgba(255, 0, 123, 0.1) !important; 
-            color: var(--magenta) !important;
-            filter: drop-shadow(0 0 10px rgba(255, 0, 123, 0.3));
-        }
-
-        .btn-zenith {
-            background: var(--magenta);
-            clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
-            transition: 0.3s;
+        /* CYBERPUNK TYPOGRAPHY */
+        .cyber-header {
+            font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
-            font-weight: bold;
-        }
-        .btn-zenith:hover { filter: brightness(1.2); box-shadow: 0 0 30px var(--magenta); transform: skewX(-5deg); }
-
-        .glitch-text {
-            font-size: clamp(3rem, 15vw, 10rem);
-            background: linear-gradient(to bottom, #fff 50%, #666 100%);
+            letter-spacing: 0.5em;
+            background: linear-gradient(to right, #fff, var(--neon-blue), var(--neon-pink), #fff);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.4));
+            animation: shine 5s linear infinite;
         }
+
+        @keyframes shine { to { background-position: 300% center; } }
+
+        /* ULTRA LUXURY CARD */
+        .zenith-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+        }
+
+        .zenith-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .zenith-card:hover::before { left: 100%; }
+
+        .zenith-card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
+            transform: translateY(-5px) scale(1.01);
+        }
+
+        /* INTERACTIVE BUTTONS */
+        .cyber-btn {
+            position: relative;
+            padding: 15px 35px;
+            background: transparent;
+            color: var(--neon-blue);
+            font-family: 'Orbitron';
+            font-size: 12px;
+            letter-spacing: 2px;
+            border: 1px solid var(--neon-blue);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: 0.4s;
+            overflow: hidden;
+        }
+
+        .cyber-btn:hover {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 25px var(--neon-blue);
+        }
+
+        .cyber-btn.pink {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+        }
+
+        .cyber-btn.pink:hover {
+            background: var(--neon-pink);
+            color: #fff;
+            box-shadow: 0 0 25px var(--neon-pink);
+        }
+
+        /* SCANNER ANIMATION */
+        .scanline {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.1), transparent);
+            position: absolute;
+            top: -100px;
+            left: 0;
+            animation: scanMove 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanMove {
+            0% { top: -100px; }
+            100% { top: 100%; }
+        }
+
+        /* TAB SYSTEM GLOW */
+        .active-tab {
+            background: rgba(0, 242, 255, 0.15) !important;
+            border-right: 4px solid var(--neon-blue) !important;
+            color: white !important;
+        }
+
+        /* SCROLLBAR CUSTOM */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--deep-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 10px; }
+
+        /* LOADING SCREEN */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-circle {
+            width: 100px; height: 100px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
     </style>
 </head>
-<body class="bg-grid">
+<body>
 
-    <header class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--magenta)_0%,_transparent_70%)] opacity-5 blur-[120px]"></div>
-        
-        <h1 class="glitch-text cyber-font font-black tracking-tighter italic animate__animated animate__zoomIn">GROWRUSH</h1>
-        <p class="tracking-[20px] md:tracking-[40px] text-cyan-400 text-[10px] md:text-sm mb-16 opacity-70 animate__animated animate__fadeIn">ZENITH_ULTIMATE_GRID</p>
-        
-        <div class="luxury-card px-12 py-5 border-l-4 border-l-cyan-400 animate__animated animate__fadeInUp">
-            <p class="text-[10px] text-gray-500 cyber-font mb-2 tracking-[5px]">CORE_ACCESS_IP</p>
-            <p class="text-xl font-bold tracking-[8px] text-white">15.235.227.241</p>
-        </div>
-    </header>
+    <div id="loader">
+        <div class="loader-circle mb-6"></div>
+        <div class="cyber-font text-[10px] tracking-[10px] animate-pulse">INITIALIZING_ZENITH_OS...</div>
+    </div>
 
-    <section id="system" class="container mx-auto px-6 pb-40">
-        <h2 class="cyber-font text-center text-2xl mb-20 tracking-[15px] opacity-40 italic">// CONTROL_PROTOCOLS</h2>
+    <div id="particles-js"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="max-w-[1600px] mx-auto min-h-screen p-4 md:p-8">
         
-        <div class="grid lg:grid-cols-12 gap-10">
-            
-            <div class="lg:col-span-4 space-y-4">
-                <button onclick="changeSystem('go')" id="btn-go" class="w-full text-left p-8 luxury-card border-none tab-active">
-                    <span class="cyber-font text-[11px] tracking-[5px]">HOST_GO (.CONFIG)</span>
-                </button>
-                <button onclick="changeSystem('ptun')" id="btn-ptun" class="w-full text-left p-8 luxury-card border-none">
-                    <span class="cyber-font text-[11px] tracking-[5px]">PTUN (ANDROID)</span>
-                </button>
-                <button onclick="changeSystem('vhost')" id="btn-vhost" class="w-full text-left p-8 luxury-card border-none">
-                    <span class="cyber-font text-[11px] tracking-[5px]">VIRTUAL_HOST (.TXT)</span>
-                </button>
-                <button onclick="changeSystem('ios')" id="btn-ios" class="w-full text-left p-8 luxury-card border-none">
-                    <span class="cyber-font text-[11px] tracking-[5px]">SURGE_5 (IOS)</span>
-                </button>
+        <nav class="flex justify-between items-center mb-16 p-6 zenith-card border-none bg-black/40">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-cyan-500 rounded-sm rotate-45 flex items-center justify-center shadow-[0_0_15px_#00f2ff]">
+                    <span class="rotate-[-45deg] font-black text-black">GR</span>
+                </div>
+                <div class="cyber-header text-2xl font-black">GROWRUSH_PS</div>
             </div>
+            <div class="hidden lg:flex gap-10 text-[9px] cyber-font tracking-[4px]">
+                <a href="#" class="hover:text-cyan-400 transition">NETWORK_STATUS: <span class="text-green-500">ONLINE</span></a>
+                <a href="#" class="hover:text-cyan-400 transition">ENCRYPTION: <span class="text-cyan-500">AES_256</span></a>
+                <a href="#" class="hover:text-cyan-400 transition text-pink-500">V_HOST_ACTIVE</a>
+            </div>
+        </nav>
 
-            <div class="lg:col-span-8">
-                <div class="luxury-card p-12 md:p-20 min-h-[600px] flex flex-col justify-center relative overflow-hidden bg-black/50">
-                    <div class="scanner"></div>
-                    
-                    <div id="console-view" class="animate__animated animate__fadeIn">
-                        <div class="flex flex-col items-center text-center">
-                            <div class="mb-10 opacity-80 animate-pulse">
-                                <svg class="w-28 h-28 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="cyber-font text-3xl text-white mb-3 italic tracking-tighter">GrowRushPS.config</h3>
-                            <p class="text-[11px] text-cyan-400 tracking-[10px] mb-12 uppercase font-bold">Remote_Encryption_Identity</p>
-                            
-                            <div class="flex flex-wrap gap-6 justify-center">
-                                <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.config')" class="px-10 py-4 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all">COPY_REMOTE_URL</button>
-                                <a href="https://www.growrush.my.id/GrowRushPS.config" class="btn-zenith px-12 py-4 text-white text-[11px] cyber-font">Download_Config</a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="grid lg:grid-cols-2 gap-20 items-center mb-32">
+            <div class="space-y-8">
+                <div class="inline-block px-4 py-1 border-l-2 border-cyan-500 bg-cyan-500/10 text-[10px] cyber-font tracking-[5px] text-cyan-400">
+                    ACCESS_RESTRICTED // LEVEL_04
+                </div>
+                <h1 class="text-7xl md:text-9xl font-black cyber-font leading-tight italic">
+                    CORE<br><span class="text-cyan-400">INTERFACE</span>
+                </h1>
+                <p class="text-gray-400 max-w-md leading-relaxed text-sm border-l border-white/10 pl-6 italic">
+                    Gerbang enkripsi GrowRush Private Server. Hubungkan protokol Anda melalui arsitektur Zenith v5.0 untuk stabilitas maksimal.
+                </p>
+                <div class="flex gap-4">
+                    <button onclick="scrollToConfig()" class="cyber-btn">ENTER_TERMINAL</button>
+                    <button onclick="window.open('https://discord.gg/growrush')" class="cyber-btn pink">DISCORD_NET</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="download" class="container mx-auto px-6 py-24 border-t border-white/5">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <div onclick="Swal.fire('WIN_OS', 'Initializing secure download...', 'info')" class="luxury-card p-12 text-center cursor-pointer group">
-                <span class="text-4xl block mb-6 group-hover:rotate-12 transition-transform">🪟</span>
-                <span class="cyber-font text-[10px] text-gray-500 tracking-[3px]">WINDOWS_CLIENT</span>
-            </div>
-            <div onclick="Swal.fire('ANDROID_OS', 'Accessing APK repository...', 'info')" class="luxury-card p-12 text-center cursor-pointer group border-l-cyan-400">
-                <span class="text-4xl block mb-6 group-hover:rotate-12 transition-transform">🤖</span>
-                <span class="cyber-font text-[10px] text-cyan-400 tracking-[3px]">ANDROID_CLONE</span>
-            </div>
-            <div onclick="Swal.fire('IOS_OS', 'Opening IPA gate...', 'info')" class="luxury-card p-12 text-center cursor-pointer group border-l-pink-500">
-                <span class="text-4xl block mb-6 group-hover:rotate-12 transition-transform">📱</span>
-                <span class="cyber-font text-[10px] text-pink-500 tracking-[3px]">IOS_IPHONE</span>
-            </div>
-            <div onclick="Swal.fire('MAC_OS', 'Fetching Apple binary...', 'info')" class="luxury-card p-12 text-center cursor-pointer group">
-                <span class="text-4xl block mb-6 group-hover:rotate-12 transition-transform">💻</span>
-                <span class="cyber-font text-[10px] text-gray-500 tracking-[3px]">MAC_BINARY</span>
+            <div class="relative">
+                <div class="zenith-card p-10 bg-black/60 relative z-10">
+                    <div class="scanline"></div>
+                    <div class="flex justify-between mb-10">
+                        <div class="cyber-font text-[10px] text-cyan-400">NODE_STATISTICS</div>
+                        <div class="text-[10px] text-gray-600">ID: 15235227241</div>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-[9px] mb-2 cyber-font">
+                                <span>SERVER_LOAD</span>
+                                <span>24%</span>
+                            </div>
+                            <div class="h-[2px] w-full bg-white/5"><div class="h-full bg-cyan-500 shadow-[0_0_10px_#00f2ff]" style="width: 24%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[9px] mb-2 cyber-font">
+                                <span>NETWORK_LATENCY</span>
+                                <span>12ms</span>
+                            </div>
+                            <div class="h-[2px] w-full bg-white/5"><div class="h-full bg-pink-500 shadow-[0_0_10px_#ff007b]" style="width: 12%"></div></div>
+                        </div>
+                    </div>
+                    <div class="mt-10 p-4 bg-cyan-500/5 border border-cyan-500/20 text-center">
+                        <span class="cyber-font text-[10px] text-cyan-400 tracking-[5px]">CORE_IP: 15.235.227.241</span>
+                    </div>
+                </div>
+                <div class="absolute -top-10 -right-10 w-40 h-40 border-t-2 border-r-2 border-cyan-500/30"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 border-b-2 border-l-2 border-pink-500/30"></div>
             </div>
         </div>
-    </section>
 
-    <footer class="py-20 text-center opacity-20 cyber-font text-[10px] tracking-[15px]">
-        CORE_GATEWAY // NODE_15.235.227.241 // TERMINAL_ACTIVE
-    </footer>
+        <section id="config" class="mb-40 pt-20">
+            <div class="flex items-center gap-6 mb-12">
+                <h2 class="cyber-font text-3xl font-black italic">CONFIG_PROTOCOLS</h2>
+                <div class="h-[1px] flex-grow bg-gradient-to-right from-cyan-500/50 to-transparent"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-0 border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+                
+                <div class="lg:col-span-4 bg-black/40 backdrop-blur-3xl border-r border-white/5">
+                    <div class="p-8 space-y-2">
+                        <button onclick="setTab('go')" id="tab-go" class="tab-btn active-tab w-full text-left p-6 flex flex-col gap-2 transition-all">
+                            <span class="cyber-font text-xs">01_HOST_GO</span>
+                            <span class="text-[9px] text-gray-500 font-bold uppercase tracking-widest">GrowRushPS.config</span>
+                        </button>
+                        <button onclick="setTab('ptun')" id="tab-ptun" class="tab-btn w-full text-left p-6 flex flex-col gap-2 transition-all">
+                            <span class="cyber-font text-xs">02_ANDROID_PTUN</span>
+                            <span class="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Remote_Identity_Txt</span>
+                        </button>
+                        <button onclick="setTab('vhost')" id="tab-vhost" class="tab-btn w-full text-left p-6 flex flex-col gap-2 transition-all">
+                            <span class="cyber-font text-xs">03_VIRTUAL_HOST</span>
+                            <span class="text-[9px] text-gray-500 font-bold uppercase tracking-widest">System_Modification</span>
+                        </button>
+                        <button onclick="setTab('surge')" id="tab-surge" class="tab-btn w-full text-left p-6 flex flex-col gap-2 transition-all">
+                            <span class="cyber-font text-xs">04_SURGE_5_IOS</span>
+                            <span class="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Apple_Conf_Protocol</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8 bg-black/20 backdrop-blur-md p-10 md:p-20 relative min-h-[600px] flex items-center justify-center">
+                    <div id="content-container" class="w-full animate__animated animate__fadeIn">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="mb-40">
+            <h2 class="cyber-font text-center text-xl tracking-[15px] mb-20 opacity-50 uppercase italic">Access_Nodes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="zenith-card p-10 group cursor-pointer" onclick="initDL('WINDOWS')">
+                    <div class="mb-8 p-4 bg-white/5 inline-block clip-path-poly group-hover:bg-cyan-500/20 transition-all">
+                        <svg class="w-8 h-8 text-cyan-400" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 17.1L9.75 21.9V12.3H0v8.249zM10.5 2V11.7H24V0L10.5 2zm0 19.9L24 24V12.3H10.5v9.6z"/></svg>
+                    </div>
+                    <h4 class="cyber-font text-xs mb-2">WIN_CLIENT_V5</h4>
+                    <p class="text-[9px] text-gray-500 tracking-widest mb-6">X64_EXECUTABLE</p>
+                    <div class="h-[1px] w-full bg-white/10 group-hover:bg-cyan-500 transition-all"></div>
+                </div>
+
+                <div class="zenith-card p-10 group cursor-pointer" onclick="initDL('ANDROID')">
+                    <div class="mb-8 p-4 bg-white/5 inline-block group-hover:bg-green-500/20 transition-all">
+                        <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414C17.0267 15.3414 16.6231 14.9378 16.6231 14.4415C16.6231 13.9452 17.0267 13.5416 17.523 13.5416C18.0193 13.5416 18.4229 13.9452 18.4229 14.4415C18.4229 14.9378 18.0193 15.3414 17.523 15.3414ZM6.47614 15.3414C5.97984 15.3414 5.57623 14.9378 5.57623 14.4415C5.57623 13.9452 5.97984 13.5416 6.47614 13.5416C6.97244 13.5416 7.37605 13.9452 7.37605 14.4415C7.37605 14.9378 6.97244 15.3414 6.47614 15.3414ZM17.896 10.3687L19.8251 7.02706C20.0114 6.70428 19.901 6.29176 19.5782 6.10543C19.2554 5.9191 18.8429 6.02949 18.6566 6.35227L16.7063 9.73031C15.2915 9.08182 13.7121 8.71533 12.043 8.71533C10.3739 8.71533 8.79449 9.08182 7.37968 9.73031L5.42939 6.35227C5.24306 6.02949 4.83054 5.9191 4.50776 6.10543C4.18498 6.29176 4.07458 6.70428 4.26091 7.02706L6.19001 10.3687C2.7159 12.2471 0.380859 15.8236 0.380859 20.0003H23.7051C23.7051 15.8236 21.3701 12.2471 17.896 10.3687Z"/></svg>
+                    </div>
+                    <h4 class="cyber-font text-xs mb-2">ANDROID_APK</h4>
+                    <p class="text-[9px] text-gray-500 tracking-widest mb-6">ARM_V8_CLONE</p>
+                    <div class="h-[1px] w-full bg-white/10 group-hover:bg-green-500 transition-all"></div>
+                </div>
+
+                <div class="zenith-card p-10 group cursor-pointer" onclick="initDL('APPLE')">
+                    <div class="mb-8 p-4 bg-white/5 inline-block group-hover:bg-pink-500/20 transition-all">
+                        <svg class="w-8 h-8 text-pink-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.091 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.82-.779.883-1.453 2.311-1.273 3.662 1.35.104 2.714-.638 3.56-1.652z"/></svg>
+                    </div>
+                    <h4 class="cyber-font text-xs mb-2">IOS_ZENITH</h4>
+                    <p class="text-[9px] text-gray-500 tracking-widest mb-6">IPA_ENCRYPTED</p>
+                    <div class="h-[1px] w-full bg-white/10 group-hover:bg-pink-500 transition-all"></div>
+                </div>
+
+                <div class="zenith-card p-10 group cursor-pointer" onclick="initDL('MACOS')">
+                    <div class="mb-8 p-4 bg-white/5 inline-block group-hover:bg-blue-500/20 transition-all">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h4 class="cyber-font text-xs mb-2">MAC_OS_X</h4>
+                    <p class="text-[9px] text-gray-500 tracking-widest mb-6">APPLE_SILICON_V1</p>
+                    <div class="h-[1px] w-full bg-white/10 group-hover:bg-blue-500 transition-all"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="zenith-card p-6 bg-black/60 border-none">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="font-mono text-[10px] text-gray-500 space-y-1" id="footer-logs">
+                    <div>> INITIALIZING FOOTER_NODE_01... DONE</div>
+                    <div>> SYSTEM_INTEGRITY: 100%</div>
+                    <div>> LAST_UPDATE: DEC_2025</div>
+                </div>
+                <div class="text-right">
+                    <div class="cyber-font text-[9px] tracking-[10px] opacity-20">GROWRUSH_TERMINAL_V5.0</div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
 
     <script>
-        const systemNodes = {
-            go: `
-                <div class="flex flex-col items-center text-center">
-                    <svg class="w-24 h-24 text-white opacity-60 mb-10 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    <h3 class="cyber-font text-3xl text-white mb-3 italic">GrowRushPS.config</h3>
-                    <p class="text-[11px] text-cyan-400 tracking-[10px] mb-12 uppercase font-bold">Host_Go_Remote_Protocol</p>
-                    <div class="flex gap-6">
-                        <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.config')" class="px-10 py-4 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all">COPY_URL</button>
-                        <a href="https://www.growrush.my.id/GrowRushPS.config" class="btn-zenith px-12 py-4 text-white text-[11px] cyber-font">Download_File</a>
-                    </div>
-                </div>`,
-            ptun: `
-                <div class="flex flex-col items-center text-center">
-                    <h3 class="cyber-font text-3xl text-pink-500 mb-2 italic">PTUN_PROTOCOL</h3>
-                    <p class="text-[11px] text-gray-500 tracking-[8px] mb-12 uppercase font-bold">Android_Sideload_Config</p>
-                    <div class="bg-black/80 p-8 rounded-lg border border-pink-500/20 w-full text-xs text-pink-400 mb-12 font-mono text-left leading-relaxed">
-                        ENDPOINT_URL: https://www.growrush.my.id/GrowRushPS.txt
-                    </div>
-                    <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.txt')" class="w-full py-5 border border-pink-500 text-pink-500 text-[10px] cyber-font hover:bg-pink-500 hover:text-white transition-all">COPY_PTUN_REMOTE_LINK</button>
-                </div>`,
-            vhost: `
-                <div class="w-full">
-                    <h3 class="cyber-font text-cyan-400 text-sm mb-6 tracking-widest uppercase">// VIRTUAL_HOST_MAIN_GATEWAY</h3>
-                    <div class="bg-black/90 p-8 rounded-xl border border-white/10 font-mono text-[12px] text-cyan-400 leading-loose mb-10 text-left">
-                        15.235.227.241 growtopia1.com<br>
-                        15.235.227.241 growtopia2.com<br>
-                        15.235.227.241 www.growtopia1.com<br>
-                        15.235.227.241 www.growtopia2.com 
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.txt')" class="py-5 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all uppercase tracking-widest">Copy_Link</button>
-                        <a href="https://www.growrush.my.id/GrowRushPS.txt" class="py-5 bg-white text-black text-[10px] cyber-font font-bold text-center uppercase tracking-widest">Download_Txt</a>
-                    </div>
-                </div>`,
-            ios: `
-                <div class="flex flex-col items-center text-center">
-                    <h3 class="cyber-font text-3xl text-white mb-2 italic tracking-tighter">IOS_SURGE_5</h3>
-                    <p class="text-[11px] text-pink-500 tracking-[8px] mb-12 uppercase font-bold">Apple_Surge_Configuration</p>
-                    <div class="w-full bg-black/70 p-8 rounded-lg border border-white/10 font-mono text-[11px] text-pink-400 mb-12 text-left">
-                        REMOTE_URL: https://www.growrush.my.id/GrowRushPS.conf
-                    </div>
-                    <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.conf')" class="w-full py-5 border border-pink-500 text-pink-500 text-[10px] cyber-font hover:bg-pink-500 hover:text-white transition-all">COPY_REMOTE_CONF</button>
-                </div>`
+        // CONFIGURATION DATA
+        const DATA = {
+            go: {
+                title: "GrowRushPS.config",
+                subtitle: "Host_Go_Encryption_Remote",
+                url: "https://www.growrush.my.id/GrowRushPS.config",
+                type: "CONFIG",
+                icon: `<svg class="w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`
+            },
+            ptun: {
+                title: "PTUN_PROTOCOL",
+                subtitle: "Android_System_Identity",
+                url: "https://www.growrush.my.id/GrowRushPS.txt",
+                type: "REMOTE_TXT",
+                desc: "Gunakan link ini pada pengaturan PTUN untuk bypass proteksi original dan menghubungkan perangkat Android Anda ke node server."
+            },
+            vhost: {
+                title: "VIRTUAL_HOST_DATABASE",
+                subtitle: "Manual_Identity_Mapping",
+                content: "15.235.227.241 growtopia1.com\n15.235.227.241 growtopia2.com\n15.235.227.241 www.growtopia1.com\n15.235.227.241 www.growtopia2.com",
+                url: "https://www.growrush.my.id/GrowRushPS.txt"
+            },
+            surge: {
+                title: "SURGE_5_CONF",
+                subtitle: "Apple_Encryption_Node",
+                url: "https://www.growrush.my.id/GrowRushPS.conf",
+                type: "SURGE_PROTOCOL",
+                desc: "Konfigurasi tingkat tinggi untuk iOS Surge 5. Salin link remote untuk sinkronisasi otomatis node server GrowRush."
+            }
         };
 
-        function changeSystem(type) {
-            const view = document.getElementById('console-view');
-            view.classList.remove('animate__fadeIn');
-            void view.offsetWidth;
-            view.innerHTML = systemNodes[type];
-            view.classList.add('animate__fadeIn');
+        // TAB HANDLER
+        function setTab(key) {
+            const container = document.getElementById('content-container');
+            const data = DATA[key];
+            
+            // UI Update
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
+            document.getElementById('tab-' + key).classList.add('active-tab');
 
-            document.querySelectorAll('button').forEach(btn => btn.classList.remove('tab-active'));
-            document.getElementById('btn-' + type).classList.add('tab-active');
+            // Fade Out
+            gsap.to(container, { opacity: 0, y: 10, duration: 0.2, onComplete: () => {
+                let html = "";
+                
+                if(key === 'go') {
+                    html = `
+                        <div class="flex flex-col items-center animate__animated animate__zoomIn">
+                            <div class="mb-10 opacity-60 drop-shadow-[0_0_15px_#fff]">${data.icon}</div>
+                            <h3 class="cyber-font text-4xl mb-3 text-white">${data.title}</h3>
+                            <p class="text-cyan-400 text-[10px] tracking-[10px] uppercase mb-12">${data.subtitle}</p>
+                            <div class="flex gap-4">
+                                <button onclick="copyProtocol('${data.url}')" class="cyber-btn">COPY_REMOTE_LINK</button>
+                                <button onclick="window.open('${data.url}')" class="cyber-btn pink">DOWNLOAD_FILE</button>
+                            </div>
+                        </div>
+                    `;
+                } else if(key === 'vhost') {
+                    html = `
+                        <div class="w-full animate__animated animate__fadeIn">
+                            <h3 class="cyber-font text-xl mb-6 text-cyan-400 tracking-[5px]">// ${data.title}</h3>
+                            <div class="bg-black/80 p-8 border border-white/5 rounded-sm font-mono text-xs leading-relaxed text-cyan-200/60 mb-8 relative">
+                                <div class="absolute top-4 right-4 text-[8px] opacity-30 cyber-font tracking-widest">RAW_VIEW</div>
+                                ${data.content.replace(/\n/g, '<br>')}
+                            </div>
+                            <div class="flex gap-4">
+                                <button onclick="copyProtocol('${data.content}')" class="cyber-btn">COPY_DATA</button>
+                                <button onclick="copyProtocol('${data.url}')" class="cyber-btn pink">COPY_REMOTE_URL</button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    html = `
+                        <div class="w-full text-center max-w-lg animate__animated animate__fadeIn">
+                            <h3 class="cyber-font text-3xl mb-4 text-white">${data.title}</h3>
+                            <p class="text-pink-500 text-[10px] tracking-[10px] mb-8 uppercase font-bold">${data.subtitle}</p>
+                            <div class="p-6 bg-white/5 border border-white/10 mb-10 italic text-sm text-gray-400">
+                                "${data.desc}"
+                            </div>
+                            <div class="bg-black p-4 text-[10px] text-gray-600 mb-10 border border-white/5 font-mono truncate">
+                                ${data.url}
+                            </div>
+                            <button onclick="copyProtocol('${data.url}')" class="cyber-btn w-full">COPY_REMOTE_ACCESS_URL</button>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = html;
+                gsap.to(container, { opacity: 1, y: 0, duration: 0.5 });
+                logTerminal(`PROTOCOL_LOADED: ${key.toUpperCase()}`);
+            }});
         }
 
-        function copyData(url) {
-            navigator.clipboard.writeText(url);
+        // TERMINAL LOGS
+        function logTerminal(msg) {
+            const footer = document.getElementById('footer-logs');
+            const div = document.createElement('div');
+            div.innerHTML = `> [${new Date().toLocaleTimeString()}] ${msg}... SUCCESS`;
+            footer.prepend(div);
+            if(footer.children.length > 5) footer.removeChild(footer.lastChild);
+        }
+
+        // UTILITIES
+        function copyProtocol(text) {
+            navigator.clipboard.writeText(text);
             Swal.fire({
-                title: 'ACCESS_GRANTED',
-                text: 'Protokol berhasil disalin ke memori.',
+                title: 'ACCESS_COPIED',
+                text: 'Data telah diamankan ke memori perangkat.',
                 icon: 'success',
-                background: '#010103',
+                background: '#020205',
                 color: '#00f2ff',
-                confirmButtonColor: '#ff007b'
+                confirmButtonColor: '#ff007b',
+                buttonsStyling: false,
+                customClass: { confirmButton: 'cyber-btn' }
+            });
+            logTerminal('CLIPBOARD_ACTION');
+        }
+
+        function scrollToConfig() {
+            document.getElementById('config').scrollIntoView();
+        }
+
+        function initDL(os) {
+            Swal.fire({
+                title: 'INITIATING_DOWNLOAD',
+                text: `Membangun jalur terenkripsi untuk ${os}...`,
+                timer: 2000,
+                timerProgressBar: true,
+                background: '#020205',
+                color: '#fff',
+                didOpen: () => { Swal.showLoading(); }
             });
         }
+
+        // INITIALIZE
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                setTab('go');
+                
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": { "value": 80 },
+                        "color": { "value": "#00f2ff" },
+                        "shape": { "type": "circle" },
+                        "opacity": { "value": 0.2 },
+                        "size": { "value": 3 },
+                        "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.1, "width": 1 },
+                        "move": { "enable": true, "speed": 1 }
+                    }
+                });
+            }, 2000);
+        };
     </script>
 </body>
 </html>
