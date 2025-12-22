@@ -3,172 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowRush | Luxury Cybernetic</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <title>GrowRush | Cybernetic Universe v2.0</title>
     
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
-        :root {
-            --cyber-pink: #ff007b;
-            --cyber-blue: #00e5ff;
-            --glow-purple: rgba(138, 43, 226, 0.5);
+        :root { --p: #ff007b; --b: #00e5ff; --bg: #020205; }
+        body { background: var(--bg); color: white; font-family: 'Rajdhani', sans-serif; scroll-behavior: smooth; }
+        .cyber-font { font-family: 'Orbitron', sans-serif; }
+        
+        /* Background Grid */
+        .bg-grid {
+            background-image: linear-gradient(to bottom, rgba(2,2,5,0.9), rgba(2,2,5,1)), url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            background-attachment: fixed;
         }
 
-        body {
-            background: #020205;
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-            /* Latar belakang dengan grid futuristik */
-            background-image: 
-                linear-gradient(to bottom, rgba(2,2,5,0.8), rgba(2,2,5,0.9)),
-                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+        /* Glassmorphism Luxury */
+        .glass { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(0, 229, 255, 0.2); 
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* Efek Judul Glitch & Luxury seperti gambar */
-        .main-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            background: linear-gradient(to bottom, #fff 40%, #555 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px var(--glow-purple));
-            letter-spacing: -2px;
-            text-transform: uppercase;
-        }
+        .neon-text-blue { text-shadow: 0 0 10px var(--b); color: var(--b); }
+        .neon-text-pink { text-shadow: 0 0 10px var(--p); color: var(--p); }
 
-        .subtitle {
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 12px;
-            color: var(--cyber-blue);
-            text-shadow: 0 0 10px var(--cyber-blue);
-        }
-
-        /* Card Mewah dengan Bingkai Neon (Meniru elemen box di gambar) */
-        .cyber-card {
-            background: rgba(15, 15, 25, 0.7);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            position: relative;
-            border-radius: 5px 20px 5px 20px;
-            padding: 2rem;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.05);
-        }
-
-        /* Garis dekoratif di pojok kartu agar mirip gambar */
-        .cyber-card::before {
-            content: "";
-            position: absolute;
-            top: -2px; left: -2px;
-            width: 30px; height: 30px;
-            border-top: 3px solid var(--cyber-pink);
-            border-left: 3px solid var(--cyber-pink);
-        }
-
-        .cyber-card::after {
-            content: "";
-            position: absolute;
-            bottom: -2px; right: -2px;
-            width: 30px; height: 30px;
-            border-bottom: 3px solid var(--cyber-blue);
-            border-right: 3px solid var(--cyber-blue);
-        }
-
-        .cyber-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 0 30px rgba(255, 0, 123, 0.2);
-            border-color: var(--cyber-pink);
-        }
-
-        /* Navigasi Bulat Pink seperti di gambar */
-        .nav-btn-hot {
-            background: var(--cyber-pink);
-            box-shadow: 0 0 15px var(--cyber-pink);
-            border-radius: 50px;
-            padding: 8px 25px;
-            font-family: 'Orbitron';
-            font-size: 0.7rem;
+        /* Button Cyber */
+        .btn-cyber {
+            background: linear-gradient(45deg, var(--p), #800080);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
             transition: 0.3s;
+            cursor: pointer;
         }
+        .btn-cyber:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--p); }
 
-        /* Status Bar Tengah */
-        .status-scanner {
-            border: 1px solid var(--cyber-blue);
-            background: rgba(0, 229, 255, 0.05);
-            padding: 10px 40px;
-            clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
-            display: inline-block;
-            font-family: 'Orbitron';
-            color: var(--cyber-blue);
-        }
+        /* Custom Tabs */
+        .tab-active { background: var(--b) !important; color: black !important; box-shadow: 0 0 15px var(--b); }
+
+        /* Table Styling */
+        table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+        tr { background: rgba(255,255,255,0.03); transition: 0.3s; }
+        tr:hover { background: rgba(0, 229, 255, 0.1); transform: scale(1.01); }
+        td, th { padding: 15px; text-align: left; }
+        th { color: var(--p); font-family: 'Orbitron'; font-size: 10px; }
     </style>
 </head>
-<body>
+<body class="bg-grid">
 
-    <nav class="flex justify-between items-center px-12 py-8">
-        <div class="text-2xl font-black italic tracking-tighter">GROWRUSH</div>
-        <div class="space-x-8 text-xs tracking-widest uppercase">
-            <a href="#" class="hover:text-pink-500">Home</a>
-            <a href="#" class="hover:text-pink-500">Database</a>
-            <a href="#" class="hover:text-pink-500">Features</a>
-            <button class="nav-btn-hot">DOWNLOAD</button>
+    <nav class="flex justify-between items-center px-10 py-6 sticky top-0 z-50 glass">
+        <div class="cyber-font text-2xl font-black italic tracking-tighter">GROW<span class="text-[#ff007b]">RUSH</span></div>
+        <div class="hidden md:flex space-x-8 text-[10px] tracking-[3px] cyber-font items-center">
+            <a href="#home" class="hover:text-[#00e5ff] transition">DATABASE</a>
+            <a href="#config" class="hover:text-[#00e5ff] transition">CONFIG</a>
+            <a href="#leaderboard" class="hover:text-[#00e5ff] transition">TOP_PLAYERS</a>
+            <a href="#download" class="btn-cyber px-6 py-2 text-white">DOWNLOAD</a>
         </div>
     </nav>
 
-    <div class="text-center mt-10">
-        <h1 class="main-title">GROWRUSH</h1>
-        <p class="subtitle mt-[-15px]">CYBERNETIC UNIVERSE</p>
+    <section id="home" class="py-20 text-center animate__animated animate__fadeIn">
+        <h1 class="cyber-font text-6xl md:text-9xl font-black neon-text-blue tracking-tighter">GROWRUSH</h1>
+        <p class="text-white tracking-[15px] uppercase text-sm md:text-xl opacity-50">Cybernetic Universe</p>
         
-        <div class="mt-12">
-            <div class="status-scanner">
-                SERVER STATUS: ONLINE [1,402 PLAYERS]
+        <div class="mt-10 flex justify-center gap-4">
+            <div class="glass px-6 py-3 rounded-br-3xl border-l-4 border-l-[#00e5ff]">
+                <p class="text-[10px] cyber-font text-gray-400">STATUS</p>
+                <p class="text-green-400 font-bold">ONLINE</p>
+            </div>
+            <div class="glass px-6 py-3 rounded-br-3xl border-l-4 border-l-[#ff007b]">
+                <p class="text-[10px] cyber-font text-gray-400">PLAYERS</p>
+                <p class="text-white font-bold">1,402 / 5,000</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 mt-20 px-10 mb-20">
-        
-        <div class="cyber-card">
-            <h3 class="text-cyan-400 font-bold mb-4 tracking-tighter uppercase">>> DATA_CENTER</h3>
-            <p class="text-gray-400 leading-relaxed text-sm">
-                Akses semua informasi item, market rate, dan sistem ekonomi terbaru di dalam database real-time kami.
-            </p>
-            <div class="mt-6 border-b border-gray-800 pb-2"></div>
-            <button class="mt-4 text-xs text-pink-500 hover:underline">ACCESS DATABASE _</button>
-        </div>
-
-        <div class="cyber-card">
-            <h3 class="text-pink-500 font-bold mb-4 tracking-tighter uppercase">>> ACTIVE_EVENTS</h3>
-            <p class="text-gray-400 leading-relaxed text-sm">
-                <b>NEON STRIKE:</b> Event terbatas! Dapatkan "Cybernetic Wings" dengan menyelesaikan misi harian.
-            </p>
-            <div class="mt-6 border-b border-gray-800 pb-2"></div>
-            <button class="mt-4 text-xs text-cyan-400 hover:underline">VIEW EVENTS _</button>
-        </div>
-
-        <div class="cyber-card">
-            <h3 class="text-cyan-400 font-bold mb-4 tracking-tighter uppercase">>> HOW_TO_PLAY</h3>
-            <p class="text-gray-300 text-sm italic">"Modify your hosts, connect to reality."</p>
-            <div class="bg-black/80 p-3 mt-4 text-xs font-mono text-cyan-500 border border-cyan-900">
-                127.0.0.1 growtopia1.com<br>
-                127.0.0.1 growtopia2.com
+    <section id="config" class="container mx-auto px-6 py-10">
+        <div class="glass p-8 rounded-2xl">
+            <h2 class="cyber-font text-xl mb-6 neon-text-blue">>> ACCESS_GATEWAY</h2>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="flex flex-col gap-2">
+                    <button onclick="changeTab('hosts')" id="btn-hosts" class="tab-btn bg-white/5 p-4 text-left cyber-font text-[10px] tab-active">HOSTS FILE</button>
+                    <button onclick="changeTab('vhosts')" id="btn-vhosts" class="tab-btn bg-white/5 p-4 text-left cyber-font text-[10px]">VIRTUAL HOSTS</button>
+                    <button onclick="changeTab('surge')" id="btn-surge" class="tab-btn bg-white/5 p-4 text-left cyber-font text-[10px]">SURGE 5</button>
+                    <button onclick="changeTab('ptun')" id="btn-ptun" class="tab-btn bg-white/5 p-4 text-left cyber-font text-[10px]">PTUN CONFIG</button>
+                    <button onclick="changeTab('go')" id="btn-go" class="tab-btn bg-white/5 p-4 text-left cyber-font text-[10px]">GO SURGE</button>
+                </div>
+                <div class="md:col-span-3 bg-black/50 p-6 rounded-xl border border-white/5 relative">
+                    <pre id="code-display" class="font-mono text-sm text-cyan-400 whitespace-pre-wrap"></pre>
+                    <button onclick="copyCode()" class="absolute top-4 right-4 btn-cyber px-4 py-1 text-[10px] text-white">COPY_DATA</button>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="cyber-card">
-            <h3 class="text-pink-500 font-bold mb-4 tracking-tighter uppercase">>> REWARDS_LOG</h3>
-            <p class="text-gray-400 leading-relaxed text-sm">
-                Sistem reward otomatis untuk pemain aktif setiap 24 jam. Kumpulkan token dan tukar dengan item mewah.
-            </p>
-            <button class="mt-6 nav-btn-hot text-xs w-full">CLAIM REWARDS</button>
+    <section id="leaderboard" class="container mx-auto px-6 py-10">
+        <div class="glass p-8 rounded-2xl border-r-4 border-r-[#ff007b]">
+            <h2 class="cyber-font text-xl mb-6 neon-text-pink">>> TOP_NET_WORTH</h2>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>RANK</th>
+                            <th>CITIZEN_NAME</th>
+                            <th>WEALTH_STATUS</th>
+                            <th>LEVEL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-[#00e5ff] font-bold">#1</td>
+                            <td class="cyber-font">SadesXD</td>
+                            <td class="text-yellow-500">99,999 BGL</td>
+                            <td>125</td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-400">#2</td>
+                            <td class="cyber-font">GrowRebel</td>
+                            <td class="text-yellow-500">45,210 BGL</td>
+                            <td>99</td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-400">#3</td>
+                            <td class="cyber-font">NeonRush</td>
+                            <td class="text-yellow-500">12,500 BGL</td>
+                            <td>110</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </section>
 
-    </div>
+    <section id="download" class="container mx-auto px-6 py-20 text-center">
+        <h2 class="cyber-font text-3xl mb-10">CROSS_PLATFORM_CLIENT</h2>
+        <div class="flex flex-wrap justify-center gap-6">
+            <button onclick="dl('Windows')" class="glass p-10 rounded-2xl hover:border-[#ff007b] transition group w-40">
+                <span class="text-4xl block mb-2">🪟</span>
+                <span class="cyber-font text-[10px]">WINDOWS</span>
+            </button>
+            <button onclick="dl('Android')" class="glass p-10 rounded-2xl hover:border-[#ff007b] transition group w-40">
+                <span class="text-4xl block mb-2">🤖</span>
+                <span class="cyber-font text-[10px]">ANDROID</span>
+            </button>
+            <button onclick="dl('MacOS')" class="glass p-10 rounded-2xl hover:border-[#ff007b] transition group w-40">
+                <span class="text-4xl block mb-2">🍎</span>
+                <span class="cyber-font text-[10px]">MAC_OS</span>
+            </button>
+            <button onclick="dl('iOS')" class="glass p-10 rounded-2xl hover:border-[#ff007b] transition group w-40">
+                <span class="text-4xl block mb-2">📱</span>
+                <span class="cyber-font text-[10px]">IOS_IPA</span>
+            </button>
+            <button onclick="dl('Linux')" class="glass p-10 rounded-2xl hover:border-[#ff007b] transition group w-40">
+                <span class="text-4xl block mb-2">🐧</span>
+                <span class="cyber-font text-[10px]">LINUX</span>
+            </button>
+        </div>
+    </section>
 
-    <footer class="text-center py-10 opacity-30 text-xs tracking-widest">
-        SYSTEM_ID: GROWRUSH_V.2.0.25 // UNTUK TUJUAN EDUKASI
+    <footer class="py-10 text-center text-gray-600 text-[10px] cyber-font tracking-widest">
+        &copy; 2025 GROWRUSH CORE MAIN FRAME. NO RIGHTS RESERVED.
     </footer>
 
+    <script>
+        // Data Configuration
+        const configs = {
+            hosts: "1.2.3.4 growtopia1.com\n1.2.3.4 growtopia2.com\n# Paste ke C:\\Windows\\System32\\drivers\\etc\\hosts",
+            vhosts: "{\n  \"label\": \"GrowRush\",\n  \"host\": \"1.2.3.4\",\n  \"port\": 17000\n}",
+            surge: "[General]\nloglevel = notify\n\n[Proxy]\nGrowRush = snell, 1.2.3.4, 17000, psk=growrush_key",
+            ptun: "ptun.exe --ip 1.2.3.4 --port 17001 --proxy none",
+            go: "surge-go-host: https://growrush.live/api/v1/config"
+        };
+
+        // Tab System Logic
+        function changeTab(key) {
+            document.getElementById('code-display').innerText = configs[key];
+            
+            // UI Toggle
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
+            document.getElementById('btn-' + key).classList.add('tab-active');
+        }
+
+        // Copy Logic
+        function copyCode() {
+            const text = document.getElementById('code-display').innerText;
+            navigator.clipboard.writeText(text);
+            Swal.fire({
+                icon: 'success',
+                title: 'COPIED!',
+                text: 'Data berhasil disalin ke clipboard.',
+                background: '#020205',
+                color: '#00e5ff',
+                confirmButtonColor: '#ff007b'
+            });
+        }
+
+        // Download Mockup
+        function dl(os) {
+            Swal.fire({
+                title: 'Mempersiapkan File...',
+                text: `Mengunduh GrowRush Client untuk ${os}`,
+                timer: 2000,
+                showConfirmButton: false,
+                background: '#020205',
+                color: '#fff',
+                didOpen: () => { Swal.showLoading() }
+            });
+        }
+
+        // Init Default Tab
+        changeTab('hosts');
+    </script>
 </body>
 </html>
