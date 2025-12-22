@@ -2,458 +2,304 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH | ZENITH OVERDRIVE ULTIMATUM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GROWRUSH | SUPREME ULTIMATUM</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;500;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
         :root {
-            --neon-blue: #00f2ff;
-            --neon-pink: #ff007b;
-            --neon-green: #00ff88;
-            --bg-dark: #020205;
-            --glass: rgba(10, 10, 20, 0.9);
-            --border: rgba(0, 242, 255, 0.15);
+            --neon: #00f2ff;
+            --pink: #ff007b;
+            --bg: #020204;
+            --glass: rgba(15, 15, 25, 0.8);
         }
 
-        /* RESET & BASE */
-        * { cursor: crosshair !important; box-sizing: border-box; }
+        * { cursor: crosshair !important; -webkit-tap-highlight-color: transparent; }
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg);
             color: #fff;
             font-family: 'JetBrains Mono', monospace;
             overflow-x: hidden;
             margin: 0;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 123, 0.05) 0%, transparent 40%);
         }
 
-        /* BACKGROUND INTERFACE CANVAS */
-        #neural-canvas {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            opacity: 0.4;
+        /* BACKGROUND ENGINE V12 */
+        #nebula-canvas { position: fixed; inset: 0; z-index: -1; }
+        .scanline {
+            position: fixed; inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.05), transparent);
+            height: 10px; z-index: 100; pointer-events: none;
+            animation: moveScan 8s linear infinite;
         }
+        @keyframes moveScan { from { top: -100px; } to { top: 100vh; } }
 
-        .cyber-grid {
-            position: fixed;
-            inset: 0;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-            mask-image: radial-gradient(circle, black, transparent 90%);
-        }
-
-        /* ADVANCED GLITCH HEADER */
-        .glitch-header {
+        /* TYPOGRAPHY LUXURY */
+        .title-glitch {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 15vw, 9rem);
             font-weight: 900;
-            text-transform: uppercase;
+            font-size: clamp(2.5rem, 12vw, 8rem);
             letter-spacing: -2px;
-            position: relative;
-            background: linear-gradient(to bottom, #fff 50%, #444 100%);
+            background: linear-gradient(180deg, #fff 0%, #555 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.5));
+            filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4));
         }
 
-        /* THE ZENITH ARCHITECTURE CARD */
-        .zenith-frame {
+        /* CARD SYSTEM */
+        .supreme-frame {
             background: var(--glass);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(60px);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 242, 255, 0.15);
+            border-radius: 4px;
             position: relative;
-            clip-path: polygon(
-                0 60px, 60px 0, 
-                100% 0, 100% calc(100% - 60px), 
-                calc(100% - 60px) 100%, 0 100%
-            );
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 100px rgba(0,0,0,0.8);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
         }
 
-        .zenith-frame::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, transparent 48%, var(--neon-blue) 50%, transparent 52%);
-            background-size: 300% 300%;
-            opacity: 0.05;
-            pointer-events: none;
-            animation: sweep 10s infinite linear;
+        .supreme-frame::before {
+            content: "ZENITH_PROTOCOL_V12";
+            position: absolute; top: -15px; left: 20px;
+            font-size: 8px; color: var(--neon); letter-spacing: 5px;
+            background: var(--bg); padding: 5px 15px;
         }
 
-        @keyframes sweep {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
+        /* INTERACTIVE BUTTONS */
+        .btn-master {
+            background: transparent;
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            padding: 18px 40px;
+            font-family: 'Orbitron';
+            font-size: 10px;
+            letter-spacing: 4px;
+            transition: 0.4s;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
         }
 
-        /* SIDEBAR NAVIGATION SYSTEM */
-        .nav-protocol {
-            padding: 35px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.4s;
+        .btn-master:hover, .btn-master:active {
+            background: var(--neon);
+            color: #000;
+            box-shadow: 0 0 40px var(--neon);
+            transform: translateY(-3px);
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .mobile-bottom-nav {
+                position: fixed; bottom: 0; left: 0; right: 0;
+                background: rgba(5, 5, 10, 0.95);
+                backdrop-filter: blur(20px);
+                border-top: 1px solid var(--neon);
+                display: flex; justify-content: space-around;
+                padding: 15px 5px; z-index: 200;
+            }
+            .sidebar-desktop { display: none; }
+            .content-area { padding-bottom: 120px; }
+            .supreme-frame { border: none; background: transparent; backdrop-filter: none; }
+        }
+
+        /* INFRASTRUCTURE MAP VISUAL */
+        .infra-map {
+            height: 150px;
+            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.4);
             position: relative;
             overflow: hidden;
+            margin-bottom: 20px;
         }
-
-        .nav-protocol::before {
-            content: "";
-            position: absolute;
-            left: 0; top: 0; height: 100%; width: 0;
-            background: linear-gradient(90deg, rgba(0, 242, 255, 0.1), transparent);
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .nav-protocol:hover::before, .nav-active::before {
-            width: 100%;
-        }
-
-        .nav-active {
-            border-left: 4px solid var(--neon-blue);
-            background: rgba(0, 242, 255, 0.05);
-        }
-
-        /* BRUTALIST BUTTONS */
-        .brutal-btn {
-            background: transparent;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-            font-family: 'Orbitron';
-            padding: 20px 50px;
-            font-size: 11px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            position: relative;
-            clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
-            transition: 0.3s;
-        }
-
-        .brutal-btn:hover {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 50px var(--neon-blue);
-            transform: scale(1.05);
-        }
-
-        .btn-pink { border-color: var(--neon-pink); color: var(--neon-pink); }
-        .btn-pink:hover { background: var(--neon-pink); box-shadow: 0 0 50px var(--neon-pink); }
-
-        /* DECORATIVE ELEMENTS */
-        .corner-tag {
-            position: absolute;
-            font-size: 8px;
-            color: var(--neon-blue);
-            opacity: 0.4;
-            letter-spacing: 3px;
-        }
-
-        .status-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        /* TERMINAL LOGS OVERFLOW */
-        #log-console {
-            font-size: 10px;
-            color: #444;
-            line-height: 2.2;
-            height: 200px;
-            overflow-y: hidden;
-        }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 10px; }
-
     </style>
 </head>
 <body>
 
-    <canvas id="neural-canvas"></canvas>
-    <div class="cyber-grid"></div>
+    <div class="scanline"></div>
+    <canvas id="nebula-canvas"></canvas>
 
-    <main class="min-h-screen p-6 lg:p-16 relative z-10">
+    <main class="min-h-screen p-4 md:p-12 relative z-10">
         
-        <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent mb-20"></div>
-
-        <header class="text-center mb-32">
-            <div class="inline-block px-6 py-2 border border-cyan-500/20 bg-cyan-500/5 text-[10px] tracking-[12px] text-cyan-400 mb-8 animate-pulse">
-                AUTHORIZED_ACCESS_ONLY // CORE_V8
-            </div>
-            <h1 class="glitch-header">GROWRUSH</h1>
-            <div class="flex justify-center items-center gap-10 mt-6">
-                <div class="h-[1px] w-24 bg-white/10"></div>
-                <p class="cyber-font text-[10px] tracking-[20px] opacity-30 italic">ZENITH_OVERDRIVE</p>
-                <div class="h-[1px] w-24 bg-white/10"></div>
+        <header class="text-center py-10 md:py-24">
+            <p class="text-[9px] tracking-[15px] opacity-30 mb-4 animate-pulse uppercase">Authorized_Encryption_Terminal</p>
+            <h1 class="title-glitch">GROWRUSH</h1>
+            <div class="mt-6 flex justify-center items-center gap-4">
+                <span class="h-[1px] w-20 bg-cyan-500/20"></span>
+                <span class="text-cyan-500 text-[10px] cyber-font tracking-[5px]">15.235.227.241</span>
+                <span class="h-[1px] w-20 bg-cyan-500/20"></span>
             </div>
         </header>
 
-        <div class="max-w-[1500px] mx-auto">
-            <div class="grid lg:grid-cols-12 zenith-frame border-none min-h-[850px]">
-                
-                <div class="lg:col-span-4 bg-black/80 border-r border-white/5 flex flex-col">
-                    
-                    <div class="p-10 border-b border-white/5 bg-white/[0.02]">
-                        <div class="flex items-center gap-4 mb-2">
-                            <span class="status-dot bg-green-500 shadow-[0_0_10px_#00ff88]"></span>
-                            <span class="text-[10px] font-bold tracking-[5px] text-gray-400">SERVER_STABLE</span>
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-4 sidebar-desktop supreme-frame p-8 flex flex-col">
+                <div class="mb-10">
+                    <h3 class="text-[10px] text-gray-500 tracking-[8px] mb-8">SECURE_CHANNELS</h3>
+                    <nav class="space-y-4">
+                        <div onclick="inject('go')" id="n-go" class="p-6 border-l-2 border-transparent hover:bg-cyan-500/5 cursor-pointer transition-all active-nav">
+                            <span class="block text-[8px] opacity-40">01//</span>
+                            <span class="text-xs font-bold tracking-widest">HOST_GO (.CONFIG)</span>
                         </div>
-                        <h4 class="text-xs cyber-font tracking-[8px] text-cyan-500 uppercase">15.235.227.241</h4>
-                    </div>
-
-                    <nav class="flex-grow">
-                        <div onclick="injectProtocol('go')" id="tab-go" class="nav-protocol nav-active cursor-pointer group">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <span class="text-[9px] text-gray-600 block mb-1">NODE_ID: 01</span>
-                                    <span class="cyber-font text-xs font-black tracking-[4px] text-white group-hover:text-cyan-400 transition-colors">HOST_GO (.CONFIG)</span>
-                                </div>
-                                <div class="text-white/5 text-3xl font-black italic">01</div>
-                            </div>
+                        <div onclick="inject('ptun')" id="n-ptun" class="p-6 border-l-2 border-transparent hover:bg-cyan-500/5 cursor-pointer transition-all">
+                            <span class="block text-[8px] opacity-40">02//</span>
+                            <span class="text-xs font-bold tracking-widest">PTUN (ANDROID)</span>
                         </div>
-                        <div onclick="injectProtocol('ptun')" id="tab-ptun" class="nav-protocol cursor-pointer group">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <span class="text-[9px] text-gray-600 block mb-1">NODE_ID: 02</span>
-                                    <span class="cyber-font text-xs font-black tracking-[4px] text-white group-hover:text-cyan-400 transition-colors">PTUN (ANDROID)</span>
-                                </div>
-                                <div class="text-white/5 text-3xl font-black italic">02</div>
-                            </div>
+                        <div onclick="inject('vhost')" id="n-vhost" class="p-6 border-l-2 border-transparent hover:bg-cyan-500/5 cursor-pointer transition-all">
+                            <span class="block text-[8px] opacity-40">03//</span>
+                            <span class="text-xs font-bold tracking-widest">VIRTUAL_HOST (TXT)</span>
                         </div>
-                        <div onclick="injectProtocol('vhost')" id="tab-vhost" class="nav-protocol cursor-pointer group">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <span class="text-[9px] text-gray-600 block mb-1">NODE_ID: 03</span>
-                                    <span class="cyber-font text-xs font-black tracking-[4px] text-white group-hover:text-cyan-400 transition-colors">VIRTUAL_HOST (.TXT)</span>
-                                </div>
-                                <div class="text-white/5 text-3xl font-black italic">03</div>
-                            </div>
-                        </div>
-                        <div onclick="injectProtocol('surge')" id="tab-surge" class="nav-protocol cursor-pointer group">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <span class="text-[9px] text-gray-600 block mb-1">NODE_ID: 04</span>
-                                    <span class="cyber-font text-xs font-black tracking-[4px] text-white group-hover:text-cyan-400 transition-colors">SURGE_5 (IOS)</span>
-                                </div>
-                                <div class="text-white/5 text-3xl font-black italic">04</div>
-                            </div>
+                        <div onclick="inject('surge')" id="n-surge" class="p-6 border-l-2 border-transparent hover:bg-cyan-500/5 cursor-pointer transition-all">
+                            <span class="block text-[8px] opacity-40">04//</span>
+                            <span class="text-xs font-bold tracking-widest">SURGE_5 (IOS)</span>
                         </div>
                     </nav>
-
-                    <div class="p-10 border-t border-white/5 bg-black">
-                        <div class="flex justify-between mb-4">
-                            <span class="text-[9px] text-gray-600 tracking-[3px]">COMM_LOGS</span>
-                            <span class="text-[9px] text-cyan-500/50 uppercase">v8.2.0</span>
-                        </div>
-                        <div id="log-console">
-                            </div>
+                </div>
+                
+                <div class="mt-auto bg-black/50 p-6 border border-white/5">
+                    <div id="log-stream" class="text-[9px] text-cyan-500/40 leading-relaxed h-[100px] overflow-hidden">
+                        > INITIALIZING_DECRYPTION...<br>
+                        > SYNCING_NODE_15.235...<br>
+                        > SECURITY_PASS_OK...
                     </div>
                 </div>
-
-                <div class="lg:col-span-8 p-10 lg:p-24 relative flex items-center justify-center overflow-hidden">
-                    
-                    <div class="corner-tag top-10 left-10">CORE_INT_074</div>
-                    <div class="corner-tag bottom-10 left-10 italic">ZENITH_ULTIMATUM_NODE</div>
-                    <div class="corner-tag top-10 right-10">SECURITY: AES_256</div>
-
-                    <div id="main-injector" class="w-full">
-                        </div>
-
-                    <div class="absolute bottom-10 right-10 flex items-end gap-1 opacity-20">
-                        <div class="w-1 h-8 bg-white"></div><div class="w-2 h-12 bg-white"></div><div class="w-0.5 h-16 bg-white"></div>
-                        <div class="w-4 h-6 bg-white"></div><div class="w-1 h-14 bg-white"></div>
-                    </div>
-                </div>
-
             </div>
+
+            <div class="lg:col-span-8 supreme-frame p-6 md:p-20 content-area relative min-h-[600px] flex flex-col justify-center">
+                <div id="display-injector" class="relative z-10">
+                    </div>
+            </div>
+
         </div>
 
-        <footer class="mt-40 text-center pb-20">
-            <div class="h-[1px] w-48 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto mb-10"></div>
-            <p class="text-[9px] cyber-font tracking-[25px] opacity-10 uppercase">Global_Encryption_Layer_GrowRush</p>
+        <footer class="mt-40 text-center opacity-10 text-[8px] tracking-[25px] pb-20">
+            ZENITH_SUPREME_SYSTEM_2024
         </footer>
 
     </main>
 
+    <div class="mobile-bottom-nav md:hidden">
+        <div onclick="inject('go')" class="flex flex-col items-center">
+            <span class="text-xl">⚡</span><span class="text-[8px] mt-1">CONFIG</span>
+        </div>
+        <div onclick="inject('ptun')" class="flex flex-col items-center">
+            <span class="text-xl">🤖</span><span class="text-[8px] mt-1">PTUN</span>
+        </div>
+        <div onclick="inject('vhost')" class="flex flex-col items-center">
+            <span class="text-xl">📜</span><span class="text-[8px] mt-1">HOSTS</span>
+        </div>
+        <div onclick="inject('surge')" class="flex flex-col items-center">
+            <span class="text-xl">🍎</span><span class="text-[8px] mt-1">SURGE</span>
+        </div>
+    </div>
+
     <script>
-        // CORE PROTOCOL DATA 
-        const DATA = {
+        const PROTOCOLS = {
             go: {
                 title: "GrowRush.config",
-                type: "ENCRYPTED_CONFIG",
+                tag: "REMOTE_CONFIG_NODE",
                 url: "https://www.growrush.my.id/GrowRushPS.config",
-                desc: "Arsitektur konfigurasi utama untuk sinkronisasi Host Go. Link ini mengandung pemetaan jalur akses server yang telah dienkripsi untuk stabilitas maksimum."
+                desc: "Arsitektur utama untuk sistem sinkronisasi Host Go. Menghubungkan client secara terenkripsi ke backbone server."
             },
             ptun: {
-                title: "PTUN_ANDROID_IDENTITY",
-                type: "REMOTE_TEXT_GATE",
+                title: "PTUN_IDENTITY",
+                tag: "ANDROID_SECURE_TUNNEL",
                 url: "https://www.growrush.my.id/GrowRushPS.txt",
-                desc: "Protokol tunneling khusus perangkat Android. Memungkinkan bypass proteksi ISP untuk koneksi langsung ke node 15.235.227.241."
+                desc: "Protokol tunneling khusus Android. Memberikan akses bypass proteksi ISP untuk koneksi stabil ke node GrowRush."
             },
             vhost: {
-                title: "VIRTUAL_HOST_DATABASE",
-                type: "RAW_MAPPING_DATA",
-                raw: "15.235.227.241 growtopia1.com\n15.235.227.241 growtopia2.com\n15.235.227.241 www.growtopia1.com\n15.235.227.241 www.growtopia2.com",
+                title: "VIRTUAL_HOST_MAPPING",
+                tag: "SYSTEM_RAW_IDENTITY",
+                data: "15.235.227.241 growtopia1.com\n15.235.227.241 growtopia2.com\n15.235.227.241 www.growtopia1.com\n15.235.227.241 www.growtopia2.com",
                 url: "https://www.growrush.my.id/GrowRushPS.txt",
-                desc: "Informasi pemetaan manual untuk file hosts sistem. Mengarahkan traffic domain Growtopia asli menuju infrastruktur GrowRush Private Server. "
+                desc: "Data pemetaan manual IP 15.235.227.241. Gunakan untuk modifikasi file hosts pada Windows atau Linux."
             },
             surge: {
-                title: "SURGE_5_SYNC_NODE",
-                type: "APPLE_PROTO_CONF",
+                title: "SURGE_IOS_SYNC",
+                tag: "APPLE_REMOTE_CONF",
                 url: "https://www.growrush.my.id/GrowRushPS.conf",
-                desc: "Konfigurasi remote untuk aplikasi Surge 5 pada iOS. Dioptimalkan untuk meminimalkan latensi dan meningkatkan keamanan data pada perangkat Apple."
+                desc: "Remote configuration khusus Surge 5 iOS. Dioptimalkan untuk stabilitas koneksi tinggi dan latensi rendah."
             }
         };
 
-        // INJECTION LOGIC
-        function injectProtocol(key) {
-            const container = document.getElementById('main-injector');
-            const data = DATA[key];
+        function inject(key) {
+            const container = document.getElementById('display-injector');
+            const data = PROTOCOLS[key];
 
-            // UI Feedback
-            document.querySelectorAll('.nav-protocol').forEach(n => n.classList.remove('nav-active'));
-            document.getElementById('tab-'+key).classList.add('nav-active');
-
-            // Animation GSAP
-            gsap.to(container, { opacity: 0, filter: 'blur(20px)', y: 20, duration: 0.3, onComplete: () => {
+            // Animasi Transisi
+            gsap.to(container, { opacity: 0, y: 30, scale: 0.9, duration: 0.3, onComplete: () => {
                 let html = `
                     <div class="animate__animated animate__fadeIn">
-                        <div class="mb-16 relative inline-block">
-                            <div class="absolute inset-0 bg-cyan-500/20 blur-3xl animate-pulse"></div>
-                            <div class="relative w-32 h-32 border border-white/10 bg-black/40 flex items-center justify-center">
-                                <span class="text-xs cyber-font tracking-widest text-cyan-400">DATA_PKT</span>
+                        <div class="infra-map flex items-center justify-around px-10">
+                            <div class="text-center"><div class="text-2xl">📱</div><div class="text-[7px] mt-2 opacity-50">USER_NODE</div></div>
+                            <div class="h-[1px] flex-grow bg-gradient-to-r from-cyan-500 to-transparent mx-4 relative">
+                                <div class="absolute top-[-2px] left-0 w-1 h-1 bg-white rounded-full animate-ping"></div>
                             </div>
+                            <div class="text-center"><div class="text-2xl">🛡️</div><div class="text-[7px] mt-2 opacity-50">ZENITH_PROXY</div></div>
+                            <div class="h-[1px] flex-grow bg-gradient-to-l from-pink-500 to-transparent mx-4"></div>
+                            <div class="text-center"><div class="text-2xl">🖥️</div><div class="text-[7px] mt-2 opacity-50">SRV_15.235</div></div>
                         </div>
-                        <h2 class="cyber-font text-5xl md:text-7xl font-black mb-2 italic text-white uppercase">${data.title}</h2>
-                        <p class="text-[10px] text-cyan-400 tracking-[10px] mb-12 uppercase font-bold border-l-4 border-cyan-500 pl-6">${data.type}</p>
+                        <h2 class="text-4xl md:text-7xl font-black italic mb-2 text-white">${data.title}</h2>
+                        <p class="text-[9px] text-cyan-500 tracking-[10px] mb-12 font-bold">${data.tag}</p>
+                        <div class="p-8 border-l-4 border-pink-500 bg-white/5 text-xs md:text-sm text-gray-400 italic mb-12 leading-relaxed">
+                            "${data.desc}"
+                        </div>
                 `;
 
                 if(key === 'vhost') {
-                    html += `
-                        <div class="bg-black/90 p-10 border border-white/5 font-mono text-xs text-cyan-400/60 leading-relaxed mb-12 w-full text-left relative overflow-hidden group">
-                            <div class="absolute top-0 left-0 w-full h-[1px] bg-cyan-500/30"></div>
-                            <div class="text-[8px] text-white/20 mb-6 cyber-font">FILE_PREVIEW_MODE</div>
-                            ${data.raw.replace(/\n/g, '<br>')}
-                        </div>
-                    `;
-                } else {
-                    html += `
-                        <div class="max-w-2xl p-10 bg-white/5 border border-white/10 text-[12px] md:text-sm text-gray-400 italic mb-16 leading-loose border-r-4 border-r-pink-500/50">
-                            "${data.desc}"
-                        </div>
-                    `;
+                    html += `<div class="bg-black/80 p-6 font-mono text-[10px] text-cyan-400/60 mb-12 border border-white/5 leading-loose">
+                        ${data.data.replace(/\n/g, '<br>')}
+                    </div>`;
                 }
 
                 html += `
-                    <div class="flex flex-wrap gap-6">
-                        <button onclick="copyAccess('${data.url}')" class="brutal-btn">COPY_REMOTE_LINK</button>
-                        <a href="${data.url}" download class="brutal-btn btn-pink">DOWNLOAD_ENCRYPTED_FILE</a>
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <button onclick="copyLink('${data.url}')" class="btn-master">COPY_ACCESS_URL</button>
+                        <a href="${data.url}" download class="btn-master text-center" style="border-color:#ff007b; color:#ff007b">FETCH_SECURE_FILE</a>
                     </div>
                 </div>`;
 
                 container.innerHTML = html;
-                gsap.to(container, { opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.6 });
-                addLog(`PROTOCOL_INJECTED: ${key.toUpperCase()}`);
+                gsap.to(container, { opacity: 1, y: 0, scale: 1, duration: 0.6 });
+                addLog(`PROTOCOL_LOADED: ${key.toUpperCase()}`);
             }});
         }
 
-        // TERMINAL ENGINE
-        function addLog(msg) {
-            const console = document.getElementById('log-console');
-            const div = document.createElement('div');
-            div.innerHTML = `> [${new Date().toLocaleTimeString()}] ${msg}... OK`;
-            console.prepend(div);
-            if(console.children.length > 8) console.removeChild(console.lastChild);
-        }
-
-        function copyAccess(text) {
-            navigator.clipboard.writeText(text);
-            Swal.fire({
-                title: 'ACCESS_EXTRACTED',
-                text: 'Kunci protokol berhasil disalin ke memori.',
-                icon: 'success',
-                background: '#020205',
-                color: '#00f2ff',
-                confirmButtonColor: '#ff007b',
-                customClass: { confirmButton: 'brutal-btn' }
-            });
-            addLog('SYSCALL: MEMORY_COPY_SUCCESS');
-        }
-
-        // NEURAL BACKGROUND CANVAS
-        const canvas = document.getElementById('neural-canvas');
+        // BACKGROUND ENGINE
+        const canvas = document.getElementById('nebula-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let points = [];
 
-        function initCanvas() {
+        function init() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            particles = [];
-            for(let i=0; i<80; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    size: Math.random() * 2
-                });
-            }
-        }
-
-        function drawParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00f2ff';
-            ctx.strokeStyle = 'rgba(0, 242, 255, 0.1)';
-            
-            particles.forEach((p, i) => {
-                p.x += p.vx; p.y += p.vy;
-                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-
-                particles.slice(i + 1).forEach(p2 => {
-                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if(dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                });
+            points = [];
+            for(let i=0; i<60; i++) points.push({
+                x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+                v: Math.random()*0.5, size: Math.random()*2
             });
-            requestAnimationFrame(drawParticles);
         }
 
-        // START ENGINE
-        window.addEventListener('resize', initCanvas);
-        window.onload = () => {
-            initCanvas();
-            drawParticles();
-            injectProtocol('go');
-            
-            // Background Log Simulation
-            setInterval(() => {
-                const logs = ['SYNC_NODE', 'RECV_PKT', 'AUTH_OK', 'ENCRYPT_LAYER_7', 'CLEANING_CACHE'];
-                addLog(logs[Math.floor(Math.random()*logs.length)]);
-            }, 6000);
-        };
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(0, 242, 255, 0.3)";
+            points.forEach(p => {
+                p.y -= p.v; if(p.y < 0) p.y = canvas.height;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+
+        function addLog(msg) {
+            const stream = document.getElementById('log-stream');
+            stream.innerHTML = `> [${new Date().toLocaleTimeString()}] ${msg}<br>` + stream.innerHTML;
+        }
+
+        function copyLink(t) {
+            navigator.clipboard.writeText(t);
+            Swal.fire({ title: 'ACCESS_GRANTED', text: 'Link disalin.', icon: 'success', background: '#020204', color: '#00f2ff', confirmButtonColor: '#ff007b' });
+        }
+
+        window.onload = () => { init(); draw(); inject('go'); };
+        window.onresize = init;
     </script>
 </body>
 </html>
