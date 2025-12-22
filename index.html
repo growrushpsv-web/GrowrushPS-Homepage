@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH | OFFICIAL GRID</title>
+    <title>GROWRUSH | OFFICIAL ZENITH SYSTEM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -14,118 +14,115 @@
         body { background: var(--dark); color: white; font-family: 'JetBrains Mono', monospace; overflow-x: hidden; scroll-behavior: smooth; }
         .cyber-font { font-family: 'Orbitron', sans-serif; }
 
+        /* Background Grid & Texture */
         .bg-grid {
-            background-image: linear-gradient(to bottom, rgba(2,2,5,0.9), rgba(2,2,5,1)), 
+            background-image: linear-gradient(to bottom, rgba(2,2,5,0.95), rgba(2,2,5,1)), 
                               url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
             background-attachment: fixed;
         }
 
+        /* Luxury Cyber Card */
         .luxury-card {
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 242, 255, 0.1);
-            clip-path: polygon(0 0, 95% 0, 100% 10%, 100% 100%, 5% 100%, 0 90%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 242, 255, 0.15);
+            clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 8% 100%, 0 92%);
             position: relative;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .luxury-card:hover {
-            border-color: var(--magenta);
-            box-shadow: 0 0 40px rgba(255, 0, 123, 0.2);
+            border-color: var(--neon);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
         }
 
-        .glitch-text {
-            font-size: clamp(3rem, 10vw, 8rem);
-            background: linear-gradient(to bottom, #fff 40%, #444 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
-        }
-
-        .btn-zenith {
-            background: var(--magenta);
-            box-shadow: 0 0 20px var(--magenta);
-            font-family: 'Orbitron';
-            font-size: 10px;
-            letter-spacing: 3px;
-            clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
-            transition: 0.3s;
-        }
-
-        .btn-zenith:hover {
-            filter: brightness(1.3);
-            transform: translateY(-3px);
-            box-shadow: 0 0 40px var(--magenta);
-        }
-
+        /* Scanner Line Animation */
         .scanner-line {
-            width: 100%; height: 2px; background: var(--neon);
+            width: 100%; height: 1px; background: var(--neon);
             position: absolute; top: 0; left: 0;
-            animation: scan 4s linear infinite;
-            opacity: 0.3; box-shadow: 0 0 10px var(--neon);
+            animation: scan 5s linear infinite;
+            opacity: 0.3; box-shadow: 0 0 15px var(--neon);
         }
 
         @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
-        
-        .active-tab { border-left: 4px solid var(--neon) !important; background: rgba(0, 242, 255, 0.05); }
+
+        /* Text Effects */
+        .glitch-text {
+            font-size: clamp(3rem, 12vw, 8rem);
+            background: linear-gradient(to bottom, #fff 40%, #444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+        }
+
+        /* Active Tab Styling */
+        .tab-active { 
+            border-left: 4px solid var(--magenta) !important; 
+            background: rgba(255, 0, 123, 0.08) !important; 
+            color: var(--magenta) !important;
+        }
+
+        .btn-main {
+            background: var(--magenta);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: 0.3s;
+        }
+        .btn-main:hover { filter: brightness(1.2); transform: scale(1.05); box-shadow: 0 0 20px var(--magenta); }
     </style>
 </head>
 <body class="bg-grid">
 
-    <nav class="flex justify-between items-center px-10 py-8 border-b border-white/5 bg-black/40 backdrop-blur-xl sticky top-0 z-[100]">
+    <nav class="flex justify-between items-center px-8 py-6 border-b border-white/5 bg-black/40 backdrop-blur-md sticky top-0 z-[100]">
         <div class="cyber-font text-2xl font-black italic tracking-tighter">GROW<span class="text-[#ff007b]">RUSH</span></div>
-        <div class="hidden lg:flex gap-10 text-[10px] tracking-[5px] cyber-font items-center">
-            <a href="#how" class="hover:text-cyan-400 transition">PROTOCOLS</a>
+        <div class="hidden md:flex gap-8 text-[10px] tracking-[4px] cyber-font">
+            <a href="#config" class="hover:text-cyan-400 transition">DATABASE</a>
             <a href="#download" class="hover:text-cyan-400 transition">CLIENTS</a>
-            <button onclick="window.open('https://discord.gg/growrush')" class="btn-zenith px-8 py-3 text-white">JOIN_DISCORD</button>
+            <a href="https://discord.gg/growrush" target="_blank" class="text-pink-500">COMMUNITY</a>
         </div>
     </nav>
 
-    <section class="min-h-[80vh] flex flex-col justify-center items-center text-center p-6">
-        <div class="animate__animated animate__zoomIn">
-            <h1 class="glitch-text cyber-font font-black tracking-tighter italic">GROWRUSH</h1>
-            <p class="tracking-[15px] md:tracking-[30px] text-cyan-400 text-xs md:text-lg mb-10 opacity-70">PRIVATE_SERVER_ZENITH</p>
-            
-            <div class="luxury-card inline-block px-10 py-4 border-l-4 border-l-cyan-400">
-                <p class="text-[10px] text-gray-500 mb-1">NETWORK_IP</p>
-                <p class="text-white font-bold tracking-widest uppercase">15.235.227.241</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="how" class="container mx-auto px-6 py-20">
-        <h2 class="cyber-font text-2xl mb-12 text-center tracking-[10px] animate__animated animate__fadeInUp">// CONFIGURATION_ACCESS</h2>
+    <header class="min-h-[70vh] flex flex-col justify-center items-center text-center p-4">
+        <h1 class="glitch-text cyber-font font-black tracking-tighter italic animate__animated animate__fadeInDown">GROWRUSH</h1>
+        <p class="tracking-[15px] md:tracking-[25px] text-cyan-400 text-[10px] md:text-sm mb-12 opacity-80">ZENITH_NETWORK_CORE</p>
         
-        <div class="grid lg:grid-cols-12 gap-10">
-            <div class="lg:col-span-4 space-y-4">
-                <button onclick="changeTab('surge')" id="btn-surge" class="w-full text-left p-6 luxury-card border-none hover:bg-white/5 transition active-tab">
-                    <span class="cyber-font text-xs tracking-widest text-cyan-400">IOS / SURGE 5</span>
+        <div class="luxury-card px-10 py-4 border-l-4 border-l-cyan-400 animate__animated animate__fadeInUp">
+            <p class="text-[9px] text-gray-500 cyber-font mb-1">MAIN_SERVER_IP</p>
+            <p class="text-sm font-bold tracking-widest text-white">15.235.227.241</p>
+        </div>
+    </header>
+
+    <section id="config" class="container mx-auto px-6 py-20">
+        <div class="grid lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-4 space-y-3">
+                <button onclick="changeNode('go')" id="btn-go" class="w-full text-left p-6 luxury-card border-none tab-active">
+                    <span class="cyber-font text-[10px] tracking-[3px]">HOST_GO (.CONFIG)</span>
                 </button>
-                <button onclick="changeTab('ptun')" id="btn-ptun" class="w-full text-left p-6 luxury-card border-none hover:bg-white/5 transition">
-                    <span class="cyber-font text-xs tracking-widest">ANDROID / PTUN</span>
+                <button onclick="changeNode('vhost')" id="btn-vhost" class="w-full text-left p-6 luxury-card border-none">
+                    <span class="cyber-font text-[10px] tracking-[3px]">VIRTUAL_HOST (.TXT)</span>
                 </button>
-                <button onclick="changeTab('hosts')" id="tab-hosts" class="w-full text-left p-6 luxury-card border-none hover:bg-white/5 transition">
-                    <span class="cyber-font text-xs tracking-widest text-gray-400">WINDOWS_HOSTS</span>
+                <button onclick="changeNode('ios')" id="btn-ios" class="w-full text-left p-6 luxury-card border-none">
+                    <span class="cyber-font text-[10px] tracking-[3px]">SURGE_5 (IOS)</span>
                 </button>
             </div>
 
             <div class="lg:col-span-8">
-                <div class="luxury-card p-12 min-h-[450px] flex flex-col justify-center relative overflow-hidden bg-black/40">
+                <div class="luxury-card p-10 md:p-16 min-h-[500px] flex flex-col justify-center relative overflow-hidden bg-black/40">
                     <div class="scanner-line"></div>
                     
-                    <div id="content-display" class="animate__animated animate__fadeIn">
+                    <div id="protocol-view" class="animate__animated animate__fadeIn">
                         <div class="flex flex-col items-center text-center">
-                            <div class="mb-6 relative">
-                                <svg class="w-20 h-20 text-cyan-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="mb-8 opacity-70 animate-pulse">
+                                <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                 </svg>
                             </div>
-                            <h3 class="cyber-font text-2xl mb-2 italic">GrowRushPS.conf</h3>
-                            <p class="text-[10px] text-gray-500 tracking-[5px] mb-8 uppercase text-cyan-400">IOS / SURGE 5 REMOTE CONFIG</p>
+                            <h3 class="cyber-font text-2xl text-white mb-2 italic">GrowRushPS.config</h3>
+                            <p class="text-[10px] text-cyan-400 tracking-[6px] mb-10 uppercase font-bold">Remote_Host_Protocol</p>
                             
                             <div class="flex flex-wrap gap-4 justify-center">
-                                <button onclick="copyLink('https://www.growrush.my.id/GrowRushPS.conf')" class="border border-cyan-400 text-cyan-400 px-8 py-3 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition">COPY_REMOTE_URL</button>
-                                <button onclick="window.open('https://www.growrush.my.id/GrowRushPS.conf')" class="btn-zenith px-10 py-3 text-white uppercase font-bold">Download_File</button>
+                                <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.config')" class="px-8 py-3 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all">COPY_CONFIG_URL</button>
+                                <a href="https://www.growrush.my.id/GrowRushPS.config" class="btn-main px-8 py-3 text-white text-[10px] cyber-font font-bold uppercase">Download_Config</a>
                             </div>
                         </div>
                     </div>
@@ -134,92 +131,91 @@
         </div>
     </section>
 
-    <section id="download" class="container mx-auto px-6 py-20">
-        <h2 class="cyber-font text-xl mb-16 tracking-[15px] text-center opacity-60">CLIENT_REPOSITORIES</h2>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <div onclick="dl('Windows')" class="luxury-card p-10 text-center cursor-pointer group">
-                <span class="text-4xl block mb-4 group-hover:scale-110 transition duration-500">🪟</span>
-                <span class="cyber-font text-[10px] tracking-widest text-gray-400">WIN_CLIENT</span>
+    <section id="download" class="container mx-auto px-6 py-20 border-t border-white/5">
+        <h2 class="cyber-font text-center text-xl mb-12 tracking-[10px] opacity-60">ACCESS_TERMINALS</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div onclick="Swal.fire('WINDOWS', 'Fetching latest build...', 'info')" class="luxury-card p-10 text-center cursor-pointer group">
+                <span class="text-3xl block mb-4 group-hover:scale-110 transition">🪟</span>
+                <span class="cyber-font text-[10px] text-gray-500">WINDOWS_V1</span>
             </div>
-            <div onclick="dl('Android')" class="luxury-card p-10 text-center cursor-pointer group border-l-cyan-500/50">
-                <span class="text-4xl block mb-4 group-hover:scale-110 transition duration-500">🤖</span>
-                <span class="cyber-font text-[10px] tracking-widest text-cyan-400">APK_CLONE</span>
+            <div onclick="Swal.fire('ANDROID', 'Downloading APK Clone...', 'info')" class="luxury-card p-10 text-center cursor-pointer group border-l-cyan-500/40">
+                <span class="text-3xl block mb-4 group-hover:scale-110 transition">🤖</span>
+                <span class="cyber-font text-[10px] text-cyan-400">ANDROID_APK</span>
             </div>
-            <div onclick="dl('iOS')" class="luxury-card p-10 text-center cursor-pointer group">
-                <span class="text-4xl block mb-4 group-hover:scale-110 transition duration-500">📱</span>
-                <span class="cyber-font text-[10px] tracking-widest text-gray-400">IPA_IOS</span>
+            <div onclick="Swal.fire('IOS', 'Opening IPA Repository...', 'info')" class="luxury-card p-10 text-center cursor-pointer group">
+                <span class="text-3xl block mb-4 group-hover:scale-110 transition">📱</span>
+                <span class="cyber-font text-[10px] text-gray-500">IOS_IPA</span>
             </div>
-            <div onclick="dl('Mac')" class="luxury-card p-10 text-center cursor-pointer group">
-                <span class="text-4xl block mb-4 group-hover:scale-110 transition duration-500">💻</span>
-                <span class="cyber-font text-[10px] tracking-widest text-gray-400">MACOS_V1</span>
+            <div onclick="Swal.fire('MACOS', 'Fetching Mac binary...', 'info')" class="luxury-card p-10 text-center cursor-pointer group">
+                <span class="text-3xl block mb-4 group-hover:scale-110 transition">💻</span>
+                <span class="cyber-font text-[10px] text-gray-500">MACOS_V1</span>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 text-center opacity-20 text-[10px] cyber-font tracking-[10px]">
-        ACCESS_DENIED // GROWRUSH_MAIN_GRID // 15.235.227.241
+    <footer class="py-20 text-center opacity-20 cyber-font text-[9px] tracking-[10px]">
+        CORE_GATEWAY // NODE_15.235.227.241 // EST.2025
     </footer>
 
     <script>
-        const configData = {
-            surge: `
+        const nodes = {
+            go: `
                 <div class="flex flex-col items-center text-center">
-                    <svg class="w-20 h-20 text-cyan-400 opacity-60 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    <h3 class="cyber-font text-2xl mb-2 italic">GrowRushPS.conf</h3>
-                    <p class="text-[10px] text-gray-500 tracking-[5px] mb-8 uppercase text-cyan-400">IOS / SURGE 5 REMOTE CONFIG</p>
+                    <div class="mb-8 opacity-70 animate-pulse">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="cyber-font text-2xl text-white mb-2 italic">GrowRushPS.config</h3>
+                    <p class="text-[10px] text-cyan-400 tracking-[6px] mb-10 uppercase font-bold">Remote_Host_Protocol</p>
                     <div class="flex gap-4">
-                        <button onclick="copyLink('https://www.growrush.my.id/GrowRushPS.conf')" class="border border-cyan-400 text-cyan-400 px-8 py-3 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition">COPY_REMOTE_URL</button>
-                        <button onclick="window.open('https://www.growrush.my.id/GrowRushPS.conf')" class="btn-zenith px-10 py-3 text-white uppercase font-bold">Download_File</button>
+                        <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.config')" class="px-8 py-3 border border-cyan-400 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-400 hover:text-black transition-all">COPY_CONFIG_URL</button>
+                        <a href="https://www.growrush.my.id/GrowRushPS.config" class="btn-main px-8 py-3 text-white text-[10px] cyber-font font-bold uppercase">Download_Config</a>
                     </div>
                 </div>`,
-            ptun: `
-                <div class="flex flex-col items-center text-center">
-                    <svg class="w-20 h-20 text-pink-500 opacity-60 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                    </svg>
-                    <h3 class="cyber-font text-2xl mb-2 italic">GrowRushPS.txt</h3>
-                    <p class="text-[10px] text-gray-500 tracking-[5px] mb-8 uppercase text-pink-500">ANDROID / PTUN CONFIGURATION</p>
-                    <div class="flex gap-4">
-                        <button onclick="copyLink('https://www.growrush.my.id/GrowRushPS.txt')" class="border border-pink-500 text-pink-500 px-8 py-3 text-[10px] cyber-font hover:bg-pink-500 hover:text-white transition">COPY_REMOTE_URL</button>
-                        <button onclick="window.open('https://www.growrush.my.id/GrowRushPS.txt')" class="btn-zenith px-10 py-3 text-white uppercase font-bold">Download_Txt</button>
-                    </div>
-                </div>`,
-            hosts: `
+            vhost: `
                 <div class="w-full">
-                    <h3 class="cyber-font text-cyan-400 mb-4 text-xs tracking-widest uppercase">WINDOWS_HOSTS_PROTOCOL</h3>
-                    <div class="bg-black/80 p-6 rounded border border-white/10 relative">
-                        <pre class="font-mono text-cyan-400 text-sm">15.235.227.241 growtopia1.com\n15.235.227.241 growtopia2.com</pre>
-                        <button onclick="copyText('15.235.227.241 growtopia1.com\\n15.235.227.241 growtopia2.com')" class="absolute top-4 right-4 text-[8px] bg-cyan-400 text-black px-3 py-1 font-bold">COPY</button>
+                    <h3 class="cyber-font text-cyan-400 text-sm mb-4 tracking-widest uppercase">// VHOST_IDENTITY_LINK</h3>
+                    <div class="bg-black/80 p-6 rounded border border-white/5 font-mono text-xs text-cyan-400/80 mb-8 leading-relaxed text-left">
+                        15.235.227.241 growtopia1.com<br>
+                        15.235.227.241 growtopia2.com<br>
+                        15.235.227.241 www.growtopia1.com<br>
+                        15.235.227.241 www.growtopia2.com 
                     </div>
-                    <p class="text-[9px] text-gray-500 mt-4 tracking-widest italic">// PATH: C:\\Windows\\System32\\drivers\\etc\\hosts</p>
+                    <div class="flex flex-col gap-3">
+                        <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.txt')" class="w-full py-4 border border-cyan-500/50 text-cyan-400 text-[10px] cyber-font hover:bg-cyan-500 hover:text-black transition-all uppercase">Copy_Remote_VHost_URL</button>
+                        <a href="https://www.growrush.my.id/GrowRushPS.txt" class="text-center w-full py-4 bg-white text-black text-[10px] cyber-font font-bold uppercase">Download_VHost_Txt</a>
+                    </div>
+                </div>`,
+            ios: `
+                <div class="flex flex-col items-center">
+                    <h3 class="cyber-font text-2xl text-pink-500 mb-2 italic tracking-tight">IOS_SURGE_5</h3>
+                    <p class="text-[10px] text-gray-500 tracking-[5px] mb-10 uppercase opacity-60">System_Conf_Access</p>
+                    <div class="w-full bg-black/60 p-6 rounded border border-white/5 font-mono text-xs text-pink-400 mb-10 text-left">
+                        URL: https://www.growrush.my.id/GrowRushPS.conf
+                    </div>
+                    <button onclick="copyData('https://www.growrush.my.id/GrowRushPS.conf')" class="w-full py-4 border border-pink-500 text-pink-500 text-[10px] cyber-font hover:bg-pink-500 hover:text-white transition-all uppercase">Copy_Surge_Link</button>
                 </div>`
         };
 
-        function changeTab(tab) {
-            const display = document.getElementById('content-display');
-            display.classList.remove('animate__fadeIn');
-            void display.offsetWidth;
-            display.innerHTML = configData[tab];
-            display.classList.add('animate__fadeIn');
-
-            document.querySelectorAll('.luxury-card').forEach(el => el.classList.remove('active-tab'));
-            document.getElementById('btn-' + (tab === 'hosts' ? 'hosts' : tab)).classList.add('active-tab');
+        function changeNode(type) {
+            const container = document.getElementById('protocol-view');
+            container.innerHTML = nodes[type];
+            
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('tab-active'));
+            document.getElementById('btn-' + type).classList.add('tab-active');
         }
 
-        function copyLink(url) {
-            navigator.clipboard.writeText(url);
-            Swal.fire({ title: 'PROTOCOL COPIED', text: 'Konfigurasi remote berhasil disalin.', icon: 'success', background: '#020205', color: '#00f2ff', confirmButtonColor: '#ff007b' });
-        }
-
-        function copyText(txt) {
-            navigator.clipboard.writeText(txt);
-            Swal.fire({ title: 'HOSTS COPIED', icon: 'success', background: '#020205', color: '#00f2ff' });
-        }
-
-        function dl(os) {
-            Swal.fire({ title: 'INITIATING_DOWNLOAD', text: `Accessing GrowRush Client for ${os}...`, background: '#020205', color: '#fff', timer: 1500, showConfirmButton: false, didOpen: () => Swal.showLoading() });
+        function copyData(text) {
+            navigator.clipboard.writeText(text);
+            Swal.fire({
+                title: 'COPIED!',
+                text: 'Protokol berhasil disalin ke clipboard.',
+                icon: 'success',
+                background: '#020205',
+                color: '#00f2ff',
+                confirmButtonColor: '#ff007b'
+            });
         }
     </script>
 </body>
