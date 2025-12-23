@@ -25,18 +25,24 @@
     </script>
 
     <style>
-        /* TEMA: DARK CYBER (Gantiin Valentine) */
-        :root {
-            --bg-base: #020617;
-            --bg-gradient: radial-gradient(at 0% 0%, hsla(200, 40%, 15%, 1) 0, transparent 50%),
-                           radial-gradient(at 100% 0%, hsla(260, 40%, 15%, 1) 0, transparent 50%),
-                           linear-gradient(to bottom, #020617, #0f172a);
-            --glass-bg: rgba(15, 23, 42, 0.85);
-            --glass-border: rgba(34, 211, 238, 0.15);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --card-hover-bg: rgba(30, 41, 59, 0.95);
+        /* CSS Variables for Theme Switching [cite: 4, 8] */
+        :root[data-theme="valentine"] {
+            --bg-base: #1a0505;
+            --bg-gradient: linear-gradient(to bottom, #2d0a0a, #1a0505);
+            --glass-bg: rgba(45, 10, 10, 0.85);
+            --glass-border: rgba(220, 38, 38, 0.2);
+            --text-primary: #fecaca;
+            --accent: #dc2626;
+        }
+
+        :root[data-theme="dracula"] {
+            --bg-base: #050000;
+            --bg-gradient: radial-gradient(at 0% 0%, hsla(0, 70%, 10%, 1) 0, transparent 50%),
+                           linear-gradient(to bottom, #0a0000, #000000);
+            --glass-bg: rgba(15, 0, 0, 0.85);
+            --glass-border: rgba(220, 38, 38, 0.15);
+            --text-primary: #ffffff;
+            --accent: #dc2626;
         }
 
         body {
@@ -44,301 +50,253 @@
             background-color: var(--bg-base);
             background-image: var(--bg-gradient);
             background-attachment: fixed;
-            background-size: cover;
             color: var(--text-primary);
-            transition: background 0.5s ease, color 0.3s ease;
+            transition: all 0.3s ease;
             overflow-x: hidden;
         }
-
-        h1, h2, h3, h4, h5, h6, .brand-font { font-family: 'Outfit', sans-serif; }
 
         .glass-anime {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--glass-border);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card:hover {
-            background: var(--card-hover-bg);
+            border-color: var(--accent);
             transform: translateY(-5px);
-            border-color: #22d3ee;
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.2);
+        }
+
+        .text-gradient-anime {
+            background: linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-anime {
+            background: linear-gradient(45deg, #991b1b, #dc2626);
+            border: none;
+            color: white;
         }
 
         .sakura {
             position: fixed;
             top: -10vh;
             z-index: 1;
-            user-select: none;
+            animation: fall 10s linear infinite;
+            color: var(--accent);
+            opacity: 0.3;
             pointer-events: none;
-            animation: fall 10s linear infinite, sway 3s ease-in-out infinite;
-            color: #22d3ee;
-            text-shadow: 0 0 5px #0891b2;
         }
 
-        @keyframes fall {
-            0% { top: -10%; opacity: 0; }
-            10% { opacity: 0.8; }
-            100% { top: 110%; opacity: 0; }
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: translateX(-25px) rotate(0deg); }
-            50% { transform: translateX(25px) rotate(45deg); }
-        }
-
-        .platform-content { display: none; animation: slideUp 0.3s ease-out; }
+        @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+        .platform-content { display: none; }
         .platform-content.active { display: block; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .text-gradient-anime {
-            background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn-anime {
-            background: linear-gradient(45deg, #0891b2, #4f46e5);
-            border: none;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .btn-anime:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
-        }
     </style>
 </head>
 
 <body class="min-h-screen flex flex-col">
 
-    <div class="navbar glass-anime fixed top-0 z-[100] px-4 lg:px-10 h-20 transition-all">
+    <div class="navbar glass-anime fixed top-0 z-[100] px-4 lg:px-10 h-20">
         <div class="navbar-start">
             <div class="dropdown">
-                <label tabindex="0" class="btn btn-ghost lg:hidden text-cyan-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
-                    </svg>
-                </label>
-                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-slate-900 rounded-2xl w-52 text-slate-200 border border-cyan-900/30">
+                <label tabindex="0" class="btn btn-ghost lg:hidden text-red-600"><i class="fa-solid fa-bars text-xl"></i></label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-black rounded-2xl w-52 border border-red-900/30">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#server">Status</a></li>
                     <li><a href="#features">Features</a></li>
                     <li><a href="#join">Download</a></li>
                 </ul>
             </div>
-            <a href="#" class="btn btn-ghost normal-case text-xl lg:text-3xl flex items-center gap-2">
-                <i class="fa-solid fa-fan text-3xl text-cyan-500 animate-spin-slow" style="animation-duration: 10s;"></i>
-                <span class="font-extrabold tracking-tight text-gradient-anime ml-1">TSUBAKI</span>
+            <a class="btn btn-ghost normal-case text-xl lg:text-3xl flex items-center gap-2">
+                <i class="fa-solid fa-fan text-red-600 animate-spin" style="animation-duration: 8s;"></i>
+                <span class="font-extrabold text-gradient-anime">TSUBAKI</span>
             </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal px-1 font-bold text-slate-300 gap-2">
-                <li><a href="#home" class="hover:text-cyan-400 px-4 transition">Home</a></li>
-                <li><a href="#server" class="hover:text-cyan-400 px-4 transition">Status</a></li>
-                <li><a href="#features" class="hover:text-cyan-400 px-4 transition">Features</a></li>
-                <li><a href="#join" class="hover:text-cyan-400 px-4 transition">Tutorials</a></li>
-            </ul>
         </div>
         <div class="navbar-end gap-3">
-            <label class="swap swap-rotate btn btn-ghost btn-circle text-cyan-400">
+            <label class="swap swap-rotate btn btn-ghost btn-circle text-red-600">
                 <input type="checkbox" id="theme-toggle" />
-                <i class="fa-solid fa-sun swap-on fill-current w-6 h-6"></i>
-                <i class="fa-solid fa-moon swap-off fill-current w-6 h-6"></i>
+                <i class="fa-solid fa-sun swap-on w-6 h-6"></i>
+                <i class="fa-solid fa-moon swap-off w-6 h-6"></i>
             </label>
-            <a href="https://discord.gg/EhpusBpnay" target="_blank" class="flex btn btn-sm btn-anime rounded-full px-6 shadow-lg shadow-cyan-900/20">
-                <i class="fab fa-discord"></i> <span class="hidden xs:inline">Discord</span>
-            </a>
+            <a href="https://discord.gg/EhpusBpnay" target="_blank" class="btn btn-sm btn-anime rounded-full px-6">Discord</a>
         </div>
     </div>
 
     <div id="home" class="hero min-h-screen relative pt-20">
-        <div class="hero-content text-center z-10 w-full max-w-4xl flex flex-col items-center py-12 lg:py-24 px-4">
-            <div class="badge badge-lg bg-cyan-950/20 border-cyan-900/50 text-cyan-400 gap-2 mb-8 shadow-sm py-4 px-6 rounded-full" data-aos="fade-down">
-                <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span> The Best Global Private Server
-            </div>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[1.1] tracking-tight text-white" data-aos="zoom-in">
-                TSUBAKI <span class="text-gradient-anime">PS</span>
-            </h1>
-            <p class="py-4 lg:py-6 text-lg md:text-2xl text-slate-400 max-w-2xl font-medium leading-relaxed" data-aos="fade-up">
-                Experience ultimate Growtopia gameplay within a stunning anime world. Global server, exclusive features, and a friendly community.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto px-4" data-aos="fade-up">
-                <a href="#join" class="btn btn-anime btn-lg rounded-2xl w-full sm:w-auto px-10 shadow-xl border-none gap-3 text-lg">
-                    <i class="fas fa-play"></i> Play Now
-                </a>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 w-full max-w-3xl">
-                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-users text-2xl text-cyan-400 mb-2"></i>
-                    <div class="text-2xl font-bold text-white">50+</div>
-                    <div class="text-xs text-slate-500 font-bold uppercase">Players</div>
+        <div class="hero-content text-center flex-col">
+            <div class="badge border-red-900 text-red-500 p-4 mb-8" data-aos="fade-down">GLOBAL PRIVATE SERVER</div>
+            <h1 class="text-5xl md:text-8xl font-black mb-6" data-aos="zoom-in">TSUBAKI <span class="text-gradient-anime">PS</span></h1>
+            <p class="py-4 text-xl text-slate-400 max-w-2xl" data-aos="fade-up">Professional Growtopia experience with high-performance infrastructure.</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 w-full max-w-3xl">
+                <div class="glass-card p-4 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-users text-2xl text-red-500 mb-2"></i>
+                    <div class="text-2xl font-bold">50+</div>
+                    <div class="text-xs uppercase opacity-50 font-bold">Players [cite: 72]</div>
                 </div>
-                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fas fa-cube text-2xl text-indigo-400 mb-2"></i>
-                    <div class="text-2xl font-bold text-white">100+</div>
-                    <div class="text-xs text-slate-500 font-bold uppercase">Worlds</div>
+                <div class="glass-card p-4 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-cube text-2xl text-red-400 mb-2"></i>
+                    <div class="text-2xl font-bold">100+</div>
+                    <div class="text-xs uppercase opacity-50 font-bold">Worlds [cite: 74]</div>
                 </div>
-                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="500">
-                    <i class="fas fa-server text-2xl text-cyan-400 mb-2"></i>
-                    <div class="text-2xl font-bold text-white">22ms</div>
-                    <div class="text-xs text-slate-500 font-bold uppercase">Ping</div>
+                <div class="glass-card p-4 rounded-3xl" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-server text-2xl text-red-500 mb-2"></i>
+                    <div class="text-2xl font-bold">22ms</div>
+                    <div class="text-xs uppercase opacity-50 font-bold">Ping [cite: 75]</div>
                 </div>
-                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="600">
-                    <i class="fas fa-clock text-2xl text-indigo-400 mb-2"></i>
-                    <div class="text-2xl font-bold text-white">99%</div>
-                    <div class="text-xs text-slate-500 font-bold uppercase">Uptime</div>
+                <div class="glass-card p-4 rounded-3xl" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fas fa-clock text-2xl text-red-400 mb-2"></i>
+                    <div class="text-2xl font-bold">99%</div>
+                    <div class="text-xs uppercase opacity-50 font-bold">Uptime [cite: 76]</div>
                 </div>
             </div>
+            <a href="#join" class="btn btn-anime btn-lg rounded-2xl px-12 mt-10">Play Now</a>
         </div>
     </div>
 
-    <section id="server" class="py-20 relative px-4">
-        <div class="container mx-auto">
-            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden bg-slate-900/50" data-aos="fade-up">
-                <div class="flex flex-col md:flex-row items-center gap-12 relative z-10">
-                    <div class="w-full md:w-1/2">
-                        <div class="w-full h-80 rounded-[1.8rem] shadow-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                            <i class="fas fa-server text-6xl text-cyan-500 mb-4 animate-pulse"></i>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-1/2">
-                        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Server <span class="text-gradient-anime">Status</span></h2>
-                        <p class="text-slate-400 text-lg mb-8">Enjoy lag-free gaming with our high-performance global infrastructure.</p>
-                        <div class="bg-black/50 p-6 rounded-2xl border border-cyan-900/30">
-                            <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">Connection Address</h4>
-                            <p class="text-xl md:text-2xl font-bold text-cyan-400 font-mono break-all select-all">
-                                https://as.panel.growsoft.cc/android/1518
-                            </p>
-                        </div>
+    <section id="server" class="py-20 px-4 container mx-auto">
+        <div class="glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 flex items-center justify-center">
+                    <i class="fas fa-server text-9xl text-red-600 animate-pulse"></i>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Server <span class="text-gradient-anime">Status</span></h2>
+                    <div class="bg-black/50 p-6 rounded-2xl border border-red-900/30">
+                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">Connection Address [cite: 87]</h4>
+                        <p class="text-xl md:text-2xl font-bold text-red-500 font-mono break-all select-all">
+                            https://as.panel.growsoft.cc/android/1518 [cite: 89]
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-16 md:py-24">
-        <div class="container mx-auto px-4 text-center">
-            <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">Excellence</span>
-            <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-16 text-white">Key <span class="text-gradient-anime">Features</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up">
-                    <div class="w-14 h-14 bg-cyan-950/30 rounded-2xl flex items-center justify-center text-cyan-400 text-2xl mb-6"><i class="fas fa-star"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-3">Exclusive Items</h3>
-                    <p class="text-slate-500">1000+ custom items uniquely designed for our server.</p>
+    <section id="features" class="py-24 px-4 container mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-16">Key <span class="text-gradient-anime">Features</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up">
+                <i class="fas fa-star text-3xl text-red-600 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3">Exclusive Items [cite: 94]</h3>
+                <p class="text-slate-500">1000+ custom items uniquely designed for our server[cite: 95].</p>
+            </div>
+            <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-gamepad text-3xl text-red-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3">Custom Events [cite: 97]</h3>
+                <p class="text-slate-500">Daily and weekly events with amazing rewards[cite: 97].</p>
+            </div>
+            <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-users text-3xl text-red-600 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3">Community [cite: 99]</h3>
+                <p class="text-slate-500">Solid and friendly community, ready to help new players[cite: 99].</p>
+            </div>
+            <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-shield-alt text-3xl text-red-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3">Secure [cite: 101]</h3>
+                <p class="text-slate-500">Advanced security systems to keep your account safe[cite: 102].</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="py-24 px-4 container mx-auto max-w-5xl">
+        <h2 class="text-4xl font-bold text-center mb-12">How to <span class="text-red-600">Join</span></h2>
+        <div class="flex flex-wrap justify-center gap-2 mb-10">
+            <button class="btn btn-sm md:btn-md btn-anime rounded-full px-8 tab-btn active" onclick="switchTab(event, 'android')">Android</button>
+            <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'windows')">Windows</button>
+            <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'ios')">iOS</button>
+            <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'powertunnel')">PowerTunnel</button>
+        </div>
+
+        <div class="glass-card rounded-[2.5rem] p-8 md:p-12 border-t-4 border-red-600 bg-black/40 shadow-xl">
+            <div id="android" class="platform-content active">
+                <h3 class="text-2xl font-bold mb-6">Android Setup (Hosts Go) [cite: 112]</h3>
+                <div class="bg-black p-4 rounded-xl border border-red-900/30 text-red-500 font-mono mb-6 break-all select-all">
+                    https://as.panel.growsoft.cc/android/1518 [cite: 121]
                 </div>
-                <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-indigo-950/30 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl mb-6"><i class="fas fa-gamepad"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-3">Custom Events</h3>
-                    <p class="text-slate-500">Daily and weekly events with amazing rewards.</p>
+                <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/" class="btn btn-anime rounded-full px-10 shadow-lg shadow-red-500/20">Download APK [cite: 127]</a>
+            </div>
+            <div id="windows" class="platform-content">
+                <h3 class="text-2xl font-bold mb-6">Windows Setup [cite: 131]</h3>
+                <div class="bg-black p-6 rounded-xl font-mono text-sm border border-red-900/30 leading-relaxed">
+                    15.235.227.241 growtopia1.com<br>
+                    15.235.227.241 growtopia2.com [cite: 134]
                 </div>
-                <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-cyan-950/30 rounded-2xl flex items-center justify-center text-cyan-400 text-2xl mb-6"><i class="fas fa-users"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-3">Community</h3>
-                    <p class="text-slate-500">Solid and friendly community, ready to help new players.</p>
+            </div>
+            <div id="ios" class="platform-content">
+                <h3 class="text-2xl font-bold mb-6">iOS / Surge Setup [cite: 137]</h3>
+                <p class="text-slate-400 mb-4">Use Surge or Shadowrocket with this link: [cite: 138]</p>
+                <div class="bg-black p-4 rounded-xl font-mono text-red-500 break-all border border-red-900/30">
+                    https://gtpshost.com/ios/Tsubakips [cite: 140]
                 </div>
-                <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 bg-indigo-950/30 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl mb-6"><i class="fas fa-shield-alt"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-3">Secure</h3>
-                    <p class="text-slate-500">Advanced security systems to keep your account safe.</p>
+            </div>
+            <div id="powertunnel" class="platform-content">
+                <h3 class="text-2xl font-bold mb-6">PowerTunnel [cite: 142]</h3>
+                <p class="text-slate-400 mb-2">Go to Plugin -> Hosts -> Add URL: [cite: 144]</p>
+                <div class="bg-black p-4 rounded-xl font-mono text-red-500 text-sm border border-red-900/30">
+                    https://as.panel.growsoft.cc/android/1518 [cite: 146]
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="join" class="py-16 md:py-24 relative px-4">
-        <div class="container mx-auto max-w-5xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">How to <span class="text-cyan-400">Join</span></h2>
-            <div class="flex justify-center gap-2 mb-10 flex-wrap">
-                <button class="btn btn-sm md:btn-md btn-anime rounded-full px-6 tab-btn active" onclick="switchTab(event, 'android')"><i class="fab fa-android mr-2"></i> Android</button>
-                <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'windows')"><i class="fab fa-windows mr-2"></i> Windows</button>
-                <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'ios')"><i class="fab fa-apple mr-2"></i> iOS</button>
-                <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'powertunnel')"><i class="fas fa-bolt mr-2"></i> PowerTunnel</button>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 md:p-10 border-t-4 border-cyan-500">
-                <div id="android" class="platform-content active">
-                    <h3 class="text-2xl font-bold text-white mb-6">Setup via Hosts Go</h3>
-                    <div class="bg-black/50 p-4 rounded-xl border border-cyan-900/30 text-cyan-400 font-mono break-all mb-6">https://as.panel.growsoft.cc/android/1518</div>
-                    <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file" class="btn btn-anime rounded-full px-8">Download Hosts Go</a>
-                </div>
-                <div id="windows" class="platform-content">
-                    <h3 class="text-2xl font-bold text-white mb-6">Windows Setup</h3>
-                    <div class="bg-black/50 rounded-2xl p-6 text-slate-300 font-mono text-sm border border-cyan-900/30">
-                        15.235.227.241 growtopia1.com<br>15.235.227.241 growtopia2.com<br>15.235.227.241 www.growtopia1.com
-                    </div>
-                </div>
-                <div id="ios" class="platform-content">
-                    <h3 class="text-2xl font-bold text-white mb-6">iOS / Mac Setup</h3>
-                    <div class="alert bg-cyan-950/20 border-cyan-900/30 text-cyan-400 mb-6">Use Surge 5 or Shadowrocket</div>
-                    <code class="block text-cyan-400 font-mono break-all text-lg">https://gtpshost.com/ios/Tsubakips</code>
-                </div>
-                <div id="powertunnel" class="platform-content">
-                    <h3 class="text-2xl font-bold text-white mb-6">PowerTunnel</h3>
-                    <ul class="space-y-4 text-slate-400">
-                        <li>1. Install PowerTunnel.</li>
-                        <li>2. Go to Plugin -> Hosts.</li>
-                        <li>3. URL: <span class="text-cyan-400">https://as.panel.growsoft.cc/android/1518</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-slate-950 border-t border-cyan-900/20 pt-16 pb-8 text-center mt-auto">
-        <div class="flex items-center justify-center gap-2 mb-4">
-            <i class="fa-solid fa-fan text-2xl text-cyan-500"></i>
-            <span class="text-2xl font-bold text-white">TSUBAKI</span>
-        </div>
-        <p class="text-slate-500 text-sm mb-8">A private server crafted with love for the Global Growtopia Community.</p>
-        <div class="text-xs text-slate-600">&copy; 2025 TsubakiPS & NovaStore. All rights reserved.</div>
+    <footer class="p-16 text-center border-t border-red-900/20 bg-black mt-auto">
+        <div class="font-black text-2xl text-white mb-2">TSUBAKI [cite: 150]</div>
+        <p class="text-slate-600 text-xs">© 2025 TsubakiPS & NovaStore. All rights reserved. [cite: 154]</p>
     </footer>
 
     <div id="sakura-container"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        AOS.init({ duration: 800, once: true }); [cite: 155]
 
+        // TAB LOGIC [cite: 156-160]
         function switchTab(evt, name) {
             const contents = document.getElementsByClassName("platform-content");
             for (let c of contents) c.classList.remove("active");
             const btns = document.getElementsByClassName("tab-btn");
-            for (let b of btns) {
-                b.classList.remove("btn-anime", "text-white");
-                b.classList.add("btn-ghost", "text-slate-400");
+            for (let b of btns) { 
+                b.classList.remove("btn-anime", "text-white"); 
+                b.classList.add("btn-ghost", "text-slate-400"); 
             }
             document.getElementById(name).classList.add("active");
             evt.currentTarget.classList.add("btn-anime", "text-white");
             evt.currentTarget.classList.remove("btn-ghost", "text-slate-400");
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('sakura-container');
-            const particles = ['✨', '✧', '✦'];
-            for (let i = 0; i < 25; i++) {
-                const el = document.createElement('div');
-                el.classList.add('sakura');
-                el.innerText = particles[Math.floor(Math.random() * particles.length)];
-                el.style.left = Math.random() * 100 + 'vw';
-                el.style.animationDuration = (Math.random() * 5 + 8) + 's, ' + (Math.random() * 3 + 2) + 's';
-                container.appendChild(el);
-            }
+        // THEME LOGIC (FIXED) [cite: 161-162]
+        const toggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'dracula';
+        html.setAttribute('data-theme', savedTheme);
+        toggle.checked = savedTheme === 'valentine';
+
+        toggle.addEventListener('change', () => {
+            const theme = toggle.checked ? 'valentine' : 'dracula';
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
         });
+
+        // SAKURA PARTICLES [cite: 162-169]
+        const container = document.getElementById('sakura-container');
+        for (let i = 0; i < 20; i++) {
+            const el = document.createElement('div');
+            el.classList.add('sakura');
+            el.innerText = '✦';
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            container.appendChild(el);
+        }
     </script>
 </body>
 </html>
