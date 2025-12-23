@@ -3,126 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TSUBAKI X GROWRUSH | ANIMATED</title>
+    <title>GROWRUSH | WINTER EDITION</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overflow-x: hidden; }
+        :root {
+            --winter-blue: #0ea5e9;
+            --ice-white: #f0f9ff;
+            --deep-snow: #e0f2fe;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--ice-white); 
+            overflow-x: hidden; 
+        }
         
-        .pink-gradient { background: linear-gradient(135deg, #d946ef, #8b5cf6); }
-        
-        /* Animasi Emoji Melompat (Floating) */
+        /* Gradient Tombol Musim Dingin */
+        .winter-gradient { 
+            background: linear-gradient(135deg, #38bdf8, #1d4ed8); 
+        }
+
+        /* Efek Salju Jatuh */
+        .snowflake {
+            position: fixed; top: -10px; z-index: 9999;
+            user-select: none; pointer-events: none;
+            animation: fall linear infinite;
+            color: white; font-size: 1.5rem;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+
+        /* Animasi Emoji Floating */
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(10deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
-        .animate-emoji { display: inline-block; animation: float 3s ease-in-out infinite; }
-        .delay-1 { animation-delay: 0.5s; }
-        .delay-2 { animation-delay: 1s; }
+        .animate-winter { display: inline-block; animation: float 4s ease-in-out infinite; }
 
-        /* Card Hover Effect */
-        .feature-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0,0,0,0.05);
+        /* Card Crystal Style */
+        .ice-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 32px;
+            transition: 0.4s;
         }
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(217, 70, 239, 0.1);
-            border-color: #d946ef;
+        .ice-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
+            border-color: var(--winter-blue);
         }
 
-        /* Smooth Section Transition */
-        section { padding: 80px 20px; }
+        .btn-winter {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(29, 78, 216, 0.3);
+        }
+        .btn-winter:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(29, 78, 216, 0.5);
+            filter: brightness(1.1);
+        }
     </style>
 </head>
 <body>
 
-    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
+    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto relative z-10">
         <div class="flex items-center gap-2" data-aos="fade-right">
-            <div class="w-8 h-8 pink-gradient rounded-full animate-bounce"></div>
-            <span class="text-2xl font-black tracking-tighter uppercase">TSUBAKI <span class="text-[#d946ef]">PS</span></span>
+            <div class="text-3xl animate-winter">❄️</div>
+            <span class="text-2xl font-black tracking-tighter uppercase text-slate-800">GROWRUSH <span class="text-sky-500">ICE</span></span>
         </div>
-        <div class="hidden md:flex gap-8 font-bold text-gray-400">
-            <a href="#" class="hover:text-pink-500 transition">Home</a>
-            <a href="#features" class="hover:text-pink-500 transition">Features</a>
-            <a href="#join" class="hover:text-pink-500 transition">Tutorial</a>
+        <div class="hidden md:flex gap-8 font-bold text-sky-700/60 text-sm uppercase tracking-widest">
+            <a href="#" class="hover:text-sky-500 transition">Lobby</a>
+            <a href="#features" class="hover:text-sky-500 transition">Perks</a>
+            <a href="#join" class="hover:text-sky-500 transition">Guide</a>
         </div>
-        <button class="pink-gradient p-3 rounded-2xl text-white shadow-lg" data-aos="zoom-in">Discord</button>
+        <button class="winter-gradient px-6 py-2 rounded-xl text-white font-bold text-sm btn-winter" data-aos="zoom-in">DISCORD 🐧</button>
     </nav>
 
-    <section class="text-center">
-        <div class="inline-block border border-pink-100 px-4 py-1 rounded-full text-pink-500 text-xs font-bold mb-6 bg-pink-50" data-aos="fade-down">
-            ● The Best Global Private Server
+    <section class="text-center pt-20 pb-32 relative">
+        <div class="inline-block border border-sky-200 px-4 py-1 rounded-full text-sky-600 text-[10px] font-black tracking-[0.2em] mb-6 bg-sky-100/50 uppercase" data-aos="fade-down">
+            The Coldest Private Server
         </div>
-        <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter text-slate-900" data-aos="fade-up">
-            TSUBAKI <span class="text-[#d946ef]">PS</span>
+        <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-slate-900" data-aos="fade-up">
+            WINTER <span class="text-sky-500">PEAK</span>
         </h1>
-        <p class="max-w-xl mx-auto text-gray-500 mb-10 text-lg" data-aos="fade-up" data-aos-delay="200">
-            Experience ultimate Growtopia gameplay with <span class="animate-emoji">🌸</span> animated world and exclusive items.
+        <p class="max-w-xl mx-auto text-slate-500 mb-12 text-lg font-medium leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+            Nikmati petualangan salju dengan fitur <span class="animate-winter">🏠</span> dunia anime dan item eksklusif musim dingin.
         </p>
-        <button class="pink-gradient px-12 py-5 rounded-2xl text-white font-extrabold text-xl shadow-2xl hover:brightness-110 transition active:scale-95" data-aos="zoom-in" data-aos-delay="400">
-            ▶ PLAY NOW
+        <button class="winter-gradient px-12 py-5 rounded-2xl text-white font-extrabold text-xl btn-winter uppercase tracking-tighter" data-aos="zoom-in" data-aos-delay="400">
+            ❄️ Start Playing
         </button>
     </section>
 
-    <section id="features" class="max-w-7xl mx-auto">
-        <h2 class="text-center text-4xl font-extrabold mb-16" data-aos="fade-up">Key <span class="text-pink-500">Features</span></h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="feature-card p-10 bg-white rounded-[32px] text-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="text-5xl mb-6 animate-emoji">⭐</div>
-                <h3 class="font-extrabold text-xl mb-4">Exclusive Items</h3>
-                <p class="text-sm text-gray-400">1000+ custom items designed for our server.</p>
+    <section id="features" class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="ice-card p-10 text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-5xl mb-6 animate-winter">🏔️</div>
+                <h3 class="font-extrabold text-xl mb-4 text-slate-800">Snowy Items</h3>
+                <p class="text-sm text-slate-400">1000+ item bertema es yang didesain khusus.</p>
             </div>
-            <div class="feature-card p-10 bg-white rounded-[32px] text-center" data-aos="fade-up" data-aos-delay="200">
-                <div class="text-5xl mb-6 animate-emoji delay-1">🎮</div>
-                <h3 class="font-extrabold text-xl mb-4">Custom Events</h3>
-                <p class="text-sm text-gray-400">Daily and weekly events with amazing rewards.</p>
+            <div class="ice-card p-10 text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-5xl mb-6 animate-winter">🧊</div>
+                <h3 class="font-extrabold text-xl mb-4 text-slate-800">Ice Events</h3>
+                <p class="text-sm text-slate-400">Event mingguan dengan hadiah kristal langka.</p>
             </div>
-            <div class="feature-card p-10 bg-white rounded-[32px] text-center" data-aos="fade-up" data-aos-delay="300">
-                <div class="text-5xl mb-6 animate-emoji delay-2">👥</div>
-                <h3 class="font-extrabold text-xl mb-4">Community</h3>
-                <p class="text-sm text-gray-400">Solid and friendly community ready to help.</p>
+            <div class="ice-card p-10 text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-5xl mb-6 animate-winter">⛄</div>
+                <h3 class="font-extrabold text-xl mb-4 text-slate-800">Cool Society</h3>
+                <p class="text-sm text-slate-400">Komunitas ramah yang siap menyambutmu di musim dingin.</p>
             </div>
-            <div class="feature-card p-10 bg-white rounded-[32px] text-center" data-aos="fade-up" data-aos-delay="400">
-                <div class="text-5xl mb-6 animate-emoji">🛡️</div>
-                <h3 class="font-extrabold text-xl mb-4">Secure</h3>
-                <p class="text-sm text-gray-400">Advanced security to keep your account safe.</p>
+            <div class="ice-card p-10 text-center" data-aos="fade-up" data-aos-delay="400">
+                <div class="text-5xl mb-6 animate-winter">🛡️</div>
+                <h3 class="font-extrabold text-xl mb-4 text-slate-800">Frost Guard</h3>
+                <p class="text-sm text-slate-400">Keamanan berlapis untuk melindungi akun anda.</p>
             </div>
         </div>
     </section>
 
-    <section id="join" class="max-w-5xl mx-auto">
-        <div class="bg-white rounded-[40px] p-10 md:p-20 shadow-2xl flex flex-col md:flex-row items-center gap-12" data-aos="fade-left">
-            <div class="w-full md:w-1/2">
-                <h2 class="text-4xl font-black mb-8 italic">How to <span class="text-pink-500">Join</span></h2>
-                <div class="space-y-6 text-gray-600">
-                    <div class="flex gap-4 items-start" data-aos="fade-right" data-aos-delay="500">
-                        <span class="bg-pink-100 text-pink-500 font-black px-3 py-1 rounded-lg">01</span>
-                        <p>Download <b>Hosts Go</b> from the store.</p>
+    <section id="join" class="max-w-5xl mx-auto py-32 px-6">
+        <div class="ice-card p-12 md:p-20 relative overflow-hidden" data-aos="fade-right">
+            <div class="relative z-10">
+                <h2 class="text-4xl font-black mb-10 italic text-slate-800">Ice <span class="text-sky-500">Installation</span></h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6 items-start" data-aos="fade-left" data-aos-delay="300">
+                        <div class="bg-sky-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-black flex-shrink-0">1</div>
+                        <p class="text-slate-600 font-semibold">Unduh <b>Hosts Go</b> melalui portal resmi kami.</p>
                     </div>
-                    <div class="flex gap-4 items-start" data-aos="fade-right" data-aos-delay="600">
-                        <span class="bg-pink-100 text-pink-500 font-black px-3 py-1 rounded-lg">02</span>
-                        <p>Paste the URL: <br><span class="text-xs font-mono text-pink-400">https://www.growrush.my.id/GrowRushPS.txt</span></p>
+                    <div class="flex gap-6 items-start" data-aos="fade-left" data-aos-delay="500">
+                        <div class="bg-sky-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-black flex-shrink-0">2</div>
+                        <div>
+                            <p class="text-slate-600 font-semibold mb-3">Gunakan Remote Config:</p>
+                            <code class="bg-slate-900 text-sky-400 p-4 rounded-xl text-xs block font-mono">https://www.growrush.my.id/GrowRushPS.txt</code>
+                        </div>
                     </div>
                 </div>
-                <button class="pink-gradient mt-10 px-8 py-3 rounded-xl text-white font-bold">Download Now</button>
+                <button class="winter-gradient mt-12 px-10 py-4 rounded-xl text-white font-bold btn-winter uppercase tracking-widest text-sm">Download Ice Client</button>
             </div>
-            <div class="w-full md:w-1/2 text-center">
-                <div class="text-[120px] animate-emoji">🤖</div>
-            </div>
+            <div class="absolute -right-20 bottom-0 text-[200px] opacity-10 animate-winter">❄️</div>
         </div>
     </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inisialisasi Efek Muncul (AOS)
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 1000, once: true });
+
+        // Script Salju
+        function createSnowflake() {
+            const snow = document.createElement('div');
+            snow.classList.add('snowflake');
+            snow.innerHTML = '❄';
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snow.style.opacity = Math.random();
+            document.body.appendChild(snow);
+            setTimeout(() => snow.remove(), 5000);
+        }
+        setInterval(createSnowflake, 150);
     </script>
 </body>
 </html>
