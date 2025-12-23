@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dracula">
+<html lang="en" data-theme="valentine">
 
 <head>
     <meta charset="UTF-8">
@@ -25,24 +25,21 @@
     </script>
 
     <style>
-        /* CSS Variables for Theme Switching [cite: 4, 8] */
-        :root[data-theme="valentine"] {
-            --bg-base: #1a0505;
-            --bg-gradient: linear-gradient(to bottom, #2d0a0a, #1a0505);
-            --glass-bg: rgba(45, 10, 10, 0.85);
-            --glass-border: rgba(220, 38, 38, 0.2);
-            --text-primary: #fecaca;
-            --accent: #dc2626;
+        [cite_start]/* CSS Variables for Theme Switching [cite: 4-10] */
+        :root {
+            --bg-base: #fff0f5;
+            --bg-gradient: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%), radial-gradient(at 0% 0%, hsla(340, 100%, 85%, 0.3) 0, transparent 50%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-primary: #334155;
         }
 
-        :root[data-theme="dracula"] {
-            --bg-base: #050000;
-            --bg-gradient: radial-gradient(at 0% 0%, hsla(0, 70%, 10%, 1) 0, transparent 50%),
-                           linear-gradient(to bottom, #0a0000, #000000);
-            --glass-bg: rgba(15, 0, 0, 0.85);
-            --glass-border: rgba(220, 38, 38, 0.15);
-            --text-primary: #ffffff;
-            --accent: #dc2626;
+        [data-theme="dracula"] {
+            --bg-base: #0f172a;
+            --bg-gradient: radial-gradient(at 0% 0%, hsla(260, 40%, 15%, 1) 0, transparent 50%), linear-gradient(to bottom, #0f172a, #1e1b4b);
+            --glass-bg: rgba(30, 41, 59, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #e2e8f0;
         }
 
         body {
@@ -51,10 +48,10 @@
             background-image: var(--bg-gradient);
             background-attachment: fixed;
             color: var(--text-primary);
-            transition: all 0.3s ease;
-            overflow-x: hidden;
+            transition: background 0.5s ease;
         }
 
+        [cite_start]/* Glassmorphism Classes [cite: 14-19] */
         .glass-anime {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
@@ -68,37 +65,32 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .glass-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(220, 38, 38, 0.2);
-        }
+        .glass-card:hover { transform: translateY(-5px); border-color: #ec4899; }
 
-        .text-gradient-anime {
-            background: linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn-anime {
-            background: linear-gradient(45deg, #991b1b, #dc2626);
-            border: none;
-            color: white;
-        }
-
+        [cite_start]/* Sakura / Snow Animation [cite: 20-28] */
         .sakura {
             position: fixed;
             top: -10vh;
             z-index: 1;
-            animation: fall 10s linear infinite;
-            color: var(--accent);
-            opacity: 0.3;
+            animation-name: fall, sway;
+            animation-iteration-count: infinite;
             pointer-events: none;
         }
 
-        @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+        @keyframes fall { 0% { top: -10%; opacity: 0; } 10% { opacity: 0.8; } 100% { top: 110%; opacity: 0; } }
+        @keyframes sway { 0%, 100% { transform: translateX(-25px); } 50% { transform: translateX(25px); } }
+
         .platform-content { display: none; }
-        .platform-content.active { display: block; }
+        .platform-content.active { display: block; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .text-gradient-anime {
+            background: linear-gradient(135deg, #ec4899 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-anime { background: linear-gradient(45deg, #ec4899, #8b5cf6); border: none; color: white; }
     </style>
 </head>
 
@@ -107,8 +99,8 @@
     <div class="navbar glass-anime fixed top-0 z-[100] px-4 lg:px-10 h-20">
         <div class="navbar-start">
             <div class="dropdown">
-                <label tabindex="0" class="btn btn-ghost lg:hidden text-red-600"><i class="fa-solid fa-bars text-xl"></i></label>
-                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-black rounded-2xl w-52 border border-red-900/30">
+                <label tabindex="0" class="btn btn-ghost lg:hidden text-pink-500"><i class="fa-solid fa-bars text-xl"></i></label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-white rounded-2xl w-52 border border-pink-100">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#server">Status</a></li>
                     <li><a href="#features">Features</a></li>
@@ -116,185 +108,168 @@
                 </ul>
             </div>
             <a class="btn btn-ghost normal-case text-xl lg:text-3xl flex items-center gap-2">
-                <i class="fa-solid fa-fan text-red-600 animate-spin" style="animation-duration: 8s;"></i>
+                <i class="fa-solid fa-fan text-pink-500 animate-spin" style="animation-duration: 8s"></i>
                 <span class="font-extrabold text-gradient-anime">TSUBAKI</span>
             </a>
         </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 font-bold text-slate-600">
+                <li><a href="#home" class="hover:text-pink-500 px-4">Home</a></li>
+                <li><a href="#server" class="hover:text-pink-500 px-4">Status</a></li>
+                <li><a href="#features" class="hover:text-pink-500 px-4">Features</a></li>
+                <li><a href="#join" class="hover:text-pink-500 px-4">Tutorials</a></li>
+            </ul>
+        </div>
         <div class="navbar-end gap-3">
-            <label class="swap swap-rotate btn btn-ghost btn-circle text-red-600">
+            <label class="swap swap-rotate btn btn-ghost btn-circle text-pink-500">
                 <input type="checkbox" id="theme-toggle" />
                 <i class="fa-solid fa-sun swap-on w-6 h-6"></i>
                 <i class="fa-solid fa-moon swap-off w-6 h-6"></i>
             </label>
-            <a href="https://discord.gg/EhpusBpnay" target="_blank" class="btn btn-sm btn-anime rounded-full px-6">Discord</a>
+            <a href="https://discord.gg/EhpusBpnay" target="_blank" class="btn btn-sm btn-anime rounded-full px-6 shadow-lg shadow-pink-200"><i class="fab fa-discord"></i> Discord</a>
         </div>
     </div>
 
-    <div id="home" class="hero min-h-screen relative pt-20">
+    <div id="home" class="hero min-h-screen pt-20">
         <div class="hero-content text-center flex-col">
-            <div class="badge border-red-900 text-red-500 p-4 mb-8" data-aos="fade-down">GLOBAL PRIVATE SERVER</div>
-            <h1 class="text-5xl md:text-8xl font-black mb-6" data-aos="zoom-in">TSUBAKI <span class="text-gradient-anime">PS</span></h1>
-            <p class="py-4 text-xl text-slate-400 max-w-2xl" data-aos="fade-up">Professional Growtopia experience with high-performance infrastructure.</p>
+            <div class="badge badge-lg bg-white/50 border-pink-200 text-pink-600 p-6 rounded-full mb-8 shadow-sm" data-aos="fade-down">The Best Global Private Server</div>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tight text-slate-800" data-aos="zoom-in">TSUBAKI <span class="text-gradient-anime">PS</span></h1>
+            [cite_start]<p class="py-4 text-xl text-slate-600 max-w-2xl font-medium" data-aos="fade-up">Experience ultimate Growtopia gameplay within a stunning anime world. [cite: 68]</p>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 w-full max-w-3xl">
                 <div class="glass-card p-4 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-users text-2xl text-red-500 mb-2"></i>
-                    <div class="text-2xl font-bold">50+</div>
-                    <div class="text-xs uppercase opacity-50 font-bold">Players [cite: 72]</div>
+                    <div class="text-2xl font-bold">50+</div><div class="text-xs text-slate-500 font-bold uppercase">Players</div>
                 </div>
                 <div class="glass-card p-4 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fas fa-cube text-2xl text-red-400 mb-2"></i>
-                    <div class="text-2xl font-bold">100+</div>
-                    <div class="text-xs uppercase opacity-50 font-bold">Worlds [cite: 74]</div>
+                    <div class="text-2xl font-bold">100+</div><div class="text-xs text-slate-500 font-bold uppercase">Worlds</div>
                 </div>
                 <div class="glass-card p-4 rounded-3xl" data-aos="fade-up" data-aos-delay="500">
-                    <i class="fas fa-server text-2xl text-red-500 mb-2"></i>
-                    <div class="text-2xl font-bold">22ms</div>
-                    <div class="text-xs uppercase opacity-50 font-bold">Ping [cite: 75]</div>
+                    <div class="text-2xl font-bold">22ms</div><div class="text-xs text-slate-500 font-bold uppercase">Ping</div>
                 </div>
                 <div class="glass-card p-4 rounded-3xl" data-aos="fade-up" data-aos-delay="600">
-                    <i class="fas fa-clock text-2xl text-red-400 mb-2"></i>
-                    <div class="text-2xl font-bold">99%</div>
-                    <div class="text-xs uppercase opacity-50 font-bold">Uptime [cite: 76]</div>
+                    <div class="text-2xl font-bold">99%</div><div class="text-xs text-slate-500 font-bold uppercase">Uptime</div>
                 </div>
             </div>
-            <a href="#join" class="btn btn-anime btn-lg rounded-2xl px-12 mt-10">Play Now</a>
+            <a href="#join" class="btn btn-anime btn-lg rounded-2xl px-12 mt-10 shadow-xl shadow-pink-200/50"><i class="fas fa-play"></i> Play Now</a>
         </div>
     </div>
 
     <section id="server" class="py-20 px-4 container mx-auto">
-        <div class="glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="w-full md:w-1/2 flex items-center justify-center">
-                    <i class="fas fa-server text-9xl text-red-600 animate-pulse"></i>
-                </div>
-                <div class="w-full md:w-1/2">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Server <span class="text-gradient-anime">Status</span></h2>
-                    <div class="bg-black/50 p-6 rounded-2xl border border-red-900/30">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">Connection Address [cite: 87]</h4>
-                        <p class="text-xl md:text-2xl font-bold text-red-500 font-mono break-all select-all">
-                            https://as.panel.growsoft.cc/android/1518 [cite: 89]
-                        </p>
-                    </div>
+        <div class="glass-card rounded-[2.5rem] p-10 flex flex-col md:flex-row items-center gap-12 bg-white/40" data-aos="fade-up">
+            <div class="w-full md:w-1/2 bg-gradient-to-br from-slate-800 to-slate-900 h-80 rounded-[1.8rem] flex items-center justify-center text-white">
+                <div class="text-center"><i class="fas fa-server text-6xl text-pink-500 mb-4 animate-pulse"></i><h3 class="text-2xl font-bold">Global Server</h3></div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h2 class="text-4xl font-bold mb-6 text-slate-800">Server <span class="text-gradient-anime">Status</span></h2>
+                <div class="bg-white/80 p-6 rounded-2xl border border-pink-100">
+                    <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">Connection Address</h4>
+                    <p class="text-xl md:text-2xl font-bold text-slate-800 font-mono break-all select-all">https://as.panel.growsoft.cc/android/1518</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-24 px-4 container mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-16">Key <span class="text-gradient-anime">Features</span></h2>
+    <section id="features" class="py-24 px-4 container mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16 text-slate-800">Key <span class="text-gradient-anime">Features</span></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up">
-                <i class="fas fa-star text-3xl text-red-600 mb-6"></i>
-                <h3 class="text-xl font-bold mb-3">Exclusive Items [cite: 94]</h3>
-                <p class="text-slate-500">1000+ custom items uniquely designed for our server[cite: 95].</p>
+                <div class="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-500 text-2xl mb-6"><i class="fas fa-star"></i></div>
+                <h3 class="text-xl font-bold text-slate-800 mb-3">Exclusive Items</h3>
+                <p class="text-slate-500">1000+ custom items uniquely designed for our server.</p>
             </div>
             <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-gamepad text-3xl text-red-500 mb-6"></i>
-                <h3 class="text-xl font-bold mb-3">Custom Events [cite: 97]</h3>
-                <p class="text-slate-500">Daily and weekly events with amazing rewards[cite: 97].</p>
+                <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-500 text-2xl mb-6"><i class="fas fa-gamepad"></i></div>
+                <h3 class="text-xl font-bold text-slate-800 mb-3">Custom Events</h3>
+                <p class="text-slate-500">Daily and weekly events with amazing rewards.</p>
             </div>
             <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-users text-3xl text-red-600 mb-6"></i>
-                <h3 class="text-xl font-bold mb-3">Community [cite: 99]</h3>
-                <p class="text-slate-500">Solid and friendly community, ready to help new players[cite: 99].</p>
+                <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-500 text-2xl mb-6"><i class="fas fa-users"></i></div>
+                <h3 class="text-xl font-bold text-slate-800 mb-3">Community</h3>
+                <p class="text-slate-500">Solid and friendly community, ready to help new players.</p>
             </div>
             <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-shield-alt text-3xl text-red-500 mb-6"></i>
-                <h3 class="text-xl font-bold mb-3">Secure [cite: 101]</h3>
-                <p class="text-slate-500">Advanced security systems to keep your account safe[cite: 102].</p>
+                <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-500 text-2xl mb-6"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="text-xl font-bold text-slate-800 mb-3">Secure</h3>
+                <p class="text-slate-500">Advanced security systems to keep your account safe.</p>
             </div>
         </div>
     </section>
 
     <section id="join" class="py-24 px-4 container mx-auto max-w-5xl">
-        <h2 class="text-4xl font-bold text-center mb-12">How to <span class="text-red-600">Join</span></h2>
-        <div class="flex flex-wrap justify-center gap-2 mb-10">
-            <button class="btn btn-sm md:btn-md btn-anime rounded-full px-8 tab-btn active" onclick="switchTab(event, 'android')">Android</button>
-            <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'windows')">Windows</button>
-            <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'ios')">iOS</button>
-            <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'powertunnel')">PowerTunnel</button>
+        <h2 class="text-4xl font-bold text-center mb-12 text-slate-800">How to <span class="text-pink-500">Join</span></h2>
+        <div class="flex flex-wrap justify-center gap-2 mb-10 bg-white/80 p-2 rounded-full border border-pink-100 inline-flex">
+            <button class="px-6 py-2 rounded-full text-sm font-bold transition-all bg-pink-500 text-white tab-btn" onclick="switchTab(event, 'android')">Android</button>
+            <button class="px-6 py-2 rounded-full text-sm font-bold transition-all text-slate-500 tab-btn" onclick="switchTab(event, 'windows')">Windows</button>
+            <button class="px-6 py-2 rounded-full text-sm font-bold transition-all text-slate-500 tab-btn" onclick="switchTab(event, 'ios')">iOS</button>
+            <button class="px-6 py-2 rounded-full text-sm font-bold transition-all text-slate-500 tab-btn" onclick="switchTab(event, 'powertunnel')">PowerTunnel</button>
         </div>
 
-        <div class="glass-card rounded-[2.5rem] p-8 md:p-12 border-t-4 border-red-600 bg-black/40 shadow-xl">
+        <div class="glass-card rounded-[2.5rem] p-10 border-t-4 border-pink-400 bg-white">
             <div id="android" class="platform-content active">
-                <h3 class="text-2xl font-bold mb-6">Android Setup (Hosts Go) [cite: 112]</h3>
-                <div class="bg-black p-4 rounded-xl border border-red-900/30 text-red-500 font-mono mb-6 break-all select-all">
-                    https://as.panel.growsoft.cc/android/1518 [cite: 121]
-                </div>
-                <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/" class="btn btn-anime rounded-full px-10 shadow-lg shadow-red-500/20">Download APK [cite: 127]</a>
+                <h3 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-4"><div class="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600"><i class="fab fa-android"></i></div> Setup via Hosts Go</h3>
+                <div class="bg-indigo-950 p-4 rounded-xl text-pink-400 font-mono text-sm break-all mb-6">https://as.panel.growsoft.cc/android/1518</div>
+                <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/" class="btn btn-anime rounded-full px-10">Download Hosts Go</a>
             </div>
             <div id="windows" class="platform-content">
-                <h3 class="text-2xl font-bold mb-6">Windows Setup [cite: 131]</h3>
-                <div class="bg-black p-6 rounded-xl font-mono text-sm border border-red-900/30 leading-relaxed">
-                    15.235.227.241 growtopia1.com<br>
-                    15.235.227.241 growtopia2.com [cite: 134]
-                </div>
+                <h3 class="text-2xl font-bold text-slate-800 mb-6">Windows Setup</h3>
+                <div class="bg-slate-900 p-6 rounded-2xl text-slate-300 font-mono text-sm">15.235.227.241 growtopia1.com<br>15.235.227.241 growtopia2.com</div>
             </div>
             <div id="ios" class="platform-content">
-                <h3 class="text-2xl font-bold mb-6">iOS / Surge Setup [cite: 137]</h3>
-                <p class="text-slate-400 mb-4">Use Surge or Shadowrocket with this link: [cite: 138]</p>
-                <div class="bg-black p-4 rounded-xl font-mono text-red-500 break-all border border-red-900/30">
-                    https://gtpshost.com/ios/Tsubakips [cite: 140]
-                </div>
+                <h3 class="text-2xl font-bold text-slate-800 mb-6">iOS Setup</h3>
+                <div class="bg-indigo-950 p-6 rounded-2xl text-pink-400 font-mono text-lg">https://gtpshost.com/ios/Tsubakips</div>
             </div>
             <div id="powertunnel" class="platform-content">
-                <h3 class="text-2xl font-bold mb-6">PowerTunnel [cite: 142]</h3>
-                <p class="text-slate-400 mb-2">Go to Plugin -> Hosts -> Add URL: [cite: 144]</p>
-                <div class="bg-black p-4 rounded-xl font-mono text-red-500 text-sm border border-red-900/30">
-                    https://as.panel.growsoft.cc/android/1518 [cite: 146]
-                </div>
+                <h3 class="text-2xl font-bold text-slate-800 mb-6">PowerTunnel</h3>
+                <p class="text-slate-600">Enter Host URL: <span class="text-pink-600 font-bold">https://as.panel.growsoft.cc/android/1518</span></p>
+                <a href="https://android.izzysoft.de/repo/apk/io.github.krlvm.powertunnel.android" class="btn btn-outline btn-primary rounded-full px-8 mt-6">Download APK</a>
             </div>
         </div>
     </section>
 
-    <footer class="p-16 text-center border-t border-red-900/20 bg-black mt-auto">
-        <div class="font-black text-2xl text-white mb-2">TSUBAKI [cite: 150]</div>
-        <p class="text-slate-600 text-xs">© 2025 TsubakiPS & NovaStore. All rights reserved. [cite: 154]</p>
+    <footer class="bg-white/60 p-16 text-center mt-auto border-t border-slate-200">
+        <div class="flex items-center justify-center gap-2 mb-4"><i class="fa-solid fa-fan text-pink-500"></i><span class="text-2xl font-bold text-slate-800">TSUBAKI</span></div>
+        <p class="text-slate-400 text-xs">&copy; 2025 TsubakiPS & NovaStore. [cite_start]All rights reserved. [cite: 154]</p>
     </footer>
 
     <div id="sakura-container"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true }); [cite: 155]
+        AOS.init({ duration: 800, once: true });
 
-        // TAB LOGIC [cite: 156-160]
+        [cite_start]// Tab Switching [cite: 156-160]
         function switchTab(evt, name) {
             const contents = document.getElementsByClassName("platform-content");
             for (let c of contents) c.classList.remove("active");
             const btns = document.getElementsByClassName("tab-btn");
-            for (let b of btns) { 
-                b.classList.remove("btn-anime", "text-white"); 
-                b.classList.add("btn-ghost", "text-slate-400"); 
-            }
+            for (let b of btns) { b.classList.remove("bg-pink-500", "text-white"); b.classList.add("text-slate-500"); }
             document.getElementById(name).classList.add("active");
-            evt.currentTarget.classList.add("btn-anime", "text-white");
-            evt.currentTarget.classList.remove("btn-ghost", "text-slate-400");
+            evt.currentTarget.classList.add("bg-pink-500", "text-white");
         }
 
-        // THEME LOGIC (FIXED) [cite: 161-162]
+        [cite_start]// Theme Toggle [cite: 161-162]
         const toggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
-        
-        const savedTheme = localStorage.getItem('theme') || 'dracula';
+        const savedTheme = localStorage.getItem('theme') || 'valentine';
         html.setAttribute('data-theme', savedTheme);
         toggle.checked = savedTheme === 'valentine';
 
-        toggle.addEventListener('change', () => {
-            const theme = toggle.checked ? 'valentine' : 'dracula';
-            html.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
+        toggle.addEventListener('change', (e) => {
+            const newTheme = e.target.checked ? 'valentine' : 'dracula';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
         });
 
-        // SAKURA PARTICLES [cite: 162-169]
+        [cite_start]// Sakura Animation [cite: 162-169]
         const container = document.getElementById('sakura-container');
-        for (let i = 0; i < 20; i++) {
+        const particles = ['🌸', '❀', '❄'];
+        for (let i = 0; i < 25; i++) {
             const el = document.createElement('div');
             el.classList.add('sakura');
-            el.innerText = '✦';
+            el.innerText = particles[Math.floor(Math.random() * particles.length)];
             el.style.left = Math.random() * 100 + 'vw';
-            el.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            el.style.animationDuration = (Math.random() * 5 + 8) + 's, ' + (Math.random() * 3 + 2) + 's';
+            el.style.fontSize = (Math.random() * 10 + 10) + 'px';
             container.appendChild(el);
         }
     </script>
