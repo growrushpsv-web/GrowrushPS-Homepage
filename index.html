@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TSUBAKI PS | WINTER PREMIUM EDITION</title>
+    <title>TSUBAKI PS | WINTER EDITION PRESTIGE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --border: #e2e8f0; --accent: #0ea5e9; }
-        .dark { --bg: #020617; --card: #0f172a; --text: #f1f5f9; --border: #1e293b; --accent: #38bdf8; }
+        :root { --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; --border: rgba(0,0,0,0.06); }
+        .dark { --bg: #0b0f1a; --card: #161e2d; --text: #f1f5f9; --muted: #94a3b8; --border: rgba(255,255,255,0.08); }
         
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
@@ -16,214 +16,208 @@
             transition: 0.5s; scroll-behavior: smooth; overflow-x: hidden;
         }
 
-        /* Snowfall */
-        .snow { position: fixed; top: -10px; z-index: 999; pointer-events: none; animation: fall linear infinite; color: #bae6fd; }
+        /* Snowflake */
+        .snowflake { position: fixed; top: -10px; z-index: 9999; pointer-events: none; animation: fall linear infinite; color: #bae6fd; }
         @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
 
-        /* Floating Animation */
-        .float { animation: floatAnim 3s ease-in-out infinite; }
-        @keyframes floatAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        /* Emot Floating Animation */
+        .animate-emot { display: inline-block; animation: floatAnim 3s ease-in-out infinite; }
+        @keyframes floatAnim { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.1); } }
 
-        /* Infinite Slider */
-        .slider-track { display: flex; width: max-content; animation: scroll 40s linear infinite; gap: 1rem; }
+        /* Feature Slideshow */
+        .slide-track { display: flex; width: max-content; animation: scroll 25s linear infinite; gap: 16px; padding: 20px 0; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Elements */
-        .glass { background: var(--card); border: 1px solid var(--border); border-radius: 20px; transition: 0.3s ease; }
-        .winter-grad { background: linear-gradient(135deg, #0ea5e9, #8b5cf6); color: white; }
-        
-        /* Server Progress Bar */
-        .progress-bg { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; }
-        .progress-fill { height: 100%; width: 85%; background: #22c55e; border-radius: 10px; box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
-        .dark .progress-bg { background: #1e293b; }
+        .glass-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; transition: 0.3s; }
+        .winter-gradient { background: linear-gradient(135deg, #0ea5e9, #8b5cf6); }
+        .tab-active { background: #0ea5e9 !important; color: white !important; box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3); }
 
-        .tab-btn.active { background: #0ea5e9; color: white; border-color: transparent; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(14, 165, 233, 0.2); }
+        /* Progress Bar Online */
+        .progress-bg { width: 100%; height: 8px; background: rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden; }
+        .dark .progress-bg { background: rgba(255,255,255,0.1); }
+        .progress-fill { height: 100%; width: 85%; background: #22c55e; box-shadow: 0 0 15px #22c55e; border-radius: 10px; }
 
-        /* HP OPTIMIZATION */
+        /* Mobile Fix: Lebar & Proporsional */
         @media (max-width: 640px) {
-            .hero-title { font-size: 3.2rem !important; letter-spacing: -2px !important; }
-            .section-padding { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-            .container-wide { padding-left: 1rem; padding-right: 1rem; }
-            .glass { padding: 1.25rem !important; border-radius: 16px; }
-            .host-text { font-size: 0.7rem !important; }
-            .btn-wide { width: 100% !important; padding: 1rem !important; font-size: 0.9rem !important; }
+            .container-mobile { width: 95% !important; max-width: none !important; margin: 0 auto; }
+            h1 { font-size: 3.5rem !important; }
+            .hero-emot { font-size: 5rem !important; }
+            .glass-card { padding: 1.25rem !important; }
         }
     </style>
 </head>
 <body class="light">
 
-    <nav class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border-b border-black/5 dark:border-white/5 px-4 py-2.5">
+    <nav class="fixed top-0 w-full bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl z-50 border-b border-slate-200/50 dark:border-slate-800 px-4 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2 group">
-                <div class="w-8 h-8 winter-grad rounded-lg flex items-center justify-center text-sm shadow-lg rotate-12">❄️</div>
-                <span class="text-lg font-black italic uppercase tracking-tighter">TSUBAKI <span class="text-sky-500">PS</span></span>
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 winter-gradient rounded-xl flex items-center justify-center text-white text-xl shadow-lg rotate-12">❄️</div>
+                <span class="text-xl font-black tracking-tighter uppercase italic">TSUBAKI <span class="text-sky-500">PS</span></span>
             </div>
             
+            <div class="hidden md:flex gap-8 font-bold text-[10px] uppercase tracking-widest opacity-60">
+                <a href="#" class="hover:text-sky-500 transition">Home</a>
+                <a href="#features" class="hover:text-sky-500 transition">Features</a>
+                <a href="#status" class="hover:text-sky-500 transition">Status</a>
+                <a href="#join" class="hover:text-sky-500 transition">Tutorial</a>
+            </div>
+
             <div class="flex items-center gap-2">
-                <button onclick="toggleTheme()" class="p-2 glass rounded-lg hover:scale-105 transition text-sm"><span id="t-icon">🌙</span></button>
-                <button onclick="window.open('https://discord.gg/link')" class="bg-[#5865F2] px-3 py-2 rounded-lg text-white shadow-lg text-xs font-bold transition">
-                    DISCORD
+                <button onclick="toggleTheme()" class="p-2.5 glass-card rounded-xl text-orange-400 hover:rotate-12 transition">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <button onclick="window.open('https://discord.gg/link')" class="bg-[#5865F2] p-2.5 rounded-xl text-white shadow-xl hover:scale-110 transition">
+                    <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
                 </button>
             </div>
         </div>
     </nav>
 
-    <section class="pt-28 pb-16 text-center px-4 container-wide">
-        <div class="inline-block bg-sky-100 dark:bg-sky-900/30 text-sky-500 px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 italic">● Winter Server 2025</div>
-        <h1 class="hero-title text-5xl md:text-8xl font-black italic tracking-tighter uppercase mb-4 leading-[0.9]">Winter <br><span class="text-sky-500">Edition</span></h1>
-        <div class="text-6xl md:text-7xl mb-8 float">🏔️</div>
-        <button onclick="document.getElementById('join').scrollIntoView()" class="winter-grad px-10 py-4 rounded-xl font-black text-lg shadow-xl hover:scale-105 transition-all active:scale-95">▶ PLAY NOW</button>
+    <section class="pt-44 pb-20 text-center px-4 container-mobile">
+        <div class="inline-block bg-sky-100 dark:bg-sky-900/30 text-sky-500 px-5 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 animate-pulse italic">
+            ● GLOBAL WINTER PRIVATE SERVER
+        </div>
+        <h1 class="text-6xl md:text-9xl font-black tracking-tighter mb-8 italic uppercase leading-none">TSUBAKI <span class="text-sky-500">WINTER</span></h1>
+        <div class="text-7xl md:text-9xl mb-12 animate-emot hero-emot">🏔️</div>
+        <button onclick="document.getElementById('join').scrollIntoView()" class="winter-gradient px-12 py-5 rounded-3xl text-white font-black text-xl shadow-2xl hover:scale-110 transition">▶ START ADVENTURE</button>
     </section>
 
-    <div id="features" class="py-10 bg-slate-100/30 dark:bg-slate-900/20 border-y border-black/5 dark:border-white/5 overflow-hidden">
-        <div class="slider-track px-4">
-            <div class="w-[200px] glass p-6 text-center flex-shrink-0">
-                <div class="text-3xl mb-4 float">💎</div>
-                <h3 class="font-black text-sm uppercase mb-1">1000+ Items</h3>
-                <p class="text-[10px] opacity-50 font-medium">Custom items anime.</p>
+    <section id="features" class="py-20 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-200 dark:border-slate-800 overflow-hidden">
+        <h2 class="text-center text-3xl font-extrabold italic mb-12 uppercase tracking-tighter">Server <span class="text-sky-500">Exclusives</span></h2>
+        <div class="slide-track">
+            <div class="w-[280px] glass-card p-10 text-center flex-shrink-0">
+                <div class="text-5xl mb-6 animate-emot">💎</div>
+                <h3 class="font-bold text-lg mb-2 uppercase">1000+ Items</h3>
+                <p class="text-xs text-muted">Item anime terlengkap dan terbaru.</p>
             </div>
-            <div class="w-[200px] glass p-6 text-center flex-shrink-0">
-                <div class="text-3xl mb-4 float" style="animation-delay: 1s">🛡️</div>
-                <h3 class="font-black text-sm uppercase mb-1">Anti Hack</h3>
-                <p class="text-[10px] opacity-50 font-medium">FrostGuard 24/7.</p>
+            <div class="w-[280px] glass-card p-10 text-center flex-shrink-0">
+                <div class="text-5xl mb-6 animate-emot" style="animation-delay: 0.5s">🛡️</div>
+                <h3 class="font-bold text-lg mb-2 uppercase">Frost Guard</h3>
+                <p class="text-xs text-muted">Proteksi akun dari hack dan cheat.</p>
             </div>
-            <div class="w-[200px] glass p-6 text-center flex-shrink-0">
-                <div class="text-3xl mb-4 float" style="animation-delay: 2s">⚡</div>
-                <h3 class="font-black text-sm uppercase mb-1">No Lag</h3>
-                <p class="text-[10px] opacity-50 font-medium">Infrastruktur Tier-1.</p>
+            <div class="w-[280px] glass-card p-10 text-center flex-shrink-0">
+                <div class="text-5xl mb-6 animate-emot" style="animation-delay: 1s">⚡</div>
+                <h3 class="font-bold text-lg mb-2 uppercase">Zero Lag</h3>
+                <p class="text-xs text-muted">Infrastruktur tier-1 ping rendah.</p>
             </div>
-            <div class="w-[200px] glass p-6 text-center flex-shrink-0">
-                <div class="text-3xl mb-4 float">💎</div>
-                <h3 class="font-black text-sm uppercase mb-1">1000+ Items</h3>
-                <p class="text-[10px] opacity-50 font-medium">Custom items anime.</p>
+            <div class="w-[280px] glass-card p-10 text-center flex-shrink-0">
+                <div class="text-5xl mb-6 animate-emot">🎿</div>
+                <h3 class="font-bold text-lg mb-2 uppercase">Ice Events</h3>
+                <p class="text-xs text-muted">Hadiah kristal harian setiap login.</p>
+            </div>
+            <div class="w-[280px] glass-card p-10 text-center flex-shrink-0">
+                <div class="text-5xl mb-6 animate-emot">💎</div>
+                <h3 class="font-bold text-lg mb-2 uppercase">1000+ Items</h3>
+                <p class="text-xs text-muted">Item anime terlengkap dan terbaru.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <section id="status" class="max-w-5xl mx-auto px-4 py-16 section-padding">
-        <div class="grid md:grid-cols-2 gap-4">
-            <div class="glass p-6 md:p-10">
-                <h2 class="text-xl font-black italic uppercase mb-6">Server <span class="text-sky-500">Status</span></h2>
-                <div class="space-y-5">
+    <section id="status" class="max-w-6xl mx-auto px-4 py-24 container-mobile">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="glass-card p-10 space-y-8">
+                <h2 class="text-4xl font-black italic uppercase tracking-tighter">Live <span class="text-sky-500">Status</span></h2>
+                <div class="space-y-6">
                     <div class="space-y-2">
-                        <div class="flex justify-between text-[10px] font-black uppercase"><span>Online Players</span><span class="text-green-500">Active</span></div>
+                        <div class="flex justify-between text-xs font-black uppercase tracking-widest opacity-60"><span>Server Load</span><span class="text-green-500">Online</span></div>
                         <div class="progress-bg"><div class="progress-fill"></div></div>
                     </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl text-center">
-                            <p class="text-2xl font-black">542</p>
-                            <p class="text-[8px] font-bold opacity-40 uppercase tracking-widest">Players</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-3xl text-center">
+                            <p class="text-3xl font-black">500+</p>
+                            <p class="text-[9px] font-bold opacity-40 uppercase tracking-widest">Players</p>
                         </div>
-                        <div class="bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl text-center">
-                            <p class="text-2xl font-black text-sky-500">12ms</p>
-                            <p class="text-[8px] font-bold opacity-40 uppercase tracking-widest">Ping</p>
+                        <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-3xl text-center">
+                            <p class="text-3xl font-black text-sky-500">24ms</p>
+                            <p class="text-[9px] font-bold opacity-40 uppercase tracking-widest">Ping</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="glass p-6 md:p-10 border-2 border-dashed border-sky-500/10 flex flex-col justify-center">
-                <p class="text-[9px] font-black text-sky-500 uppercase tracking-widest mb-3 italic">Host Address</p>
-                <div class="bg-slate-50 dark:bg-black/40 p-4 rounded-xl mb-4 border border-slate-200 dark:border-white/5">
-                    <code id="host-link" class="host-text block font-mono text-xs font-bold break-all italic opacity-70 text-center">https://as.panel.growsoft.cc/android/1518</code>
+            <div class="glass-card p-10 border-2 border-dashed border-sky-500/20 bg-sky-500/5">
+                <p class="text-[10px] font-black text-sky-500 uppercase tracking-widest mb-4 italic">Remote Config / Host Address</p>
+                <div class="bg-white dark:bg-black p-5 rounded-2xl mb-8 border border-slate-200 dark:border-slate-800">
+                    <code id="host-url" class="font-mono text-xs md:text-sm break-all font-bold text-sky-500">https://as.panel.growsoft.cc/android/1518</code>
                 </div>
-                <button onclick="copyHost()" class="winter-grad py-3 rounded-xl font-black text-xs shadow-lg active:scale-95 transition">COPY HOST ADDRESS</button>
+                <button onclick="copyHost()" class="winter-gradient w-full py-4 rounded-2xl text-white font-black shadow-lg hover:scale-105 transition active:scale-95">SALIN ALAMAT HOST</button>
             </div>
         </div>
     </section>
 
-    <section id="join" class="max-w-4xl mx-auto px-4 py-10 section-padding">
-        <h2 class="text-center text-2xl font-black italic mb-8 uppercase">How To <span class="text-sky-500">Join</span></h2>
+    <section id="join" class="max-w-5xl mx-auto px-4 py-24 container-mobile">
+        <h2 class="text-center text-5xl font-black italic mb-16 uppercase tracking-tighter leading-none">How To <span class="text-sky-500">Join</span></h2>
         
-        <div class="flex justify-center gap-2 mb-6">
-            <button onclick="setTab('android')" id="tab-android" class="tab-btn active border border-black/5 dark:border-white/5 px-4 py-2.5 rounded-xl font-black text-[10px] transition-all">ANDROID</button>
-            <button onclick="setTab('window')" id="tab-window" class="tab-btn border border-black/5 dark:border-white/5 px-4 py-2.5 rounded-xl font-black text-[10px] transition-all">WINDOWS</button>
-            <button onclick="setTab('ios')" id="tab-ios" class="tab-btn border border-black/5 dark:border-white/5 px-4 py-2.5 rounded-xl font-black text-[10px] transition-all">IOS</button>
+        <div class="flex flex-wrap justify-center gap-2 mb-10">
+            <button onclick="setTab('android')" id="tab-android" class="tab-active glass-card px-8 py-3 font-black text-xs transition-all uppercase tracking-widest">ANDROID</button>
+            <button onclick="setTab('windows')" id="tab-windows" class="glass-card px-8 py-3 font-black text-xs transition-all uppercase tracking-widest">WINDOWS</button>
+            <button onclick="setTab('ios')" id="tab-ios" class="glass-card px-8 py-3 font-black text-xs transition-all uppercase tracking-widest">APPLE IOS</button>
         </div>
 
-        <div class="glass p-6 md:p-12 relative overflow-hidden shadow-xl">
-            <div id="tutorial-content" class="space-y-6 relative z-10">
+        <div class="glass-card p-8 md:p-16 relative overflow-hidden shadow-2xl">
+            <div id="setup-content" class="space-y-12 relative z-10 transition-all duration-300">
                 </div>
-            <div class="mt-8 text-center relative z-10">
-                <button id="main-dl-btn" class="winter-grad px-8 py-3.5 rounded-xl font-black text-sm shadow-xl w-full md:w-auto uppercase">Download</button>
-            </div>
-            <div class="absolute -right-10 -bottom-10 text-[150px] opacity-5 float select-none">❄️</div>
+            <div class="absolute -right-24 -bottom-24 text-[300px] opacity-5 animate-emot rotate-12 pointer-events-none">❄️</div>
         </div>
     </section>
 
-    <footer class="py-12 text-center">
-        <div class="text-[9px] font-bold opacity-30 uppercase tracking-[0.5em]">© 2025 TSUBAKI WINTER • ALL RIGHTS RESERVED</div>
-    </footer>
+    <footer class="py-20 text-center opacity-30 text-[10px] font-bold uppercase tracking-[1em]">© 2025 TSUBAKI WINTER CORE</footer>
 
     <script>
-        // Gunakan script yang sama dengan sebelumnya, tidak ada perubahan logika
         function toggleTheme() {
-            const b = document.body; const i = document.getElementById('t-icon');
-            if(b.classList.contains('light')) {
-                b.classList.replace('light', 'dark'); i.innerText = '☀️';
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            if(body.classList.contains('light')) {
+                body.classList.replace('light', 'dark'); icon.innerText = '☀️';
             } else {
-                b.classList.replace('dark', 'light'); i.innerText = '🌙';
+                body.classList.replace('dark', 'light'); icon.innerText = '🌙';
             }
         }
 
-        const tutorialData = {
-            android: {
-                steps: [
-                    { t: 'PtuNull Host', d: 'Gunakan PtuNull atau Virtual Host untuk bypass.' },
-                    { t: 'URL Host', d: 'Salin URL Host di atas ke kolom Remote Config.' },
-                    { t: 'Play', d: 'Aktifkan Host, lalu buka Growtopia.' }
-                ],
-                btn: 'Download Android APK'
-            },
-            window: {
-                steps: [
-                    { t: 'PC Client', d: 'Unduh Tsubaki.exe dan ekstrak filenya.' },
-                    { t: 'Run Admin', d: 'Wajib klik kanan dan pilih Run as Administrator.' },
-                    { t: 'Auto-Host', d: 'Sistem otomatis menghubungkan tanpa setting host.' }
-                ],
-                btn: 'Download PC Client'
-            },
-            ios: {
-                steps: [
-                    { t: 'TestFlight', d: 'Instal TestFlight melalui App Store Apple.' },
-                    { t: 'iPA Install', d: 'Dapatkan link iPA melalui Discord kami.' },
-                    { t: 'Trust App', d: 'Settings > General > VPN > Trust Tsubaki.' }
-                ],
-                btn: 'Join iOS Beta'
-            }
+        const data = {
+            android: [
+                { t: 'PtuNull / Virtual Host', d: 'Gunakan aplikasi PtuNull atau Virtual Host (No Root) untuk bypass host.' },
+                { t: 'Remote Config URL', d: 'Salin URL Host di atas dan tempelkan ke menu Remote Config pada aplikasi Host Anda.' },
+                { t: 'Run Game', d: 'Aktifkan status host (Hijau), lalu buka Growtopia.' }
+            ],
+            windows: [
+                { t: 'Download EXE', d: 'Unduh Tsubaki.zip untuk PC dan ekstrak filenya di folder baru.' },
+                { t: 'Run As Admin', d: 'Wajib Klik kanan Tsubaki.exe dan pilih Run As Administrator.' },
+                { t: 'Otomatis', d: 'Server sudah otomatis terkonfigurasi, Anda tinggal login saja.' }
+            ],
+            ios: [
+                { t: 'TestFlight', d: 'Unduh aplikasi TestFlight secara resmi di App Store.' },
+                { t: 'iPA Install', d: 'Klik link iPA dari Discord kami untuk memulai proses instalasi.' },
+                { t: 'Trust Cert', d: 'Settings > General > Profile dan Trust sertifikat Tsubaki PS.' }
+            ]
         };
 
         function setTab(p) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('tab-' + p).classList.add('active');
+            document.querySelectorAll('[id^="tab-"]').forEach(b => b.classList.remove('tab-active'));
+            document.getElementById('tab-'+p).classList.add('tab-active');
             let html = '';
-            tutorialData[p].steps.forEach((s, i) => {
+            data[p].forEach((s, i) => {
                 html += `
-                <div class="flex gap-4 items-start">
-                    <div class="w-10 h-10 winter-grad rounded-xl flex items-center justify-center font-black text-sm flex-shrink-0 shadow-md">${i+1}</div>
-                    <div>
-                        <h4 class="text-lg font-black italic uppercase mb-0.5 tracking-tighter">${s.t}</h4>
-                        <p class="text-xs opacity-60 font-medium leading-relaxed">${s.d}</p>
-                    </div>
+                <div class="flex gap-6 md:gap-8 group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 winter-gradient text-white rounded-2xl flex items-center justify-center font-black text-xl flex-shrink-0 shadow-lg group-hover:rotate-12 transition">${i+1}</div>
+                    <div><h4 class="text-xl md:text-2xl font-black italic uppercase mb-2 tracking-tighter">${s.t}</h4><p class="text-muted text-xs md:text-sm leading-relaxed font-semibold">${s.d}</p></div>
                 </div>`;
             });
-            document.getElementById('tutorial-content').innerHTML = html;
-            document.getElementById('main-dl-btn').innerText = tutorialData[p].btn;
+            document.getElementById('setup-content').innerHTML = html;
         }
 
         function copyHost() {
-            navigator.clipboard.writeText(document.getElementById('host-link').innerText);
-            alert('Host URL Copied!');
+            navigator.clipboard.writeText(document.getElementById('host-url').innerText);
+            alert('Host Address Copied!');
         }
 
         setInterval(() => {
-            const s = document.createElement('div');
-            s.className = 'snow'; s.innerHTML = '❄';
-            s.style.left = Math.random() * 100 + 'vw';
-            s.style.fontSize = Math.random() * 10 + 10 + 'px';
-            s.style.animationDuration = Math.random() * 3 + 3 + 's';
-            document.body.appendChild(s);
-            setTimeout(() => s.remove(), 6000);
-        }, 300);
+            const snow = document.createElement('div');
+            snow.className = 'snowflake'; snow.innerHTML = '❄';
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(snow);
+            setTimeout(() => snow.remove(), 5000);
+        }, 150);
 
         setTab('android');
     </script>
