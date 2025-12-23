@@ -8,9 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script>
@@ -27,18 +25,18 @@
     </script>
 
     <style>
-        /* TEMA: BLACK & GOLD (Gantiin Valentine/Pink) */
+        /* TEMA: DARK CYBER (Gantiin Valentine) */
         :root {
-            --bg-base: #0a0a0a;
-            --bg-gradient: radial-gradient(at 0% 0%, hsla(45, 30%, 10%, 1) 0, transparent 50%),
-                           radial-gradient(at 100% 0%, hsla(0, 0%, 5%, 1) 0, transparent 50%),
-                           linear-gradient(to bottom, #0a0a0a, #000000);
-            --glass-bg: rgba(18, 18, 18, 0.85);
-            --glass-border: rgba(234, 179, 8, 0.15);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --card-hover-bg: rgba(24, 24, 27, 0.95);
+            --bg-base: #020617;
+            --bg-gradient: radial-gradient(at 0% 0%, hsla(200, 40%, 15%, 1) 0, transparent 50%),
+                           radial-gradient(at 100% 0%, hsla(260, 40%, 15%, 1) 0, transparent 50%),
+                           linear-gradient(to bottom, #020617, #0f172a);
+            --glass-bg: rgba(15, 23, 42, 0.85);
+            --glass-border: rgba(34, 211, 238, 0.15);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --card-hover-bg: rgba(30, 41, 59, 0.95);
         }
 
         body {
@@ -52,24 +50,18 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6, .brand-font {
-            font-family: 'Outfit', sans-serif;
-        }
+        h1, h2, h3, h4, h5, h6, .brand-font { font-family: 'Outfit', sans-serif; }
 
-        /* Glassmorphism Animation */
         .glass-anime {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--glass-border);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
         }
 
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,23 +70,18 @@
         .glass-card:hover {
             background: var(--card-hover-bg);
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: rgba(234, 179, 8, 0.5);
+            border-color: #22d3ee;
         }
 
-        /* Sakura Animation (Warna Gold) */
         .sakura {
             position: fixed;
             top: -10vh;
             z-index: 1;
             user-select: none;
             pointer-events: none;
-            animation-name: fall, sway;
-            animation-duration: 10s, 3s;
-            animation-timing-function: linear, ease-in-out;
-            animation-iteration-count: infinite, infinite;
-            color: #eab308;
-            text-shadow: 0 0 5px rgba(234, 179, 8, 0.3);
+            animation: fall 10s linear infinite, sway 3s ease-in-out infinite;
+            color: #22d3ee;
+            text-shadow: 0 0 5px #0891b2;
         }
 
         @keyframes fall {
@@ -116,26 +103,22 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Gold Gradient */
         .text-gradient-anime {
-            background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+            background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .btn-anime {
-            background: linear-gradient(45deg, #854d0e, #eab308);
+            background: linear-gradient(45deg, #0891b2, #4f46e5);
             border: none;
             color: white;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            transition: all 0.3s ease;
         }
 
         .btn-anime:hover {
-            opacity: 0.9;
             transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
         }
     </style>
 </head>
@@ -145,15 +128,12 @@
     <div class="navbar glass-anime fixed top-0 z-[100] px-4 lg:px-10 h-20 transition-all">
         <div class="navbar-start">
             <div class="dropdown">
-                <label tabindex="0" class="btn btn-ghost lg:hidden text-yellow-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h8m-8 6h16" />
+                <label tabindex="0" class="btn btn-ghost lg:hidden text-cyan-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
                     </svg>
                 </label>
-                <ul tabindex="0"
-                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-neutral-900 rounded-2xl w-52 text-slate-200 border border-yellow-900/30">
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-slate-900 rounded-2xl w-52 text-slate-200 border border-cyan-900/30">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#server">Status</a></li>
                     <li><a href="#features">Features</a></li>
@@ -161,27 +141,25 @@
                 </ul>
             </div>
             <a href="#" class="btn btn-ghost normal-case text-xl lg:text-3xl flex items-center gap-2">
-                <i class="fa-solid fa-fan text-3xl text-yellow-500 animate-spin-slow"
-                    style="animation-duration: 10s;"></i>
+                <i class="fa-solid fa-fan text-3xl text-cyan-500 animate-spin-slow" style="animation-duration: 10s;"></i>
                 <span class="font-extrabold tracking-tight text-gradient-anime ml-1">TSUBAKI</span>
             </a>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1 font-bold text-slate-300 gap-2">
-                <li><a href="#home" class="hover:text-yellow-500 px-4 transition">Home</a></li>
-                <li><a href="#server" class="hover:text-yellow-500 px-4 transition">Status</a></li>
-                <li><a href="#features" class="hover:text-yellow-500 px-4 transition">Features</a></li>
-                <li><a href="#join" class="hover:text-yellow-500 px-4 transition">Tutorials</a></li>
+                <li><a href="#home" class="hover:text-cyan-400 px-4 transition">Home</a></li>
+                <li><a href="#server" class="hover:text-cyan-400 px-4 transition">Status</a></li>
+                <li><a href="#features" class="hover:text-cyan-400 px-4 transition">Features</a></li>
+                <li><a href="#join" class="hover:text-cyan-400 px-4 transition">Tutorials</a></li>
             </ul>
         </div>
         <div class="navbar-end gap-3">
-            <label class="swap swap-rotate btn btn-ghost btn-circle text-yellow-500">
+            <label class="swap swap-rotate btn btn-ghost btn-circle text-cyan-400">
                 <input type="checkbox" id="theme-toggle" />
                 <i class="fa-solid fa-sun swap-on fill-current w-6 h-6"></i>
                 <i class="fa-solid fa-moon swap-off fill-current w-6 h-6"></i>
             </label>
-            <a href="https://discord.gg/EhpusBpnay" target="_blank"
-                class="flex btn btn-sm btn-anime rounded-full px-6 shadow-lg shadow-yellow-900/20">
+            <a href="https://discord.gg/EhpusBpnay" target="_blank" class="flex btn btn-sm btn-anime rounded-full px-6 shadow-lg shadow-cyan-900/20">
                 <i class="fab fa-discord"></i> <span class="hidden xs:inline">Discord</span>
             </a>
         </div>
@@ -189,50 +167,39 @@
 
     <div id="home" class="hero min-h-screen relative pt-20">
         <div class="hero-content text-center z-10 w-full max-w-4xl flex flex-col items-center py-12 lg:py-24 px-4">
-            <div class="badge badge-lg bg-yellow-950/20 border-yellow-900/50 text-yellow-500 gap-2 mb-8 shadow-sm py-4 px-6 rounded-full"
-                data-aos="fade-down">
-                <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span> The Best Global Private Server
+            <div class="badge badge-lg bg-cyan-950/20 border-cyan-900/50 text-cyan-400 gap-2 mb-8 shadow-sm py-4 px-6 rounded-full" data-aos="fade-down">
+                <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span> The Best Global Private Server
             </div>
-
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[1.1] tracking-tight text-white"
-                data-aos="zoom-in">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[1.1] tracking-tight text-white" data-aos="zoom-in">
                 TSUBAKI <span class="text-gradient-anime">PS</span>
             </h1>
-
-            <p class="py-4 lg:py-6 text-lg md:text-2xl text-slate-400 max-w-2xl font-medium leading-relaxed"
-                data-aos="fade-up">
-                Experience ultimate Growtopia gameplay within a stunning dark anime world.
+            <p class="py-4 lg:py-6 text-lg md:text-2xl text-slate-400 max-w-2xl font-medium leading-relaxed" data-aos="fade-up">
+                Experience ultimate Growtopia gameplay within a stunning anime world. Global server, exclusive features, and a friendly community.
             </p>
-
             <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto px-4" data-aos="fade-up">
-                <a href="#join"
-                    class="btn btn-anime btn-lg rounded-2xl w-full sm:w-auto px-10 shadow-xl border-none gap-3 text-lg">
+                <a href="#join" class="btn btn-anime btn-lg rounded-2xl w-full sm:w-auto px-10 shadow-xl border-none gap-3 text-lg">
                     <i class="fas fa-play"></i> Play Now
                 </a>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 w-full max-w-3xl">
-                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up"
-                    data-aos-delay="300">
-                    <i class="fas fa-users text-2xl text-yellow-500 mb-2"></i>
+                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-users text-2xl text-cyan-400 mb-2"></i>
                     <div class="text-2xl font-bold text-white">50+</div>
                     <div class="text-xs text-slate-500 font-bold uppercase">Players</div>
                 </div>
-                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up"
-                    data-aos-delay="400">
-                    <i class="fas fa-cube text-2xl text-yellow-600 mb-2"></i>
+                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-cube text-2xl text-indigo-400 mb-2"></i>
                     <div class="text-2xl font-bold text-white">100+</div>
                     <div class="text-xs text-slate-500 font-bold uppercase">Worlds</div>
                 </div>
-                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up"
-                    data-aos-delay="500">
-                    <i class="fas fa-server text-2xl text-yellow-500 mb-2"></i>
+                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-server text-2xl text-cyan-400 mb-2"></i>
                     <div class="text-2xl font-bold text-white">22ms</div>
                     <div class="text-xs text-slate-500 font-bold uppercase">Ping</div>
                 </div>
-                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up"
-                    data-aos-delay="600">
-                    <i class="fas fa-clock text-2xl text-yellow-600 mb-2"></i>
+                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fas fa-clock text-2xl text-indigo-400 mb-2"></i>
                     <div class="text-2xl font-bold text-white">99%</div>
                     <div class="text-xs text-slate-500 font-bold uppercase">Uptime</div>
                 </div>
@@ -240,22 +207,21 @@
         </div>
     </div>
 
-    <section id="server" class="py-20 relative">
-        <div class="container mx-auto px-4">
-            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden" data-aos="fade-up">
+    <section id="server" class="py-20 relative px-4">
+        <div class="container mx-auto">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden bg-slate-900/50" data-aos="fade-up">
                 <div class="flex flex-col md:flex-row items-center gap-12 relative z-10">
                     <div class="w-full md:w-1/2">
-                        <div
-                            class="w-full h-80 rounded-[1.8rem] shadow-2xl bg-gradient-to-br from-yellow-900/20 to-neutral-900 flex items-center justify-center relative overflow-hidden group">
-                            <i class="fas fa-server text-6xl text-yellow-600 mb-4 animate-pulse"></i>
+                        <div class="w-full h-80 rounded-[1.8rem] shadow-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                            <i class="fas fa-server text-6xl text-cyan-500 mb-4 animate-pulse"></i>
                         </div>
                     </div>
                     <div class="w-full md:w-1/2">
-                        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Server <span
-                                class="text-gradient-anime">Status</span></h2>
-                        <div class="bg-black/50 p-6 rounded-2xl border border-yellow-900/20 flex flex-col">
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Server <span class="text-gradient-anime">Status</span></h2>
+                        <p class="text-slate-400 text-lg mb-8">Enjoy lag-free gaming with our high-performance global infrastructure.</p>
+                        <div class="bg-black/50 p-6 rounded-2xl border border-cyan-900/30">
                             <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">Connection Address</h4>
-                            <p class="text-xl md:text-2xl font-bold text-yellow-500 font-mono break-all select-all">
+                            <p class="text-xl md:text-2xl font-bold text-cyan-400 font-mono break-all select-all">
                                 https://as.panel.growsoft.cc/android/1518
                             </p>
                         </div>
@@ -265,116 +231,114 @@
         </div>
     </section>
 
-    <section id="join" class="py-16 md:py-24 relative">
-        <div class="container mx-auto px-4 max-w-5xl">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">How to <span
-                        class="text-yellow-500">Join</span></h2>
-                <div
-                    class="inline-flex bg-neutral-900 p-1.5 rounded-full border border-yellow-900/20 flex-wrap justify-center gap-1">
-                    <button class="px-6 py-2.5 rounded-full text-sm font-bold transition-all text-white bg-yellow-600 tab-btn"
-                        onclick="switchTab(event, 'android')">Android</button>
-                    <button class="px-6 py-2.5 rounded-full text-sm font-bold transition-all text-slate-400 tab-btn"
-                        onclick="switchTab(event, 'windows')">Windows</button>
+    <section id="features" class="py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">Excellence</span>
+            <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-16 text-white">Key <span class="text-gradient-anime">Features</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up">
+                    <div class="w-14 h-14 bg-cyan-950/30 rounded-2xl flex items-center justify-center text-cyan-400 text-2xl mb-6"><i class="fas fa-star"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Exclusive Items</h3>
+                    <p class="text-slate-500">1000+ custom items uniquely designed for our server.</p>
                 </div>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 md:p-10 border-t-4 border-yellow-600">
-                <div id="android" class="platform-content active">
-                    <h3 class="text-2xl font-bold text-white mb-6">Setup via Hosts Go</h3>
-                    <div
-                        class="bg-black/50 p-4 rounded-xl border border-yellow-900/20 font-mono text-yellow-500 break-all mb-6">
-                        https://as.panel.growsoft.cc/android/1518
-                    </div>
-                    <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file"
-                        class="btn btn-anime rounded-full px-8 shadow-lg shadow-yellow-900/20">
-                        Download Hosts Go
-                    </a>
+                <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-indigo-950/30 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl mb-6"><i class="fas fa-gamepad"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Custom Events</h3>
+                    <p class="text-slate-500">Daily and weekly events with amazing rewards.</p>
                 </div>
-
-                <div id="windows" class="platform-content">
-                    <h3 class="text-2xl font-bold text-white mb-6">Windows Setup</h3>
-                    <div class="bg-black/50 rounded-2xl p-6 text-slate-300 font-mono text-sm border border-yellow-900/20">
-                        15.235.227.241 growtopia1.com<br>
-                        15.235.227.241 growtopia2.com
-                    </div>
+                <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-cyan-950/30 rounded-2xl flex items-center justify-center text-cyan-400 text-2xl mb-6"><i class="fas fa-users"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Community</h3>
+                    <p class="text-slate-500">Solid and friendly community, ready to help new players.</p>
+                </div>
+                <div class="glass-card p-8 rounded-[2rem]" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-indigo-950/30 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl mb-6"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Secure</h3>
+                    <p class="text-slate-500">Advanced security systems to keep your account safe.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-neutral-950 border-t border-yellow-900/20 pt-16 pb-8 mt-auto">
-        <div class="container mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <i class="fa-solid fa-fan text-2xl text-yellow-500"></i>
-                <span class="text-2xl font-bold text-white">TSUBAKI</span>
+    <section id="join" class="py-16 md:py-24 relative px-4">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">How to <span class="text-cyan-400">Join</span></h2>
+            <div class="flex justify-center gap-2 mb-10 flex-wrap">
+                <button class="btn btn-sm md:btn-md btn-anime rounded-full px-6 tab-btn active" onclick="switchTab(event, 'android')"><i class="fab fa-android mr-2"></i> Android</button>
+                <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'windows')"><i class="fab fa-windows mr-2"></i> Windows</button>
+                <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'ios')"><i class="fab fa-apple mr-2"></i> iOS</button>
+                <button class="btn btn-sm md:btn-md btn-ghost text-slate-400 tab-btn" onclick="switchTab(event, 'powertunnel')"><i class="fas fa-bolt mr-2"></i> PowerTunnel</button>
             </div>
-            <p class="text-slate-500 text-sm mb-8">A private server crafted with love for the Global Growtopia
-                Community.</p>
-            <div class="mt-8 text-xs text-slate-600">
-                &copy; 2025 TsubakiPS & NovaStore. All rights reserved.
+
+            <div class="glass-card rounded-[2.5rem] p-6 md:p-10 border-t-4 border-cyan-500">
+                <div id="android" class="platform-content active">
+                    <h3 class="text-2xl font-bold text-white mb-6">Setup via Hosts Go</h3>
+                    <div class="bg-black/50 p-4 rounded-xl border border-cyan-900/30 text-cyan-400 font-mono break-all mb-6">https://as.panel.growsoft.cc/android/1518</div>
+                    <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file" class="btn btn-anime rounded-full px-8">Download Hosts Go</a>
+                </div>
+                <div id="windows" class="platform-content">
+                    <h3 class="text-2xl font-bold text-white mb-6">Windows Setup</h3>
+                    <div class="bg-black/50 rounded-2xl p-6 text-slate-300 font-mono text-sm border border-cyan-900/30">
+                        15.235.227.241 growtopia1.com<br>15.235.227.241 growtopia2.com<br>15.235.227.241 www.growtopia1.com
+                    </div>
+                </div>
+                <div id="ios" class="platform-content">
+                    <h3 class="text-2xl font-bold text-white mb-6">iOS / Mac Setup</h3>
+                    <div class="alert bg-cyan-950/20 border-cyan-900/30 text-cyan-400 mb-6">Use Surge 5 or Shadowrocket</div>
+                    <code class="block text-cyan-400 font-mono break-all text-lg">https://gtpshost.com/ios/Tsubakips</code>
+                </div>
+                <div id="powertunnel" class="platform-content">
+                    <h3 class="text-2xl font-bold text-white mb-6">PowerTunnel</h3>
+                    <ul class="space-y-4 text-slate-400">
+                        <li>1. Install PowerTunnel.</li>
+                        <li>2. Go to Plugin -> Hosts.</li>
+                        <li>3. URL: <span class="text-cyan-400">https://as.panel.growsoft.cc/android/1518</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
+
+    <footer class="bg-slate-950 border-t border-cyan-900/20 pt-16 pb-8 text-center mt-auto">
+        <div class="flex items-center justify-center gap-2 mb-4">
+            <i class="fa-solid fa-fan text-2xl text-cyan-500"></i>
+            <span class="text-2xl font-bold text-white">TSUBAKI</span>
+        </div>
+        <p class="text-slate-500 text-sm mb-8">A private server crafted with love for the Global Growtopia Community.</p>
+        <div class="text-xs text-slate-600">&copy; 2025 TsubakiPS & NovaStore. All rights reserved.</div>
     </footer>
 
     <div id="sakura-container"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 800, once: true });
 
-        // Platform Switcher
-        function switchTab(evt, platformName) {
+        function switchTab(evt, name) {
             const contents = document.getElementsByClassName("platform-content");
-            for (let i = 0; i < contents.length; i++) {
-                contents[i].classList.remove("active");
-            }
-
+            for (let c of contents) c.classList.remove("active");
             const btns = document.getElementsByClassName("tab-btn");
-            for (let i = 0; i < btns.length; i++) {
-                btns[i].classList.remove("bg-yellow-600", "text-white");
-                btns[i].classList.add("text-slate-400");
+            for (let b of btns) {
+                b.classList.remove("btn-anime", "text-white");
+                b.classList.add("btn-ghost", "text-slate-400");
             }
-
-            document.getElementById(platformName).classList.add("active");
-            evt.currentTarget.classList.add("bg-yellow-600", "text-white");
-            evt.currentTarget.classList.remove("text-slate-400");
+            document.getElementById(name).classList.add("active");
+            evt.currentTarget.classList.add("btn-anime", "text-white");
+            evt.currentTarget.classList.remove("btn-ghost", "text-slate-400");
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const html = document.documentElement;
-            const toggle = document.getElementById('theme-toggle');
-            const savedTheme = localStorage.getItem('theme') || 'dracula';
-            html.setAttribute('data-theme', savedTheme);
-            toggle.checked = savedTheme === 'valentine';
-
-            toggle.addEventListener('change', (e) => {
-                const newTheme = e.target.checked ? 'valentine' : 'dracula';
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-            });
-
-            // Sakura Animation (Warna disesuaikan ke Gold)
             const container = document.getElementById('sakura-container');
             const particles = ['✨', '✧', '✦'];
-
             for (let i = 0; i < 25; i++) {
                 const el = document.createElement('div');
                 el.classList.add('sakura');
                 el.innerText = particles[Math.floor(Math.random() * particles.length)];
                 el.style.left = Math.random() * 100 + 'vw';
                 el.style.animationDuration = (Math.random() * 5 + 8) + 's, ' + (Math.random() * 3 + 2) + 's';
-                el.style.animationDelay = Math.random() * 5 + 's';
-                const size = Math.random() * 10 + 10;
-                el.style.fontSize = size + 'px';
                 container.appendChild(el);
             }
         });
     </script>
 </body>
-
 </html>
