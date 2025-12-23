@@ -1,258 +1,230 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tsubaki PS | Ultimate Official Site</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root { --pink-primary: #ec4899; --pink-dark: #db2777; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafafa; color: #1e293b; scroll-behavior: smooth; }
-        
-        /* Typography */
-        .font-black-italic { font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: -0.02em; }
-        
-        /* Glass Effect */
-        .glass-card { background: white; border: 1px solid rgba(0,0,0,0.05); border-radius: 40px; transition: all 0.3s ease; }
-        .glass-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tsubaki PS | Official Site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #ec4899; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.3s ease; }
+        
+        /* Theme Logic */
+        body.light { background-color: #fafafa; color: #1e293b; }
+        body.dark { background-color: #0f172a; color: #f1f5f9; }
 
-        /* Floating Animation */
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+        .glass { border-radius: 32px; transition: all 0.3s ease; }
+        body.light .glass { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        body.dark .glass { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255,255,255,0.1); }
 
-        /* Background Giant Text */
-        .bg-outline-text { 
-            position: absolute; font-size: 18rem; font-weight: 800; z-index: -1; opacity: 0.04; 
-            -webkit-text-stroke: 2px #ec4899; color: transparent; line-height: 1; pointer-events: none;
-        }
+        /* Slideshow Animation */
+        .slide-content { display: none; opacity: 0; transform: translateY(10px); }
+        .slide-content.active { display: block; opacity: 1; transform: translateY(0); animation: fadeIn 0.4s ease forwards; }
+        
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #ec4899; border-radius: 10px; }
-    </style>
+        /* Button Themes */
+        .btn-grad { background: linear-gradient(135deg, #a855f7, #ec4899); color: white; transition: transform 0.2s; }
+        .btn-grad:hover { transform: scale(1.03); }
+        
+        .tab-btn { transition: all 0.3s; color: #94a3b8; }
+        .tab-btn.active { background: #ec4899 !important; color: white !important; box-shadow: 0 8px 15px rgba(236, 72, 153, 0.3); }
+
+        .particle { position: fixed; top: -10px; z-index: 99; pointer-events: none; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
+    </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="light">
 
-    <nav class="fixed top-0 w-full z-[100] px-6 py-6 lg:px-12">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-2xl rounded-3xl p-4 border border-white/20 shadow-lg">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-pink-500 rounded-xl flex items-center justify-center text-white">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z"/></svg>
-                </div>
-                <span class="text-2xl font-black-italic tracking-tighter">TSUBAKI</span>
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 text-pink-500">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z"/></svg>
+            </div>
+            <span class="text-xl font-black italic uppercase tracking-tighter">TSUBAKI <span class="text-pink-500">PS</span></span>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleTheme()" id="theme-btn" class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-slate-800 text-lg">☀️</button>
+            <button class="bg-[#7289da] p-2.5 rounded-xl text-white shadow-lg"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg></button>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-20 px-6 max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="inline-block border border-pink-200 text-pink-500 px-4 py-1 rounded-full text-[10px] font-black uppercase bg-pink-50/50 mb-6 tracking-widest">● The Best Global Private Server</span>
+            <h1 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter mb-4">TSUBAKI <span class="text-pink-500">PS</span></h1>
+            <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto text-sm leading-relaxed mb-8">Experience ultimate Growtopia gameplay within a stunning anime world. Global server, exclusive features, and a friendly community.</p>
+            <button class="btn-grad px-12 py-4 rounded-2xl font-black text-lg shadow-xl">▶ Play Now</button>
+        </div>
+
+        <div class="mb-24">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-black italic uppercase">Server <span class="text-pink-500">Status</span></h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass p-8 text-center">
+                    <div class="text-pink-500 text-2xl mb-2">👥</div>
+                    <div class="text-2xl font-black">50+</div>
+                    <div class="text-[10px] font-bold opacity-40 uppercase">Players</div>
+                </div>
+                <div class="glass p-8 text-center">
+                    <div class="text-purple-500 text-2xl mb-2">📦</div>
+                    <div class="text-2xl font-black">100+</div>
+                    <div class="text-[10px] font-bold opacity-40 uppercase">Worlds</div>
+                </div>
+                <div class="glass p-8 text-center">
+                    <div class="text-blue-500 text-2xl mb-2">📶</div>
+                    <div class="text-2xl font-black text-blue-500">22ms</div>
+                    <div class="text-[10px] font-bold opacity-40 uppercase">Ping</div>
+                </div>
+                <div class="glass p-8 text-center">
+                    <div class="text-green-500 text-2xl mb-2">🕒</div>
+                    <div class="text-2xl font-black">99%</div>
+                    <div class="text-[10px] font-bold opacity-40 uppercase">Uptime</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-24">
+            <h2 class="text-4xl font-black text-center uppercase italic mb-10">How to <span class="text-pink-500">Join</span></h2>
+            
+            <div class="glass p-2 flex justify-center gap-2 mb-8 max-w-xl mx-auto overflow-x-auto no-scrollbar">
+                <button onclick="setSlide(0)" class="tab-btn active px-6 py-2.5 rounded-2xl font-black text-[10px] bg-gray-50 dark:bg-slate-800">🤖 ANDROID</button>
+                <button onclick="setSlide(1)" class="tab-btn px-6 py-2.5 rounded-2xl font-black text-[10px] bg-gray-50 dark:bg-slate-800">🍎 IOS</button>
+                <button onclick="setSlide(2)" class="tab-btn px-6 py-2.5 rounded-2xl font-black text-[10px] bg-gray-50 dark:bg-slate-800">💻 WINDOWS</button>
+                <button onclick="setSlide(3)" class="tab-btn px-6 py-2.5 rounded-2xl font-black text-[10px] bg-gray-50 dark:bg-slate-800">⚡ POWERTUNNEL</button>
+            </div>
+
+            <div class="glass p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                <div id="slide-0" class="slide-content active">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-500/10 rounded-2xl flex items-center justify-center text-2xl">🤖</div>
+                        <h3 class="text-2xl font-black uppercase italic">Setup via <span class="text-pink-500">Hosts Go</span></h3>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-sm font-bold opacity-70">1. Download <span class="text-pink-500">Hosts Go (No Root)</span> or Virtual Hosts.</p>
+                        <div class="bg-slate-900 p-5 rounded-2xl font-mono text-pink-400 text-xs break-all border border-white/5">https://as.panel.growsoft.cc/android/1518</div>
+                        <button class="btn-grad w-full py-4 rounded-2xl font-black uppercase text-sm">Download Hosts Go</button>
+                    </div>
+                </div>
+
+                <div id="slide-1" class="slide-content">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-gray-100 dark:bg-gray-500/10 rounded-2xl flex items-center justify-center text-2xl">🍎</div>
+                        <h3 class="text-2xl font-black uppercase italic">iOS Setup</h3>
+                    </div>
+                    <p class="text-sm font-bold opacity-70 mb-4">Install TestFlight from App Store and join our Discord for the exclusive IPA link.</p>
+                </div>
+
+                <div id="slide-2" class="slide-content">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-500/10 rounded-2xl flex items-center justify-center text-2xl">💻</div>
+                        <h3 class="text-2xl font-black uppercase italic">Windows Setup</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-xs font-bold opacity-50 uppercase">File Path: C:\Windows\System32\drivers\etc\hosts</p>
+                        <div class="bg-slate-900 p-5 rounded-2xl font-mono text-pink-300 text-[10px] leading-loose">
+                            15.235.227.241 growtopia1.com<br>15.235.227.241 growtopia2.com
+                        </div>
+                    </div>
+                </div>
+
+                <div id="slide-3" class="slide-content">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-500/10 rounded-2xl flex items-center justify-center text-2xl">⚡</div>
+                        <h3 class="text-2xl font-black uppercase italic">PowerTunnel</h3>
+                    </div>
+                    <p class="text-sm font-bold opacity-70">Add a new DNS rule with IP: <span class="text-pink-500">15.235.227.241</span></p>
+                </div>
+            </div>
+        </div>
+
+       <div>
+            <div class="text-center mb-12">
+                <p class="text-pink-500 font-black text-[10px] uppercase tracking-widest mb-2">Excellence</p>
+                <h2 class="text-4xl font-black uppercase italic">Key <span class="text-pink-500">Features</span></h2>
+                <p class="text-gray-400 text-sm mt-3">Exclusive features designed to pamper every player.</p>
             </div>
             
-            <div class="hidden lg:flex items-center gap-10">
-                <a href="#home" class="text-[11px] font-black uppercase tracking-widest hover:text-pink-500 transition">Home</a>
-                <a href="#status" class="text-[11px] font-black uppercase tracking-widest hover:text-pink-500 transition">Status</a>
-                <a href="#features" class="text-[11px] font-black uppercase tracking-widest hover:text-pink-500 transition">Features</a>
-                <a href="#store" class="text-[11px] font-black uppercase tracking-widest hover:text-pink-500 transition">Store</a>
-            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass p-10 border-b-4 border-pink-500">
+                    <div class="w-12 h-12 bg-pink-100 dark:bg-pink-500/10 rounded-2xl flex items-center justify-center text-pink-500 text-xl mb-6 shadow-inner">⭐</div>
+                    <h3 class="text-xl font-black uppercase italic mb-3">Exclusive Items</h3>
+                    <p class="opacity-60 text-sm">1000+ custom items uniquely designed for our server.</p>
+                </div>
 
-            <div class="flex items-center gap-3">
-                <button class="hidden sm:block bg-pink-500 text-white px-8 py-3 rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-lg shadow-pink-200">Play Now</button>
-                <button class="bg-[#5865F2] w-12 h-12 flex items-center justify-center rounded-2xl text-white shadow-xl shadow-indigo-100">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
-                </button>
+                <div class="bg-slate-900 rounded-[32px] p-10 text-white relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-pink-500/20 rounded-2xl flex items-center justify-center text-pink-500 text-xl mb-6 border border-pink-500/20">🌍</div>
+                    <h3 class="text-xl font-black uppercase italic mb-3">Global Server</h3>
+                    <p class="text-gray-400 text-sm">Enterprise Tier-4 Performance optimized for protocols.</p>
+                </div>
+
+                <div class="glass p-10 border-b-4 border-purple-500">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-500 text-xl mb-6 shadow-inner">🛡️</div>
+                    <h3 class="text-xl font-black uppercase italic mb-3">Anti-Cheat</h3>
+                    <p class="opacity-60 text-sm">Advanced security system to ensure a fair gaming environment.</p>
+                </div>
+
+                <div class="bg-slate-900 rounded-[32px] p-10 text-white relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-500 text-xl mb-6 border border-blue-500/20">💎</div>
+                    <h3 class="text-xl font-black uppercase italic mb-3">Stable Economy</h3>
+                    <p class="text-gray-400 text-sm">Balanced drop rates and active marketplace for all players.</p>
+                </div>
+
+                <div class="glass p-10 border-b-4 border-yellow-500">
+                    <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-500 text-xl mb-6 shadow-inner">⚡</div>
+                    <h3 class="text-xl font-black uppercase italic mb-3">Auto Events</h3>
+                    <p class="opacity-60 text-sm">Hourly automated events with high-tier rewards and fun challenges.</p>
+                </div>
             </div>
         </div>
-    </nav>
+    </main>
 
-    <main class="relative">
-        <div class="bg-outline-text top-40 left-10">80.7</div>
+    <footer class="py-16 text-center border-t border-gray-100 dark:border-white/5">
+        <div class="flex items-center justify-center gap-2 mb-6">
+            <svg class="w-6 h-6 text-pink-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z"/></svg>
+            <span class="text-lg font-black italic uppercase tracking-tighter">TSUBAKI <span class="text-pink-500">PS</span></span>
+        </div>
+        <p class="text-gray-400 text-xs mb-8">A private server crafted with love for the Global Growtopia Community.</p>
+        <div class="flex justify-center gap-8 opacity-40 mb-10">
+            <button>DISCORD</button><button>INSTAGRAM</button><button>YOUTUBE</button>
+        </div>
+        <p class="text-[10px] font-bold opacity-30 tracking-[0.5em]">© 2025 TSUBAKIPS & NOVASTORE</p>
+    </footer>
 
-        <section id="home" class="pt-52 pb-32 px-6">
-            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
-                <div class="flex-1 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-pink-100 text-pink-500 rounded-full mb-8">
-                        <span class="w-2 h-2 bg-pink-500 rounded-full animate-ping"></span>
-                        <span class="text-[10px] font-black uppercase tracking-widest">Server Excellence</span>
-                    </div>
-                    <h1 class="text-7xl lg:text-[10rem] font-black-italic leading-[0.85] mb-8">Key Features<br><span class="text-pink-500">80.7</span></h1>
-                    <p class="text-gray-400 text-lg max-w-lg mb-12 font-medium leading-relaxed mx-auto lg:mx-0">Sebuah private server yang dirancang dengan dedikasi tinggi untuk komunitas global. Gabung sekarang dan nikmati fitur eksklusif kami.</p>
-                    <div class="flex flex-wrap justify-center lg:justify-start gap-6">
-                        <button class="bg-pink-500 text-white px-12 py-5 rounded-[24px] font-black text-xs uppercase tracking-widest shadow-2xl shadow-pink-200">Mulai Bermain</button>
-                        <button class="bg-white border-2 border-gray-100 px-12 py-5 rounded-[24px] font-black text-xs uppercase tracking-widest hover:border-pink-200 transition">Donasi Store</button>
-                    </div>
-                </div>
+    <script>
+        function toggleTheme() {
+            const b = document.body;
+            const btn = document.getElementById('theme-btn');
+            if(b.classList.contains('light')) {
+                b.classList.replace('light', 'dark');
+                btn.innerText = '🌙';
+            } else {
+                b.classList.replace('dark', 'light');
+                btn.innerText = '☀️';
+            }
+        }
 
-                <div class="w-full max-w-[480px]">
-                    <div class="glass-card p-10 relative overflow-hidden animate-float">
-                        <div class="flex items-center gap-4 mb-10">
-                            <div class="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-2xl">🤖</div>
-                            <h4 class="text-lg font-black-italic">Setup via Hosts Go</h4>
-                        </div>
-                        <div class="flex flex-col items-center mb-10">
-                            <div class="w-24 h-24 bg-pink-500 rounded-[35px] flex items-center justify-center text-white shadow-2xl shadow-pink-200 mb-4">
-                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                            </div>
-                            <span class="text-[10px] font-black opacity-20 uppercase tracking-[0.4em]">Subtitle Information</span>
-                        </div>
-                        <div class="space-y-8">
-                            <div class="flex gap-6">
-                                <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-black text-xs">1</div>
-                                <div>
-                                    <p class="text-xs font-black uppercase mb-1">Download Application</p>
-                                    <p class="text-[10px] opacity-40 leading-relaxed font-semibold">Download Hosts Go No Root melalui link yang disediakan, lalu tempel URL Host kami.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-6">
-                                <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-black text-xs">2</div>
-                                <div class="w-full">
-                                    <div class="h-2 w-full bg-gray-100 rounded-full mb-6 overflow-hidden">
-                                        <div class="h-full bg-pink-500 w-[65%]"></div>
-                                    </div>
-                                    <button class="w-full py-4 bg-pink-500 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-pink-100">Download Sekarang</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        function setSlide(n) {
+            document.querySelectorAll('.slide-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`slide-${n}`).classList.add('active');
+            document.querySelectorAll('.tab-btn')[n].classList.add('active');
+        }
 
-        <section id="status" class="py-32 px-6 bg-white/50">
-            <div class="max-w-7xl mx-auto">
-                <h3 class="text-2xl font-black-italic mb-12">Server Realtime Status</h3>
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="glass-card p-12 text-center border-b-8 border-pink-500">
-                        <p class="text-[10px] font-black opacity-30 uppercase tracking-widest mb-4">Uptime Value</p>
-                        <div class="text-6xl font-black-italic mb-3 tracking-tighter">2.5%</div>
-                        <p class="text-[10px] font-black opacity-30 uppercase">#HOV HOOW</p>
-                    </div>
-                    <div class="glass-card p-12 text-center border-b-8 border-gray-100">
-                        <p class="text-[10px] font-black opacity-30 uppercase tracking-widest mb-4">Total Users</p>
-                        <div class="text-6xl font-black-italic mb-3 tracking-tighter">2010</div>
-                        <p class="text-[10px] font-black opacity-30 uppercase">HEW TORE</p>
-                    </div>
-                    <div class="glass-card p-12 text-center border-b-8 border-gray-100">
-                        <p class="text-[10px] font-black opacity-30 uppercase tracking-widest mb-4">Market Index</p>
-                        <div class="text-6xl font-black-italic mb-3 tracking-tighter">80%</div>
-                        <p class="text-[10px] font-black opacity-30 uppercase">#6431E98B</p>
-                    </div>
-                    <div class="glass-card p-12 text-center border-b-8 border-gray-100">
-                        <p class="text-[10px] font-black opacity-30 uppercase tracking-widest mb-4">Performance</p>
-                        <div class="text-6xl font-black-italic mb-3 tracking-tighter">110%</div>
-                        <p class="text-[10px] font-black opacity-30 uppercase">#AOWECOW</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" class="py-32 px-6">
-            <div class="max-w-7xl mx-auto">
-                <h3 class="text-2xl font-black-italic mb-12">Mengapa Memilih Tsubaki?</h3>
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div class="glass-card p-12">
-                        <div class="w-16 h-16 bg-pink-50 rounded-3xl flex items-center justify-center text-pink-500 text-3xl mb-10">★</div>
-                        <h4 class="text-sm font-black-italic mb-4">Exclusive Items</h4>
-                        <p class="text-[11px] font-bold opacity-40 leading-relaxed">Ribuan item eksklusif yang dirancang secara detail untuk pengalaman bermain tak terlupakan.</p>
-                    </div>
-                    <div class="glass-card p-12">
-                        <div class="w-16 h-16 bg-pink-50 rounded-3xl flex items-center justify-center text-pink-500 text-3xl mb-10">24</div>
-                        <h4 class="text-sm font-black-italic mb-4">Support System</h4>
-                        <p class="text-[11px] font-bold opacity-40 leading-relaxed">Layanan bantuan komunitas tersedia 24/7 melalui Discord resmi kami.</p>
-                    </div>
-                    <div class="glass-card p-12">
-                        <div class="w-16 h-16 bg-pink-50 rounded-3xl flex items-center justify-center text-pink-500 text-3xl mb-10">20</div>
-                        <h4 class="text-sm font-black-italic mb-4">Global Trade</h4>
-                        <p class="text-[11px] font-bold opacity-40 leading-relaxed">Ekonomi yang stabil dengan fitur trade global antar pemain di seluruh dunia.</p>
-                    </div>
-                    <div class="glass-card p-12">
-                        <div class="w-16 h-16 bg-pink-50 rounded-3xl flex items-center justify-center text-pink-500 text-3xl mb-10">✉</div>
-                        <h4 class="text-sm font-black-italic mb-4">Fast Connection</h4>
-                        <p class="text-[11px] font-bold opacity-40 leading-relaxed">Infrastruktur server Tier-4 menjamin latensi rendah dan tanpa lag.</p>
-                    </div>
-                    <div class="md:col-span-4 bg-pink-500 p-16 rounded-[48px] flex flex-col md:flex-row items-center justify-between gap-10 text-white shadow-2xl shadow-pink-300">
-                        <div>
-                            <h3 class="text-5xl font-black-italic mb-4">Global Connectivity</h3>
-                            <p class="text-xs font-black uppercase tracking-[0.6em] opacity-80">Enterprise Tier-4 Infrastructure Worldwide</p>
-                        </div>
-                        <div class="text-[10rem] opacity-20 transform -rotate-12 pointer-events-none">🌍</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="leaderboard" class="py-32 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="glass-card p-12">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
-                        <h3 class="text-2xl font-black-italic">Top 5 Players</h3>
-                        <button class="text-[11px] font-black uppercase tracking-widest text-pink-500">View Full Ranking →</button>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead>
-                                <tr class="text-[10px] font-black uppercase tracking-widest opacity-30 border-b">
-                                    <th class="pb-6">Rank</th>
-                                    <th class="pb-6">Player Name</th>
-                                    <th class="pb-6">Level</th>
-                                    <th class="pb-6">Total XP</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm font-bold">
-                                <tr class="border-b">
-                                    <td class="py-6 text-pink-500 font-black italic">#01</td>
-                                    <td class="py-6">Nova_Owner</td>
-                                    <td class="py-6">125</td>
-                                    <td class="py-6">95.400.000 XP</td>
-                                </tr>
-                                <tr class="border-b">
-                                    <td class="py-6 text-pink-500/60 font-black italic">#02</td>
-                                    <td class="py-6">Tsubaki_Dev</td>
-                                    <td class="py-6">120</td>
-                                    <td class="py-6">88.200.000 XP</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-6 text-pink-500/40 font-black italic">#03</td>
-                                    <td class="py-6">Global_User</td>
-                                    <td class="py-6">115</td>
-                                    <td class="py-6">81.000.000 XP</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-white border-t py-24 px-6 mt-20">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
-                <div class="md:col-span-2">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-8 h-8 bg-pink-500 rounded-lg flex items-center justify-center text-white text-xs">T</div>
-                        <span class="text-xl font-black-italic tracking-tighter">TSUBAKI PS</span>
-                    </div>
-                    <p class="text-sm text-gray-400 max-w-sm leading-relaxed mb-8">Tsubaki Private Server adalah komunitas game berbasis Growtopia dengan fitur kustomisasi terbaik di dunia. Bergabunglah dengan ribuan pemain lainnya.</p>
-                </div>
-                <div>
-                    <h5 class="text-[11px] font-black uppercase tracking-widest mb-8">Quick Links</h5>
-                    <ul class="space-y-4 text-xs font-bold opacity-50">
-                        <li><a href="#" class="hover:text-pink-500 transition">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-pink-500 transition">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-pink-500 transition">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-pink-500 transition">F.A.Q</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-[11px] font-black uppercase tracking-widest mb-8">Social Media</h5>
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-pink-500 hover:bg-pink-500 hover:text-white transition cursor-pointer">IG</div>
-                        <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-pink-500 hover:bg-pink-500 hover:text-white transition cursor-pointer">YT</div>
-                        <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-pink-500 hover:bg-pink-500 hover:text-white transition cursor-pointer">DC</div>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-12 border-t text-center">
-                <p class="text-[10px] font-black uppercase tracking-[1em] opacity-20">© 2025 TSUBAKI PS • POWERED BY NOVA STORE</p>
-            </div>
-        </div>
-    </footer>
-
+        function createP() {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.innerHTML = Math.random() > 0.5 ? '🌸' : '❄️';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            p.style.opacity = Math.random() * 0.4;
+            p.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 8000);
+        }
+        setInterval(createP, 400);
+    </script>
 </body>
 </html>
