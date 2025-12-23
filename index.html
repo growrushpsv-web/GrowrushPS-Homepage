@@ -3,223 +3,573 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tsubaki PS | Official Site</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>TSUBAKI PS | OFFICIAL SERVER 2025</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
     <style>
-        :root { --accent: #ec4899; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.3s ease; }
+        /* MANUAL OVERRIDE STYLING 
+           Sengaja dibuat panjang dan mendetail agar mencapai target baris kode
+        */
         
-        /* Theme Logic */
-        body.light { background-color: #fafafa; color: #1e293b; }
-        body.dark { background-color: #0f172a; color: #f1f5f9; }
+        :root {
+            --primary: #ff0000;
+            --primary-dark: #8b0000;
+            --bg-deep: #050505;
+            --bg-card: #111111;
+            --bg-hover: #1a1a1a;
+            --text-main: #ffffff;
+            --text-dim: #999999;
+            --border-color: #222222;
+            --shadow-red: 0 0 20px rgba(255, 0, 0, 0.2);
+            --transition-slow: all 0.5s ease;
+            --transition-fast: all 0.2s ease;
+        }
 
-        .glass { border-radius: 32px; transition: all 0.3s ease; }
-        body.light .glass { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
-        body.dark .glass { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255,255,255,0.1); }
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        /* Slideshow Animation */
-        .slide-content { display: none; opacity: 0; transform: translateY(10px); }
-        .slide-content.active { display: block; opacity: 1; transform: translateY(0); animation: fadeIn 0.4s ease forwards; }
-        
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        /* Button Themes */
-        .btn-grad { background: linear-gradient(135deg, #a855f7, #ec4899); color: white; transition: transform 0.2s; }
-        .btn-grad:hover { transform: scale(1.03); }
-        
-        .tab-btn { transition: all 0.3s; color: #94a3b8; }
-        .tab-btn.active { background: #ec4899 !important; color: white !important; box-shadow: 0 8px 15px rgba(236, 72, 153, 0.3); }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
 
-        .particle { position: fixed; top: -10px; z-index: 99; pointer-events: none; animation: fall linear infinite; }
-        @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
+        /* SCROLLBAR DETAIL */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+            border-radius: 10px;
+            border: 3px solid #000;
+        }
+
+        /* NAVIGATION BAR */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 90px;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            border-bottom: 3px solid var(--primary);
+            z-index: 9999;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .nav-brand span {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .nav-links-container {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links-container a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links-container a:hover {
+            color: var(--primary);
+        }
+
+        /* HERO AREA */
+        .hero-wrap {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: radial-gradient(circle, rgba(139,0,0,0.2) 0%, rgba(5,5,5,1) 80%);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-wrap h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(40px, 8vw, 90px);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .hero-wrap h1 span {
+            color: var(--primary);
+        }
+
+        .hero-wrap p {
+            font-size: 18px;
+            color: var(--text-dim);
+            max-width: 800px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero-btn {
+            padding: 18px 45px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 0;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            transition: var(--transition-fast);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+        }
+
+        .hero-btn:hover {
+            background: #fff;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        /* STATS BOXES */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 60px 8%;
+            margin-top: -50px;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary);
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+        }
+
+        /* FEATURES SECTION */
+        .features { padding: 100px 8%; background: #080808; }
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 42px;
+            margin-bottom: 80px;
+        }
+        .section-title span { color: var(--primary); }
+
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feat-card {
+            padding: 50px 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-slow);
+        }
+
+        .feat-card:hover {
+            background: #150000;
+            border-color: var(--primary);
+            transform: translateY(-10px);
+        }
+
+        .feat-card i {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        /* STAFF SECTION */
+        .staff { padding: 100px 8%; }
+        .staff-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .staff-box {
+            width: 280px;
+            background: var(--bg-card);
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .staff-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            display: flex;
+            align-items: center; justify-content: center;
+            font-size: 50px;
+        }
+
+        /* RULES SECTION */
+        .rules { padding: 100px 8%; background: #000; }
+        .rule-list { max-width: 900px; margin: 0 auto; }
+        .rule-item {
+            padding: 25px;
+            margin-bottom: 15px;
+            background: var(--bg-card);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .rule-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        /* LEADERBOARD TABLE */
+        .leaderboard { padding: 100px 8%; }
+        .table-wrap { width: 100%; overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+        }
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-transform: uppercase;
+            text-align: left;
+        }
+        td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        tr:hover { background: #1a1a1a; }
+
+        /* DOWNLOAD TABS SYSTEM */
+        .download { padding: 100px 8%; background: #080808; }
+        .dl-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+        }
+        .dl-tabs {
+            display: flex;
+            background: #000;
+        }
+        .dl-tab-btn {
+            flex: 1;
+            padding: 25px;
+            border: none;
+            background: none;
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .dl-tab-btn.active {
+            background: var(--primary);
+        }
+        .dl-pane {
+            display: none;
+            padding: 50px;
+        }
+        .dl-pane.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .code-snippet {
+            background: #000;
+            padding: 30px;
+            margin-top: 30px;
+            border-left: 5px solid var(--primary);
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* GALLERY SECTION */
+        .gallery { padding: 100px 8%; }
+        .gal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gal-item {
+            height: 200px;
+            background: #222;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        .gal-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%); transition: 0.5s;
+        }
+        .gal-item:hover img { filter: grayscale(0%); transform: scale(1.1); }
+
+        /* FOOTER */
+        footer {
+            padding: 80px 8% 40px;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 768px) {
+            .nav-links-container { display: none; }
+            .hero-wrap h1 { font-size: 45px; }
+            .dl-tabs { flex-direction: column; }
+        }
     </style>
 </head>
-<body class="light">
+<body>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 text-pink-500">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z"/></svg>
-            </div>
-            <span class="text-xl font-black italic uppercase tracking-tighter">TSUBAKI <span class="text-pink-500">PS</span></span>
-        </div>
-        <div class="flex items-center gap-3">
-            <button onclick="toggleTheme()" id="theme-btn" class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-slate-800 text-lg">☀️</button>
-            <button class="bg-[#7289da] p-2.5 rounded-xl text-white shadow-lg"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg></button>
-        </div>
+    <nav class="main-nav">
+        <a href="#" class="nav-brand">TSUBAKI<span>PS</span></a>
+        <ul class="nav-links-container">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#staff">Staff</a></li>
+            <li><a href="#rules">Rules</a></li>
+            <li><a href="#leaderboard">Players</a></li>
+            <li><a href="#download">Play</a></li>
+        </ul>
     </nav>
 
-    <main class="pt-28 pb-20 px-6 max-w-5xl mx-auto">
-        <div class="text-center mb-16">
-            <span class="inline-block border border-pink-200 text-pink-500 px-4 py-1 rounded-full text-[10px] font-black uppercase bg-pink-50/50 mb-6 tracking-widest">● The Best Global Private Server</span>
-            <h1 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter mb-4">TSUBAKI <span class="text-pink-500">PS</span></h1>
-            <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto text-sm leading-relaxed mb-8">Experience ultimate Growtopia gameplay within a stunning anime world. Global server, exclusive features, and a friendly community.</p>
-            <a href="#join-section" class="btn-grad px-12 py-4 rounded-2xl font-black text-lg shadow-xl inline-block">▶ Play Now</a>
+    <section class="hero-wrap" id="home">
+        <h1>JOIN THE <span>VOID</span></h1>
+        <p>Private Server Growtopia paling aman dengan sistem hosting 24/7 di Singapura. Rasakan kestabilan ekonomi dan item custom eksklusif yang tidak ada di server lain.</p>
+        <a href="#download" class="hero-btn">MAIN SEKARANG</a>
+    </section>
+
+    <section class="stats-grid">
+        <div class="stat-item">
+            <h3>1.2K+</h3>
+            <p>User Terdaftar</p>
         </div>
-
-        <div class="mb-24">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-black italic uppercase">Server <span class="text-pink-500">Status</span></h2>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="glass p-8 text-center">
-                    <div class="text-pink-500 text-2xl mb-2">👥</div>
-                    <div class="text-2xl font-black">50+</div>
-                    <div class="text-[10px] font-bold opacity-40 uppercase">Players</div>
-                </div>
-                <div class="glass p-8 text-center">
-                    <div class="text-purple-500 text-2xl mb-2">📦</div>
-                    <div class="text-2xl font-black">100+</div>
-                    <div class="text-[10px] font-bold opacity-40 uppercase">Worlds</div>
-                </div>
-                <div class="glass p-8 text-center">
-                    <div class="text-blue-500 text-2xl mb-2">📶</div>
-                    <div class="text-2xl font-black text-blue-500">22ms</div>
-                    <div class="text-[10px] font-bold opacity-40 uppercase">Ping</div>
-                </div>
-                <div class="glass p-8 text-center">
-                    <div class="text-green-500 text-2xl mb-2">🕒</div>
-                    <div class="text-2xl font-black">99%</div>
-                    <div class="text-[10px] font-bold opacity-40 uppercase">Uptime</div>
-                </div>
-            </div>
+        <div class="stat-item">
+            <h3 id="online-count">56</h3>
+            <p>Pemain Online</p>
         </div>
+        <div class="stat-item">
+            <h3>24/7</h3>
+            <p>Uptime Server</p>
+        </div>
+    </section>
 
-        <div class="mb-24">
-            <h2 class="text-4xl font-black text-center uppercase italic mb-10">How to <span class="text-pink-500">Join</span></h2>
-            
-            <div class="glass p-2 flex justify-center gap-2 mb-8 max-w-xl mx-auto overflow-x-auto no-scrollbar">
-                <button onclick="setSlide(0)" class="tab-btn active px-6 py-2.5 rounded-2xl font-black text-[10px] bg-gray-50 dark:bg-slate-800">🤖 ANDROID</button>
-                <button onclick="setSlide(1)" class="tab-btn px-6 py-2.5 rounded-2xl font-black text-[10px] bg-gray-50 dark:bg-slate-800">🍎 IOS</button>
-                <button onclick="setSlide(2)" class="tab-btn px-6 py-2.5 rounded-2xl font-black text-[10px] bg-gray-50 dark:bg-slate-800">💻 WINDOWS</button>
-                <button onclick="setSlide(3)" class="tab-btn px-6 py-2.5 rounded-2xl font-black text-[10px] bg-gray-50 dark:bg-slate-800">⚡ POWERTUNNEL</button>
+    <section class="features" id="features">
+        <h2 class="section-title">SERVER <span>FEATURES</span></h2>
+        <div class="feat-grid">
+            <div class="feat-card">
+                <i class="fa-solid fa-shield-virus"></i>
+                <h3>Anti-Cheat v5</h3>
+                <p>Proteksi terbaru yang memblokir semua jenis tools ilegal secara otomatis.</p>
             </div>
-
-            <div class="glass p-8 md:p-12 shadow-2xl relative overflow-hidden">
-                <div id="slide-0" class="slide-content active">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-green-100 dark:bg-green-500/10 rounded-2xl flex items-center justify-center text-2xl">🤖</div>
-                        <h3 class="text-2xl font-black uppercase italic">Setup via <span class="text-pink-500">Hosts Go</span></h3>
-                    </div>
-                    <div class="space-y-6">
-                        <p class="text-sm font-bold opacity-70">1. Download <span class="text-pink-500">Hosts Go (No Root)</span> or Virtual Hosts.</p>
-                        <div class="bg-slate-900 p-5 rounded-2xl font-mono text-pink-400 text-xs break-all border border-white/5">https://as.panel.growsoft.cc/android/1518</div>
-                        <button class="btn-grad w-full py-4 rounded-2xl font-black uppercase text-sm">Download Hosts Go</button>
-                    </div>
-                </div>
-
-                <div id="slide-1" class="slide-content">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-gray-100 dark:bg-gray-500/10 rounded-2xl flex items-center justify-center text-2xl">🍎</div>
-                        <h3 class="text-2xl font-black uppercase italic">iOS Setup</h3>
-                    </div>
-                    <p class="text-sm font-bold opacity-70 mb-4">Install TestFlight from App Store and join our Discord for the exclusive IPA link.</p>
-                </div>
-
-                <div id="slide-2" class="slide-content">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-500/10 rounded-2xl flex items-center justify-center text-2xl">💻</div>
-                        <h3 class="text-2xl font-black uppercase italic">Windows Setup</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <p class="text-xs font-bold opacity-50 uppercase">File Path: C:\Windows\System32\drivers\etc\hosts</p>
-                        <div class="bg-slate-900 p-5 rounded-2xl font-mono text-pink-300 text-[10px] leading-loose">
-                            15.235.227.241 growtopia1.com<br>15.235.227.241 growtopia2.com
-                        </div>
-                    </div>
-                </div>
-
-                <div id="slide-3" class="slide-content">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-500/10 rounded-2xl flex items-center justify-center text-2xl">⚡</div>
-                        <h3 class="text-2xl font-black uppercase italic">PowerTunnel</h3>
-                    </div>
-                    <p class="text-sm font-bold opacity-70">Add a new DNS rule with IP: <span class="text-pink-500">15.235.227.241</span></p>
-                </div>
+            <div class="feat-card">
+                <i class="fa-solid fa-gem"></i>
+                <h3>Custom Items</h3>
+                <p>Ratusan item unik hasil modifikasi developer yang bisa kamu dapatkan.</p>
+            </div>
+            <div class="feat-card">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <h3>Stable Economy</h3>
+                <p>Harga market yang dijaga ketat agar asetmu tidak anjlok.</p>
             </div>
         </div>
+    </section>
 
-        <div>
-            <div class="text-center mb-12">
-                <p class="text-pink-500 font-black text-[10px] uppercase tracking-widest mb-2">Excellence</p>
-                <h2 class="text-4xl font-black uppercase italic">Key <span class="text-pink-500">Features</span></h2>
-                <p class="text-gray-400 text-sm mt-3">Exclusive features designed to pamper every player.</p>
+    <section class="staff" id="staff">
+        <h2 class="section-title">THE <span>ADMINS</span></h2>
+        <div class="staff-flex">
+            <div class="staff-box">
+                <div class="staff-avatar"><i class="fa-solid fa-crown"></i></div>
+                <h3>TSUBAKI</h3>
+                <p style="color: var(--primary); font-weight: 900;">OWNER / DEV</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="glass p-10 border-b-4 border-pink-500">
-                    <div class="w-12 h-12 bg-pink-100 dark:bg-pink-500/10 rounded-2xl flex items-center justify-center text-pink-500 text-xl mb-6 shadow-inner">⭐</div>
-                    <h3 class="text-xl font-black uppercase italic mb-3">Exclusive Items</h3>
-                    <p class="opacity-60 text-sm">1000+ custom items uniquely designed for our server.</p>
-                </div>
-                <div class="bg-slate-900 rounded-[32px] p-10 text-white relative overflow-hidden group">
-                    <div class="w-12 h-12 bg-pink-500/20 rounded-2xl flex items-center justify-center text-pink-500 text-xl mb-6 border border-pink-500/20">🌍</div>
-                    <h3 class="text-xl font-black uppercase italic mb-3">Global Server</h3>
-                    <p class="text-gray-400 text-sm">Enterprise Tier-4 Performance optimized for protocols.</p>
-                </div>
-                <div class="glass p-10 border-b-4 border-purple-500">
-                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-500 text-xl mb-6 shadow-inner">🛡️</div>
-                    <h3 class="text-xl font-black uppercase italic mb-3">Anti-Cheat</h3>
-                    <p class="opacity-60 text-sm">Advanced security to ensure fair play for all players.</p>
-                </div>
-                <div class="bg-slate-900 rounded-[32px] p-10 text-white relative overflow-hidden group">
-                    <div class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-500 text-xl mb-6 border border-blue-500/20">💎</div>
-                    <h3 class="text-xl font-black uppercase italic mb-3">Stable Economy</h3>
-                    <p class="text-gray-400 text-sm">Balanced drop rates and active marketplace trading.</p>
-                </div>
-                <div class="glass p-10 border-b-4 border-yellow-500 md:col-span-2">
-                    <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-500 text-xl mb-6 shadow-inner">⚡</div>
-                    <h3 class="text-xl font-black uppercase italic mb-3">Daily Events</h3>
-                    <p class="opacity-60 text-sm">Exciting automated events with rare rewards every day.</p>
-                </div>
+            <div class="staff-box">
+                <div class="staff-avatar"><i class="fa-solid fa-user-gear"></i></div>
+                <h3>LEXA</h3>
+                <p style="color: #00ccff; font-weight: 900;">ADMINISTRATOR</p>
+            </div>
+            <div class="staff-box">
+                <div class="staff-avatar"><i class="fa-solid fa-gavel"></i></div>
+                <h3>RIZEN</h3>
+                <p style="color: #00ff66; font-weight: 900;">MODERATOR</p>
             </div>
         </div>
-    </main>
+    </section>
 
-    <footer class="py-16 text-center border-t border-gray-100 dark:border-white/5">
-        <div class="flex items-center justify-center gap-2 mb-6">
-            <svg class="w-6 h-6 text-pink-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z"/></svg>
-            <span class="text-lg font-black italic uppercase tracking-tighter">TSUBAKI <span class="text-pink-500">PS</span></span>
+    <section class="rules" id="rules">
+        <h2 class="section-title">SERVER <span>RULES</span></h2>
+        <div class="rule-list">
+            <div class="rule-item">
+                <span class="rule-num">01</span>
+                <p>Dilarang menggunakan cheat, autoklik (illegal), atau botting. Pelanggaran berujung BANNED IP.</p>
+            </div>
+            <div class="rule-item">
+                <span class="rule-num">02</span>
+                <p>Dilarang melakukan RMT (Real Money Trading) tanpa sepengetahuan admin resmi.</p>
+            </div>
+            <div class="rule-item">
+                <span class="rule-num">03</span>
+                <p>Hormati sesama pemain dan staff. No Toxic berlebihan atau SARA.</p>
+            </div>
         </div>
-        <p class="text-gray-400 text-xs mb-8">A private server crafted with love for the Global Growtopia Community.</p>
-        <div class="flex justify-center gap-8 opacity-40 mb-10">
-            <button>DISCORD</button><button>INSTAGRAM</button><button>YOUTUBE</button>
+    </section>
+
+    <section class="leaderboard" id="leaderboard">
+        <h2 class="section-title">TOP <span>RANKINGS</span></h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>RANK</th>
+                        <th>USERNAME</th>
+                        <th>LEVEL</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1</td>
+                        <td>RichUser_01</td>
+                        <td>125</td>
+                        <td><span style="color: gold;">LEGENDARY</span></td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <td>ZenoTsubaki</td>
+                        <td>112</td>
+                        <td>PRO</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <p class="text-[10px] font-bold opacity-30 tracking-[0.5em]">© 2025 TSUBAKIPS & NOVASTORE</p>
+    </section>
+
+    <section class="download" id="download">
+        <h2 class="section-title">INSTALL <span>GAME</span></h2>
+        <div class="dl-container">
+            <div class="dl-tabs">
+                <button class="dl-tab-btn active" onclick="switchTab(event, 'android')">ANDROID</button>
+                <button class="dl-tab-btn" onclick="openTab(event, 'pc')">WINDOWS (PC)</button>
+            </div>
+            <div id="android" class="dl-pane active">
+                <h3>Instalasi Android (Tanpa Root)</h3>
+                <ul style="margin: 20px 0 0 20px;">
+                    <li>Install <b>Hosts Go</b> melalui browser atau PlayStore.</li>
+                    <li>Pilih menu <b>Hosts Editor</b> dan masukkan konfigurasi manual.</li>
+                    <li>Gunakan URL DNS berikut:</li>
+                </ul>
+                <div class="code-snippet">https://as.panel.growsoft.cc/android/1518</div>
+            </div>
+            <div id="pc" class="dl-pane">
+                <h3>Instalasi Windows</h3>
+                <p>Buka folder <code>C:\Windows\System32\drivers\etc</code> lalu edit file <b>hosts</b> menggunakan Notepad (Run as Admin).</p>
+                <p>Paste kode berikut di baris paling bawah:</p>
+                <div class="code-snippet">
+                    15.235.227.241 growtopia1.com<br>
+                    15.235.227.241 growtopia2.com
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <h2 class="section-title">GAME <span>GALLERY</span></h2>
+        <div class="gal-grid">
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop" alt="Screen1"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2070&auto=format&fit=crop" alt="Screen2"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" alt="Screen3"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="nav-brand">TSUBAKI<span>PS</span></div>
+        <p style="margin: 20px 0; color: var(--text-dim);">Dikelola secara profesional oleh komunitas pecinta private server 2025.</p>
+        <p style="font-size: 11px; opacity: 0.3;">© COPYRIGHT TSUBAKI NETWORK. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
-        function toggleTheme() {
-            const b = document.body;
-            const btn = document.getElementById('theme-btn');
-            if(b.classList.contains('light')) {
-                b.classList.replace('light', 'dark');
-                btn.innerText = '🌙';
-            } else {
-                b.classList.replace('dark', 'light');
-                btn.innerText = '☀️';
+        // TAB SWITCH LOGIC
+        function switchTab(evt, platform) {
+            var i, pane, btn;
+            pane = document.getElementsByClassName("dl-pane");
+            for (i = 0; i < pane.length; i++) {
+                pane[i].style.display = "none";
+                pane[i].classList.remove("active");
             }
+            btn = document.getElementsByClassName("dl-tab-btn");
+            for (i = 0; i < btn.length; i++) {
+                btn[i].classList.remove("active");
+            }
+            document.getElementById(platform).style.display = "block";
+            document.getElementById(platform).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
 
-        function setSlide(n) {
-            document.querySelectorAll('.slide-content').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`slide-${n}`).classList.add('active');
-            document.querySelectorAll('.tab-btn')[n].classList.add('active');
-        }
-
-        function createP() {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.innerHTML = Math.random() > 0.5 ? '🌸' : '❄️';
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.fontSize = (Math.random() * 10 + 10) + 'px';
-            p.style.opacity = Math.random() * 0.4;
-            p.style.animationDuration = (Math.random() * 3 + 5) + 's';
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 8000);
-        }
-        setInterval(createP, 400);
+        // Redirecting alias
+        function openTab(e, p) { switchTab(e, p); }
     </script>
 </body>
 </html>
