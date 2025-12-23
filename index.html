@@ -3,231 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TSUBAKI PS | WINTER PREMIUM FINAL</title>
+    <title>TSUBAKI PS | WINTER EDITION PRESTIGE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border-color: rgba(0,0,0,0.05);
+            --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; --border: rgba(0,0,0,0.06);
         }
-
         .dark {
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255,255,255,0.1);
+            --bg: #0b0f1a; --card: #161e2d; --text: #f1f5f9; --muted: #94a3b8; --border: rgba(255,255,255,0.08);
         }
-
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--bg-body); 
-            color: var(--text-main);
-            transition: all 0.4s ease;
-            scroll-behavior: smooth;
+            background-color: var(--bg); color: var(--text); 
+            transition: background 0.5s, color 0.5s; scroll-behavior: smooth; overflow-x: hidden;
         }
 
-        .glass-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            transition: all 0.3s ease;
-        }
-
-        /* Snowflake Effect */
+        /* Snowflake */
         .snowflake { position: fixed; top: -10px; z-index: 9999; pointer-events: none; animation: fall linear infinite; color: #bae6fd; }
         @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
 
-        /* Floating Animation */
-        @keyframes floating { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
-        .animate-float { display: inline-block; animation: floating 3s ease-in-out infinite; }
+        /* Emot Floating Animation */
+        .animate-emot { display: inline-block; animation: floatAnim 3s ease-in-out infinite; }
+        @keyframes floatAnim { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.1); } }
 
-        /* Slideshow Features */
-        .scroll-container { display: flex; width: max-content; animation: scroll 25s linear infinite; gap: 20px; }
+        /* Feature Slideshow */
+        .slide-track { display: flex; width: max-content; animation: scroll 25s linear infinite; gap: 24px; padding: 20px 0; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .scroll-container:hover { animation-play-state: paused; }
+        .slide-track:hover { animation-play-state: paused; }
 
+        .glass-card { background: var(--card); border: 1px solid var(--border); border-radius: 28px; transition: 0.3s; }
         .winter-gradient { background: linear-gradient(135deg, #0ea5e9, #8b5cf6); }
-        .tab-btn.active { background: #0ea5e9; color: white; border-color: transparent; box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3); }
+        .tab-active { background: #0ea5e9 !important; color: white !important; box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3); transform: translateY(-5px); }
     </style>
 </head>
 <body class="light">
 
-    <nav class="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-100 dark:border-slate-800 px-8 py-4">
+    <nav class="fixed top-0 w-full bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl z-50 border-b border-slate-200/50 dark:border-slate-800 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
-                <div class="w-10 h-10 winter-gradient rounded-xl flex items-center justify-center text-white text-xl">❄️</div>
-                <span class="text-xl font-black tracking-tighter uppercase">TSUBAKI <span class="text-sky-500">PS</span></span>
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 winter-gradient rounded-xl flex items-center justify-center text-white text-xl shadow-lg">❄️</div>
+                <span class="text-xl font-black tracking-tighter uppercase italic">TSUBAKI <span class="text-sky-500">PS</span></span>
             </div>
             
-            <div class="hidden md:flex gap-10 font-bold text-sm">
+            <div class="hidden md:flex gap-8 font-bold text-sm italic opacity-80">
                 <a href="#" class="hover:text-sky-500 transition">Home</a>
-                <a href="#status" class="hover:text-sky-500 transition">Status</a>
                 <a href="#features" class="hover:text-sky-500 transition">Features</a>
-                <a href="#join" class="hover:text-sky-500 transition">Tutorials</a>
+                <a href="#status" class="hover:text-sky-500 transition">Status</a>
+                <a href="#join" class="hover:text-sky-500 transition">Tutorial</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <button onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <button onclick="toggleTheme()" class="p-2.5 glass-card rounded-xl text-orange-400 hover:rotate-12 transition">
                     <span id="theme-icon">🌙</span>
                 </button>
-                <button onclick="window.open('https://discord.gg/yourlink', '_blank')" class="bg-[#5865F2] p-2.5 rounded-xl text-white shadow-lg hover:scale-110 transition">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
+                <button onclick="window.open('https://discord.gg/link')" class="bg-[#5865F2] p-2.5 rounded-xl text-white shadow-xl hover:scale-110 transition">
+                    <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
                 </button>
             </div>
         </div>
     </nav>
 
-    <section class="pt-48 pb-24 text-center px-6">
-        <div class="inline-block border border-sky-100 bg-sky-50 dark:bg-sky-900/20 px-4 py-1 rounded-full text-[10px] font-bold text-sky-500 uppercase tracking-widest mb-6 italic" data-aos="fade-down">
-            ● The Best Global Private Server
+    <section class="pt-48 pb-20 text-center px-6">
+        <div class="inline-block border border-sky-200 dark:border-sky-800 text-sky-500 bg-sky-50 dark:bg-sky-900/20 px-5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-8 animate-pulse italic">
+            ● The Most Advanced Private Server
         </div>
-        <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8 italic" data-aos="fade-up">TSUBAKI <span class="text-sky-500">PS</span></h1>
-        <p class="max-w-2xl mx-auto text-muted text-lg mb-12">Experience ultimate Growtopia gameplay in a stunning winter world.</p>
-        <button onclick="document.getElementById('join').scrollIntoView()" class="winter-gradient px-12 py-5 rounded-[2rem] text-white font-extrabold text-xl shadow-xl hover:scale-105 transition">▶ PLAY NOW</button>
+        <h1 class="text-6xl md:text-9xl font-black tracking-tighter mb-8 italic uppercase">TSUBAKI <span class="text-sky-500">WINTER</span></h1>
+        <div class="text-7xl mb-12 animate-emot">🏔️</div>
+        <button onclick="document.getElementById('join').scrollIntoView()" class="winter-gradient px-12 py-5 rounded-full text-white font-black text-xl shadow-2xl hover:scale-110 transition">▶ START ADVENTURE</button>
     </section>
 
-    <section id="features" class="py-20 bg-slate-100/50 dark:bg-slate-900/50 overflow-hidden">
+    <section id="features" class="py-20 bg-slate-50 dark:bg-slate-900/30 overflow-hidden">
         <h2 class="text-center text-4xl font-extrabold italic mb-16">Key <span class="text-sky-500">Features</span></h2>
-        <div class="scroll-container px-10">
+        <div class="slide-track px-10">
             <div class="w-[300px] glass-card p-10 text-center flex-shrink-0">
-                <div class="text-5xl mb-6 animate-float">❄️</div>
-                <h3 class="font-bold text-lg mb-2">Exclusive Items</h3>
-                <p class="text-sm text-muted">1000+ custom winter items.</p>
+                <div class="text-5xl mb-6 animate-emot">💎</div>
+                <h3 class="font-bold text-xl mb-3 uppercase">1000+ Items</h3>
+                <p class="text-sm text-muted">Koleksi item anime eksklusif paling lengkap.</p>
             </div>
             <div class="w-[300px] glass-card p-10 text-center flex-shrink-0">
-                <div class="text-5xl mb-6 animate-float" style="animation-delay: 0.5s">🎿</div>
-                <h3 class="font-bold text-lg mb-2">Custom Events</h3>
-                <p class="text-sm text-muted">Win amazing crystal rewards.</p>
+                <div class="text-5xl mb-6 animate-emot" style="animation-delay: 0.5s">🛡️</div>
+                <h3 class="font-bold text-xl mb-3 uppercase">Frost Guard</h3>
+                <p class="text-sm text-muted">Keamanan akun anti-hack dan anti-cheat.</p>
             </div>
             <div class="w-[300px] glass-card p-10 text-center flex-shrink-0">
-                <div class="text-5xl mb-6 animate-float" style="animation-delay: 1s">🛡️</div>
-                <h3 class="font-bold text-lg mb-2">Secure Server</h3>
-                <p class="text-sm text-muted">Anti-hack protection active.</p>
+                <div class="text-5xl mb-6 animate-emot" style="animation-delay: 1s">⚡</div>
+                <h3 class="font-bold text-xl mb-3 uppercase">Zero Lag</h3>
+                <p class="text-sm text-muted">Infrastruktur server tier-1 dengan ping rendah.</p>
             </div>
             <div class="w-[300px] glass-card p-10 text-center flex-shrink-0">
-                <div class="text-5xl mb-6 animate-float">🐧</div>
-                <h3 class="font-bold text-lg mb-2">Community</h3>
-                <p class="text-sm text-muted">Friendly & solid community.</p>
+                <div class="text-5xl mb-6 animate-emot">🎿</div>
+                <h3 class="font-bold text-xl mb-3 uppercase">Ice Events</h3>
+                <p class="text-sm text-muted">Event harian dengan hadiah kristal langka.</p>
             </div>
             <div class="w-[300px] glass-card p-10 text-center flex-shrink-0">
-                <div class="text-5xl mb-6 animate-float">❄️</div>
-                <h3 class="font-bold text-lg mb-2">Exclusive Items</h3>
-                <p class="text-sm text-muted">1000+ custom winter items.</p>
+                <div class="text-5xl mb-6 animate-emot">💎</div>
+                <h3 class="font-bold text-xl mb-3 uppercase">1000+ Items</h3>
+                <p class="text-sm text-muted">Koleksi item anime eksklusif paling lengkap.</p>
             </div>
         </div>
     </section>
 
     <section id="status" class="max-w-6xl mx-auto px-6 py-24">
-        <div class="glass-card p-12 flex flex-col md:flex-row items-center gap-12" data-aos="fade-up">
+        <div class="glass-card p-12 flex flex-col md:flex-row items-center gap-12">
             <div class="w-full md:w-1/2 bg-slate-900 dark:bg-black rounded-[2.5rem] p-12 text-center relative overflow-hidden">
-                <div class="text-6xl mb-4 animate-float">🏔️</div>
-                <h3 class="text-2xl font-bold text-white mb-2 italic">Global Server</h3>
-                <p class="text-slate-500 text-sm">Status: <span class="text-green-500 font-bold">ONLINE</span></p>
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-sky-500/20 rounded-full blur-3xl"></div>
+                <div class="text-6xl mb-6 animate-emot">❄️</div>
+                <h3 class="text-2xl font-black text-white italic mb-2 uppercase tracking-tighter">Connection URL</h3>
+                <div class="bg-white/10 p-4 rounded-xl border border-white/20">
+                    <code id="host-url" class="font-mono text-sky-400 text-sm break-all font-bold">https://as.panel.growsoft.cc/android/1518</code>
+                </div>
+                <button onclick="copyHost()" class="mt-6 winter-gradient px-8 py-3 rounded-xl text-white font-bold text-sm w-full">COPY ADDRESS</button>
             </div>
             <div class="w-full md:w-1/2">
-                <h2 class="text-4xl font-extrabold mb-6 italic">Connection <span class="text-sky-500">Host</span></h2>
-                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-2xl relative">
-                    <p class="text-[10px] font-bold text-muted uppercase tracking-widest mb-2">Host URL / Remote Config</p>
-                    <code id="host-url" class="font-mono text-sm font-bold text-sky-500 break-all">https://as.panel.growsoft.cc/android/1518</code>
-                    <button onclick="copyHost()" class="absolute right-4 bottom-4 bg-sky-500 text-white text-[10px] px-3 py-1 rounded-md hover:bg-sky-600 transition">COPY</button>
+                <h2 class="text-4xl font-extrabold italic mb-6 uppercase">Server <span class="text-sky-500">Live</span></h2>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center bg-slate-100 dark:bg-slate-800 p-5 rounded-2xl">
+                        <span class="font-bold text-muted">Players Online</span>
+                        <span class="text-2xl font-black text-green-500">500+</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-100 dark:bg-slate-800 p-5 rounded-2xl">
+                        <span class="font-bold text-muted">Server Status</span>
+                        <span class="text-green-500 font-black animate-pulse uppercase">Active</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="join" class="max-w-4xl mx-auto px-6 py-20">
-        <h2 class="text-center text-4xl font-extrabold mb-12 italic italic">How to <span class="text-sky-500">Join</span></h2>
+    <section id="join" class="max-w-5xl mx-auto px-6 py-24">
+        <h2 class="text-center text-5xl font-black italic mb-16 uppercase">How to <span class="text-sky-500">Join</span></h2>
         
-        <div class="flex justify-center gap-4 mb-10">
-            <button onclick="switchTab('android')" id="btn-android" class="tab-btn active px-8 py-3 rounded-2xl font-bold border border-slate-200 dark:border-slate-700 glass-card transition-all">Android</button>
-            <button onclick="switchTab('windows')" id="btn-windows" class="tab-btn px-8 py-3 rounded-2xl font-bold border border-slate-200 dark:border-slate-700 glass-card transition-all">Windows</button>
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+            <button onclick="setTab('android')" id="tab-android" class="glass-card px-8 py-3 font-black text-sm tab-active transition-all">🤖 ANDROID</button>
+            <button onclick="setTab('windows')" id="tab-windows" class="glass-card px-8 py-3 font-black text-sm transition-all">💻 WINDOWS</button>
+            <button onclick="setTab('ios')" id="tab-ios" class="glass-card px-8 py-3 font-black text-sm transition-all">📱 IOS</button>
         </div>
 
-        <div class="glass-card p-10 md:p-16 relative shadow-2xl">
-            <div id="setup-steps" class="space-y-10">
+        <div class="glass-card p-10 md:p-16 shadow-2xl relative overflow-hidden">
+            <div id="setup-content" class="space-y-12 relative z-10">
                 </div>
-            <button id="main-dl-btn" class="winter-gradient mt-12 px-10 py-4 rounded-2xl text-white font-black shadow-xl hover:scale-105 transition">Download Now</button>
+            <div class="absolute -right-20 -bottom-20 text-[250px] opacity-5 animate-emot rotate-12">⛄</div>
         </div>
     </section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-
-        // THEME TOGGLE LOGIC
+        // THEME LOGIC
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('theme-icon');
-            if (body.classList.contains('light')) {
-                body.classList.remove('light');
-                body.classList.add('dark');
+            if(body.classList.contains('light')) {
+                body.classList.replace('light', 'dark');
                 icon.innerText = '☀️';
             } else {
-                body.classList.remove('dark');
-                body.classList.add('light');
+                body.classList.replace('dark', 'light');
                 icon.innerText = '🌙';
             }
         }
 
-        // TAB SWITCHER
-        const content = {
-            android: {
-                steps: [
-                    { t: '1. Download Hosts Go', d: 'Unduh aplikasi Hosts Go (No Root) di PlayStore.' },
-                    { t: '2. Import Config', d: 'Salin URL Host di atas dan masukkan ke menu Import.' },
-                    { t: '3. Aktifkan & Play', d: 'Klik Start dan buka game Growtopia anda.' }
-                ],
-                btn: 'Download Hosts Go APK'
-            },
-            windows: {
-                steps: [
-                    { t: '1. Download EXE', d: 'Unduh Tsubaki Winter Client khusus Windows.' },
-                    { t: '2. Ekstrak & Jalankan', d: 'Buka file .exe dan izinkan akses firewall.' },
-                    { t: '3. Masuk Game', d: 'Klik tombol login untuk langsung masuk server.' }
-                ],
-                btn: 'Download Windows Client (.EXE)'
-            }
+        // TAB LOGIC
+        const data = {
+            android: [
+                { t: 'PtuNull / Virtual Host', d: 'Gunakan aplikasi PtuNull atau Virtual Host (No Root) untuk mengalihkan koneksi host.' },
+                { t: 'Input Remote Config', d: 'Salin URL Host di atas dan tempelkan ke menu Remote Config pada aplikasi Host Anda.' },
+                { t: 'Run Game', d: 'Aktifkan status host hingga hijau, lalu buka Growtopia.' }
+            ],
+            windows: [
+                { t: 'Download EXE', d: 'Unduh Tsubaki Winter Client khusus Windows (.zip) lalu ekstrak.' },
+                { t: 'Run As Admin', d: 'Klik kanan Tsubaki.exe dan pilih Run As Administrator untuk koneksi otomatis.' },
+                { t: 'Play', d: 'Login seperti biasa, server sudah otomatis terkonfigurasi.' }
+            ],
+            ios: [
+                { t: 'TestFlight', d: 'Unduh aplikasi TestFlight di App Store terlebih dahulu.' },
+                { t: 'Install iPA', d: 'Gunakan link undangan iPA dari Discord kami untuk menginstal game.' },
+                { t: 'Trust App', d: 'Buka Settings > General > Profile dan Trust sertifikat Tsubaki PS.' }
+            ]
         };
 
-        function switchTab(p) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('btn-' + p).classList.add('active');
+        function setTab(p) {
+            document.querySelectorAll('[id^="tab-"]').forEach(b => b.classList.remove('tab-active'));
+            document.getElementById('tab-'+p).classList.add('tab-active');
             
             let html = '';
-            content[p].steps.forEach(s => {
-                html += `<div><h4 class="font-bold text-lg text-sky-500">${s.t}</h4><p class="text-muted text-sm">${s.d}</p></div>`;
+            data[p].forEach((s, i) => {
+                html += `
+                <div class="flex gap-8 group">
+                    <div class="w-14 h-14 winter-gradient text-white rounded-2xl flex items-center justify-center font-black text-xl flex-shrink-0 shadow-lg group-hover:rotate-12 transition">${i+1}</div>
+                    <div><h4 class="text-2xl font-black italic uppercase mb-2">${s.t}</h4><p class="text-muted text-sm leading-relaxed">${s.d}</p></div>
+                </div>`;
             });
-            document.getElementById('setup-steps').innerHTML = html;
-            document.getElementById('main-dl-btn').innerText = content[p].btn;
+            document.getElementById('setup-content').innerHTML = html;
         }
 
         function copyHost() {
-            const url = document.getElementById('host-url').innerText;
-            navigator.clipboard.writeText(url);
-            alert('Host URL copied to clipboard!');
+            navigator.clipboard.writeText(document.getElementById('host-url').innerText);
+            alert('Host URL Copied!');
         }
 
-        // SNOWFALL
+        // SNOW SCRIPT
         setInterval(() => {
             const snow = document.createElement('div');
-            snow.classList.add('snowflake');
-            snow.innerHTML = '❄';
+            snow.className = 'snowflake'; snow.innerHTML = '❄';
             snow.style.left = Math.random() * 100 + 'vw';
             snow.style.animationDuration = Math.random() * 3 + 2 + 's';
-            snow.style.opacity = Math.random();
             document.body.appendChild(snow);
             setTimeout(() => snow.remove(), 5000);
-        }, 200);
+        }, 150);
 
-        // Init
-        switchTab('android');
+        setTab('android');
     </script>
 </body>
 </html>
