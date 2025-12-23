@@ -3,181 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH | THE BEST GLOBAL PS</title>
+    <title>TSUBAKI REPLICA | GROWRUSH</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --tsubaki-pink: #d946ef;
-            --tsubaki-purple: #8b5cf6;
-            --bg-light: #f8fafc;
-            --text-main: #1e293b;
-        }
-
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        /* Hero Text Gradient */
-        .gradient-text {
-            background: linear-gradient(to r, #1e293b 70%, var(--tsubaki-pink) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Buttons (Ref: image_aed9ac) */
-        .btn-play {
-            background: linear-gradient(135deg, var(--tsubaki-pink), var(--tsubaki-purple));
-            color: white;
-            padding: 14px 36px;
-            border-radius: 14px;
-            font-weight: 700;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(217, 70, 239, 0.2);
-        }
-
-        /* Cyber Download Cards (Ref: image_162906) */
-        .cyber-card {
-            background: #060608;
-            color: white;
-            padding: 24px;
-            position: relative;
-            border: 1px solid rgba(0, 242, 255, 0.1);
-            clip-path: polygon(0 0, 85% 0, 100% 25%, 100% 100%, 15% 100%, 0 75%);
-            transition: 0.3s;
-        }
-
-        .cyber-card:hover {
-            border-color: var(--tsubaki-pink);
-            transform: translateY(-5px);
-        }
-
-        .protocol-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 8px;
-            color: #00f2ff;
-            letter-spacing: 2px;
-            position: absolute;
-            top: 12px; left: 20px;
-        }
-
-        /* Stats Card (Ref: image_aedd26) */
-        .stats-box {
-            background: white;
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: var(--tsubaki-pink); border-radius: 10px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .pink-gradient { background: linear-gradient(135deg, #d946ef, #8b5cf6); }
+        .text-gradient { background: linear-gradient(to right, #1e293b 60%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-shadow { box-shadow: 0 10px 40px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.05); border-radius: 24px; }
+        .step-number { width: 32px; height: 32px; background: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; }
+        .nav-link { font-weight: 600; color: #64748b; font-size: 14px; transition: 0.2s; }
+        .nav-link:hover { color: #d946ef; }
     </style>
 </head>
 <body>
 
-    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
+    <nav class="flex justify-between items-center px-10 py-6 max-w-7xl mx-auto">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg"></div>
-            <span class="text-2xl font-extrabold tracking-tighter">GROWRUSH <span class="text-pink-500">PS</span></span>
+            <img src="https://img.icons8.com/color/48/cherry-blossom.png" class="w-8" alt="logo">
+            <span class="text-2xl font-extrabold tracking-tighter uppercase">TSUBAKI <span class="text-[#d946ef]">PS</span></span>
         </div>
-        <div class="hidden md:flex gap-8 text-sm font-bold text-gray-500">
-            <a href="#" class="hover:text-pink-500">Home</a>
-            <a href="#status" class="hover:text-pink-500">Status</a>
-            <a href="#features" class="hover:text-pink-500">Features</a>
-            <a href="#join" class="hover:text-pink-500">Tutorials</a>
+        <div class="hidden md:flex gap-10">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Status</a>
+            <a href="#" class="nav-link">Features</a>
+            <a href="#" class="nav-link">Tutorials</a>
         </div>
-        <div class="flex gap-4 items-center">
-            <button class="text-xl">☀️</button>
-            <div class="bg-purple-600 p-2 rounded-xl text-white">👾</div>
+        <div class="flex items-center gap-4">
+            <button class="text-orange-400">☀️</button>
+            <button class="pink-gradient p-2 rounded-xl text-white shadow-lg shadow-purple-200">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
+            </button>
         </div>
     </nav>
 
-    <section class="text-center py-24 px-4">
-        <div class="inline-block border border-pink-200 rounded-full px-5 py-1 text-sm text-pink-500 mb-8 bg-pink-50">
+    <section class="text-center py-20 px-6">
+        <div class="inline-block border border-pink-200 text-[#d946ef] rounded-full px-4 py-1 text-xs font-semibold mb-6 bg-pink-50">
             ● The Best Global Private Server
         </div>
-        <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tight gradient-text">
-            GROWRUSH PS
-        </h1>
-        <p class="max-w-2xl mx-auto text-gray-500 text-lg mb-12 leading-relaxed">
-            Experience ultimate Growtopia gameplay within a stunning 
-            anime world. Global server, exclusive features, and a 
-            friendly community.
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-gradient">TSUBAKI PS</h1>
+        <p class="max-w-2xl mx-auto text-gray-500 text-lg mb-10 leading-relaxed">
+            Experience ultimate Growtopia gameplay within a stunning anime world. Global server, exclusive features, and a friendly community.
         </p>
-        <button class="btn-play">▶ Play Now</button>
+        <button class="pink-gradient px-10 py-4 rounded-2xl text-white font-bold text-lg shadow-xl shadow-pink-200 hover:scale-105 transition">▶ Play Now</button>
     </section>
 
-    <section id="status" class="max-w-6xl mx-auto px-4 py-20">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            <div class="stats-box">
-                <p class="text-3xl font-black text-slate-800">50+</p>
-                <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Players</p>
+    <section class="max-w-7xl mx-auto px-6 py-20 text-center">
+        <p class="text-[10px] font-bold text-pink-500 tracking-[0.3em] uppercase mb-2">Excellence</p>
+        <h2 class="text-4xl font-extrabold mb-12">Key <span class="text-[#d946ef]">Features</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="card-shadow p-8 flex flex-col items-center">
+                <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center mb-6">⭐</div>
+                <h3 class="font-bold mb-3">Exclusive Items</h3>
+                <p class="text-sm text-gray-400">1000+ custom items uniquely designed for our server.</p>
             </div>
-            <div class="stats-box">
-                <p class="text-3xl font-black text-slate-800">100+</p>
-                <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Worlds</p>
+            <div class="card-shadow p-8 flex flex-col items-center">
+                <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6">🎮</div>
+                <h3 class="font-bold mb-3">Custom Events</h3>
+                <p class="text-sm text-gray-400">Daily and weekly events with amazing rewards.</p>
             </div>
-            <div class="stats-box">
-                <p class="text-3xl font-black text-slate-800">22ms</p>
-                <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Ping</p>
+            <div class="card-shadow p-8 flex flex-col items-center">
+                <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">👥</div>
+                <h3 class="font-bold mb-3">Community</h3>
+                <p class="text-sm text-gray-400">Solid and friendly community, ready to help new players.</p>
             </div>
-            <div class="stats-box">
-                <p class="text-3xl font-black text-slate-800">99%</p>
-                <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Uptime</p>
+            <div class="card-shadow p-8 flex flex-col items-center">
+                <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center mb-6">🛡️</div>
+                <h3 class="font-bold mb-3">Secure</h3>
+                <p class="text-sm text-gray-400">Advanced security systems to keep your account safe.</p>
             </div>
         </div>
+    </section>
 
-        <div class="bg-white rounded-[32px] p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center border border-slate-100 shadow-xl">
-            <div class="w-full md:w-1/2 bg-slate-900 rounded-2xl p-10 text-center">
-                <div class="text-5xl mb-4">🖥️</div>
-                <h3 class="text-xl font-bold text-white mb-2">Global Server</h3>
-                <p class="text-gray-500 text-sm">Enterprise Tier-4 Performance</p>
+    <section class="max-w-5xl mx-auto px-6 py-20">
+        <h2 class="text-center text-4xl font-extrabold mb-16">How to <span class="text-[#d946ef]">Join</span></h2>
+        <div class="card-shadow p-10 md:p-16 relative overflow-hidden">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">🟢</div>
+                <h3 class="text-2xl font-bold">Setup via Hosts Go</h3>
             </div>
-            <div class="w-full md:w-1/2 text-center md:text-left">
-                <h2 class="text-4xl font-extrabold mb-4">Server <span class="text-pink-500">Status</span></h2>
-                <p class="text-gray-500 mb-8">Optimized specifically for Growtopia protocols. Enjoy lag-free gaming.</p>
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Connection Address</p>
-                    <p class="font-mono text-sm break-all font-bold">https://www.growrush.my.id/GrowRushPS.txt</p>
+            <div class="space-y-10 relative z-10">
+                <div class="flex gap-6">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4 class="font-bold">Download App</h4>
+                        <p class="text-sm text-gray-400">Download Hosts Go (No Root) using the button below.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4 class="font-bold">Configure Hosts</h4>
+                        <p class="text-sm text-gray-400 mb-4">Open Hosts Editor, paste this URL into the Download/Import field:</p>
+                        <div class="bg-[#1e1b4b] text-pink-300 p-4 rounded-xl font-mono text-sm break-all">
+                            https://www.growrush.my.id/GrowRushPS.txt
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4 class="font-bold">Connect</h4>
+                        <p class="text-sm text-gray-400">Turn on the protection (Start), then login to Growtopia.</p>
+                    </div>
                 </div>
             </div>
+            <button class="pink-gradient mt-12 px-8 py-3 rounded-2xl text-white font-bold shadow-lg shadow-pink-200">Download Hosts Go</button>
+            <img src="https://img.icons8.com/color/512/android-os.png" class="absolute -right-20 bottom-0 w-80 opacity-5 pointer-events-none" alt="bg">
         </div>
     </section>
-
-    <section class="bg-[#020205] py-24 px-4">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="cyber-card">
-                <span class="protocol-text">PROTOCOL_INITIATED</span>
-                <div class="text-4xl my-6">💾</div>
-                <p class="text-[10px] font-bold opacity-60">WIN_BIN_EXE</p>
-            </div>
-            <div class="cyber-card">
-                <span class="protocol-text">PROTOCOL_INITIATED</span>
-                <div class="text-4xl my-6">🤖</div>
-                <p class="text-[10px] font-bold opacity-60">APK_CLONE_MOD</p>
-            </div>
-            <div class="cyber-card">
-                <span class="protocol-text">PROTOCOL_INITIATED</span>
-                <div class="text-4xl my-6">📱</div>
-                <p class="text-[10px] font-bold opacity-60">IPA_SECURE_IOS</p>
-            </div>
-            <div class="cyber-card">
-                <span class="protocol-text">PROTOCOL_INITIATED</span>
-                <div class="text-4xl my-6">🍎</div>
-                <p class="text-[10px] font-bold opacity-60">MAC_ARM_OSX</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 text-center border-t border-slate-100">
-        <p class="text-xs text-gray-400 font-bold tracking-widest uppercase">© 2025 GrowRush Core. All Protocols Active.</p>
-    </footer>
 
 </body>
 </html>
