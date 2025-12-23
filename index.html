@@ -1,575 +1,320 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" data-theme="dracula">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TSUBAKI PS | OFFICIAL SERVER 2025</title>
-    
+    <title>TSUBAKI - Global Private Server</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        brand: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        /* MANUAL OVERRIDE STYLING 
-           Sengaja dibuat panjang dan mendetail agar mencapai target baris kode
-        */
-        
+        /* TEMA BARU: DARK ORANGE (Gantiin Valentine/Pink) */
         :root {
-            --primary: #ff0000;
-            --primary-dark: #8b0000;
-            --bg-deep: #050505;
-            --bg-card: #111111;
-            --bg-hover: #1a1a1a;
-            --text-main: #ffffff;
-            --text-dim: #999999;
-            --border-color: #222222;
-            --shadow-red: 0 0 20px rgba(255, 0, 0, 0.2);
-            --transition-slow: all 0.5s ease;
-            --transition-fast: all 0.2s ease;
-        }
-
-        /* RESET & BASE */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --bg-base: #121212;
+            --bg-gradient: radial-gradient(at 0% 0%, hsla(25, 40%, 15%, 1) 0, transparent 50%),
+                           radial-gradient(at 100% 0%, hsla(0, 0%, 10%, 1) 0, transparent 50%),
+                           linear-gradient(to bottom, #121212, #000000);
+            --glass-bg: rgba(24, 24, 27, 0.8);
+            --glass-border: rgba(249, 115, 22, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --card-hover-bg: rgba(30, 30, 30, 0.95);
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-main);
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-base);
+            background-image: var(--bg-gradient);
+            background-attachment: fixed;
+            background-size: cover;
+            color: var(--text-primary);
+            transition: background 0.5s ease, color 0.3s ease;
             overflow-x: hidden;
         }
 
-        /* SCROLLBAR DETAIL */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
-            border-radius: 10px;
-            border: 3px solid #000;
+        h1, h2, h3, h4, h5, h6, .brand-font {
+            font-family: 'Outfit', sans-serif;
         }
 
-        /* NAVIGATION BAR */
-        .main-nav {
+        /* Glassmorphism */
+        .glass-anime {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: var(--card-hover-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(249, 115, 22, 0.4);
+        }
+
+        /* Particles Animation (Warna Orange Neon) */
+        .sakura {
             position: fixed;
-            top: 0;
-            width: 100%;
-            height: 90px;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            border-bottom: 3px solid var(--primary);
-            z-index: 9999;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+            top: -10vh;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            animation-name: fall, sway;
+            animation-duration: 10s, 3s;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            color: #f97316;
+            text-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
         }
 
-        .nav-brand {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 32px;
-            font-weight: 900;
-            color: var(--text-main);
-            text-decoration: none;
-            letter-spacing: 3px;
+        @keyframes fall {
+            0% { top: -10%; opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { top: 110%; opacity: 0; }
         }
 
-        .nav-brand span {
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--primary);
+        @keyframes sway {
+            0%, 100% { transform: translateX(-25px) rotate(0deg); }
+            50% { transform: translateX(25px) rotate(45deg); }
         }
 
-        .nav-links-container {
-            display: flex;
-            list-style: none;
-            gap: 40px;
+        .platform-content { display: none; animation: slideUp 0.3s ease-out; }
+        .platform-content.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .nav-links-container a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: var(--transition-fast);
+        /* Orange Gradient */
+        .text-gradient-anime {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .nav-links-container a:hover {
-            color: var(--primary);
-        }
-
-        /* HERO AREA */
-        .hero-wrap {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            background: radial-gradient(circle, rgba(139,0,0,0.2) 0%, rgba(5,5,5,1) 80%);
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero-wrap h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(40px, 8vw, 90px);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            line-height: 1;
-        }
-
-        .hero-wrap h1 span {
-            color: var(--primary);
-        }
-
-        .hero-wrap p {
-            font-size: 18px;
-            color: var(--text-dim);
-            max-width: 800px;
-            margin-bottom: 40px;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .hero-btn {
-            padding: 18px 45px;
-            background: var(--primary);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
-            border-radius: 0;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-            transition: var(--transition-fast);
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
-        }
-
-        .hero-btn:hover {
-            background: #fff;
-            color: #000;
-            transform: scale(1.05);
-        }
-
-        /* STATS BOXES */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 60px 8%;
-            margin-top: -50px;
-        }
-
-        .stat-item {
-            background: var(--bg-card);
-            padding: 40px;
-            text-align: center;
-            border: 1px solid var(--border-color);
+        .btn-anime {
+            background: linear-gradient(45deg, #c2410c, #f97316);
+            border: none;
+            color: white;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--primary);
-        }
-
-        .stat-item h3 {
-            font-size: 48px;
-            color: var(--primary);
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 10px;
-        }
-
-        .stat-item p {
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--text-dim);
-        }
-
-        /* FEATURES SECTION */
-        .features { padding: 100px 8%; background: #080808; }
-        .section-title {
-            text-align: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 42px;
-            margin-bottom: 80px;
-        }
-        .section-title span { color: var(--primary); }
-
-        .feat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .feat-card {
-            padding: 50px 30px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            transition: var(--transition-slow);
-        }
-
-        .feat-card:hover {
-            background: #150000;
-            border-color: var(--primary);
-            transform: translateY(-10px);
-        }
-
-        .feat-card i {
-            font-size: 50px;
-            color: var(--primary);
-            margin-bottom: 25px;
-        }
-
-        /* STAFF SECTION */
-        .staff { padding: 100px 8%; }
-        .staff-flex {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-        .staff-box {
-            width: 280px;
-            background: var(--bg-card);
-            padding: 40px 20px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-        .staff-avatar {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            display: flex;
-            align-items: center; justify-content: center;
-            font-size: 50px;
-        }
-
-        /* RULES SECTION */
-        .rules { padding: 100px 8%; background: #000; }
-        .rule-list { max-width: 900px; margin: 0 auto; }
-        .rule-item {
-            padding: 25px;
-            margin-bottom: 15px;
-            background: var(--bg-card);
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .rule-num {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 24px;
-            color: var(--primary);
-        }
-
-        /* LEADERBOARD TABLE */
-        .leaderboard { padding: 100px 8%; }
-        .table-wrap { width: 100%; overflow-x: auto; }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--bg-card);
-        }
-        th {
-            background: var(--primary);
-            color: white;
-            padding: 20px;
-            text-transform: uppercase;
-            text-align: left;
-        }
-        td {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        tr:hover { background: #1a1a1a; }
-
-        /* DOWNLOAD TABS SYSTEM */
-        .download { padding: 100px 8%; background: #080808; }
-        .dl-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            border: 1px solid var(--border-color);
-        }
-        .dl-tabs {
-            display: flex;
-            background: #000;
-        }
-        .dl-tab-btn {
-            flex: 1;
-            padding: 25px;
-            border: none;
-            background: none;
-            color: #fff;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            transition: 0.3s;
-        }
-        .dl-tab-btn.active {
-            background: var(--primary);
-        }
-        .dl-pane {
-            display: none;
-            padding: 50px;
-        }
-        .dl-pane.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        .code-snippet {
-            background: #000;
-            padding: 30px;
-            margin-top: 30px;
-            border-left: 5px solid var(--primary);
-            font-family: 'Courier New', monospace;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        /* GALLERY SECTION */
-        .gallery { padding: 100px 8%; }
-        .gal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-        .gal-item {
-            height: 200px;
-            background: #222;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-        }
-        .gal-item img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(100%); transition: 0.5s;
-        }
-        .gal-item:hover img { filter: grayscale(0%); transform: scale(1.1); }
-
-        /* FOOTER */
-        footer {
-            padding: 80px 8% 40px;
-            background: #000;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* RESPONSIVE STYLES */
-        @media (max-width: 768px) {
-            .nav-links-container { display: none; }
-            .hero-wrap h1 { font-size: 45px; }
-            .dl-tabs { flex-direction: column; }
+        .btn-anime:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
         }
     </style>
 </head>
-<body>
 
-    <nav class="main-nav">
-        <a href="#" class="nav-brand">TSUBAKI<span>PS</span></a>
-        <ul class="nav-links-container">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#staff">Staff</a></li>
-            <li><a href="#rules">Rules</a></li>
-            <li><a href="#leaderboard">Players</a></li>
-            <li><a href="#download">Play</a></li>
-        </ul>
-    </nav>
+<body class="min-h-screen flex flex-col">
 
-    <section class="hero-wrap" id="home">
-        <h1>JOIN THE <span>VOID</span></h1>
-        <p>Private Server Growtopia paling aman dengan sistem hosting 24/7 di Singapura. Rasakan kestabilan ekonomi dan item custom eksklusif yang tidak ada di server lain.</p>
-        <a href="#download" class="hero-btn">MAIN SEKARANG</a>
-    </section>
-
-    <section class="stats-grid">
-        <div class="stat-item">
-            <h3>1.2K+</h3>
-            <p>User Terdaftar</p>
-        </div>
-        <div class="stat-item">
-            <h3 id="online-count">56</h3>
-            <p>Pemain Online</p>
-        </div>
-        <div class="stat-item">
-            <h3>24/7</h3>
-            <p>Uptime Server</p>
-        </div>
-    </section>
-
-    <section class="features" id="features">
-        <h2 class="section-title">SERVER <span>FEATURES</span></h2>
-        <div class="feat-grid">
-            <div class="feat-card">
-                <i class="fa-solid fa-shield-virus"></i>
-                <h3>Anti-Cheat v5</h3>
-                <p>Proteksi terbaru yang memblokir semua jenis tools ilegal secara otomatis.</p>
-            </div>
-            <div class="feat-card">
-                <i class="fa-solid fa-gem"></i>
-                <h3>Custom Items</h3>
-                <p>Ratusan item unik hasil modifikasi developer yang bisa kamu dapatkan.</p>
-            </div>
-            <div class="feat-card">
-                <i class="fa-solid fa-hand-holding-dollar"></i>
-                <h3>Stable Economy</h3>
-                <p>Harga market yang dijaga ketat agar asetmu tidak anjlok.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="staff" id="staff">
-        <h2 class="section-title">THE <span>ADMINS</span></h2>
-        <div class="staff-flex">
-            <div class="staff-box">
-                <div class="staff-avatar"><i class="fa-solid fa-crown"></i></div>
-                <h3>TSUBAKI</h3>
-                <p style="color: var(--primary); font-weight: 900;">OWNER / DEV</p>
-            </div>
-            <div class="staff-box">
-                <div class="staff-avatar"><i class="fa-solid fa-user-gear"></i></div>
-                <h3>LEXA</h3>
-                <p style="color: #00ccff; font-weight: 900;">ADMINISTRATOR</p>
-            </div>
-            <div class="staff-box">
-                <div class="staff-avatar"><i class="fa-solid fa-gavel"></i></div>
-                <h3>RIZEN</h3>
-                <p style="color: #00ff66; font-weight: 900;">MODERATOR</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="rules" id="rules">
-        <h2 class="section-title">SERVER <span>RULES</span></h2>
-        <div class="rule-list">
-            <div class="rule-item">
-                <span class="rule-num">01</span>
-                <p>Dilarang menggunakan cheat, autoklik (illegal), atau botting. Pelanggaran berujung BANNED IP.</p>
-            </div>
-            <div class="rule-item">
-                <span class="rule-num">02</span>
-                <p>Dilarang melakukan RMT (Real Money Trading) tanpa sepengetahuan admin resmi.</p>
-            </div>
-            <div class="rule-item">
-                <span class="rule-num">03</span>
-                <p>Hormati sesama pemain dan staff. No Toxic berlebihan atau SARA.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="leaderboard" id="leaderboard">
-        <h2 class="section-title">TOP <span>RANKINGS</span></h2>
-        <div class="table-wrap">
-            <table>
-                <thead>
-                    <tr>
-                        <th>RANK</th>
-                        <th>USERNAME</th>
-                        <th>LEVEL</th>
-                        <th>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>#1</td>
-                        <td>RichUser_01</td>
-                        <td>125</td>
-                        <td><span style="color: gold;">LEGENDARY</span></td>
-                    </tr>
-                    <tr>
-                        <td>#2</td>
-                        <td>ZenoTsubaki</td>
-                        <td>112</td>
-                        <td>PRO</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section class="download" id="download">
-        <h2 class="section-title">INSTALL <span>GAME</span></h2>
-        <div class="dl-container">
-            <div class="dl-tabs">
-                <button class="dl-tab-btn active" onclick="switchTab(event, 'android')">ANDROID</button>
-                <button class="dl-tab-btn" onclick="openTab(event, 'pc')">WINDOWS (PC)</button>
-            </div>
-            <div id="android" class="dl-pane active">
-                <h3>Instalasi Android (Tanpa Root)</h3>
-                <ul style="margin: 20px 0 0 20px;">
-                    <li>Install <b>Hosts Go</b> melalui browser atau PlayStore.</li>
-                    <li>Pilih menu <b>Hosts Editor</b> dan masukkan konfigurasi manual.</li>
-                    <li>Gunakan URL DNS berikut:</li>
+    <div class="navbar glass-anime fixed top-0 z-[100] px-4 lg:px-10 h-20 transition-all">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden text-orange-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-zinc-900 rounded-2xl w-52 text-slate-200 border border-orange-900/30">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#server">Status</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#join">Download</a></li>
                 </ul>
-                <div class="code-snippet">https://as.panel.growsoft.cc/android/1518</div>
             </div>
-            <div id="pc" class="dl-pane">
-                <h3>Instalasi Windows</h3>
-                <p>Buka folder <code>C:\Windows\System32\drivers\etc</code> lalu edit file <b>hosts</b> menggunakan Notepad (Run as Admin).</p>
-                <p>Paste kode berikut di baris paling bawah:</p>
-                <div class="code-snippet">
-                    15.235.227.241 growtopia1.com<br>
-                    15.235.227.241 growtopia2.com
+            <a href="#" class="btn btn-ghost normal-case text-xl lg:text-3xl flex items-center gap-2">
+                <i class="fa-solid fa-fan text-3xl text-orange-600 animate-spin-slow" style="animation-duration: 10s;"></i>
+                <span class="font-extrabold tracking-tight text-gradient-anime ml-1">TSUBAKI</span>
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 font-bold text-slate-300 gap-2">
+                <li><a href="#home" class="hover:text-orange-500 px-4 transition">Home</a></li>
+                <li><a href="#server" class="hover:text-orange-500 px-4 transition">Status</a></li>
+                <li><a href="#features" class="hover:text-orange-500 px-4 transition">Features</a></li>
+                <li><a href="#join" class="hover:text-orange-500 px-4 transition">Tutorials</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end gap-3">
+            <label class="swap swap-rotate btn btn-ghost btn-circle text-orange-500">
+                <input type="checkbox" id="theme-toggle" />
+                <i class="fa-solid fa-sun swap-on fill-current w-6 h-6"></i>
+                <i class="fa-solid fa-moon swap-off fill-current w-6 h-6"></i>
+            </label>
+            <a href="https://discord.gg/EhpusBpnay" target="_blank" class="flex btn btn-sm btn-anime rounded-full px-6 shadow-lg shadow-orange-900/20">
+                <i class="fab fa-discord"></i> <span class="hidden xs:inline">Discord</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="home" class="hero min-h-screen relative pt-20">
+        <div class="hero-content text-center z-10 w-full max-w-4xl flex flex-col items-center py-12 lg:py-24 px-4">
+            <div class="badge badge-lg bg-orange-950/20 border-orange-900/50 text-orange-500 gap-2 mb-8 shadow-sm py-4 px-6 rounded-full" data-aos="fade-down">
+                <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span> The Best Global Private Server
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[1.1] tracking-tight text-white" data-aos="zoom-in">
+                TSUBAKI <span class="text-gradient-anime">PS</span>
+            </h1>
+            <p class="py-4 lg:py-6 text-lg md:text-2xl text-slate-400 max-w-2xl font-medium leading-relaxed" data-aos="fade-up">
+                Professional Growtopia experience with a high-performance dark theme.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto px-4" data-aos="fade-up">
+                <a href="#join" class="btn btn-anime btn-lg rounded-2xl w-full sm:w-auto px-10 shadow-xl border-none gap-3 text-lg">
+                    <i class="fas fa-play"></i> Play Now
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 w-full max-w-3xl">
+                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up">
+                    <i class="fas fa-users text-2xl text-orange-500 mb-2"></i>
+                    <div class="text-2xl font-bold text-white">50+</div>
+                    <div class="text-xs text-slate-500 font-bold uppercase">Players</div>
+                </div>
+                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-cube text-2xl text-orange-400 mb-2"></i>
+                    <div class="text-2xl font-bold text-white">100+</div>
+                    <div class="text-xs text-slate-500 font-bold uppercase">Worlds</div>
+                </div>
+                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-server text-2xl text-orange-500 mb-2"></i>
+                    <div class="text-2xl font-bold text-white">22ms</div>
+                    <div class="text-xs text-slate-500 font-bold uppercase">Ping</div>
+                </div>
+                <div class="glass-card p-4 rounded-3xl flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-clock text-2xl text-orange-400 mb-2"></i>
+                    <div class="text-2xl font-bold text-white">99%</div>
+                    <div class="text-xs text-slate-500 font-bold uppercase">Uptime</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="server" class="py-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 bg-zinc-900/50" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/2">
+                        <div class="w-full h-80 rounded-[1.8rem] bg-gradient-to-br from-orange-900 to-black flex items-center justify-center">
+                            <i class="fas fa-fire text-7xl text-orange-600 animate-pulse"></i>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-left">
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Server <span class="text-gradient-anime">Status</span></h2>
+                        <div class="bg-black p-6 rounded-2xl border border-orange-900/30">
+                            <h4 class="text-xs font-bold text-zinc-500 uppercase mb-2">Connection Address</h4>
+                            <p class="text-xl md:text-2xl font-bold text-orange-500 font-mono break-all select-all">
+                                https://as.panel.growsoft.cc/android/1518
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="gallery">
-        <h2 class="section-title">GAME <span>GALLERY</span></h2>
-        <div class="gal-grid">
-            <div class="gal-item"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop" alt="Screen1"></div>
-            <div class="gal-item"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2070&auto=format&fit=crop" alt="Screen2"></div>
-            <div class="gal-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" alt="Screen3"></div>
+    <section id="join" class="py-16 md:py-24">
+        <div class="container mx-auto px-4 max-w-5xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">How to <span class="text-orange-500">Join</span></h2>
+            <div class="inline-flex bg-zinc-900 p-1.5 rounded-full border border-orange-900/20 flex-wrap justify-center gap-1 mb-10">
+                <button class="px-6 py-2.5 rounded-full text-sm font-bold transition-all text-white bg-orange-600 tab-btn" onclick="switchTab(event, 'android')">Android</button>
+                <button class="px-6 py-2.5 rounded-full text-sm font-bold transition-all text-zinc-400 tab-btn" onclick="switchTab(event, 'windows')">Windows</button>
+            </div>
+
+            <div class="glass-card rounded-[2.5rem] p-6 md:p-10 border-t-4 border-orange-600 bg-zinc-900/80 text-left">
+                <div id="android" class="platform-content active">
+                    <h3 class="text-2xl font-bold text-white mb-6">Setup via Hosts Go</h3>
+                    <div class="bg-black p-4 rounded-xl border border-orange-900/20 font-mono text-orange-500 break-all mb-6">
+                        https://as.panel.growsoft.cc/android/1518
+                    </div>
+                    <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file" class="btn btn-anime rounded-full px-8">Download Hosts Go</a>
+                </div>
+                <div id="windows" class="platform-content">
+                    <h3 class="text-2xl font-bold text-white mb-6">Windows Setup</h3>
+                    <div class="bg-black p-6 rounded-2xl text-slate-300 font-mono text-sm border border-orange-900/20">
+                        15.235.227.241 growtopia1.com<br>
+                        15.235.227.241 growtopia2.com
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <div class="nav-brand">TSUBAKI<span>PS</span></div>
-        <p style="margin: 20px 0; color: var(--text-dim);">Dikelola secara profesional oleh komunitas pecinta private server 2025.</p>
-        <p style="font-size: 11px; opacity: 0.3;">© COPYRIGHT TSUBAKI NETWORK. ALL RIGHTS RESERVED.</p>
+    <footer class="bg-black border-t border-orange-900/20 pt-16 pb-8 text-center mt-auto">
+        <div class="flex items-center justify-center gap-2 mb-4">
+            <i class="fa-solid fa-fan text-2xl text-orange-600"></i>
+            <span class="text-2xl font-bold text-white">TSUBAKI</span>
+        </div>
+        <div class="mt-8 text-xs text-zinc-600">
+            &copy; 2025 TsubakiPS & NovaStore. All rights reserved.
+        </div>
     </footer>
 
+    <div id="sakura-container"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // TAB SWITCH LOGIC
-        function switchTab(evt, platform) {
-            var i, pane, btn;
-            pane = document.getElementsByClassName("dl-pane");
-            for (i = 0; i < pane.length; i++) {
-                pane[i].style.display = "none";
-                pane[i].classList.remove("active");
+        AOS.init({ duration: 800, once: true });
+
+        function switchTab(evt, platformName) {
+            const contents = document.getElementsByClassName("platform-content");
+            for (let c of contents) c.classList.remove("active");
+            const btns = document.getElementsByClassName("tab-btn");
+            for (let b of btns) {
+                b.classList.remove("bg-orange-600", "text-white");
+                b.classList.add("text-zinc-400");
             }
-            btn = document.getElementsByClassName("dl-tab-btn");
-            for (i = 0; i < btn.length; i++) {
-                btn[i].classList.remove("active");
-            }
-            document.getElementById(platform).style.display = "block";
-            document.getElementById(platform).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            document.getElementById(platformName).classList.add("active");
+            evt.currentTarget.classList.add("bg-orange-600", "text-white");
         }
 
-        // Redirecting alias
-        function openTab(e, p) { switchTab(e, p); }
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('sakura-container');
+            const particles = ['⚡', '✦', '🔥'];
+            for (let i = 0; i < 25; i++) {
+                const el = document.createElement('div');
+                el.classList.add('sakura');
+                el.innerText = particles[Math.floor(Math.random() * particles.length)];
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.animationDuration = (Math.random() * 5 + 8) + 's, ' + (Math.random() * 3 + 2) + 's';
+                el.style.fontSize = (Math.random() * 10 + 10) + 'px';
+                container.appendChild(el);
+            }
+        });
     </script>
 </body>
 </html>
