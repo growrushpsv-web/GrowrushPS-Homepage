@@ -3,211 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH | PS</title>
+    <title>GROWRUSH | THE BEST GLOBAL PS</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #0b0b0e;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
+        :root {
+            --primary: #d946ef; /* Pink Tsubaki */
+            --secondary: #8b5cf6; /* Violet Tsubaki */
+            --bg-dark: #060608;
+            --cyber-border: rgba(0, 242, 255, 0.2);
         }
 
-        /* Background Glow Effect */
-        .bg-gradient {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #0b0b0e 70%);
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Cyber Grid Background */
+        .cyber-grid {
+            position: fixed; inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
             z-index: -1;
         }
 
-        /* Sidebar Glass Effect */
-        .sidebar {
-            background: rgba(13, 13, 17, 0.7);
-            backdrop-filter: blur(12px);
-            border-right: 1px solid rgba(255, 255, 255, 0.03);
-            width: 280px;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            padding: 40px 24px;
+        /* Hero Gradient Glow */
+        .hero-glow {
+            position: absolute; top: -10%; left: 50%; transform: translateX(-50%);
+            width: 80%; height: 500px;
+            background: radial-gradient(circle, rgba(217, 70, 239, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            color: #94a3b8;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-bottom: 8px;
-            font-weight: 500;
+        /* Download Card Style (Ref: image_162561 & image_162906) */
+        .cyber-card {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid var(--cyber-border);
+            position: relative;
+            clip-path: polygon(0 0, 90% 0, 100% 20%, 100% 100%, 10% 100%, 0 80%);
+            transition: 0.3s;
+            padding: 24px;
+            text-align: center;
         }
 
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.03);
-            color: #ffffff;
+        .cyber-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(217, 70, 239, 0.2);
         }
 
-        .nav-item.active {
-            background: rgba(255, 255, 255, 0.05);
-            color: #00f2ff;
+        .cyber-card::before {
+            content: "PROTOCOL_INITIATED"; /* Ref: image_162906 */
+            position: absolute; top: 10px; left: 20px;
+            font-family: 'JetBrains Mono'; font-size: 8px; color: #00f2ff; opacity: 0.5;
         }
 
-        /* Content Card */
-        .content-card {
-            background: rgba(17, 17, 22, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .copy-box {
-            background: #060608;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 16px;
-            font-family: monospace;
-            color: #00f2ff;
-            word-break: break-all;
-        }
-
-        .btn-primary {
-            background: #ffffff;
-            color: #000000;
-            padding: 12px 24px;
+        .btn-play {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 14px 40px;
             border-radius: 12px;
             font-weight: 700;
-            transition: 0.2s;
+            transition: 0.3s;
         }
 
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-
-        /* Mobile Bottom Nav */
-        @media (max-width: 768px) {
-            .sidebar { display: none; }
-            .mobile-nav {
-                position: fixed; bottom: 0; left: 0; width: 100%;
-                background: #0d0d11;
-                border-top: 1px solid rgba(255,255,255,0.05);
-                display: flex; justify-content: space-around;
-                padding: 16px; z-index: 50;
-            }
+        .btn-play:hover {
+            box-shadow: 0 0 30px rgba(217, 70, 239, 0.4);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
+    <div class="cyber-grid"></div>
+    <div class="hero-glow"></div>
 
-    <div class="bg-gradient"></div>
+    <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-violet-500 rounded-full"></div>
+            <span class="text-2xl font-black tracking-tighter">GROWRUSH <span class="text-pink-500">PS</span></span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-semibold opacity-70">
+            <a href="#" class="hover:text-pink-500">Home</a>
+            <a href="#" class="hover:text-pink-500">Status</a>
+            <a href="#" class="hover:text-pink-500">Features</a>
+            <a href="#" class="hover:text-pink-500">Tutorials</a>
+        </div>
+        <div class="bg-violet-600 p-2 rounded-lg cursor-pointer">Discord Icon</div>
+    </nav>
 
-    <div class="flex min-h-screen">
-        
-        <aside class="sidebar hidden md:block">
-            <div class="flex items-center gap-3 mb-12 px-2">
-                <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-black font-bold text-sm">G</div>
-                <span class="text-xl font-bold tracking-tight">GrowRush</span>
+    <main class="text-center mt-20 px-4">
+        <div class="inline-block border border-pink-500/30 rounded-full px-4 py-1 text-xs text-pink-400 mb-6 bg-pink-500/5">
+            ● The Best Global Private Server
+        </div>
+        <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter">
+            GROWRUSH <span class="bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">PS</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-gray-400 text-lg mb-10 leading-relaxed">
+            Experience ultimate Growtopia gameplay within a stunning 
+            cyber world. Global server, exclusive features, and a 
+            friendly community.
+        </p>
+        <button class="btn-play mb-20">▶ Play Now</button>
+
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 p-6">
+            <div class="cyber-card">
+                <span class="block mt-4 text-gray-500 text-[10px] font-bold">WIN_BIN</span>
+                <div class="text-4xl my-4">💾</div>
+                <span class="text-[8px] opacity-40 font-mono">WIN_BIN_EXE</span>
             </div>
 
-            <nav>
-                <div onclick="select('go')" id="n-go" class="nav-item active">
-                    <span class="mr-3">⚙️</span> Host Go
-                </div>
-                <div onclick="select('ptun')" id="n-ptun" class="nav-item">
-                    <span class="mr-3">🤖</span> PTUN Android
-                </div>
-                <div onclick="select('vhost')" id="n-vhost" class="nav-item">
-                    <span class="mr-3">🌐</span> Virtual Host
-                </div>
-                <div onclick="select('surge')" id="n-surge" class="nav-item">
-                    <span class="mr-3">🍎</span> Surge 5
-                </div>
-            </nav>
-        </aside>
-
-        <main class="flex-grow p-6 md:p-20">
-            <div class="max-w-3xl">
-                <h1 id="main-title" class="text-4xl md:text-5xl font-bold mb-4">Host Go Config</h1>
-                <p id="main-desc" class="text-gray-400 text-lg mb-10">Gunakan link ini untuk sinkronisasi otomatis pada aplikasi Host Go PC.</p>
-
-                <div class="content-card">
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Remote URL Access</p>
-                    <div class="copy-box mb-8" id="url-display">
-                        https://www.growrush.my.id/GrowRushPS.config
-                    </div>
-
-                    <div id="extra-vhost" class="hidden mb-8">
-                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Hosts Data</p>
-                        <div class="bg-black/50 p-4 rounded-xl text-sm text-gray-400 border border-white/5">
-                            15.235.227.241 growtopia1.com<br>
-                            15.235.227.241 growtopia2.com
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <button onclick="copyLink()" class="btn-primary">Copy Link</button>
-                        <a id="dl-url" href="https://www.growrush.my.id/GrowRushPS.config" class="px-6 py-3 border border-white/10 rounded-xl hover:bg-white/5 transition">Download</a>
-                    </div>
-                </div>
-
-                <div class="mt-20 border-t border-white/5 pt-10">
-                    <div class="flex items-center gap-6">
-                        <div>
-                            <p class="text-gray-500 text-sm">Server IP</p>
-                            <p class="font-bold">15.235.227.241</p>
-                        </div>
-                        <div class="w-px h-8 bg-white/10"></div>
-                        <div>
-                            <p class="text-gray-500 text-sm">Status</p>
-                            <p class="text-green-400 font-bold">Online</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="cyber-card">
+                <span class="block mt-4 text-gray-500 text-[10px] font-bold">APK_MOD</span>
+                <div class="text-4xl my-4">🤖</div>
+                <span class="text-[8px] opacity-40 font-mono">APK_CLONE_MOD</span>
             </div>
-        </main>
-    </div>
 
-    <div class="mobile-nav md:hidden">
-        <button onclick="select('go')" class="text-xl">⚙️</button>
-        <button onclick="select('ptun')" class="text-xl">🤖</button>
-        <button onclick="select('vhost')" class="text-xl">🌐</button>
-        <button onclick="select('surge')" class="text-xl">🍎</button>
-    </div>
+            <div class="cyber-card">
+                <span class="block mt-4 text-gray-500 text-[10px] font-bold">IPA_IOS</span>
+                <div class="text-4xl my-4">📱</div>
+                <span class="text-[8px] opacity-40 font-mono">IPA_SECURE_IOS</span>
+            </div>
 
-    <script>
-        const store = {
-            go: { t: "Host Go Config", d: "Gunakan link ini untuk sinkronisasi otomatis pada aplikasi Host Go PC.", u: "https://www.growrush.my.id/GrowRushPS.config", v: false },
-            ptun: { t: "PTUN Android", d: "Link remote configuration untuk aplikasi PTUN di Android.", u: "https://www.growrush.my.id/GrowRushPS.txt", v: false },
-            vhost: { t: "Virtual Host", d: "Salin data IP di bawah ini ke dalam file hosts perangkat Anda.", u: "https://www.growrush.my.id/GrowRushPS.txt", v: true },
-            surge: { t: "Surge 5 iOS", d: "Konfigurasi remote premium untuk pengguna aplikasi Surge 5 di iOS.", u: "https://www.growrush.my.id/GrowRushPS.conf", v: false }
-        };
+            <div class="cyber-card">
+                <span class="block mt-4 text-gray-500 text-[10px] font-bold">MAC_ARM</span>
+                <div class="text-4xl my-4">🍎</div>
+                <span class="text-[8px] opacity-40 font-mono">MAC_ARM_OSX</span>
+            </div>
+        </div>
+    </main>
 
-        function select(key) {
-            const item = store[key];
-            document.getElementById('main-title').innerText = item.t;
-            document.getElementById('main-desc').innerText = item.d;
-            document.getElementById('url-display').innerText = item.u;
-            document.getElementById('dl-url').href = item.u;
-
-            // Show/Hide Vhost
-            if(item.v) document.getElementById('extra-vhost').classList.remove('hidden');
-            else document.getElementById('extra-vhost').classList.add('hidden');
-
-            // Nav Styling
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById('n-'+key)?.classList.add('active');
-        }
-
-        function copyLink() {
-            const text = document.getElementById('url-display').innerText;
-            navigator.clipboard.writeText(text);
-            alert('Copied to clipboard!');
-        }
-    </script>
+    <footer class="text-center mt-20 pb-10 text-gray-600 text-[10px] tracking-widest">
+        © 2025 GROWRUSH CORE. ALL PROTOCOLS INITIATED.
+    </footer>
 </body>
 </html>
