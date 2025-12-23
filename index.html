@@ -3,151 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWRUSH | WINTER EDITION</title>
+    <title>TSUBAKI PS | WINTER EDITION</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
             --winter-blue: #0ea5e9;
-            --ice-white: #f0f9ff;
-            --deep-snow: #e0f2fe;
+            --ice-white: #f8fafc;
+            --tsubaki-pink: #d946ef;
         }
 
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background: var(--ice-white); 
+            color: #1e293b;
             overflow-x: hidden; 
         }
-        
-        /* Gradient Tombol Musim Dingin */
-        .winter-gradient { 
-            background: linear-gradient(135deg, #38bdf8, #1d4ed8); 
-        }
 
-        /* Efek Salju Jatuh */
+        /* Salju Jatuh */
         .snowflake {
             position: fixed; top: -10px; z-index: 9999;
             user-select: none; pointer-events: none;
             animation: fall linear infinite;
-            color: white; font-size: 1.5rem;
+            color: #bae6fd; font-size: 1.2rem;
         }
+        @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
 
-        @keyframes fall {
-            to { transform: translateY(105vh) rotate(360deg); }
+        /* Gaya Gradasi Tsubaki Winter */
+        .winter-gradient { background: linear-gradient(135deg, #38bdf8, #8b5cf6); }
+        .text-gradient { background: linear-gradient(to right, #1e293b 60%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Kartu Tsubaki (Ref: image_aedd2f) */
+        .tsubaki-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: 0.3s;
         }
+        .tsubaki-card:hover { transform: translateY(-10px); border-color: var(--winter-blue); }
 
-        /* Animasi Emoji Floating */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
-        }
-        .animate-winter { display: inline-block; animation: float 4s ease-in-out infinite; }
-
-        /* Card Crystal Style */
-        .ice-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            border-radius: 32px;
-            transition: 0.4s;
-        }
-        .ice-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
-            border-color: var(--winter-blue);
-        }
-
-        .btn-winter {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 25px rgba(29, 78, 216, 0.3);
-        }
-        .btn-winter:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(29, 78, 216, 0.5);
-            filter: brightness(1.1);
-        }
+        /* Animasi Floating */
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .animate-float { animation: float 4s ease-in-out infinite; }
     </style>
 </head>
 <body>
 
-    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto relative z-10">
+    <nav class="flex justify-between items-center px-10 py-6 max-w-7xl mx-auto relative z-20">
         <div class="flex items-center gap-2" data-aos="fade-right">
-            <div class="text-3xl animate-winter">❄️</div>
-            <span class="text-2xl font-black tracking-tighter uppercase text-slate-800">GROWRUSH <span class="text-sky-500">ICE</span></span>
+            <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center text-white">❄️</div>
+            <span class="text-2xl font-black tracking-tighter uppercase">TSUBAKI <span class="text-sky-500 font-extrabold">PS</span></span>
         </div>
-        <div class="hidden md:flex gap-8 font-bold text-sky-700/60 text-sm uppercase tracking-widest">
-            <a href="#" class="hover:text-sky-500 transition">Lobby</a>
-            <a href="#features" class="hover:text-sky-500 transition">Perks</a>
-            <a href="#join" class="hover:text-sky-500 transition">Guide</a>
+        <div class="hidden md:flex gap-10 font-bold text-slate-500 text-sm">
+            <a href="#" class="hover:text-sky-500 transition">Home</a>
+            <a href="#status" class="hover:text-sky-500 transition">Status</a>
+            <a href="#features" class="hover:text-sky-500 transition">Features</a>
+            <a href="#join" class="hover:text-sky-500 transition">Tutorials</a>
         </div>
-        <button class="winter-gradient px-6 py-2 rounded-xl text-white font-bold text-sm btn-winter" data-aos="zoom-in">DISCORD 🐧</button>
+        <div class="flex items-center gap-4">
+            <button class="text-xl">☀️</button>
+            <button class="winter-gradient p-2 rounded-2xl text-white shadow-lg shadow-sky-200">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515..."></path></svg>
+            </button>
+        </div>
     </nav>
 
-    <section class="text-center pt-20 pb-32 relative">
-        <div class="inline-block border border-sky-200 px-4 py-1 rounded-full text-sky-600 text-[10px] font-black tracking-[0.2em] mb-6 bg-sky-100/50 uppercase" data-aos="fade-down">
-            The Coldest Private Server
+    <section class="text-center py-24 px-6 relative">
+        <div class="inline-block border border-sky-200 text-sky-500 rounded-full px-5 py-1 text-xs font-bold mb-8 bg-sky-50" data-aos="fade-down">
+            ● The Best Global Private Server
         </div>
-        <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-slate-900" data-aos="fade-up">
-            WINTER <span class="text-sky-500">PEAK</span>
-        </h1>
-        <p class="max-w-xl mx-auto text-slate-500 mb-12 text-lg font-medium leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-            Nikmati petualangan salju dengan fitur <span class="animate-winter">🏠</span> dunia anime dan item eksklusif musim dingin.
+        <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-gradient" data-aos="fade-up">TSUBAKI PS</h1>
+        <p class="max-w-2xl mx-auto text-slate-500 text-lg mb-12" data-aos="fade-up" data-aos-delay="200">
+            Experience ultimate Growtopia gameplay within a stunning anime world. Global server, exclusive features, and a friendly community.
         </p>
-        <button class="winter-gradient px-12 py-5 rounded-2xl text-white font-extrabold text-xl btn-winter uppercase tracking-tighter" data-aos="zoom-in" data-aos-delay="400">
-            ❄️ Start Playing
-        </button>
+        <button class="winter-gradient px-12 py-5 rounded-3xl text-white font-extrabold text-xl shadow-xl hover:scale-105 transition" data-aos="zoom-in">▶ Play Now</button>
     </section>
 
-    <section id="features" class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="ice-card p-10 text-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="text-5xl mb-6 animate-winter">🏔️</div>
-                <h3 class="font-extrabold text-xl mb-4 text-slate-800">Snowy Items</h3>
-                <p class="text-sm text-slate-400">1000+ item bertema es yang didesain khusus.</p>
+    <section id="status" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20" data-aos="fade-up">
+            <div class="tsubaki-card text-center italic">
+                <p class="text-3xl font-black text-slate-800">50+</p>
+                <p class="text-[10px] uppercase font-bold text-slate-400">Players</p>
             </div>
-            <div class="ice-card p-10 text-center" data-aos="fade-up" data-aos-delay="200">
-                <div class="text-5xl mb-6 animate-winter">🧊</div>
-                <h3 class="font-extrabold text-xl mb-4 text-slate-800">Ice Events</h3>
-                <p class="text-sm text-slate-400">Event mingguan dengan hadiah kristal langka.</p>
+            <div class="tsubaki-card text-center italic">
+                <p class="text-3xl font-black text-slate-800">100+</p>
+                <p class="text-[10px] uppercase font-bold text-slate-400">Worlds</p>
             </div>
-            <div class="ice-card p-10 text-center" data-aos="fade-up" data-aos-delay="300">
-                <div class="text-5xl mb-6 animate-winter">⛄</div>
-                <h3 class="font-extrabold text-xl mb-4 text-slate-800">Cool Society</h3>
-                <p class="text-sm text-slate-400">Komunitas ramah yang siap menyambutmu di musim dingin.</p>
+            <div class="tsubaki-card text-center italic">
+                <p class="text-3xl font-black text-slate-800">22ms</p>
+                <p class="text-[10px] uppercase font-bold text-slate-400">Ping</p>
             </div>
-            <div class="ice-card p-10 text-center" data-aos="fade-up" data-aos-delay="400">
-                <div class="text-5xl mb-6 animate-winter">🛡️</div>
-                <h3 class="font-extrabold text-xl mb-4 text-slate-800">Frost Guard</h3>
-                <p class="text-sm text-slate-400">Keamanan berlapis untuk melindungi akun anda.</p>
+            <div class="tsubaki-card text-center italic">
+                <p class="text-3xl font-black text-slate-800">99%</p>
+                <p class="text-[10px] uppercase font-bold text-slate-400">Uptime</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-[40px] p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center card-shadow" data-aos="fade-up">
+            <div class="w-full md:w-1/2 bg-[#0f172a] rounded-[32px] p-12 text-center relative overflow-hidden">
+                <div class="text-6xl mb-6 animate-float">☁️</div>
+                <h3 class="text-2xl font-bold text-white mb-2">Global Server</h3>
+                <p class="text-slate-500 text-sm">Enterprise Tier-4 Performance</p>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h2 class="text-4xl font-extrabold mb-6">Server <span class="text-sky-500">Status</span></h2>
+                <p class="text-slate-500 mb-8">Enjoy lag-free gaming with our high-performance global infrastructure. Optimized specifically for Growtopia protocols.</p>
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Connection Address</p>
+                    <p class="font-mono text-sm break-all font-bold text-sky-600">https://as.panel.growsoft.cc/android/1518</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="join" class="max-w-5xl mx-auto py-32 px-6">
-        <div class="ice-card p-12 md:p-20 relative overflow-hidden" data-aos="fade-right">
-            <div class="relative z-10">
-                <h2 class="text-4xl font-black mb-10 italic text-slate-800">Ice <span class="text-sky-500">Installation</span></h2>
-                <div class="space-y-8">
-                    <div class="flex gap-6 items-start" data-aos="fade-left" data-aos-delay="300">
-                        <div class="bg-sky-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-black flex-shrink-0">1</div>
-                        <p class="text-slate-600 font-semibold">Unduh <b>Hosts Go</b> melalui portal resmi kami.</p>
+    <section id="features" class="max-w-7xl mx-auto px-6 py-20 text-center">
+        <p class="text-[10px] font-bold text-sky-500 uppercase tracking-widest mb-2">Excellence</p>
+        <h2 class="text-5xl font-extrabold mb-16 italic">Key <span class="text-sky-500">Features</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="tsubaki-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 bg-sky-50 rounded-2xl flex items-center justify-center mb-6 mx-auto">🌸</div>
+                <h3 class="font-bold mb-4">Exclusive Items</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">1000+ custom items uniquely designed for our server.</p>
+            </div>
+            <div class="tsubaki-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 mx-auto">🎮</div>
+                <h3 class="font-bold mb-4">Custom Events</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Daily and weekly events with amazing rewards.</p>
+            </div>
+            <div class="tsubaki-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 mx-auto">👥</div>
+                <h3 class="font-bold mb-4">Community</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Solid and friendly community, ready to help new players.</p>
+            </div>
+            <div class="tsubaki-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center mb-6 mx-auto">🛡️</div>
+                <h3 class="font-bold mb-4">Secure</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Advanced security systems to keep your account safe.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="max-w-5xl mx-auto px-6 py-20">
+        <h2 class="text-center text-4xl font-extrabold mb-12">How to <span class="text-sky-500 italic">Join</span></h2>
+        <div class="flex justify-center gap-4 mb-10 overflow-x-auto pb-4">
+            <button class="bg-sky-500 text-white px-6 py-2 rounded-full font-bold shadow-lg shadow-sky-100 flex items-center gap-2">🤖 Android</button>
+            <button class="bg-white text-slate-400 px-6 py-2 rounded-full font-bold border border-slate-100">💻 Windows</button>
+            <button class="bg-white text-slate-400 px-6 py-2 rounded-full font-bold border border-slate-100">📱 iOS</button>
+        </div>
+
+        <div class="tsubaki-card p-10 md:p-16 relative overflow-hidden" data-aos="fade-up">
+            <div class="flex items-center gap-4 mb-12">
+                <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-xl">🤖</div>
+                <h3 class="text-2xl font-extrabold italic">Setup via Hosts Go</h3>
+            </div>
+            <div class="space-y-12 relative z-10">
+                <div class="flex gap-8">
+                    <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-black flex-shrink-0">1</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Download App</h4>
+                        <p class="text-slate-400 text-sm">Download Hosts Go (No Root) using the button below.</p>
                     </div>
-                    <div class="flex gap-6 items-start" data-aos="fade-left" data-aos-delay="500">
-                        <div class="bg-sky-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-black flex-shrink-0">2</div>
-                        <div>
-                            <p class="text-slate-600 font-semibold mb-3">Gunakan Remote Config:</p>
-                            <code class="bg-slate-900 text-sky-400 p-4 rounded-xl text-xs block font-mono">https://www.growrush.my.id/GrowRushPS.txt</code>
+                </div>
+                <div class="flex gap-8">
+                    <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-black flex-shrink-0">2</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Configure Hosts</h4>
+                        <p class="text-slate-400 text-sm mb-4">Open Hosts Editor, paste this URL into the Download/Import field:</p>
+                        <div class="bg-[#1e1b4b] text-sky-400 p-5 rounded-2xl font-mono text-xs break-all shadow-inner">
+                            https://as.panel.growsoft.cc/android/1518
                         </div>
                     </div>
                 </div>
-                <button class="winter-gradient mt-12 px-10 py-4 rounded-xl text-white font-bold btn-winter uppercase tracking-widest text-sm">Download Ice Client</button>
+                <div class="flex gap-8">
+                    <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-black flex-shrink-0">3</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Connect</h4>
+                        <p class="text-slate-400 text-sm">Turn on the protection (Start), then login to Growtopia.</p>
+                    </div>
+                </div>
             </div>
-            <div class="absolute -right-20 bottom-0 text-[200px] opacity-10 animate-winter">❄️</div>
+            <button class="winter-gradient mt-12 px-10 py-4 rounded-2xl text-white font-black shadow-xl shadow-sky-100">Download Hosts Go</button>
         </div>
     </section>
+
+    <footer class="py-12 text-center text-slate-400 text-xs font-bold tracking-[0.3em] uppercase">
+        © 2025 TSUBAKI PS | Winter Edition
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
