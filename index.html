@@ -3,131 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowRush PS | Winter Edition</title>
+    <title>GrowRush PS | Premium Winter Sakura</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdf2f8; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdf2f8; color: #1e293b; overflow-x: hidden; }
         .winter-grad { background: linear-gradient(135deg, #a855f7, #ec4899); }
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 182, 193, 0.3); border-radius: 24px; }
-        .hero-title { font-size: 4rem; line-height: 1; font-weight: 900; letter-spacing: -2px; }
-        @media (max-width: 768px) { .hero-title { font-size: 2.5rem; } }
-        /* Floating petals */
-        .petal { position: fixed; top: -10px; z-index: 99; pointer-events: none; animation: fall linear infinite; color: #f9a8d4; }
+        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 182, 193, 0.3); border-radius: 32px; }
+        .dark-card { background: #0f172a; border-radius: 24px; padding: 24px; color: #f1f5f9; }
+        
+        /* Tab Animation */
+        .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .tab-btn.active { background: #ec4899; color: white; transform: scale(1.05); }
+
+        /* Floating particles */
+        .particle { position: fixed; top: -10px; z-index: 99; pointer-events: none; animation: fall linear infinite; }
         @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-50 bg-white/60 backdrop-blur-md px-6 py-3 flex justify-between items-center border-b border-pink-100">
+    <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md px-6 py-4 flex justify-between items-center border-b border-pink-100">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 winter-grad rounded-lg flex items-center justify-center text-white">❄️</div>
-            <span class="text-xl font-extrabold italic tracking-tighter uppercase">GrowRush <span class="text-pink-500">PS</span></span>
+            <div class="w-10 h-10 winter-grad rounded-xl flex items-center justify-center text-white shadow-lg">❄️</div>
+            <span class="text-2xl font-black italic tracking-tighter uppercase">GrowRush <span class="text-pink-500">PS</span></span>
         </div>
-        <div class="flex items-center gap-3">
-            <button class="p-2 text-pink-400 hover:scale-110 transition">☀️</button>
-            <button class="bg-[#5865F2] p-2 rounded-xl text-white shadow-lg"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg></button>
+        <div class="flex items-center gap-4">
+            <button class="bg-[#5865F2] px-4 py-2 rounded-xl text-white font-bold flex items-center gap-2 shadow-md hover:bg-[#4752c4] transition">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993.033.047.084.06.084.028a19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
+                Discord
+            </button>
         </div>
     </nav>
 
-    <main class="pt-28 pb-10 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-6">
-            <span class="border border-pink-200 text-pink-500 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/50">
-                ● The Best Global Private Server
+    <main class="pt-32 pb-20 px-6 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="bg-pink-100 text-pink-500 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                🌸 The Best Global Private Server
             </span>
+            <h1 class="text-6xl md:text-8xl font-black italic uppercase mt-8 mb-4 tracking-tighter">
+                GrowRush <span class="text-pink-500">PS</span>
+            </h1>
+            <p class="text-slate-500 max-w-2xl mx-auto text-lg font-medium leading-relaxed">
+                Experience ultimate Growtopia gameplay within a stunning anime world. 
+                Global server, exclusive features, and a friendly community.
+            </p>
         </div>
 
-        <h1 class="hero-title text-center mb-8 uppercase italic">GrowRush <span class="text-pink-500">PS</span></h1>
-        
-        <p class="text-center text-slate-500 max-w-lg mx-auto mb-10 text-sm font-medium">
-            Nikmati pengalaman Growtopia terbaik di dunia bertema anime. Server global, fitur eksklusif, dan komunitas yang ramah.
-        </p>
-
-        <div class="flex justify-center mb-16">
-            <button class="winter-grad px-12 py-4 rounded-2xl text-white font-black text-lg shadow-xl flex items-center gap-3 hover:scale-105 transition">
-                ▶ PLAY NOW
-            </button>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-            <div class="glass p-6 text-center shadow-sm">
-                <div class="text-pink-400 text-2xl mb-2">👥</div>
-                <div class="text-2xl font-black">50+</div>
-                <div class="text-[10px] font-bold opacity-40 uppercase tracking-widest">Players</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+            <div class="glass p-6 text-center shadow-lg">
+                <div class="text-pink-500 text-3xl mb-2">👥</div>
+                <div class="text-3xl font-black">50+</div>
+                <p class="text-[10px] font-bold opacity-40 uppercase">Players</p>
             </div>
-            <div class="glass p-6 text-center shadow-sm">
-                <div class="text-pink-400 text-2xl mb-2">📦</div>
-                <div class="text-2xl font-black">100+</div>
-                <div class="text-[10px] font-bold opacity-40 uppercase tracking-widest">Worlds</div>
+            <div class="glass p-6 text-center shadow-lg">
+                <div class="text-pink-500 text-3xl mb-2">📦</div>
+                <div class="text-3xl font-black">100+</div>
+                <p class="text-[10px] font-bold opacity-40 uppercase">Worlds</p>
             </div>
-            <div class="glass p-6 text-center shadow-sm">
-                <div class="text-pink-400 text-2xl mb-2">📶</div>
-                <div class="text-2xl font-black">22ms</div>
-                <div class="text-[10px] font-bold opacity-40 uppercase tracking-widest">Ping</div>
+            <div class="glass p-6 text-center shadow-lg">
+                <div class="text-pink-500 text-3xl mb-2">📶</div>
+                <div class="text-3xl font-black">22ms</div>
+                <p class="text-[10px] font-bold opacity-40 uppercase">Ping</p>
             </div>
-            <div class="glass p-6 text-center shadow-sm">
-                <div class="text-pink-400 text-2xl mb-2">🕒</div>
-                <div class="text-2xl font-black">99%</div>
-                <div class="text-[10px] font-bold opacity-40 uppercase tracking-widest">Uptime</div>
+            <div class="glass p-6 text-center shadow-lg">
+                <div class="text-pink-500 text-3xl mb-2">🕒</div>
+                <div class="text-3xl font-black">99%</div>
+                <p class="text-[10px] font-bold opacity-40 uppercase">Uptime</p>
             </div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 items-start mb-20">
-            <div class="glass p-10 bg-slate-900 text-white relative overflow-hidden h-full flex flex-col justify-center min-h-[300px]">
-                <div class="text-pink-500 text-5xl mb-6">🔳</div>
-                <h2 class="text-3xl font-black italic uppercase mb-2">Global Server</h2>
-                <p class="text-slate-400 text-sm">Enterprise Tier-4 Performance</p>
-                <div class="absolute -right-10 -bottom-10 text-9xl opacity-10">❄️</div>
+        <div class="mb-24">
+            <div class="text-center mb-10">
+                <p class="text-pink-500 font-bold uppercase tracking-widest text-xs mb-2">Excellence</p>
+                <h2 class="text-4xl font-black uppercase italic">Key <span class="text-pink-500">Features</span></h2>
+                <p class="text-slate-400 mt-2">Exclusive features designed to pamper every player.</p>
             </div>
-
-            <div class="glass p-8 border-2 border-pink-100">
-                <div class="flex items-center gap-3 mb-8">
-                    <div class="bg-green-100 p-2 rounded-xl text-green-500">🎮</div>
-                    <h3 class="text-xl font-black italic uppercase">Setup via Hosts Go</h3>
-                </div>
-                
-                <div class="space-y-6 mb-10">
-                    <div class="flex gap-4 items-start">
-                        <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center font-bold text-xs flex-shrink-0">1</div>
-                        <div>
-                            <p class="text-sm font-bold">Download App</p>
-                            <p class="text-xs opacity-50">Download Hosts Go (No Root).</p>
-                        </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass p-8 flex gap-6 items-start hover:scale-105 transition shadow-xl">
+                    <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center text-3xl shadow-inner">⭐</div>
+                    <div>
+                        <h3 class="text-xl font-black uppercase italic mb-2">Exclusive Items</h3>
+                        <p class="text-slate-500 text-sm font-medium leading-relaxed">
+                            1000+ custom items uniquely designed for our server.
+                        </p>
                     </div>
-                    <div class="flex gap-4 items-start">
-                        <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center font-bold text-xs flex-shrink-0">2</div>
-                        <div class="w-full">
-                            <p class="text-sm font-bold">Configure Hosts</p>
-                            <div class="bg-slate-900 text-pink-400 p-3 rounded-xl mt-2 font-mono text-[10px] break-all">
-                                https://as.panel.growsoft.cc/android/1518
+                </div>
+                <div class="dark-card flex gap-6 items-start shadow-2xl">
+                    <div class="w-16 h-16 bg-pink-500/20 rounded-2xl flex items-center justify-center text-3xl text-pink-500">🌍</div>
+                    <div>
+                        <h3 class="text-xl font-black uppercase italic mb-2">Global Server</h3>
+                        <p class="text-slate-400 text-sm font-medium">
+                            Enterprise Tier-4 Performance optimized for Growtopia protocols.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass p-10 border-2 border-pink-100 shadow-2xl">
+            <h2 class="text-4xl font-black text-center uppercase italic mb-10">How to <span class="text-pink-500">Join</span></h2>
+            
+            <div class="flex justify-center gap-3 mb-12 bg-pink-50 p-2 rounded-2xl">
+                <button onclick="openTab('android')" id="btn-android" class="tab-btn active px-8 py-3 rounded-xl font-black text-sm transition-all flex items-center gap-2">
+                    🤖 ANDROID
+                </button>
+                <button onclick="openTab('windows')" id="btn-windows" class="tab-btn px-8 py-3 rounded-xl font-black text-sm transition-all flex items-center gap-2">
+                    💻 WINDOWS
+                </button>
+            </div>
+
+            <div id="android" class="tab-content active">
+                <div class="flex flex-col md:flex-row gap-10 items-center">
+                    <div class="flex-1 space-y-8">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-black">1</div>
+                            <p class="text-sm font-bold">Download <span class="text-pink-500">Hosts Go (No Root)</span> from Playstore.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-black">2</div>
+                            <div class="w-full">
+                                <p class="text-sm font-bold mb-2">Import this URL in Hosts Editor:</p>
+                                <div class="dark-card font-mono text-pink-400 text-xs break-all shadow-inner">
+                                    https://as.panel.growsoft.cc/android/1518
+                                </div>
                             </div>
                         </div>
+                        <button class="w-full winter-grad py-4 rounded-2xl text-white font-black shadow-lg">DOWNLOAD HOSTS GO</button>
                     </div>
+                    <div class="w-40 h-40 bg-pink-50 rounded-full flex items-center justify-center text-7xl shadow-inner">📱</div>
                 </div>
-                
-                <button class="w-full winter-grad py-4 rounded-2xl text-white font-black text-sm shadow-lg">
-                    DOWNLOAD HOSTS GO
-                </button>
+            </div>
+
+            <div id="windows" class="tab-content">
+                <div class="space-y-6">
+                    <p class="text-sm font-bold">1. Open Notepad as Administrator.</p>
+                    <p class="text-xs text-slate-400 -mt-4">File Path: C:\Windows\System32\drivers\etc\hosts</p>
+                    <div class="dark-card font-mono text-pink-300 text-[10px] leading-relaxed">
+                        15.235.227.241 growtopia1.com<br>
+                        15.235.227.241 growtopia2.com<br>
+                        15.235.227.241 www.growtopia1.com<br>
+                        15.235.227.241 www.growtopia2.com
+                    </div>
+                    <p class="text-sm font-bold">2. Save and open Growtopia.</p>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer class="py-10 text-center border-t border-pink-100">
-        <div class="w-8 h-8 winter-grad rounded-lg flex items-center justify-center text-white mx-auto mb-4">❄️</div>
-        <p class="text-xs font-bold opacity-30 tracking-[0.3em] uppercase">© 2025 GrowRushPS & NovaStore. All rights reserved.</p>
+    <footer class="py-12 text-center border-t border-pink-100">
+        <div class="w-12 h-12 winter-grad rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg">❄️</div>
+        <p class="text-[10px] font-bold opacity-30 tracking-[0.5em] uppercase">© 2025 GrowRushPS & NovaStore. All rights reserved.</p>
     </footer>
 
     <script>
-        // Sakura Petals Effect
-        setInterval(() => {
+        // Tab System
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            document.getElementById('btn-' + tabName).classList.add('active');
+        }
+
+        // Particle System (Snow & Sakura)
+        function createParticle() {
             const p = document.createElement('div');
-            p.className = 'petal'; p.innerHTML = '🌸';
+            const isSakura = Math.random() > 0.5;
+            p.className = 'particle';
+            p.innerHTML = isSakura ? '🌸' : '❄️';
             p.style.left = Math.random() * 100 + 'vw';
-            p.style.fontSize = Math.random() * 10 + 10 + 'px';
-            p.style.animationDuration = Math.random() * 3 + 3 + 's';
+            p.style.fontSize = Math.random() * 15 + 10 + 'px';
+            p.style.opacity = Math.random();
+            p.style.animationDuration = Math.random() * 4 + 4 + 's';
             document.body.appendChild(p);
-            setTimeout(() => p.remove(), 5000);
-        }, 400);
+            setTimeout(() => p.remove(), 8000);
+        }
+        setInterval(createParticle, 300);
     </script>
 </body>
 </html>
